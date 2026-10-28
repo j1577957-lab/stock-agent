@@ -1,0 +1,65 @@
+# 這個檔案告訴 GitHub「什麼時候自動執行股票 Agent」。一般不需要修改。
+name: 股票 Agent
+
+on:
+  schedule:
+    # GitHub 用的是 UTC 時間（台灣時間 -8 小時）
+    - cron: "*/15 0-7 * * 1-5"    # 台股：台灣 08:00–15:45，每 15 分鐘
+    - cron: "*/15 12-22 * * 1-5"  # 美股：涵蓋夏令/冬令時間，每 15 分鐘
+  workflow_dispatch:              # 允許在網頁上手動按「Run workflow」測試
+    inputs:
+      mode:
+        description: "模式（auto 自動判斷，或 tw_pre / tw_intraday / tw_post / us_pre / us_intraday / us_post）"
+        default: "auto"
+      dry_run:
+        description: "模擬模式（不呼叫 Claude、不花錢）"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stock-agent
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 判斷現在要做什麼
+        id: gate
+        run: python agent/clock.py "${{ github.event.inputs.mode }}"
+
+      - name: 安裝套件
+        if: steps.gate.outputs.mode != 'none'
+        run: pip install -q -r requirements.txt
+
+      - name: 執行股票 Agent
+        if: steps.gate.outputs.mode != 'none'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          DASHBOARD_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+        run: python -m agent.main ${{ steps.gate.outputs.mode }} ${{ github.event.inputs.dry_run == 'true' && '--dry-run' || '' }}
+
+      - name: 更新網頁儀表板資料
+        if: always() && steps.gate.outputs.mode != 'none'
+        run: |
+          git config user.name "stock-agent-bot"
+          git config user.email "stock-agent-bot@users.noreply.github.com"
+          git add docs/data
+          git diff --cached --quiet && exit 0
+          git commit -m "更新資料 ${{ steps.gate.outputs.mode }}"
+          git pull --rebase -q || true
+          git push

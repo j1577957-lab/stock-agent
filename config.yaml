@@ -1,0 +1,49 @@
+# ============================================================
+#  股票 Agent 設定檔 —— 平常只需要改這個檔案
+#  改完存檔（在 GitHub 網頁按 Commit changes）就會自動生效
+# ============================================================
+
+# ---------- 觀察清單 ----------
+# 台股：上市用 .TW，上櫃用 .TWO（打錯也沒關係，程式會自動試另一個）
+# 美股：直接寫代號
+watchlist:
+  tw:
+    - { symbol: "5465.TWO",   name: "富驊" }
+    - { symbol: "00406A.TW",  name: "主動中信台灣收益" }
+    - { symbol: "1802.TW",    name: "台玻" }
+    - { symbol: "2409.TW",    name: "友達" }
+    - { symbol: "2303.TW",    name: "聯電" }
+    - { symbol: "6182.TWO",   name: "合晶" }
+    - { symbol: "8261.TW",    name: "富鼎" }
+    - { symbol: "2449.TW",    name: "京元電子" }
+    - { symbol: "2375.TW",    name: "凱美" }
+    - { symbol: "00685L.TW",  name: "群益臺灣加權正2" }
+  us:
+    - { symbol: "QQQM", name: "Invesco 那斯達克100 ETF" }
+    - { symbol: "AAPL", name: "Apple" }
+    - { symbol: "NVDA", name: "NVIDIA" }
+    - { symbol: "ALAB", name: "Astera Labs" }
+    - { symbol: "TXN",  name: "Texas Instruments" }
+    - { symbol: "SPCX", name: "SpaceX" }
+
+# ---------- 初篩條件（能不能買的第一關，不用 AI、不花錢）----------
+screen:
+  min_score: 3              # 加分條件拿到幾分以上，才交給 AI 分析（越高越嚴格）
+  max_above_ma20_pct: 10    # 股價比月線高超過幾 % 就不追（避免追高）
+  max_rsi: 75               # RSI 超過這個數字代表過熱，不追
+  volume_ratio: 1.5         # 量能是平常的幾倍才算「放量」
+
+# ---------- AI 設定 ----------
+ai:
+  analyst_model: "claude-sonnet-5-5"   # 分析 agent 用的模型
+  judge_model: "claude-sonnet-5-5"     # 判斷 agent 用的模型（想更嚴謹可改 claude-opus-5-5，較貴）
+  use_web_search: true                 # 分析時是否上網查最新新聞（每次搜尋另計小額費用）
+
+# ---------- 通知 ----------
+notify:
+  telegram: true
+  email: true
+  # 判斷 agent 結論為哪些時要推播（買進 / 觀望 / 不買）
+  push_verdicts: ["買進"]
+  # 同一檔股票一天最多交給判斷 agent 幾次（避免每 15 分鐘重複花錢、重複通知）
+  max_judge_per_stock_per_day: 1
