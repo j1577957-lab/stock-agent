@@ -335,8 +335,9 @@ function passcode(reset){
   if(!p){p=(prompt("請輸入指揮站通關密碼")||"").trim();if(p)try{localStorage.setItem("pg_pass",p)}catch(e){}}
   return p;
 }
+const localBusy=new Set();   // 正在處理網頁任務的技師，不被 status.json 覆蓋
 async function dispatch(q,target){
-  const who=target?target:crew[0];
+  const who=target?target:crew[0];localBusy.add(who.id);
   if(target){chat("賽車工程師",`Box, box！交給${target.name}。`)}
   state.eng=target?"idle":"busy";state[who.id]="busy";render();
   let pass=passcode(false);
@@ -350,7 +351,7 @@ async function dispatch(q,target){
     chat(d.who||who.name,d.reply,"done");
     if(!chatSeen)pullChat(false);
   }catch(e){chat(who.name,"⚠️ "+e.message)}
-  state[who.id]="idle";state.eng="idle";render();
+  localBusy.delete(who.id);state[who.id]="idle";state.eng="idle";render();
 }
 document.getElementById("send").onclick=()=>{
   const q=task.value.trim();if(!q){task.focus();return}
@@ -392,7 +393,7 @@ async function pull(){
   try{
     const r=await fetch("status.json?t="+Date.now());if(!r.ok)return;
     const d=await r.json();
-    for(const id in (d.crew||{}))if(id in state)state[id]=d.crew[id];
+    for(const id in (d.crew||{}))if(id in state&&!localBusy.has(id))state[id]=d.crew[id];
     const rl=d.radio||[],key=(x,i)=>x.id??i+1;
     rl.forEach((x,i)=>{if(key(x,i)>seen)log(x.who,x.msg,"done")});
     if(rl.length)seen=Math.max(seen,...rl.map(key));

@@ -24,7 +24,12 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: 檢查是否剛跑過
+        id: gate
+        run: python -m agent.news --gate
+
       - name: 指揮站：爬蟲技師作業中
+        if: steps.gate.outputs.run == 'true'
         run: |
           python agent/status.py busy crawl
           git config user.name "stock-agent-bot"
@@ -33,13 +38,14 @@ jobs:
           git diff --cached --quiet || (git commit -q -m "爬蟲技師作業中" && (git pull --rebase -q || true) && git push -q) || true
 
       - name: 抓新聞
+        if: steps.gate.outputs.run == 'true'
         run: |
           pip install -q requests
           python -m agent.news | tee "$RUNNER_TEMP/news.log"
           cp docs/data/news.json "$RUNNER_TEMP/news.json"
 
       - name: 更新網頁資料＋技師設回待命
-        if: always()
+        if: always() && steps.gate.outputs.run == 'true'
         run: |
           git config user.name "stock-agent-bot"
           git config user.email "stock-agent-bot@users.noreply.github.com"

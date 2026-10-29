@@ -164,13 +164,23 @@ def run(mode: str, dry: bool, demo: bool) -> str | None:
 if __name__ == "__main__":
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     mode = args[0] if args and args[0] not in ("", "auto") else clock.detect_mode()
+    import os
+
     from agent import status
+    # 在 GitHub 上執行時，摘要先寫到暫存檔，由最後的「更新資料」步驟寫進指揮站（避免和爬蟲技師同時改檔案打架）
+    msg_file = os.environ.get("STATUS_MSG_FILE")
+
+    def report(msg: str | None) -> None:
+        if msg_file:
+            Path(msg_file).write_text(msg or "", encoding="utf-8")
+        elif msg:
+            status.done("stock", msg)
+        else:
+            status.set_state("stock", "idle")
+
     try:
         summary = run(mode, dry="--dry-run" in sys.argv, demo="--demo-data" in sys.argv)
     except Exception as e:
-        status.done("stock", f"⚠️ {mode} 執行失敗：{str(e)[:80]}")
+        report(f"⚠️ {mode} 執行失敗：{str(e)[:80]}")
         raise
-    if summary:
-        status.done("stock", summary)
-    else:
-        status.set_state("stock", "idle")
+    report(summary)

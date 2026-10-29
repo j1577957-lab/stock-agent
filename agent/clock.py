@@ -78,9 +78,27 @@ def session_progress(market: str, now_utc: datetime | None = None) -> float:
     return min(max(frac, 0.05), 1.0)
 
 
+def recently_scanned(mode: str, minutes: int = 10, now_utc: datetime | None = None) -> bool:
+    """同一個盤中模式在幾分鐘內已經跑過（GitHub 排程和 Cloudflare 鬧鐘可能同時觸發）"""
+    try:
+        latest = json.loads((ROOT / "docs" / "data" / "latest.json").read_text(encoding="utf-8"))
+        info = latest[mode.split("_")[0]]
+        if info.get("mode") != mode:
+            return False
+        tpe = ZoneInfo("Asia/Taipei")
+        last = datetime.strptime(info["time"], "%Y-%m-%d %H:%M").replace(tzinfo=tpe)
+        now = (now_utc or datetime.now(ZoneInfo("UTC"))).astimezone(tpe)
+        return 0 <= (now - last).total_seconds() < minutes * 60
+    except Exception:
+        return False
+
+
 if __name__ == "__main__":
     forced = sys.argv[1] if len(sys.argv) > 1 and sys.argv[1] not in ("", "auto") else None
     mode = forced or detect_mode()
+    if not forced and mode.endswith("_intraday") and recently_scanned(mode):
+        print(f"{mode} 剛剛已經跑過，這次略過（避免重複）")
+        mode = "none"
     print(f"mode={mode}")
     out = os.environ.get("GITHUB_OUTPUT")
     if out:

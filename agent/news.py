@@ -20,8 +20,6 @@ from pathlib import Path
 from urllib.parse import quote
 from zoneinfo import ZoneInfo
 
-import requests
-
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "docs" / "data" / "news.json"
 TPE = ZoneInfo("Asia/Taipei")
@@ -86,6 +84,8 @@ HEADERS = {"User-Agent": "Mozilla/5.0 (stock-agent news crawler)"}
 
 
 def fetch_google(url: str) -> list[dict]:
+    import requests
+
     r = requests.get(url, headers=HEADERS, timeout=20)
     r.raise_for_status()
     out = []
@@ -103,6 +103,8 @@ def fetch_google(url: str) -> list[dict]:
 
 
 def fetch_cnyes(url: str) -> list[dict]:
+    import requests
+
     r = requests.get(url, headers=HEADERS, timeout=20)
     r.raise_for_status()
     out = []
@@ -141,6 +143,8 @@ def crawl(market: str, old: list[dict]) -> tuple[list[dict], int]:
             seen[key] = {**it, "time": it["time"].isoformat(), **classify(it["title"])}
             new += 1
     items = sorted(seen.values(), key=lambda n: n["time"], reverse=True)[:MAX_PER_MARKET]
+    old_keys = {norm(n["title"]) for n in old}
+    new = sum(norm(n["title"]) not in old_keys for n in items)  # 只算真的留下來的新新聞
     return items, new
 
 
@@ -176,8 +180,25 @@ SAMPLES = [
     "通膨降溫 美股四大指數齊揚",
 ]
 
+def recently_updated(minutes: int = 20) -> bool:
+    """GitHub 排程和 Cloudflare 鬧鐘可能都觸發，20 分鐘內跑過就略過"""
+    try:
+        t = json.loads(OUT.read_text(encoding="utf-8"))["updated"]
+        last = datetime.strptime(t, "%Y-%m-%d %H:%M").replace(tzinfo=TPE)
+        return 0 <= (datetime.now(TPE) - last).total_seconds() < minutes * 60
+    except Exception:
+        return False
+
+
 if __name__ == "__main__":
-    if "--test" in sys.argv:
+    if "--gate" in sys.argv:
+        import os
+        run = "false" if recently_updated() and "--force" not in sys.argv else "true"
+        print(f"run={run}" + ("" if run == "true" else "（20 分鐘內已經抓過，這次略過）"))
+        if os.environ.get("GITHUB_OUTPUT"):
+            with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
+                f.write(f"run={run}\n")
+    elif "--test" in sys.argv:
         for t in SAMPLES:
             c = classify(t)
             print(f"{c['label']:<4} {c['score']:>3}  {t}  {c['hits']}")

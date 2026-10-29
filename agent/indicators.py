@@ -102,7 +102,8 @@ def analyze(daily: pd.DataFrame, intra: pd.DataFrame, cfg: dict, *,
     if last["rsi"] > s["max_rsi"]:
         blockers.append(f"RSI {last['rsi']:.0f} 過熱")
 
-    if vol_ratio >= s["volume_ratio"]:
+    # 開盤前一段時間成交量特別集中，推估全天量會失真，盤中前 15% 時間不採計量能
+    if vol_ratio >= s["volume_ratio"] and not (intraday and is_today and progress < 0.15):
         reasons.append(f"量能放大 {vol_ratio:.1f} 倍")
     h = df["hist"].iloc[-4:]
     if h.iloc[-1] > 0 and (h.iloc[:-1] <= 0).any():

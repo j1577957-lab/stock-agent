@@ -61,20 +61,26 @@ jobs:
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           DASHBOARD_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+          STATUS_MSG_FILE: ${{ runner.temp }}/stock_msg.txt
         run: python -m agent.main ${{ steps.gate.outputs.mode }} ${{ github.event.inputs.dry_run == 'true' && '--dry-run' || '' }}
 
-      - name: 指揮站：出錯時設回待命
-        if: failure() && steps.gate.outputs.mode != 'none'
-        run: |
-          grep -q '"stock": "busy"' docs/status.json && python agent/status.py idle stock "⚠️ ${{ steps.gate.outputs.mode }} 執行失敗，請到 GitHub Actions 查看" || true
-
-      - name: 更新網頁儀表板資料
+      - name: 更新網頁資料＋策略技師設回待命
         if: always() && steps.gate.outputs.mode != 'none'
         run: |
           git config user.name "stock-agent-bot"
           git config user.email "stock-agent-bot@users.noreply.github.com"
-          git add docs/data docs/status.json
-          git diff --cached --quiet && exit 0
-          git commit -m "更新資料 ${{ steps.gate.outputs.mode }}"
-          git pull --rebase -q || true
-          git push
+          MSG=$(cat "$RUNNER_TEMP/stock_msg.txt" 2>/dev/null || echo "⚠️ ${{ steps.gate.outputs.mode }} 執行失敗，請到 GitHub Actions 查看")
+          # 先把這次產生的資料存起來（爬蟲技師的 news.json 不動）
+          mkdir -p "$RUNNER_TEMP/out"
+          for f in docs/data/*.json; do [ "$(basename "$f")" = news.json ] || cp "$f" "$RUNNER_TEMP/out/"; done
+          # 每次都從 GitHub 最新版本重做，避免和爬蟲技師、晨報同時更新時打架
+          for i in 1 2 3 4 5; do
+            git fetch -q origin "$GITHUB_REF_NAME" && git reset -q --hard "origin/$GITHUB_REF_NAME"
+            cp "$RUNNER_TEMP"/out/*.json docs/data/ 2>/dev/null || true
+            if [ -n "$MSG" ]; then python agent/status.py idle stock "$MSG"; else python agent/status.py idle stock; fi
+            git add docs/data docs/status.json
+            git diff --cached --quiet && exit 0
+            git commit -q -m "更新資料 ${{ steps.gate.outputs.mode }}" && git push -q && exit 0
+            sleep $((i * 4))
+          done
+          exit 1

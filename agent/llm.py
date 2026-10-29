@@ -18,7 +18,7 @@ ANALYST_SYSTEM = """你是一位台股與美股的技術分析師，替一位散
 3. 消息面：若可以上網，查這檔股票最近 1~3 天的重要新聞、法說會、財報、產業消息（美股也看盤前/大盤情緒）
 4. 進場計畫：建議進場價位區間、停損價（必須給，通常設在月線或近期低點下方）、第一目標價、風險報酬比
 5. 主要風險（至少 2 點）
-不要誇大、不要保證獲利。資料不足就直說。全文 450 字以內。"""
+不要誇大、不要保證獲利。資料不足就直說。直接輸出報告本文，不要說明你要去搜尋什麼。全文 450 字以內。"""
 
 JUDGE_SYSTEM = """你是一位嚴格、保守的投資決策主管（判斷 agent）。分析師交來一份買進報告和原始指標數據。
 你的工作是挑毛病：檢查邏輯漏洞、追高風險、停損是否合理、風險報酬比是否至少 1:2、消息面是否有隱憂、法人是否在賣、融資是否暴增（散戶追高）。
@@ -35,7 +35,7 @@ JUDGE_SYSTEM = """你是一位嚴格、保守的投資決策主管（判斷 agen
 BRIEF_SYSTEM = """你是個人投資助理，用繁體中文替一位散戶寫{phase}報告，手機好讀、用表情符號小標題、整份 600 字以內。
 內容：
 {content}
-每檔股票一行，標出值得注意的（⚠️）。最後一行固定寫：「""" + DISCLAIMER + "」"
+每檔股票一行，標出值得注意的（⚠️）。直接輸出報告本文，不要說明你要去搜尋什麼。最後一行固定寫：「""" + DISCLAIMER + "」"
 
 PRE_CONTENT = """1. 🌍 市場氛圍：{market_hint}（可以上網查最新數據與新聞）
 2. 📋 自選股今日計畫：根據提供的指標，哪些接近買點、哪些要小心、哪些觀望（台股請參考法人買賣超、融資增減、月營收）
@@ -56,21 +56,42 @@ def has_key() -> bool:
     return bool(os.environ.get("ANTHROPIC_API_KEY"))
 
 
-def _call(model: str, system: str, user: str, *, web: bool, max_tokens: int = 1500) -> str:
+def _run(client, kwargs: dict) -> tuple[str, str]:
+    """呼叫一次 Claude；上網搜尋若中途暫停（pause_turn）就讓它繼續，最後把所有文字接起來。"""
+    texts, stop = [], ""
+    for _ in range(4):
+        resp = client.messages.create(**kwargs)
+        stop = resp.stop_reason
+        texts += [b.text for b in resp.content if getattr(b, "type", "") == "text"]
+        if stop != "pause_turn":
+            break
+        kwargs["messages"] = kwargs["messages"] + [{"role": "assistant", "content": resp.content}]
+    return "".join(texts).strip(), stop
+
+
+def _call(model: str, system: str, user: str, *, web: bool, max_tokens: int = 2000) -> str:
     client = _client()
-    kwargs = dict(model=model, max_tokens=max_tokens, system=system,
-                  messages=[{"role": "user", "content": user}])
-    if web:
-        kwargs["tools"] = [{"type": "web_search_20250305", "name": "web_search", "max_uses": 3}]
-    try:
-        resp = client.messages.create(**kwargs)
-    except Exception as e:
-        if not web:
-            raise
-        print(f"  ! 上網搜尋功能失敗，改用不搜尋模式：{e}")
-        kwargs.pop("tools")
-        resp = client.messages.create(**kwargs)
-    return "\n".join(b.text for b in resp.content if getattr(b, "type", "") == "text").strip()
+    use_web = web
+    for _ in range(2):
+        kwargs = dict(model=model, max_tokens=max_tokens, system=system,
+                      messages=[{"role": "user", "content": user}])
+        if use_web:
+            kwargs["tools"] = [{"type": "web_search_20250305", "name": "web_search", "max_uses": 3}]
+        try:
+            text, stop = _run(client, kwargs)
+        except Exception as e:
+            if not use_web:
+                raise
+            print(f"  ! 上網搜尋功能失敗，改用不搜尋模式：{e}")
+            use_web = False
+            continue
+        if text:
+            return text
+        print(f"  ! Claude 沒有回傳文字（stop_reason={stop}），改用不搜尋模式重試")
+        if not use_web:
+            break
+        use_web = False
+    return "（AI 這次沒有產生內容，請到 GitHub Actions 查看執行紀錄）"
 
 
 def analyst_report(stock: dict, snap: dict, market: str, cfg: dict, dry: bool) -> str:
@@ -115,4 +136,4 @@ def brief(phase: str, market: str, snaps: list[dict], extra: str, cfg: dict, dry
     content = (PRE_CONTENT.format(market_hint=hint) if phase == "pre" else POST_CONTENT)
     system = BRIEF_SYSTEM.format(phase=f"{mkt}{phase_name}", content=content)
     user = f"自選股指標：{json.dumps(snaps, ensure_ascii=False)}\n{extra}"
-    return _call(cfg["ai"]["analyst_model"], system, user, web=cfg["ai"]["use_web_search"], max_tokens=2000)
+    return _call(cfg["ai"]["analyst_model"], system, user, web=cfg["ai"]["use_web_search"], max_tokens=3000)
