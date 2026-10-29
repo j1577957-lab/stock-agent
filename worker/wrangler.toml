@@ -1,0 +1,4 @@
+# Cloudflare 從 GitHub 自動部署小後台用的設定檔，一般不需要修改
+name = "pit-garage"
+main = "worker.js"
+compatibility_date = "2026-10-01"
