@@ -1,0 +1,11 @@
+{
+  "crew": {
+    "eng": "idle",
+    "cal": "idle",
+    "mail": "idle",
+    "stock": "idle",
+    "shop": "off",
+    "crawl": "idle"
+  },
+  "radio": []
+}

@@ -2,147 +2,338 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>股票 Agent 指揮中心</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pit Garage 像素指揮站</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+TC:wght@400;500;700&display=swap">
 <style>
-  :root{
-    --bg:#0d1117; --panel:#161b22; --line:#2a313c; --text:#e6edf3; --muted:#8b949e;
-    --up:#ff4d5e; --down:#2fbf71; --buy:#2fbf71; --wait:#e3b341; --no:#ff4d5e; --accent:#58a6ff;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 -apple-system,"PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif}
-  .wrap{max-width:1080px;margin:0 auto;padding:20px 16px 60px}
-  header{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:18px}
-  h1{font-size:22px;margin:0;letter-spacing:.5px}
-  h2{font-size:16px;margin:28px 0 10px;color:var(--muted);font-weight:600}
-  .meta{color:var(--muted);font-size:13px}
-  .tabs{display:flex;gap:6px;margin-bottom:10px}
-  .tab{background:var(--panel);border:1px solid var(--line);color:var(--muted);padding:6px 14px;border-radius:999px;cursor:pointer;font:inherit}
-  .tab.on{color:var(--text);border-color:var(--accent)}
-  .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-  table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
-  th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
-  th{color:var(--muted);font-weight:500;font-size:13px}
-  td:first-child,th:first-child{text-align:left}
-  tr:last-child td{border-bottom:0}
-  .scroll{overflow-x:auto}
-  .up{color:var(--up)} .down{color:var(--down)}
-  .pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;border:1px solid var(--line);color:var(--muted)}
-  .pill.go{border-color:var(--buy);color:var(--buy)}
-  .note{font-size:12px;color:var(--muted);white-space:normal;text-align:left;min-width:180px}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px}
-  .card summary{cursor:pointer;list-style:none}
-  .card summary::-webkit-details-marker{display:none}
-  .row{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}
-  .v{font-weight:700;padding:2px 10px;border-radius:6px;font-size:13px;color:#0d1117}
-  .v-買進{background:var(--buy)} .v-觀望{background:var(--wait)} .v-不買{background:var(--no)}
-  .kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px 16px;margin:12px 0;font-size:14px}
-  .kv b{color:var(--muted);font-weight:500;margin-right:6px}
-  pre{white-space:pre-wrap;font:inherit;margin:8px 0 0;color:#c9d1d9}
-  .empty{color:var(--muted);padding:16px}
-  .foot{margin-top:30px;color:var(--muted);font-size:12px}
+/* Layout: isometric voxel pit garage on top, pixel-framed pit-wall console + radio below; single dark night look by choice */
+:root{
+  --bg:#0d0e12; --panel:#16181e; --panel2:#1d2028; --line:#343947;
+  --ink:#eef0f3; --mute:#8d94a3; --amber:#f2c230; --red:#e0402c; --ok:#47e08c;
+  --pixel:"DotGothic16","Noto Sans TC",system-ui,sans-serif;
+  --body:"Noto Sans TC",system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);margin:0;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px 28px}
+.wrap{max-width:980px;margin:0 auto;display:grid;gap:14px}
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap}
+h1{font-family:var(--pixel);font-weight:400;font-size:clamp(22px,5.4vw,32px);margin:0;letter-spacing:.06em}
+h1 span{color:var(--amber)}
+.session{font-family:var(--pixel);font-size:13px;color:var(--mute)}
+.session b{color:var(--ok);font-weight:400}
+.px{background:var(--panel);box-shadow:0 0 0 2px var(--line),4px 4px 0 2px #000;border-radius:0}
+.stage{position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 40%,#1c2030,#0d0e12 75%)}
+canvas{display:block;width:100%;height:auto;image-rendering:pixelated;image-rendering:crisp-edges}
+.lbl{position:absolute;transform:translate(-50%,-100%);font-family:var(--pixel);font-size:clamp(10px,1.9vw,13px);
+  background:#0d0e12e6;color:var(--ink);border:2px solid var(--c);padding:1px 6px;white-space:nowrap;cursor:pointer;line-height:1.4}
+.lbl:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.lbl.busy{background:var(--c);color:#0d0e12}
+.lbl.off{opacity:.55;border-style:dashed}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:720px){.grid{grid-template-columns:1fr}}
+.card{padding:14px;min-width:0}
+.label{font-family:var(--pixel);font-size:13px;color:var(--amber);margin:0 0 10px;display:flex;justify-content:space-between;gap:8px}
+.label span:last-child{color:var(--mute)}
+textarea{width:100%;min-height:72px;resize:vertical;background:var(--bg);color:var(--ink);border:2px solid var(--line);border-radius:0;padding:10px;font:15px/1.5 var(--body)}
+textarea:focus{outline:2px solid var(--amber);outline-offset:0}
+.row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+button{font-family:var(--pixel);font-size:14px;border-radius:0;border:2px solid var(--line);background:var(--panel2);color:var(--ink);padding:8px 12px;cursor:pointer;box-shadow:2px 2px 0 #000}
+button:active{transform:translate(2px,2px);box-shadow:none}
+button.go{background:var(--amber);color:#0d0e12;border-color:var(--amber);flex:1}
+button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{font-family:var(--body);font-size:12.5px;padding:5px 9px}
+.mech{display:grid;grid-template-columns:12px 1fr auto;gap:10px;align-items:center;font-size:14px;padding:7px 0;border-bottom:2px dotted var(--line)}
+.mech:last-child{border-bottom:0}
+.sw{width:12px;height:12px;background:var(--c);box-shadow:inset -3px -3px 0 #0005}
+.role{font-size:12px;color:var(--mute)}
+.st{font-family:var(--pixel);font-size:12px}
+.st.idle{color:var(--ok)} .st.busy{color:var(--amber)} .st.off{color:var(--mute)}
+.radio{font-family:var(--pixel);font-size:13px;line-height:1.6;max-height:210px;overflow-y:auto;display:grid;gap:4px}
+.radio p{margin:0;overflow-wrap:anywhere}
+.radio .t{color:var(--mute)} .radio .who{color:var(--amber)} .radio .done{color:var(--ok)}
+.note{font-size:12px;color:var(--mute);margin:0}
+/* 股票看板（沿用原本的像素風元件） */
+.tabs{display:flex;gap:8px;margin-bottom:10px}
+.tabs button.on{background:var(--amber);color:#0d0e12;border-color:var(--amber)}
+.stk{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+.stk th{font-family:var(--pixel);font-weight:400;font-size:12px;color:var(--mute);text-align:right;padding:4px 6px;border-bottom:2px solid var(--line)}
+.stk td{text-align:right;padding:6px;border-bottom:2px dotted var(--line);white-space:nowrap}
+.stk th:first-child,.stk td:first-child{text-align:left}
+.stk tr:last-child td{border-bottom:0}
+.stk .sym{font-size:11px;color:var(--mute)}
+.up{color:var(--red)} .dn{color:var(--ok)}
+.tag{font-family:var(--pixel);font-size:12px}
+.tag.go{color:var(--amber)}
+.verdicts{display:grid;gap:6px;margin-top:12px;font-size:13.5px}
+.verdicts p{margin:0;overflow-wrap:anywhere}
+.vd{font-family:var(--pixel);padding:0 6px;color:#0d0e12}
+.vd.買進{background:var(--ok)} .vd.觀望{background:var(--amber)} .vd.不買{background:var(--red)}
+.more{display:inline-block;margin-top:10px;font-family:var(--pixel);font-size:13px;color:var(--amber)}
+.tblwrap{overflow-x:auto}
 </style>
 </head>
 <body>
+
 <div class="wrap">
   <header>
-    <div>
-      <h1>📈 股票 Agent 指揮中心</h1>
-      <div class="meta">盤中每 15 分鐘初篩 → 分析 agent → 判斷 agent</div>
-    </div>
-    <div class="meta" id="updated">載入中…</div>
+    <h1>PIT GARAGE <span>指揮站</span></h1>
+    <div class="session">BOX 07 ・ 台北 <b id="clock">--:--</b></div>
   </header>
 
-  <h2>🔍 最新掃描</h2>
-  <div class="tabs">
-    <button class="tab on" data-m="tw">台股</button>
-    <button class="tab" data-m="us">美股</button>
+  <div class="stage px" id="stage">
+    <canvas id="cv" width="180" height="122" aria-label="立體像素維修區：紅色 F1 賽車停在中央，五位技師在周圍待命"></canvas>
   </div>
-  <div class="panel scroll"><div id="scan"></div></div>
 
-  <h2>⚖️ 判斷 agent 結果</h2>
-  <div id="signals"></div>
+  <div class="grid">
+    <div class="card px">
+      <p class="label"><span>PIT WALL ・ 下達任務</span><span>MSG</span></p>
+      <textarea id="task" aria-label="任務內容" placeholder="例如：幫我整理今天台股收盤重點"></textarea>
+      <div class="chips" id="chips"></div>
+      <div class="row">
+        <button class="go" id="send">送出任務 ▶</button>
+        <button id="clear">清除</button>
+      </div>
+    </div>
+    <div class="card px">
+      <p class="label"><span>CREW 狀態</span><span id="count"></span></p>
+      <div id="roster"></div>
+    </div>
+  </div>
 
-  <h2>📰 盤前 / 盤後報告</h2>
-  <div id="reports"></div>
-
-  <div class="foot">資料來源 Yahoo Finance（台股約延遲 15–20 分鐘）。所有內容為技術面情境分析，不構成投資建議。</div>
+  <div class="card px">
+    <p class="label"><span>TEAM RADIO ・ 通訊紀錄</span><span>CH 1</span></p>
+    <div class="radio" id="radio" aria-live="polite"></div>
+  </div>
+  <div class="card px">
+    <p class="label"><span>STRATEGY ・ 股票看板</span><span id="stkTime">--</span></p>
+    <div class="tabs"><button class="on" data-m="tw">台股</button><button data-m="us">美股</button></div>
+    <div class="tblwrap" id="stkTable"><p class="note">還沒有資料，等策略技師第一次出勤。</p></div>
+    <div class="verdicts" id="stkVerdicts"></div>
+    <a class="more" href="stock.html">完整報告與盤前盤後 ›</a>
+  </div>
+  <p class="note">技師狀態與通訊紀錄由 status.json 或 pitGarage 接口更新。</p>
 </div>
 
 <script>
-const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const cls = n => n > 0 ? "up" : n < 0 ? "down" : "";
-const sign = n => n == null ? "-" : (n > 0 ? "+" : "") + n + "%";
-let latest = {}, market = "tw";
-
-async function get(name, def){
-  try{ const r = await fetch("data/" + name + "?t=" + Date.now()); return r.ok ? await r.json() : def; }
-  catch(e){ return def; }
+/* ---------- voxel engine ---------- */
+const A=4,B=2,H=4, OX=78, OY=27, GX=24, GY=18;
+const cv=document.getElementById("cv"), ctx=cv.getContext("2d"); ctx.imageSmoothingEnabled=false;
+const sprites={};
+function shade(hex,f){const n=parseInt(hex.slice(1),16);let r=n>>16,g=n>>8&255,b=n&255;
+  const m=v=>Math.max(0,Math.min(255,Math.round(v*f)));return[m(r),m(g),m(b)]}
+function sprite(hex){
+  if(sprites[hex])return sprites[hex];
+  const c=document.createElement("canvas");c.width=8;c.height=8;const g=c.getContext("2d"),img=g.createImageData(8,8);
+  const T=shade(hex,1.18),L=shade(hex,.92),R=shade(hex,.66);
+  for(let j=0;j<8;j++)for(let i=0;i<8;i++){
+    const x=i+.5,y=j+.5;let col=null;
+    if(Math.abs(x-4)/4+Math.abs(y-2)/2<=1)col=T;
+    else if(x<4&&y>=2+x/2&&y<=6+x/2)col=L;
+    else if(x>=4&&y>=4-(x-4)/2&&y<=8-(x-4)/2)col=R;
+    if(col){const k=(j*8+i)*4;img.data[k]=col[0];img.data[k+1]=col[1];img.data[k+2]=col[2];img.data[k+3]=255}
+  }
+  g.putImageData(img,0,0);return sprites[hex]=c;
 }
+const world=new Map();
+const put=(x,y,z,c,tag)=>world.set(x+","+y+","+z,{x,y,z,c,tag});
+const scr=(x,y,z)=>[OX+(x-y)*A, OY+(x+y)*B-z*H];
 
-function renderScan(){
-  const box = document.getElementById("scan");
-  const m = latest[market];
-  if(!m){ box.innerHTML = '<div class="empty">還沒有資料，等第一次自動執行後就會出現。</div>'; return; }
-  const phase = {pre:"盤前", intraday:"盤中", post:"盤後"}[m.mode.split("_")[1]] || "";
-  document.getElementById("updated").textContent = "最後更新：" + m.time + "（" + phase + "）";
-  const rows = m.stocks.map(s => s.error
-    ? `<tr><td>${esc(s.name)}<br><span class="meta">${esc(s.symbol)}</span></td><td colspan="7" class="note">⚠️ ${esc(s.error)}</td></tr>`
-    : `<tr>
-      <td>${esc(s.name)}<br><span class="meta">${esc(s.symbol)}</span></td>
-      <td class="${cls(s.change_pct)}">${s.price}</td>
-      <td class="${cls(s.change_pct)}">${sign(s.change_pct)}</td>
-      <td>${s.above_ma20_pct ?? "-"}%</td>
-      <td>${s.rsi ?? "-"}</td>
-      <td>${s.vol_ratio ?? "-"}x</td>
-      <td><span class="pill ${s.candidate ? "go" : ""}">${s.candidate ? "★ " : ""}${s.score} 分</span></td>
-      <td class="note">${s.blockers?.length ? "❌ " + esc(s.blockers.join("、")) : "✅ " + esc((s.reasons || []).join("、") || "無加分")}</td>
-    </tr>`).join("");
-  box.innerHTML = `<table><thead><tr><th>股票</th><th>價格</th><th>漲跌</th><th>離月線</th><th>RSI</th><th>量比</th><th>初篩</th><th style="text-align:left">說明</th></tr></thead><tbody>${rows}</tbody></table>`;
+/* ---------- garage ---------- */
+for(let x=0;x<GX;x++)for(let y=0;y<GY;y++){
+  let c=(x+y)%2?"#4b505b":"#464b56";
+  if(x>=21)c=(y%4===0&&x===22)?"#d8dbe0":"#26282e";
+  if(x===20)c="#e9ecef";
+  const edge=(x===3||x===19)&&y>=3&&y<=15||(y===3||y===15)&&x>=3&&x<=19;
+  if(edge)c="#f2c230";
+  put(x,y,0,c);
 }
+for(let x=0;x<20;x++)for(let z=1;z<=5;z++)put(x,0,z,z===5?"#2a2e38":"#3a3f4c");
+for(let y=1;y<GY;y++)for(let z=1;z<=5;z++)put(0,y,z,z===5?"#2a2e38":"#3a3f4c");
+[[3,4],[4,4],[5,4],[3,3],[4,3],[5,3]].forEach(([x,z])=>put(x,0,z,"#1f7bff"));         // telemetry screens
+[[13,4],[14,4],[13,3],[14,3]].forEach(([x,z])=>put(x,0,z,"#47e08c"));
+[[0,4],[0,3]].forEach(([_,z])=>{put(0,5,z,"#ff9b2f");put(0,6,z,"#ff9b2f")});
+for(let x=8;x<=10;x++){put(x,1,1,"#b8301c");put(x,1,2,"#d8452e")}                    // tool chest
+[[16,1],[17,1],[16,2]].forEach(([x,y])=>{for(let z=1;z<=4;z++)put(x,y,z,z===3?(x===17?"#e9ecef":"#e0402c"):"#17181c")}); // tyre stacks
+for(let y=14;y<=16;y++){put(1,y,1,"#5d6472");put(1,y,2,"#2b6cff");put(1,y,3,"#2b6cff");put(2,y,1,"#5d6472")} // engineer desk
 
-function renderSignals(list){
-  const box = document.getElementById("signals");
-  if(!list.length){ box.innerHTML = '<div class="card empty">目前沒有股票通過初篩。</div>'; return; }
-  box.innerHTML = list.slice(0, 40).map(s => { const j = s.judge || {}; return `
-    <details class="card">
-      <summary class="row">
-        <span><span class="v v-${esc(j.verdict)}">${esc(j.verdict)}</span>
-          <b style="margin-left:8px">${esc(s.name)}</b> <span class="meta">${esc(s.symbol)} · ${s.price}</span></span>
-        <span class="meta">${esc(s.time)} · 信心 ${j.confidence ?? "-"}${s.dry_run ? " · 模擬" : ""}</span>
-      </summary>
-      <div style="margin-top:10px">${esc(j.summary)}</div>
-      <div class="kv"><div><b>進場</b>${esc(j.entry)}</div><div><b>停損</b>${esc(j.stop_loss)}</div><div><b>目標</b>${esc(j.target)}</div></div>
-      <div>✅ ${esc((j.reasons || []).join("；"))}</div>
-      <div style="margin-top:4px">⚠️ ${esc((j.risks || []).join("；"))}</div>
-      <pre>📝 ${esc(s.report)}</pre>
-    </details>`; }).join("");
+/* ---------- F1 car (nose toward pit lane, +x) ---------- */
+function car(ox,oy){
+  const R="#d8382a",W="#eef0f3",K="#1b1c21",G="#3b3f49";
+  const p=(x,y,z,c)=>put(ox+x,oy+y,z,c);
+  for(let x=1;x<=13;x++)for(let y=2;y<=4;y++)p(x,y,1,K);                  // floor
+  for(let x=3;x<=12;x++)for(let y=2;y<=4;y++)p(x,y,2,R);                  // chassis
+  for(let x=4;x<=9;x++){p(x,1,1,K);p(x,5,1,K);p(x,1,2,R);p(x,5,2,R)}      // sidepods
+  for(let x=2;x<=7;x++)p(x,3,3,R); p(5,3,3,W); p(6,3,4,R); p(7,3,4,K);    // engine cover + airbox
+  p(8,3,2,K); p(9,3,2,K);                                                 // cockpit
+  p(8,2,3,G);p(8,4,3,G);p(9,2,3,G);p(9,4,3,G);p(10,3,3,G);                // halo
+  for(let x=13;x<=14;x++)p(x,3,2,R); p(15,3,1,W); p(12,3,3,W);           // nose + T-cam
+  for(let y=0;y<=6;y++)p(15,y,1,y===0||y===6?R:W);                        // front wing
+  p(15,0,2,R);p(15,6,2,R);
+  for(let y=1;y<=5;y++){p(0,y,4,R);p(0,y,5,y===1||y===5?R:W)}             // rear wing
+  p(0,1,3,R);p(0,5,3,R);p(0,3,3,K);p(0,3,2,K);
+  for(let x=1;x<=3;x++)for(let z=1;z<=3;z++){p(x,0,z,K);p(x,6,z,K)}       // rear tyres
+  p(2,0,2,"#e0402c");p(2,6,2,"#e0402c");
+  for(let x=11;x<=12;x++)for(let z=1;z<=2;z++){p(x,0,z,K);p(x,6,z,K)}     // front tyres
+  p(10,1,1,G);p(10,5,1,G);p(4,0,1,G);p(4,6,1,G);
 }
+car(4,6);
 
-function renderReports(list){
-  const box = document.getElementById("reports");
-  if(!list.length){ box.innerHTML = '<div class="card empty">還沒有報告。</div>'; return; }
-  box.innerHTML = list.slice(0, 20).map((r, i) => `
-    <details class="card" ${i === 0 ? "open" : ""}>
-      <summary class="row"><b>${esc(r.title)}</b>${r.dry_run ? '<span class="meta">模擬</span>' : ""}</summary>
-      <pre>${esc(r.text)}</pre>
-    </details>`).join("");
-}
-
-document.querySelectorAll(".tab").forEach(b => b.onclick = () => {
-  document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x === b));
-  market = b.dataset.m; renderScan();
+/* ---------- crew ---------- */
+const crew=[
+  {id:"eng",name:"賽車工程師",role:"總指揮・分派任務",x:3,y:15,c:"#eef0f3",keys:[]},
+  {id:"cal",name:"行程技師",role:"Google 行事曆",x:6,y:4,c:"#4aa3ff",keys:["行程","會議","行事曆","明天","約","今天有什麼"]},
+  {id:"mail",name:"信件技師",role:"Gmail 提醒",x:6,y:14,c:"#47e08c",keys:["信","郵件","gmail","mail","回覆"]},
+  {id:"stock",name:"策略技師",role:"台股・美股簡報",x:16,y:4,c:"#f2c230",keys:["股","台股","美股","收盤","大盤","投資","etf"]},
+  {id:"shop",name:"電商技師",role:"蝦皮（待上線）",x:16,y:14,c:"#c27bff",keys:["蝦皮","訂單","商品","賣場","出貨"],off:true},
+  {id:"crawl",name:"爬蟲技師",role:"每小時抓網站資料",x:11,y:15,c:"#ff7a45",keys:["爬","網站","新聞","抓"]}
+];
+const state={};crew.forEach(m=>{
+  state[m.id]=m.off?"off":"idle";
+  put(m.x,m.y,1,"#22262f",m.id); put(m.x,m.y,2,m.c,m.id); put(m.x,m.y,3,m.id==="eng"?"#1b1c21":"#eef0f3",m.id);
 });
 
-async function load(){
-  latest = await get("latest.json", {});
-  if(!latest.tw && latest.us) market = "us";
-  document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x.dataset.m === market));
-  renderScan();
-  renderSignals(await get("signals.json", []));
-  renderReports(await get("reports.json", []));
+/* ---------- labels ---------- */
+const stage=document.getElementById("stage");
+crew.forEach(m=>{
+  const [sx,sy]=scr(m.x,m.y,3);
+  const b=document.createElement("button");b.className="lbl";b.id="l-"+m.id;b.style.setProperty("--c",m.c);
+  const below=m.id==="eng";
+  b.style.left=(sx/cv.width*100)+"%";b.style.top=((below?sy+16:sy-3)/cv.height*100)+"%";b.textContent=m.name;
+  if(below)b.style.transform="translate(-50%,0)";
+  b.onclick=()=>log(m.name,m.off?"這個崗位還沒上線，之後接上蝦皮就能派工。":`待命中，負責：${m.role}。`);
+  stage.append(b);
+});
+
+/* ---------- render loop ---------- */
+let frame=0, laneY=-30;
+function draw(){
+  ctx.clearRect(0,0,cv.width,cv.height);
+  const list=[...world.values()];
+  if(laneY>-8&&laneY<GY+2){                               // passing car in pit lane
+    const T="#1fb5a6",K="#1b1c21";
+    const add=(x,y,z,c)=>{if(y>=0&&y<GY)list.push({x,y,z,c})};
+    for(let d=0;d<6;d++)add(22,laneY+d,1,T);
+    add(21,laneY,1,K);add(23,laneY,1,K);add(21,laneY+4,1,K);add(23,laneY+4,1,K);
+    add(22,laneY+2,2,"#f2c230");add(21,laneY+6,1,"#eef0f3");add(22,laneY+6,1,"#eef0f3");add(23,laneY+6,1,"#eef0f3");
+  }
+  list.sort((p,q)=>(p.x+p.y)-(q.x+q.y)||p.z-q.z);
+  for(const v of list){
+    let [sx,sy]=scr(v.x,v.y,v.z);
+    if(v.tag&&state[v.tag]==="busy"&&frame%2)sy-=2;
+    ctx.drawImage(sprite(v.c),sx-A,sy);
+  }
+  crew.forEach(m=>{                                       // busy beacon
+    if(state[m.id]!=="busy")return;
+    const [sx,sy]=scr(m.x,m.y,3);
+    if(frame%4<3){ctx.fillStyle="#f2c230";ctx.fillRect(sx-1,sy-8,2,4);ctx.fillRect(sx-1,sy-3,2,1)}
+  });
+  if(Object.values(state).includes("busy")&&frame%2){     // car rain light blinks while crew works
+    const [sx,sy]=scr(4,9,2);ctx.fillStyle="#ff3b2f";ctx.fillRect(sx-1,sy+1,2,2);
+  }
 }
-load(); setInterval(load, 5 * 60 * 1000);
+let last=0;
+function loop(t){
+  if(t-last>160){last=t;frame++;laneY++;if(laneY>GY+40)laneY=-12;draw()}
+  requestAnimationFrame(loop);
+}
+const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
+draw(); if(!still)requestAnimationFrame(loop);
+
+/* ---------- console ---------- */
+const quick=["今天行程有哪些？","整理未讀重要信件","台股收盤重點","蝦皮今日訂單"];
+const chips=document.getElementById("chips"),task=document.getElementById("task");
+quick.forEach(q=>{const b=document.createElement("button");b.className="chip";b.textContent=q;b.onclick=()=>{task.value=q;task.focus()};chips.append(b)});
+function render(){
+  const roster=document.getElementById("roster");roster.innerHTML="";let on=0;
+  crew.forEach(m=>{
+    const st=state[m.id];if(st!=="off")on++;
+    roster.insertAdjacentHTML("beforeend",`<div class="mech"><span class="sw" style="--c:${m.c}"></span><span>${m.name}<br><span class="role">${m.role}</span></span><span class="st ${st}">${{idle:"● 待命",busy:"◐ 作業中",off:"○ 未上線"}[st]}</span></div>`);
+    const l=document.getElementById("l-"+m.id);l.classList.toggle("busy",st==="busy");l.classList.toggle("off",st==="off");
+  });
+  document.getElementById("count").textContent=on+"/"+crew.length+" 上線";
+  if(still)draw();
+}
+const radio=document.getElementById("radio");
+function log(who,msg,cls=""){
+  const t=new Date().toLocaleTimeString("zh-TW",{hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false,timeZone:"Asia/Taipei"});
+  const p=document.createElement("p");p.innerHTML=`<span class="t">${t}</span> <span class="who">${who}</span> › <span class="${cls}"></span>`;
+  p.lastElementChild.textContent=msg;radio.prepend(p);
+}
+document.getElementById("send").onclick=()=>{
+  const q=task.value.trim();if(!q){task.focus();return}
+  const low=q.toLowerCase(),target=crew.find(m=>m.keys.some(k=>low.includes(k)));
+  log("你",q);state.eng="busy";render();
+  setTimeout(()=>{
+    state.eng="idle";
+    if(!target){log("賽車工程師","收到，這題我自己處理，分析中。");state.eng="busy";render();
+      setTimeout(()=>{state.eng="idle";log("賽車工程師","分析完成（示範）。","done");render()},2200);return}
+    if(target.off){log("賽車工程師",`這是${target.name}的工作，但他還沒上線，先記下來。`);render();return}
+    log("賽車工程師",`Box, box！交給${target.name}。`);state[target.id]="busy";render();
+    setTimeout(()=>{state[target.id]="idle";log(target.name,"任務完成，結果已回報（示範）。","done");render()},2800);
+  },900);
+  task.value="";
+};
+document.getElementById("clear").onclick=()=>{task.value="";task.focus()};
+function tick(){document.getElementById("clock").textContent=new Date().toLocaleTimeString("zh-TW",{hour:"2-digit",minute:"2-digit",hour12:false,timeZone:"Asia/Taipei"})}
+tick();setInterval(tick,30000);
+
+/* ---------- 對外接口：讓後端/Agent 更新畫面 ----------
+   pitGarage.setStatus("stock","busy")   狀態: idle 待命 / busy 作業中 / off 未上線
+   pitGarage.log("策略技師","台積電站上月線")
+   或在同資料夾放 status.json，頁面每 60 秒自動讀取：
+   {"crew":{"stock":"busy","crawl":"idle"},"radio":[{"who":"爬蟲技師","msg":"抓到 3 則新聞"}]}
+*/
+window.pitGarage={
+  setStatus(id,st){if(id in state){state[id]=st;render()}},
+  log(who,msg){log(who,msg,"done")}
+};
+let seen=0;
+async function pull(){
+  try{
+    const r=await fetch("status.json?t="+Date.now());if(!r.ok)return;
+    const d=await r.json();
+    for(const id in (d.crew||{}))if(id in state)state[id]=d.crew[id];
+    const rl=d.radio||[],key=(x,i)=>x.id??i+1;
+    rl.forEach((x,i)=>{if(key(x,i)>seen)log(x.who,x.msg,"done")});
+    if(rl.length)seen=Math.max(seen,...rl.map(key));
+    render();
+  }catch(e){}
+}
+pull();setInterval(pull,60000);
+render();log("賽車工程師","Radio check，全員就位。點技師名牌可以看他負責什麼。");
+
+/* ---------- 股票看板：讀 data/latest.json、data/signals.json ---------- */
+let stkData={},stkMkt="tw";
+const esc=v=>String(v??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function renderStocks(){
+  const m=stkData[stkMkt],box=document.getElementById("stkTable");
+  document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("on",b.dataset.m===stkMkt));
+  if(!m){box.innerHTML='<p class="note">還沒有資料，等策略技師第一次出勤。</p>';document.getElementById("stkTime").textContent="--";return}
+  const ph={pre:"盤前",intraday:"盤中",post:"盤後"}[m.mode.split("_")[1]]||"";
+  document.getElementById("stkTime").textContent=m.time.slice(5)+" "+ph;
+  box.innerHTML='<table class="stk"><thead><tr><th>股票</th><th>價格</th><th>漲跌</th><th>初篩</th></tr></thead><tbody>'+
+    m.stocks.map(s=>{
+      if(s.error)return `<tr><td>${esc(s.name)}<br><span class="sym">${esc(s.symbol)}</span></td><td colspan="3" class="sym">抓不到資料</td></tr>`;
+      const c=s.change_pct>0?"up":s.change_pct<0?"dn":"";
+      const tag=s.candidate?'<span class="tag go">★ 候選</span>':(s.blockers&&s.blockers.length?'<span class="tag" title="'+esc(s.blockers.join("、"))+'">✕</span>':`<span class="tag">${s.score} 分</span>`);
+      return `<tr><td>${esc(s.name)}<br><span class="sym">${esc(s.symbol)}</span></td><td class="${c}">${s.price}</td><td class="${c}">${s.change_pct>0?"+":""}${s.change_pct}%</td><td>${tag}</td></tr>`;
+    }).join("")+'</tbody></table>';
+}
+async function pullStocks(){
+  try{
+    const [a,b]=await Promise.all(["latest","signals"].map(n=>fetch("data/"+n+".json?t="+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null)));
+    stkData=a||{}; if(!stkData.tw&&stkData.us)stkMkt="us"; renderStocks();
+    const v=(b||[]).slice(0,5),vb=document.getElementById("stkVerdicts");
+    vb.innerHTML=v.length?'<p class="label" style="margin:0"><span>判斷 agent 最新結論</span><span></span></p>'+v.map(s=>{const j=s.judge||{};
+      return `<p><span class="vd ${esc(j.verdict)}">${esc(j.verdict)}</span> ${esc(s.name)} ${s.price} <span class="sym">${esc(s.time.slice(5))}</span><br><span class="role">${esc(j.summary)}</span></p>`}).join(""):"";
+  }catch(e){}
+}
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{stkMkt=b.dataset.m;renderStocks()});
+pullStocks();setInterval(pullStocks,60000);
 </script>
+
 </body>
 </html>

@@ -59,11 +59,12 @@ def scan(market: str, cfg: dict, *, intraday: bool, demo: bool) -> list[dict]:
     return snaps
 
 
-def run(mode: str, dry: bool, demo: bool) -> None:
+def run(mode: str, dry: bool, demo: bool) -> str | None:
+    """執行一次，回傳給指揮站通訊紀錄的一句摘要。"""
     cfg = load_config()
     if mode == "none":
         print("現在不是交易相關時段，結束。")
-        return
+        return None
     market, phase = mode.split("_")
     mkt_name = "台股" if market == "tw" else "美股"
     now_local = datetime.now(clock.MARKETS[market]["tz"])
@@ -85,6 +86,7 @@ def run(mode: str, dry: bool, demo: bool) -> None:
             if d != today:
                 judged.pop(d)
         counts = judged.setdefault(today, {})
+        results = []
         for snap in [s for s in snaps if s.get("candidate")]:
             sym = snap["symbol"]
             if counts.get(sym, 0) >= ncfg["max_judge_per_stock_per_day"]:
@@ -101,6 +103,7 @@ def run(mode: str, dry: bool, demo: bool) -> None:
                    "price": snap["price"], "change_pct": snap["change_pct"], "score": snap["score"],
                    "reasons": snap["reasons"], "report": report, "judge": verdict, "dry_run": dry}
             notify.save_signal(sig)
+            results.append(f"{snap['name']}→{verdict['verdict']}")
             print(f"  ⇒ 判斷結果：{verdict['verdict']}（信心 {verdict.get('confidence')}）")
             if verdict["verdict"] in ncfg["push_verdicts"]:
                 if ncfg["telegram"]:
@@ -109,14 +112,17 @@ def run(mode: str, dry: bool, demo: bool) -> None:
                     subject, body = notify.format_signal(sig, as_html=False)
                     notify.email(f"[股票Agent] {subject}", body)
         notify.save_state(state)
-        return
+        n_ok = sum(1 for s in snaps if not s.get('error'))
+        n_c = sum(1 for s in snaps if s.get('candidate'))
+        msg = f"{mkt_name}盤中掃描 {n_ok} 檔，{n_c} 檔通過初篩"
+        return msg + ("；判斷：" + "、".join(results) if results else "")
 
     # 盤前 / 盤後
     if phase == "post" and not any(s.get("is_today") for s in snaps):
         print("今天沒有交易資料，應該是休市，不產生盤後報告。")
         state[f"{market}_post_done"] = today
         notify.save_state(state)
-        return
+        return f"{mkt_name}今天休市，不產生盤後報告"
 
     extra = ""
     if phase == "post":
@@ -143,9 +149,19 @@ def run(mode: str, dry: bool, demo: bool) -> None:
         notify.email(f"[股票Agent] {title}", text)
     state[f"{market}_{phase}_done"] = today
     notify.save_state(state)
+    return f"{mkt_name}{'盤前' if phase == 'pre' else '盤後'}報告已送出（Telegram／Email／儀表板）"
 
 
 if __name__ == "__main__":
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     mode = args[0] if args and args[0] not in ("", "auto") else clock.detect_mode()
-    run(mode, dry="--dry-run" in sys.argv, demo="--demo-data" in sys.argv)
+    from agent import status
+    try:
+        summary = run(mode, dry="--dry-run" in sys.argv, demo="--demo-data" in sys.argv)
+    except Exception as e:
+        status.done("stock", f"⚠️ {mode} 執行失敗：{str(e)[:80]}")
+        raise
+    if summary:
+        status.done("stock", summary)
+    else:
+        status.set_state("stock", "idle")
