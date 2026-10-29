@@ -111,6 +111,7 @@
 | `TELEGRAM_CHAT_ID` | 第 4 步的數字 |
 | `GMAIL_ADDRESS` | 你的 Gmail 地址 |
 | `GMAIL_APP_PASSWORD` | 第 5 步的 16 碼密碼 |
+| `FINMIND_TOKEN` | （選填）FinMind 金鑰，見下方「FinMind 台股資料」 |
 
 ---
 
@@ -125,6 +126,17 @@
 4. 再跑一次，這次**不要勾**模擬模式 → 會收到真正由 Claude 寫的報告。
 
 🎉 完成！之後完全自動，不需要開電腦。
+
+---
+
+## FinMind 台股資料（選填，建議加）
+
+加上之後，AI 分析台股時會多看到：**三大法人買賣超、融資融券、本益比／殖利率、月營收年增率、個股新聞**；Yahoo 抓不到股價時也會自動改用 FinMind。
+
+1. 打開 <https://finmindtrade.com> → 右上角 **註冊**，到信箱完成驗證（驗證後每小時可查 600 次，免費）
+2. 登入後進入 **會員中心／使用者資訊**，複製 **API Token**（很長一串英數字）
+3. 到 GitHub Secrets 新增 `FINMIND_TOKEN`，貼上 Token
+4. 指揮站後台也要用的話：到 Cloudflare Worker → Settings → Variables and Secrets，同樣新增 Secret `FINMIND_TOKEN`
 
 ---
 

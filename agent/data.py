@@ -38,4 +38,12 @@ def fetch(symbol: str) -> tuple[str, pd.DataFrame, pd.DataFrame]:
             except Exception:
                 intra = pd.DataFrame()
             return sym, daily, intra
+    # Yahoo 抓不到時，台股改用 FinMind 日K 備援
+    from agent import finmind
+    sid = finmind.stock_id(symbol)
+    if sid:
+        daily = finmind.daily_prices(sid)
+        if len(daily) >= 30:
+            print(f"  (改用 FinMind 資料：{symbol})")
+            return symbol, daily, pd.DataFrame()
     return symbol, pd.DataFrame(), pd.DataFrame()

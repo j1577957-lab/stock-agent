@@ -5,6 +5,7 @@
  * 需要在 Cloudflare 設定兩個「密鑰」（Settings → Variables and Secrets）：
  *   ANTHROPIC_API_KEY  你的 Claude API 金鑰
  *   PASSCODE           自己設的通關密碼（網頁第一次送出任務時會問你）
+ *   FINMIND_TOKEN      （選填）FinMind 台股資料金鑰，有放就能查完整台股資料
  */
 
 const ALLOWED_ORIGINS = ["https://j1577957-lab.github.io"]; // 只有你的網站可以呼叫
@@ -13,7 +14,7 @@ const MODEL = "claude-sonnet-5-5";
 
 const CREW = {
   eng:   { name: "賽車工程師", job: "總指揮。一般問題你自己回答；也可以幫忙規劃、解釋、整理想法。" },
-  stock: { name: "策略技師",   job: "台股與美股分析。可以上網查最新股價與新聞，並參考系統提供的自選股掃描資料。分析時給出技術面與消息面重點，不保證漲跌，結尾提醒不構成投資建議。", web: true, stockData: true },
+  stock: { name: "策略技師",   job: "台股與美股分析。台股請優先用 finmind 工具查真實數據（股價、三大法人、融資融券、本益比、月營收、財報、股利、新聞），不知道代號先用 find_stock 查；美股可用 finmind 的 USStockPrice 或上網搜尋。並參考系統提供的自選股掃描資料。回答要有具體數字，給出技術面、籌碼面、基本面重點，不保證漲跌，結尾提醒不構成投資建議。", web: true, stockData: true, finmind: true },
   crawl: { name: "爬蟲技師",   job: "上網搜尋、查新聞、整理網站資訊。回答時附上來源網站名稱。", web: true },
   cal:   { name: "行程技師",   job: "行程管理。注意：你目前還沒有被授權讀取使用者的 Google 行事曆，請誠實說明，並建議使用者到 Claude App 直接詢問（那邊已經連上行事曆），或給一般的時間安排建議。" },
   mail:  { name: "信件技師",   job: "信件管理。注意：你目前還沒有被授權讀取使用者的 Gmail，請誠實說明，並建議使用者到 Claude App 直接詢問（那邊已經連上 Gmail），或幫忙草擬信件內容。" },
@@ -65,6 +66,83 @@ async function stockContext() {
   }
 }
 
+/* ---------- FinMind 工具 ---------- */
+const FM_API = "https://api.finmindtrade.com/api/v4/data";
+const FM_DATASETS = {
+  TaiwanStockPrice: "台股日K（開高低收、成交量）",
+  TaiwanStockPER: "本益比、股價淨值比、殖利率",
+  TaiwanStockInstitutionalInvestorsBuySell: "三大法人買賣超（股數）",
+  TaiwanStockMarginPurchaseShortSale: "融資融券",
+  TaiwanStockShareholding: "外資持股比例",
+  TaiwanStockMonthRevenue: "月營收",
+  TaiwanStockFinancialStatements: "綜合損益表（EPS 等）",
+  TaiwanStockBalanceSheet: "資產負債表",
+  TaiwanStockCashFlowsStatement: "現金流量表",
+  TaiwanStockDividend: "股利政策",
+  TaiwanStockNews: "個股新聞",
+  TaiwanStockTotalInstitutionalInvestors: "整體市場三大法人買賣超（不需 data_id）",
+  USStockPrice: "美股日K（data_id 用代號，例如 NVDA）",
+};
+const FM_TOOLS = [
+  {
+    name: "finmind",
+    description: "查詢 FinMind 金融資料庫。可用資料集：" +
+      Object.entries(FM_DATASETS).map(([k, v]) => `${k}=${v}`).join("；") +
+      "。台股 data_id 用 4~6 碼代號（例如 2330、00685L）。回傳最近的資料列（JSON）。",
+    input_schema: {
+      type: "object",
+      properties: {
+        dataset: { type: "string", enum: Object.keys(FM_DATASETS) },
+        data_id: { type: "string", description: "股票代號，例如 2330" },
+        start_date: { type: "string", description: "YYYY-MM-DD，預設 30 天前；財報、營收建議抓 1~2 年" },
+        end_date: { type: "string", description: "YYYY-MM-DD，可省略" },
+      },
+      required: ["dataset"],
+    },
+  },
+  {
+    name: "find_stock",
+    description: "用中文名稱或部分代號找台股代號，例如「台積電」「京元」。",
+    input_schema: { type: "object", properties: { keyword: { type: "string" } }, required: ["keyword"] },
+  },
+];
+
+async function fmGet(env, params) {
+  const url = new URL(FM_API);
+  for (const [k, v] of Object.entries(params)) if (v) url.searchParams.set(k, v);
+  if (env.FINMIND_TOKEN) url.searchParams.set("token", env.FINMIND_TOKEN);
+  const r = await fetch(url, {
+    headers: env.FINMIND_TOKEN ? { Authorization: "Bearer " + env.FINMIND_TOKEN } : {},
+    cf: { cacheTtl: params.dataset === "TaiwanStockInfo" ? 86400 : 300 },
+  });
+  const d = await r.json().catch(() => ({}));
+  if (d.status !== 200) throw new Error(d.msg || "FinMind 錯誤 " + r.status);
+  return d.data || [];
+}
+
+async function runTool(env, name, input) {
+  try {
+    if (name === "find_stock") {
+      const kw = String(input.keyword || "").trim();
+      const all = await fmGet(env, { dataset: "TaiwanStockInfo" });
+      const hits = all.filter((s) => s.stock_name?.includes(kw) || s.stock_id?.startsWith(kw));
+      const seen = new Set();
+      const uniq = hits.filter((s) => !seen.has(s.stock_id) && seen.add(s.stock_id)).slice(0, 10);
+      return JSON.stringify(uniq.map((s) => ({ id: s.stock_id, name: s.stock_name, type: s.type, industry: s.industry_category })));
+    }
+    if (name === "finmind") {
+      const start = input.start_date || new Date(Date.now() - 30 * 864e5).toISOString().slice(0, 10);
+      const rows = await fmGet(env, { dataset: input.dataset, data_id: input.data_id, start_date: start, end_date: input.end_date });
+      const keep = input.dataset === "TaiwanStockInstitutionalInvestorsBuySell" ? 50 : 30;
+      const text = JSON.stringify(rows.slice(-keep));
+      return (rows.length > keep ? `（共 ${rows.length} 筆，只列最近 ${keep} 筆）` : "") + text.slice(0, 12000);
+    }
+    return "未知工具";
+  } catch (e) {
+    return "查詢失敗：" + e.message;
+  }
+}
+
 async function askClaude(env, member, task) {
   let system =
     `你是「Pit Garage 指揮站」裡的${member.name}，替使用者（台灣人、程式新手）工作。${member.job}\n` +
@@ -72,13 +150,12 @@ async function askClaude(env, member, task) {
     `台灣時間現在是 ${new Date().toLocaleString("zh-TW", { timeZone: "Asia/Taipei" })}。`;
   if (member.stockData) system += await stockContext();
 
-  const body = {
-    model: MODEL,
-    max_tokens: 1200,
-    system,
-    messages: [{ role: "user", content: task }],
-  };
-  if (member.web) body.tools = [{ type: "web_search_20250305", name: "web_search", max_uses: 3 }];
+  const messages = [{ role: "user", content: task }];
+  const body = { model: MODEL, max_tokens: 1500, system, messages };
+  const tools = [];
+  if (member.finmind) tools.push(...FM_TOOLS);
+  if (member.web) tools.push({ type: "web_search_20250305", name: "web_search", max_uses: 3 });
+  if (tools.length) body.tools = tools;
 
   const call = (b) =>
     fetch("https://api.anthropic.com/v1/messages", {
@@ -91,14 +168,33 @@ async function askClaude(env, member, task) {
       body: JSON.stringify(b),
     });
 
-  let r = await call(body);
-  if (!r.ok && body.tools) {          // 上網工具出問題時，改用不上網再試一次
-    delete body.tools;
-    r = await call(body);
+  // 工具迴圈：Claude 要查資料 → 後台去查 → 結果交回 Claude，最多 6 輪
+  for (let round = 0; round < 6; round++) {
+    let r = await call(body);
+    if (!r.ok && body.tools?.some((t) => t.type)) {   // 上網工具出問題時，拿掉上網再試一次
+      body.tools = body.tools.filter((t) => !t.type);
+      if (!body.tools.length) delete body.tools;
+      r = await call(body);
+    }
+    if (!r.ok) throw new Error(`Claude API ${r.status}: ${(await r.text()).slice(0, 200)}`);
+    const data = await r.json();
+    const text = data.content.filter((b) => b.type === "text").map((b) => b.text).join("").trim();
+    if (data.stop_reason === "tool_use") {
+      messages.push({ role: "assistant", content: data.content });
+      const results = [];
+      for (const b of data.content.filter((b) => b.type === "tool_use")) {
+        results.push({ type: "tool_result", tool_use_id: b.id, content: await runTool(env, b.name, b.input) });
+      }
+      messages.push({ role: "user", content: results });
+      continue;
+    }
+    if (data.stop_reason === "pause_turn") {            // 上網搜尋還沒做完，讓它繼續
+      messages.push({ role: "assistant", content: data.content });
+      continue;
+    }
+    return text;
   }
-  if (!r.ok) throw new Error(`Claude API ${r.status}: ${(await r.text()).slice(0, 200)}`);
-  const data = await r.json();
-  return data.content.filter((b) => b.type === "text").map((b) => b.text).join("").trim();
+  return "查詢步驟太多，先停在這裡。可以把問題問得更具體一點再試一次。";
 }
 
 export default {

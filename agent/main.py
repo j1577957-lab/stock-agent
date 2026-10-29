@@ -95,6 +95,9 @@ def run(mode: str, dry: bool, demo: bool) -> str | None:
             counts[sym] = counts.get(sym, 0) + 1
             notify.save_state(state)  # 先記錄，避免出錯後重複花錢
             stock = {"symbol": sym, "name": snap["name"]}
+            if market == "tw" and not demo:
+                from agent import finmind
+                snap["籌碼與基本面"] = finmind.summary(finmind.stock_id(sym))
             print(f"  → 交給分析 agent：{snap['name']}")
             report = llm.analyst_report(stock, snap, market, cfg, dry)
             print(f"  → 交給判斷 agent：{snap['name']}")
@@ -138,6 +141,11 @@ def run(mode: str, dry: bool, demo: bool) -> str | None:
     slim = [{k: s.get(k) for k in ("name", "symbol", "price", "change_pct", "ma20", "above_ma20_pct",
                                     "rsi", "k", "d", "vol_ratio", "score", "reasons", "blockers", "error")}
             for s in snaps]
+    if market == "tw" and not demo:
+        from agent import finmind
+        for s in slim:
+            if not s.get("error"):
+                s["籌碼與基本面"] = finmind.summary(finmind.stock_id(s["symbol"]))
     text = llm.brief(phase, market, slim, extra, cfg, dry)
     title = f"{'🌅' if phase == 'pre' else '🌙'} {mkt_name}{'盤前' if phase == 'pre' else '盤後'}報告 {stamp}"
     notify.save_report({"time": stamp, "market": market, "phase": phase, "title": title,
