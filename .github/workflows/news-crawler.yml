@@ -1,0 +1,56 @@
+# 爬蟲技師：每小時抓台股、美股大盤新聞，判斷利多／利空。一般不需要修改。
+name: 爬蟲技師（股市新聞）
+
+on:
+  schedule:
+    - cron: "7 * * * *"   # 每小時第 7 分鐘（全天、每天）
+  workflow_dispatch:      # 允許在網頁上手動按「Run workflow」測試
+
+permissions:
+  contents: write
+
+concurrency:
+  group: news-crawler
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 指揮站：爬蟲技師作業中
+        run: |
+          python agent/status.py busy crawl
+          git config user.name "stock-agent-bot"
+          git config user.email "stock-agent-bot@users.noreply.github.com"
+          git add docs/status.json
+          git diff --cached --quiet || (git commit -q -m "爬蟲技師作業中" && (git pull --rebase -q || true) && git push -q) || true
+
+      - name: 抓新聞
+        run: |
+          pip install -q requests
+          python -m agent.news | tee "$RUNNER_TEMP/news.log"
+          cp docs/data/news.json "$RUNNER_TEMP/news.json"
+
+      - name: 更新網頁資料＋技師設回待命
+        if: always()
+        run: |
+          git config user.name "stock-agent-bot"
+          git config user.email "stock-agent-bot@users.noreply.github.com"
+          MSG=$(tail -n 1 "$RUNNER_TEMP/news.log" 2>/dev/null | grep '^新聞掃描' || echo "⚠️ 新聞爬蟲執行失敗，請到 GitHub Actions 查看")
+          # 每次都從最新版本重做，避免和策略技師同時更新時打架
+          for i in 1 2 3 4 5; do
+            git fetch -q origin "$GITHUB_REF_NAME" && git reset -q --hard "origin/$GITHUB_REF_NAME"
+            [ -f "$RUNNER_TEMP/news.json" ] && cp "$RUNNER_TEMP/news.json" docs/data/news.json
+            python agent/status.py idle crawl "$MSG"
+            git add docs/data/news.json docs/status.json
+            git commit -q -m "更新新聞" && git push -q && exit 0
+            sleep $((i * 4))
+          done
+          exit 1

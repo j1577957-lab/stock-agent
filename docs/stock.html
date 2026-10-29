@@ -41,6 +41,15 @@
   pre{white-space:pre-wrap;font:inherit;margin:8px 0 0;color:#c9d1d9}
   .empty{color:var(--muted);padding:16px}
   .foot{margin-top:30px;color:var(--muted);font-size:12px}
+  .news{list-style:none;margin:0;padding:0}
+  .news li{display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border-bottom:1px solid var(--line)}
+  .news li:last-child{border-bottom:0}
+  .news a{color:var(--text);text-decoration:none}
+  .news a:hover{color:var(--accent)}
+  .tag{flex:none;font-size:12px;font-weight:700;padding:1px 8px;border-radius:6px;border:1px solid var(--line);color:var(--muted);margin-top:2px}
+  .tag.bull{color:var(--up);border-color:var(--up)} .tag.bear{color:var(--down);border-color:var(--down)}
+  .tag.bull.strong{background:var(--up);color:#0d1117} .tag.bear.strong{background:var(--down);color:#0d1117}
+  .tally{font-size:13px;color:var(--muted);margin:0 0 8px}
 </style>
 </head>
 <body>
@@ -61,13 +70,25 @@
   </div>
   <div class="panel scroll"><div id="scan"></div></div>
 
+  <h2>🗞️ 大盤新聞：利多／利空 <span class="meta" id="newsUpdated"></span></h2>
+  <div class="tabs" id="newsTabs">
+    <button class="tab on" data-m="tw">台股</button>
+    <button class="tab" data-m="us">美股</button>
+    <span style="flex:1"></span>
+    <button class="tab on" data-f="all">全部</button>
+    <button class="tab" data-f="bull">利多</button>
+    <button class="tab" data-f="bear">利空</button>
+  </div>
+  <div class="tally" id="newsTally"></div>
+  <div class="panel"><ul class="news" id="news"></ul></div>
+
   <h2>⚖️ 判斷 agent 結果</h2>
   <div id="signals"></div>
 
   <h2>📰 盤前 / 盤後報告</h2>
   <div id="reports"></div>
 
-  <div class="foot">資料來源 Yahoo Finance（台股約延遲 15–20 分鐘）。所有內容為技術面情境分析，不構成投資建議。</div>
+  <div class="foot">資料來源 Yahoo Finance（台股約延遲 15–20 分鐘）；新聞來自 Google 新聞、鉅亨網，利多／利空依標題關鍵字自動判斷，僅供參考。所有內容為技術面情境分析，不構成投資建議。</div>
 </div>
 
 <script>
@@ -130,18 +151,47 @@ function renderReports(list){
     </details>`).join("");
 }
 
-document.querySelectorAll(".tab").forEach(b => b.onclick = () => {
-  document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x === b));
+let news = {}, nMarket = "tw", nFilter = "all";
+const BULL = ["利多","偏多"], BEAR = ["利空","偏空"];
+function ago(iso){
+  const m = Math.round((Date.now() - new Date(iso)) / 60000);
+  return m < 60 ? m + " 分鐘前" : m < 1440 ? Math.floor(m / 60) + " 小時前" : Math.floor(m / 1440) + " 天前";
+}
+function renderNews(){
+  const box = document.getElementById("news"), all = news[nMarket] || [];
+  document.getElementById("newsUpdated").textContent = news.updated ? "· 更新 " + news.updated : "";
+  const recent = all.slice(0, 30), b = recent.filter(n => BULL.includes(n.label)).length, r = recent.filter(n => BEAR.includes(n.label)).length;
+  document.getElementById("newsTally").innerHTML = all.length
+    ? `最近 30 則：<span class="up">利多 ${b}</span>　<span class="down">利空 ${r}</span>　中性 ${recent.length - b - r}　→ 氣氛 <b class="${b > r ? "up" : b < r ? "down" : ""}">${b - r >= 3 ? "偏多" : r - b >= 3 ? "偏空" : "中性"}</b>` : "";
+  const list = all.filter(n => nFilter === "all" || (nFilter === "bull" ? BULL : BEAR).includes(n.label));
+  if(!list.length){ box.innerHTML = `<li class="empty">${all.length ? "這個分類目前沒有新聞。" : "還沒有新聞，爬蟲技師每小時會自動抓一次。"}</li>`; return; }
+  box.innerHTML = list.slice(0, 50).map(n => {
+    const c = BULL.includes(n.label) ? "bull" : BEAR.includes(n.label) ? "bear" : "";
+    return `<li><span class="tag ${c} ${Math.abs(n.score) >= 3 ? "strong" : ""}">${esc(n.label)}</span>
+      <div><a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.title)}</a>
+      <div class="meta">${esc(n.source)} · ${ago(n.time)}${n.hits?.length ? " · 關鍵字：" + esc(n.hits.join("、")) : ""}</div></div></li>`;
+  }).join("");
+}
+document.querySelectorAll("#newsTabs .tab").forEach(b => b.onclick = () => {
+  const key = b.dataset.m ? "m" : "f";
+  document.querySelectorAll(`#newsTabs .tab[data-${key}]`).forEach(x => x.classList.toggle("on", x === b));
+  if(b.dataset.m) nMarket = b.dataset.m; else nFilter = b.dataset.f;
+  renderNews();
+});
+
+document.querySelectorAll(".tabs:not(#newsTabs) .tab").forEach(b => b.onclick = () => {
+  document.querySelectorAll(".tabs:not(#newsTabs) .tab").forEach(x => x.classList.toggle("on", x === b));
   market = b.dataset.m; renderScan();
 });
 
 async function load(){
   latest = await get("latest.json", {});
   if(!latest.tw && latest.us) market = "us";
-  document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x.dataset.m === market));
+  document.querySelectorAll(".tabs:not(#newsTabs) .tab").forEach(x => x.classList.toggle("on", x.dataset.m === market));
   renderScan();
   renderSignals(await get("signals.json", []));
   renderReports(await get("reports.json", []));
+  news = await get("news.json", {}); renderNews();
 }
 load(); setInterval(load, 5 * 60 * 1000);
 </script>
