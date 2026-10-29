@@ -6,7 +6,51 @@
  *   ANTHROPIC_API_KEY  你的 Claude API 金鑰
  *   PASSCODE           自己設的通關密碼（網頁第一次送出任務時會問你）
  *   FINMIND_TOKEN      （選填）FinMind 台股資料金鑰，有放就能查完整台股資料
+ *
+ * 通訊紀錄存在 Cloudflare 的 Durable Object（內建 SQLite 資料庫，免費方案可用），
+ * 部署時會自動建立，不需要另外設定。
  */
+import { DurableObject } from "cloudflare:workers";
+
+/* ---------- 通訊紀錄資料庫（電腦、手機共用同一份） ---------- */
+const CHAT_KEEP = 500; // 最多保留幾筆
+export class ChatStore extends DurableObject {
+  constructor(ctx, env) {
+    super(ctx, env);
+    this.sql = ctx.storage.sql;
+    this.sql.exec(
+      "CREATE TABLE IF NOT EXISTS chat (id INTEGER PRIMARY KEY AUTOINCREMENT, t TEXT, who TEXT, msg TEXT, cls TEXT)"
+    );
+  }
+  append(items) {
+    const now = taipeiStamp();
+    let last = 0;
+    for (const it of items) {
+      const t = /^\d\d\/\d\d \d\d:\d\d$/.test(it.t || "") ? it.t : now;
+      last = this.sql
+        .exec("INSERT INTO chat (t, who, msg, cls) VALUES (?, ?, ?, ?) RETURNING id", t, it.who, it.msg, it.cls || "")
+        .one().id;
+    }
+    this.sql.exec("DELETE FROM chat WHERE id <= ?", last - CHAT_KEEP);
+    return { last, t: now };
+  }
+  history(after = 0, limit = 100) {
+    return this.sql
+      .exec("SELECT id, t, who, msg, cls FROM chat WHERE id > ? ORDER BY id DESC LIMIT ?", after, limit)
+      .toArray()
+      .reverse();
+  }
+  clear() {
+    this.sql.exec("DELETE FROM chat");
+    return { ok: true };
+  }
+}
+
+function taipeiStamp() {
+  const f = (o) => new Date().toLocaleString("zh-TW", { ...o, hour12: false, timeZone: "Asia/Taipei" });
+  return f({ month: "2-digit", day: "2-digit" }) + " " + f({ hour: "2-digit", minute: "2-digit" });
+}
+const chatStore = (env) => env.CHAT.get(env.CHAT.idFromName("main"));
 
 const ALLOWED_ORIGINS = ["https://j1577957-lab.github.io"]; // 只有你的網站可以呼叫
 const SITE_DATA = "https://j1577957-lab.github.io/stock-agent/data/";
@@ -207,9 +251,27 @@ export default {
 
     let input;
     try { input = await request.json(); } catch { return json({ error: "格式錯誤" }, 400, origin); }
-    const { task, crew = "eng", passcode } = input || {};
+    const { task, crew = "eng", passcode, action = "task" } = input || {};
 
     if (!env.PASSCODE || passcode !== env.PASSCODE) return json({ error: "通關密碼錯誤" }, 401, origin);
+
+    // 通訊紀錄：讀取 / 新增 / 清空
+    if (action === "history" || action === "append" || action === "clear") {
+      if (!env.CHAT) return json({ error: "通訊紀錄資料庫尚未啟用" }, 501, origin);
+      try {
+        const store = chatStore(env);
+        if (action === "history") return json({ items: await store.history(Number(input.after) || 0) }, 200, origin);
+        if (action === "clear") return json(await store.clear(), 200, origin);
+        const items = (Array.isArray(input.items) ? input.items : []).slice(0, 20)
+          .filter((x) => x && typeof x.who === "string" && typeof x.msg === "string")
+          .map((x) => ({ who: x.who.slice(0, 40), msg: x.msg.slice(0, 6000), cls: x.cls === "done" ? "done" : "", t: String(x.t || "") }));
+        if (!items.length) return json({ error: "沒有內容" }, 400, origin);
+        return json(await store.append(items), 200, origin);
+      } catch (e) {
+        return json({ error: "通訊紀錄存取失敗：" + e.message }, 500, origin);
+      }
+    }
+
     if (!task || typeof task !== "string" || task.length > 2000)
       return json({ error: "任務內容是空的或太長" }, 400, origin);
 

@@ -2,3 +2,12 @@
 name = "pit-garage"
 main = "worker.js"
 compatibility_date = "2026-10-01"
+
+# 通訊紀錄資料庫（Durable Object + SQLite），部署時自動建立
+[[durable_objects.bindings]]
+name = "CHAT"
+class_name = "ChatStore"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["ChatStore"]

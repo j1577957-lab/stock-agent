@@ -211,7 +211,7 @@ const crew=[
   {id:"eng",name:"賽車工程師",role:"總指揮・分派任務",x:3,y:15,c:"#eef0f3",keys:[]},
   {id:"cal",name:"行程技師",role:"Google 行事曆",x:6,y:4,c:"#4aa3ff",keys:["行程","會議","行事曆","明天","約","今天有什麼"]},
   {id:"mail",name:"信件技師",role:"Gmail 提醒",x:6,y:14,c:"#47e08c",keys:["信","郵件","gmail","mail","回覆"]},
-  {id:"stock",name:"策略技師",role:"台股・美股簡報",x:16,y:4,c:"#f2c230",keys:["股","台股","美股","收盤","大盤","投資","etf"]},
+  {id:"stock",name:"策略技師",role:"台股・美股簡報",x:16,y:4,c:"#f2c230",keys:["股","台股","美股","收盤","大盤","投資","etf","外資","投信","法人","本益比","營收","殖利率","財報","融資"]},
   {id:"shop",name:"電商技師",role:"蝦皮（待上線）",x:16,y:14,c:"#c27bff",keys:["蝦皮","訂單","商品","賣場","出貨"],off:true},
   {id:"crawl",name:"爬蟲技師",role:"每小時抓網站資料",x:11,y:15,c:"#ff7a45",keys:["爬","網站","新聞","抓"]}
 ];
@@ -282,14 +282,45 @@ function render(){
   if(still)draw();
 }
 const radio=document.getElementById("radio");
-/* 任務對話存在這台裝置的瀏覽器裡（最多 100 筆），重新整理後會自動還原 */
-const CHAT_KEY="pg_chat";
-function loadChat(){try{return JSON.parse(localStorage.getItem(CHAT_KEY))||[]}catch(e){return[]}}
+/* ---------- 通訊紀錄雲端同步 ----------
+   任務對話存在 Cloudflare 後台（電腦、手機看到同一份）；連不上時先存在這台裝置，之後自動補傳 */
+const CHAT_KEY="pg_chat",PEND_KEY="pg_chat_pending";
+let chatSeen=0,syncing=false;
+const lsGet=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}};
+const lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const storedPass=()=>{try{return localStorage.getItem("pg_pass")}catch(e){return null}};
+async function api(body){
+  const r=await fetch(WORKER_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({...body,passcode:storedPass()})});
+  const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.error||r.status);return d;
+}
+function nowStamp(){const n=new Date(),f=o=>n.toLocaleString("zh-TW",{...o,hour12:false,timeZone:"Asia/Taipei"});
+  return f({month:"2-digit",day:"2-digit"})+" "+f({hour:"2-digit",minute:"2-digit"})}
 function chat(who,msg,cls=""){
-  const now=new Date(),fmt=o=>now.toLocaleString("zh-TW",{...o,hour12:false,timeZone:"Asia/Taipei"});
   log(who,msg,cls);
-  try{const c=loadChat();c.push({t:fmt({month:"2-digit",day:"2-digit"})+" "+fmt({hour:"2-digit",minute:"2-digit"}),who,msg,cls});
-    localStorage.setItem(CHAT_KEY,JSON.stringify(c.slice(-100)))}catch(e){}
+  const item={who,msg,cls,t:nowStamp()};
+  const c=lsGet(CHAT_KEY,[]);c.push(item);lsSet(CHAT_KEY,c.slice(-100));
+  const p=lsGet(PEND_KEY,[]);p.push(item);lsSet(PEND_KEY,p.slice(-50));
+  flushChat();
+}
+async function flushChat(){
+  if(!WORKER_URL||!storedPass()||syncing)return;
+  const p=lsGet(PEND_KEY,[]);if(!p.length)return;
+  syncing=true;
+  try{const d=await api({action:"append",items:p.slice(0,20)});lsSet(PEND_KEY,lsGet(PEND_KEY,[]).slice(Math.min(p.length,20)));
+    if(d.last)chatSeen=Math.max(chatSeen,d.last)}catch(e){}
+  syncing=false;
+  if(lsGet(PEND_KEY,[]).length&&chatSeen)setTimeout(flushChat,1000);
+}
+async function pullChat(first){
+  if(!WORKER_URL||!storedPass()){if(first)lsGet(CHAT_KEY,[]).forEach(x=>log(x.who,x.msg,x.cls,x.t));return}
+  try{
+    const d=await api({action:"history",after:chatSeen});
+    (d.items||[]).forEach(x=>{if(x.id>chatSeen){log(x.who,x.msg,x.cls,x.t);chatSeen=x.id}});
+    if(first&&!(d.items||[]).length){            // 雲端還是空的：把這台裝置的舊紀錄搬上去
+      const local=lsGet(CHAT_KEY,[]);local.forEach(x=>log(x.who,x.msg,x.cls,x.t));
+      if(local.length&&!lsGet(PEND_KEY,[]).length)lsSet(PEND_KEY,local.slice(-50));
+    }
+  }catch(e){if(first)lsGet(CHAT_KEY,[]).forEach(x=>log(x.who,x.msg,x.cls,x.t))}
 }
 function log(who,msg,cls="",when){
   const t=when||new Date().toLocaleTimeString("zh-TW",{hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false,timeZone:"Asia/Taipei"});
@@ -317,6 +348,7 @@ async function dispatch(q,target){
     const d=await r.json().catch(()=>({}));
     if(!r.ok)throw new Error(d.error||("後台錯誤 "+r.status));
     chat(d.who||who.name,d.reply,"done");
+    if(!chatSeen)pullChat(false);
   }catch(e){chat(who.name,"⚠️ "+e.message)}
   state[who.id]="idle";state.eng="idle";render();
 }
@@ -367,7 +399,7 @@ async function pull(){
     render();
   }catch(e){}
 }
-loadChat().forEach(x=>log(x.who,x.msg,x.cls,x.t));
+pullChat(true).then(()=>{flushChat();setInterval(()=>{pullChat(false);flushChat()},60000)});
 pull();setInterval(pull,60000);
 render();log("賽車工程師","Radio check，全員就位。點技師名牌可以看他負責什麼。");
 
