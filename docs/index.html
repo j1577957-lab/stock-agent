@@ -262,10 +262,40 @@ function log(who,msg,cls=""){
   const p=document.createElement("p");p.innerHTML=`<span class="t">${t}</span> <span class="who">${who}</span> › <span class="${cls}"></span>`;
   p.lastElementChild.textContent=msg;radio.prepend(p);
 }
+/* ---------- 真正的任務：交給 Cloudflare 小後台 → Claude ----------
+   WORKER_URL 填上後台網址就會啟用；空白時維持原本的示範模式 */
+const WORKER_URL="";
+function passcode(reset){
+  let p=null;try{if(reset)localStorage.removeItem("pg_pass");p=localStorage.getItem("pg_pass")}catch(e){}
+  if(!p){p=(prompt("請輸入指揮站通關密碼")||"").trim();if(p)try{localStorage.setItem("pg_pass",p)}catch(e){}}
+  return p;
+}
+async function dispatch(q,target){
+  const who=target?target:crew[0];
+  if(target){log("賽車工程師",`Box, box！交給${target.name}。`)}
+  state.eng=target?"idle":"busy";state[who.id]="busy";render();
+  let pass=passcode(false);
+  try{
+    if(!pass)throw new Error("沒有輸入通關密碼，任務取消。");
+    let r=await fetch(WORKER_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({task:q,crew:who.id,passcode:pass})});
+    if(r.status===401){pass=passcode(true);if(!pass)throw new Error("通關密碼錯誤，任務取消。");
+      r=await fetch(WORKER_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({task:q,crew:who.id,passcode:pass})});}
+    const d=await r.json().catch(()=>({}));
+    if(!r.ok)throw new Error(d.error||("後台錯誤 "+r.status));
+    log(d.who||who.name,d.reply,"done");
+  }catch(e){log(who.name,"⚠️ "+e.message)}
+  state[who.id]="idle";state.eng="idle";render();
+}
 document.getElementById("send").onclick=()=>{
   const q=task.value.trim();if(!q){task.focus();return}
   const low=q.toLowerCase(),target=crew.find(m=>m.keys.some(k=>low.includes(k)));
-  log("你",q);state.eng="busy";render();
+  log("你",q);
+  if(WORKER_URL){
+    task.value="";
+    if(target&&target.off){log("賽車工程師",`這是${target.name}的工作，但他還沒上線，先記下來。`);return}
+    dispatch(q,target);return;
+  }
+  state.eng="busy";render();
   setTimeout(()=>{
     state.eng="idle";
     if(!target){log("賽車工程師","收到，這題我自己處理，分析中。");state.eng="busy";render();
