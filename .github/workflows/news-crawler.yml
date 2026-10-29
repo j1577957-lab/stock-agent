@@ -31,7 +31,7 @@ jobs:
       - name: 指揮站：爬蟲技師作業中
         if: steps.gate.outputs.run == 'true'
         run: |
-          python agent/status.py busy crawl
+          python agent/status.py busy crawl news
           git config user.name "stock-agent-bot"
           git config user.email "stock-agent-bot@users.noreply.github.com"
           git add docs/status.json
