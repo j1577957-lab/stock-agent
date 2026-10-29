@@ -1,31 +1,30 @@
 {
  "us": {
-  "mode": "us_intraday",
-  "time": "2026-10-30 04:00",
+  "mode": "us_post",
+  "time": "2026-10-30 04:15",
   "stocks": [
    {
     "symbol": "QQQM",
     "name": "Invesco 那斯達克100 ETF",
-    "price": 294.56,
-    "change_pct": -1.39,
+    "price": 294.53,
+    "change_pct": -1.4,
     "date": "2026-10-29",
     "is_today": true,
-    "ma5": 294.71,
-    "ma10": 294.6,
+    "ma5": 294.7,
+    "ma10": 294.59,
     "ma20": 301.06,
     "ma60": 298.51,
     "above_ma20_pct": -2.2,
     "rsi": 44.0,
     "k": 54.0,
     "d": 42.0,
-    "macd_hist": -0.738,
-    "vol_ratio": 0.77,
+    "macd_hist": -0.74,
+    "vol_ratio": 0.81,
     "high20_prev": 314.11,
     "vwap": 294.22,
-    "score": 2,
+    "score": 1,
     "reasons": [
-     "KD 低檔黃金交叉（K=54）",
-     "盤中站上均價線"
+     "KD 低檔黃金交叉（K=54）"
     ],
     "blockers": [
      "股價在月線之下",
@@ -42,13 +41,13 @@
      293.26,
      296.96,
      298.71,
-     294.56
+     294.53
     ]
    },
    {
     "symbol": "AAPL",
     "name": "Apple",
-    "price": 348.92,
+    "price": 348.91,
     "change_pct": 1.48,
     "date": "2026-10-29",
     "is_today": true,
@@ -61,7 +60,7 @@
     "k": 63.0,
     "d": 63.0,
     "macd_hist": -0.002,
-    "vol_ratio": 0.74,
+    "vol_ratio": 1.07,
     "high20_prev": 351.73,
     "vwap": 349.59,
     "score": 1,
@@ -80,7 +79,7 @@
      343.91,
      347.1,
      343.83,
-     348.92
+     348.91
     ]
    },
    {
@@ -99,13 +98,11 @@
     "k": 35.0,
     "d": 31.0,
     "macd_hist": -1.029,
-    "vol_ratio": 0.69,
+    "vol_ratio": 0.74,
     "high20_prev": 243.37,
     "vwap": 213.59,
-    "score": 1,
-    "reasons": [
-     "盤中站上均價線"
-    ],
+    "score": 0,
+    "reasons": [],
     "blockers": [
      "股價在月線之下",
      "月線往下彎"
@@ -140,13 +137,12 @@
     "k": 61.0,
     "d": 39.0,
     "macd_hist": -2.377,
-    "vol_ratio": 0.6,
+    "vol_ratio": 0.75,
     "high20_prev": 401.74,
     "vwap": 288.63,
-    "score": 2,
+    "score": 1,
     "reasons": [
-     "KD 低檔黃金交叉（K=61）",
-     "盤中站上均價線"
+     "KD 低檔黃金交叉（K=61）"
     ],
     "blockers": [
      "股價在月線之下",
@@ -182,17 +178,16 @@
     "k": 90.0,
     "d": 75.0,
     "macd_hist": 2.945,
-    "vol_ratio": 0.77,
+    "vol_ratio": 0.84,
     "high20_prev": 310.0,
     "vwap": 309.49,
-    "score": 3,
+    "score": 2,
     "reasons": [
      "短線多頭排列（價 > 5日線 > 10日線）",
-     "突破前 20 日高點",
-     "盤中站上均價線"
+     "突破前 20 日高點"
     ],
     "blockers": [],
-    "candidate": true,
+    "candidate": false,
     "recent_closes": [
      276.48,
      276.15,
@@ -209,26 +204,24 @@
    {
     "symbol": "SPCX",
     "name": "SpaceX",
-    "price": 143.83,
-    "change_pct": -0.96,
+    "price": 143.89,
+    "change_pct": -0.92,
     "date": "2026-10-29",
     "is_today": true,
-    "ma5": 146.41,
+    "ma5": 146.42,
     "ma10": 147.79,
     "ma20": 154.57,
     "ma60": 147.57,
     "above_ma20_pct": -6.9,
     "rsi": 44.0,
     "k": 20.0,
-    "d": 25.0,
-    "macd_hist": -1.481,
-    "vol_ratio": 0.59,
+    "d": 26.0,
+    "macd_hist": -1.477,
+    "vol_ratio": 0.63,
     "high20_prev": 176.42,
     "vwap": 143.82,
-    "score": 1,
-    "reasons": [
-     "盤中站上均價線"
-    ],
+    "score": 0,
+    "reasons": [],
     "blockers": [
      "股價在月線之下",
      "月線往下彎"
@@ -244,7 +237,7 @@
      146.9,
      148.58,
      145.23,
-     143.83
+     143.89
     ]
    }
   ]
