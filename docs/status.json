@@ -3,9 +3,15 @@
     "eng": "idle",
     "cal": "idle",
     "mail": "idle",
-    "stock": "busy",
+    "stock": "idle",
     "shop": "off",
     "crawl": "idle"
   },
-  "radio": []
+  "radio": [
+    {
+      "id": 1,
+      "who": "策略技師",
+      "msg": "10/29 11:15｜台股盤中掃描 10 檔，0 檔通過初篩"
+    }
+  ]
 }
