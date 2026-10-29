@@ -3,7 +3,7 @@
     "eng": "idle",
     "cal": "idle",
     "mail": "idle",
-    "stock": "idle",
+    "stock": "busy",
     "shop": "off",
     "crawl": "idle"
   },
