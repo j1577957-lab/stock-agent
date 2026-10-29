@@ -35,7 +35,10 @@ canvas{display:block;width:100%;height:auto;image-rendering:pixelated;image-rend
 .lbl.warn{border-style:dashed;border-color:var(--amber)}
 .lbl .tk{display:block;font-size:.82em;max-width:9.5em;overflow:hidden;text-overflow:ellipsis;opacity:.9}
 .lbl .tk:empty{display:none}
-@media (max-width:520px){.lbl .tk{display:none}}
+.dog{position:absolute;transform:translate(-50%,-70%);width:7%;height:7%;min-width:28px;min-height:22px;background:transparent;border:0;box-shadow:none;padding:0;cursor:pointer}
+.dog:focus-visible{outline:2px dashed var(--amber)}
+.lbl .sm{display:none}
+@media (max-width:520px){.lbl .tk,.lbl .lg{display:none}.lbl .sm{display:inline}.lbl{padding:0 4px;font-size:10px}}
 .stage{transition:background 2s}
 .stage.night{background:radial-gradient(ellipse at 50% 40%,#151a2c,#07080b 75%)}
 .stage.day{background:radial-gradient(ellipse at 50% 40%,#28304a,#10131a 75%)}
@@ -125,7 +128,7 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
   </header>
 
   <div class="stage px" id="stage">
-    <canvas id="cv" width="180" height="122" aria-label="立體像素維修區：紅色 F1 賽車停在中央，技師作業時會走到車旁"></canvas>
+    <canvas id="cv" width="340" height="232" aria-label="立體像素維修區：紅色 F1 賽車停在中央，技師作業時會走到車旁"></canvas>
   </div>
   <div class="strip px" id="strip" aria-live="polite"></div>
 
@@ -172,16 +175,18 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 </div>
 
 <script>
-/* ---------- voxel engine ---------- */
-const A=4,B=2,H=4, OX=78, OY=27, GX=24, GY=18;
+/* ---------- voxel engine（高解析版：每格是舊版的 1/2，細節多 4 倍） ---------- */
+const A=4,B=2,H=4, OX=144, OY=52, GX=48, GY=36, LANE=40;
 const cv=document.getElementById("cv"), ctx=cv.getContext("2d"); ctx.imageSmoothingEnabled=false;
 const sprites={};
-function shade(hex,f){const n=parseInt(hex.slice(1),16);let r=n>>16,g=n>>8&255,b=n&255;
-  const m=v=>Math.max(0,Math.min(255,Math.round(v*f)));return[m(r),m(g),m(b)]}
+function rgb(hex){const n=parseInt(hex.slice(1),16);return[n>>16,n>>8&255,n&255]}
+function shade(hex,f){const m=v=>Math.max(0,Math.min(255,Math.round(v*f)));return rgb(hex).map(m)}
+const toHex=a=>"#"+a.map(v=>v.toString(16).padStart(2,"0")).join("");
+const tint=(hex,f)=>toHex(shade(hex,f));
 function sprite(hex){
   if(sprites[hex])return sprites[hex];
   const c=document.createElement("canvas");c.width=8;c.height=8;const g=c.getContext("2d"),img=g.createImageData(8,8);
-  const T=shade(hex,1.18),L=shade(hex,.92),R=shade(hex,.66);
+  const T=shade(hex,1.16),L=shade(hex,.9),R=shade(hex,.68);
   for(let j=0;j<8;j++)for(let i=0;i<8;i++){
     const x=i+.5,y=j+.5;let col=null;
     if(Math.abs(x-4)/4+Math.abs(y-2)/2<=1)col=T;
@@ -191,64 +196,112 @@ function sprite(hex){
   }
   g.putImageData(img,0,0);return sprites[hex]=c;
 }
-const world=new Map();
-const put=(x,y,z,c,tag)=>world.set(x+","+y+","+z,{x,y,z,c,tag});
 const scr=(x,y,z)=>[OX+(x-y)*A, OY+(x+y)*B-z*H];
+const hash=(x,y)=>{let h=x*374761393+y*668265263;h=(h^(h>>13))*1274126177;return((h^(h>>16))>>>0)/4294967295};
+const world=new Map(), back=new Map();   // back = 地板與牆（永遠在最後面，預先畫好）
+const put=(x,y,z,c)=>(z===0||x===0||y===0?back:world).set(x+","+y+","+z,{x,y,z,c});
+const box=(x0,x1,y0,y1,z0,z1,c)=>{for(let x=x0;x<=x1;x++)for(let y=y0;y<=y1;y++)for(let z=z0;z<=z1;z++)put(x,y,z,typeof c==="function"?c(x,y,z):c)};
 
-/* ---------- garage ---------- */
+/* ---------- 維修區地板、牆面 ---------- */
 for(let x=0;x<GX;x++)for(let y=0;y<GY;y++){
-  let c=(x+y)%2?"#4b505b":"#464b56";
-  if(x>=21)c=(y%4===0&&x===22)?"#d8dbe0":"#26282e";
-  if(x===20)c="#e9ecef";
-  const edge=(x===3||x===19)&&y>=3&&y<=15||(y===3||y===15)&&x>=3&&x<=19;
+  let c=((x>>1)+(y>>1))%2?"#4a4f5a":"#454a55";
+  if(x>=LANE)c=(x===44&&y%8<4)?"#d8dbe0":"#26282e";
+  if(x===LANE)c="#e9ecef";
+  const inBox=x>=6&&x<=38&&y>=6&&y<=30, edge=inBox&&(x===6||x===38||y===6||y===30);
   if(edge)c="#f2c230";
-  put(x,y,0,c);
+  if(x>=12&&x<=13&&(y===11||y===25)||x>=31&&x<=32&&(y===11||y===25))c="#e9ecef";   // 換胎定位 T 字
+  const lit=x<LANE?.84+.3*Math.max(0,1-Math.hypot(x-23,(y-18)*1.3)/24):1;   // 車庫頂燈打在賽車周圍
+  put(x,y,0,tint(c,lit*(.96+hash(x,y)*.08)));
 }
-for(let x=0;x<20;x++)for(let z=1;z<=5;z++)put(x,0,z,z===5?"#2a2e38":"#3a3f4c");
-for(let y=1;y<GY;y++)for(let z=1;z<=5;z++)put(0,y,z,z===5?"#2a2e38":"#3a3f4c");
-[[3,4],[4,4],[5,4],[3,3],[4,3],[5,3]].forEach(([x,z])=>put(x,0,z,"#1f7bff"));         // telemetry screens
-[[13,4],[14,4],[13,3],[14,3]].forEach(([x,z])=>put(x,0,z,"#47e08c"));
-[[0,4],[0,3]].forEach(([_,z])=>{put(0,5,z,"#ff9b2f");put(0,6,z,"#ff9b2f")});
-for(let x=8;x<=10;x++){put(x,1,1,"#b8301c");put(x,1,2,"#d8452e")}                    // tool chest
-[[16,1],[17,1],[16,2]].forEach(([x,y])=>{for(let z=1;z<=4;z++)put(x,y,z,z===3?(x===17?"#e9ecef":"#e0402c"):"#17181c")}); // tyre stacks
-for(let y=14;y<=16;y++){put(1,y,1,"#5d6472");put(1,y,2,"#2b6cff");put(1,y,3,"#2b6cff");put(2,y,1,"#5d6472")} // engineer desk
+for(let x=0;x<LANE;x++)for(let z=1;z<=12;z++)put(x,0,z,z>=11?"#2a2e38":"#3a3f4c");
+for(let y=1;y<GY;y++)for(let z=1;z<=12;z++)put(0,y,z,z>=11?"#2a2e38":"#3a3f4c");
+box(0,0,3,12,6,10,(x,y,z)=>z===8?"#eef0f3":"#c8321f");                     // 左牆車隊旗幟
+box(3,10,0,0,5,9,(x,y,z)=>z===9||x===3||x===10?"#1b1d24":(z+x)%3?"#1f5fd1":"#47e08c");   // 遙測螢幕
+box(32,38,0,0,4,9,(x,y,z)=>(x+z)%3===0?"#ff9b2f":"#565c69");               // 工具掛板
 
-/* ---------- F1 car (nose toward pit lane, +x) ---------- */
+/* 窗外天空（參考 Claude Office 的日夜窗景）：依台北時間變化 */
+function skyMode(){const h=+new Intl.DateTimeFormat("en-US",{timeZone:"Asia/Taipei",hourCycle:"h23",hour:"2-digit"}).format(new Date());
+  return h>=6&&h<17?"day":h>=17&&h<19?"dusk":"night"}
+function paintWindow(mode){
+  const sky={day:["#7cc0f0","#a9d8f7"],dusk:["#e2774a","#f2b25c"],night:["#0f1530","#1a2448"]}[mode];
+  for(let x=13;x<=30;x++)for(let z=5;z<=10;z++){
+    let c=x===13||x===30||z===5||z===10?"#1b1d24":sky[z>7?0:1];
+    const bh=[3,5,4,6,3,4,7,5,3,4,6,4,5,3,4,6][x-14]||0;            // 城市剪影
+    if(x>13&&x<30&&z>5&&z<10&&z-5<=bh-1){c=mode==="night"?((x*7+z)%4===0?"#ffd56a":"#1b2133"):mode==="dusk"?"#6b4a5a":"#8b9ab3"}
+    else if(mode==="night"&&x>13&&x<30&&z>5&&z<10&&hash(x,z)>.86)c="#e9ecef";   // 星星
+    back.set(x+",0,"+z,{x,y:0,z,c});
+  }
+}
+
+/* ---------- 擺設 ---------- */
+box(16,21,1,3,1,5,(x,y,z)=>z%2===0&&y===3?"#8f2416":"#c8321f");            // 工具車
+box(16,21,1,3,6,6,"#3b3f49");
+const tyreStack=(x0,y0,blanket)=>box(x0,x0+2,y0,y0+2,1,6,(x,y,z)=>z%2===0?"#17181c":blanket);   // 輪胎＋保溫毯
+tyreStack(33,1,"#c8321f");tyreStack(36,1,"#eef0f3");tyreStack(36,4,"#c8321f");
+box(1,1,12,20,1,4,"#2f6f73");box(2,3,12,20,1,2,"#3a8a8f");                  // 休息區沙發（參考 Star Office 的休息角）
+box(2,3,12,12,3,3,"#2f6f73");box(2,3,20,20,3,3,"#2f6f73");
+box(1,2,23,25,1,7,(x,y,z)=>z===4?"#9aa3b2":"#dfe3ea");                       // 冰箱
+box(3,3,24,24,1,3,"#5d6472");box(3,3,24,24,4,4,"#7a4a2a");                   // 咖啡機
+box(2,6,28,33,3,3,"#5d6472");box(4,5,30,31,3,3,"#1b1d24");                   // 工程師桌＋鍵盤
+[[2,28],[6,28],[2,33],[6,33]].forEach(([x,y])=>box(x,x,y,y,1,2,"#3b3f49"));
+box(2,2,29,32,4,7,(x,y,z)=>y===29||y===32||z===7?"#1b1d24":(z+y)%2?"#2b6cff":"#47e08c");   // 工程師螢幕
+box(39,39,0,0,1,12,"#5d6472");                                              // 車庫門柱
+
+/* ---------- F1 賽車（車頭朝維修道 +x） ---------- */
 function car(ox,oy){
-  const R="#d8382a",W="#eef0f3",K="#1b1c21",G="#3b3f49";
-  const p=(x,y,z,c)=>put(ox+x,oy+y,z,c);
-  for(let x=1;x<=13;x++)for(let y=2;y<=4;y++)p(x,y,1,K);                  // floor
-  for(let x=3;x<=12;x++)for(let y=2;y<=4;y++)p(x,y,2,R);                  // chassis
-  for(let x=4;x<=9;x++){p(x,1,1,K);p(x,5,1,K);p(x,1,2,R);p(x,5,2,R)}      // sidepods
-  for(let x=2;x<=7;x++)p(x,3,3,R); p(5,3,3,W); p(6,3,4,R); p(7,3,4,K);    // engine cover + airbox
-  p(8,3,2,K); p(9,3,2,K);                                                 // cockpit
-  p(8,2,3,G);p(8,4,3,G);p(9,2,3,G);p(9,4,3,G);p(10,3,3,G);                // halo
-  for(let x=13;x<=14;x++)p(x,3,2,R); p(15,3,1,W); p(12,3,3,W);           // nose + T-cam
-  for(let y=0;y<=6;y++)p(15,y,1,y===0||y===6?R:W);                        // front wing
-  p(15,0,2,R);p(15,6,2,R);
-  for(let y=1;y<=5;y++){p(0,y,4,R);p(0,y,5,y===1||y===5?R:W)}             // rear wing
-  p(0,1,3,R);p(0,5,3,R);p(0,3,3,K);p(0,3,2,K);
-  for(let x=1;x<=3;x++)for(let z=1;z<=3;z++){p(x,0,z,K);p(x,6,z,K)}       // rear tyres
-  p(2,0,2,"#e0402c");p(2,6,2,"#e0402c");
-  for(let x=11;x<=12;x++)for(let z=1;z<=2;z++){p(x,0,z,K);p(x,6,z,K)}     // front tyres
-  p(10,1,1,G);p(10,5,1,G);p(4,0,1,G);p(4,6,1,G);
+  const R="#d8382a",R2="#a8281b",W="#eef0f3",K="#17181c",G="#3b3f49",Y="#f2c230",TT="#2a2c33";
+  const p=(x,y,z,c)=>put(ox+x,oy+y,z,c), b=(x0,x1,y0,y1,z0,z1,c)=>box(ox+x0,ox+x1,oy+y0,oy+y1,z0,z1,c);
+  const tyre=(x0,x1,y0,y1,zh,stripe)=>{const cx=(x0+x1)/2,cz=(1+zh)/2;
+    for(let x=x0;x<=x1;x++)for(let y=y0;y<=y1;y++)for(let z=1;z<=zh;z++){
+      if((x===x0||x===x1)&&(z===1||z===zh))continue;               // 圓角
+      const outer=(y0===0&&y===0)||(y1===12&&y===12),d=Math.hypot(x-cx,z-cz);
+      p(x,y,z,outer?(d<1.1?"#9aa3b2":d<2.2&&d>1.5?stripe:K):(z===zh?TT:K));
+    }};
+  b(3,27,3,9,1,1,K); b(0,2,3,9,1,2,K);                              // 底板、擴散器
+  b(9,22,5,7,2,4,R); b(23,26,5,7,2,3,R); b(27,28,6,6,2,2,R);        // 單體殼、鼻錐
+  b(12,18,2,4,2,2,R2); b(12,18,8,10,2,2,R2);                        // 側箱下緣（內凹）
+  b(10,18,2,4,3,4,R); b(10,18,8,10,3,4,R);                          // 側箱
+  for(let x=10;x<=17;x++){p(x,2,4,W);p(x,10,4,W)}                   // 側箱白線
+  b(13,15,10,10,3,3,Y); b(18,18,2,3,3,4,K); b(18,18,9,10,3,4,K);    // 贊助色塊、進氣口
+  b(3,17,5,7,5,5,R); b(6,16,6,6,6,6,W);                             // 引擎蓋、白色條紋
+  b(14,17,5,7,6,7,R); p(17,6,7,K); p(15,6,8,Y);                     // 進氣盒、T 型鏡頭
+  for(let x=5;x<=11;x++)p(x,6,7,R2);                                // 鯊魚鰭
+  b(18,21,5,7,5,5,K);                                               // 座艙
+  for(let x=18;x<=21;x++){p(x,5,7,G);p(x,7,7,G)} b(22,22,6,6,5,7,G); b(17,17,5,7,6,6,G);   // Halo
+  p(20,3,5,K);p(20,9,5,K);p(20,4,5,K);p(20,8,5,K);                  // 後照鏡
+  p(25,3,3,K);p(25,4,3,K);p(25,8,3,K);p(25,9,3,K);p(5,3,4,K);p(5,9,4,K);   // 懸吊
+  b(0,2,1,1,3,9,R2); b(0,2,11,11,3,9,R2);                           // 尾翼端板
+  b(0,1,2,10,8,8,R); b(0,1,2,10,9,9,W); b(2,2,6,6,3,7,K); b(1,2,2,10,4,4,K);   // 尾翼主翼、DRS、支架、下翼
+  p(0,6,3,"#4a1410");                                               // 雨燈
+  b(29,31,0,12,1,1,W); b(29,30,1,11,2,2,R); b(29,31,0,0,1,3,R2); b(29,31,12,12,1,3,R2);   // 前翼
+  tyre(2,7,0,2,6,"#e0402c"); tyre(2,7,10,12,6,"#e0402c");           // 後輪（紅線＝軟胎）
+  tyre(23,27,0,2,5,"#e0402c"); tyre(23,27,10,12,5,"#e0402c");       // 前輪
 }
-car(4,6);
+const CAR={ox:7,oy:12}; car(CAR.ox,CAR.oy);
 
-/* ---------- crew ---------- */
+/* ---------- 車庫狗 Box（參考別人辦公室裡的寵物） ---------- */
+const dog={x:5,y:21};
+function dogVox(list){
+  const D="#d9a441",E="#a8742a",{x,y}=dog,night=skyMode()==="night";
+  for(let i=0;i<3;i++)for(let j=0;j<2;j++)list.push({x:x+i,y:y+j,z:1,c:D});
+  list.push({x:x+3,y,z:1,c:D},{x:x+3,y:y+1,z:1,c:D},{x:x+3,y,z:2,c:E},{x:x+4,y,z:1,c:"#1b1d24"});
+  if(!night||still)list.push({x:x-1,y:y+(frame%2),z:frame%4<2?2:1,c:E});  // 尾巴搖
+  else list.push({x:x-1,y,z:1,c:E});
+}
+/* ---------- crew（x,y＝自己的崗位；w＝作業時走到車旁的位置） ---------- */
 const crew=[
-  {id:"eng",name:"賽車工程師",role:"總指揮・分派任務",x:3,y:15,w:[3,15],c:"#eef0f3",keys:[]},
-  {id:"cal",name:"行程技師",role:"Google 行事曆",x:6,y:4,w:[9,5],c:"#4aa3ff",keys:["行程","會議","行事曆","明天","約","今天有什麼"]},
-  {id:"mail",name:"信件技師",role:"Gmail 提醒",x:6,y:14,w:[7,13],c:"#47e08c",keys:["信","郵件","gmail","mail","回覆"]},
-  {id:"stock",name:"策略技師",role:"台股・美股簡報",x:16,y:4,w:[14,5],c:"#f2c230",keys:["股","台股","美股","收盤","大盤","投資","etf","外資","投信","法人","本益比","營收","殖利率","財報","融資"]},
-  {id:"shop",name:"電商技師",role:"蝦皮（待上線）",x:16,y:14,w:[17,13],c:"#c27bff",keys:["蝦皮","訂單","商品","賣場","出貨"],off:true},
-  {id:"crawl",name:"爬蟲技師",role:"每小時抓新聞",x:12,y:16,w:[13,13],c:"#ff7a45",keys:["爬","網站","新聞","抓"]}
+  {id:"eng",name:"賽車工程師",role:"總指揮・分派任務",x:8,y:30,w:[8,30],c:"#eef0f3",keys:[]},
+  {id:"cal",name:"行程技師",role:"Google 行事曆",x:12,y:7,w:[17,9],c:"#4aa3ff",keys:["行程","會議","行事曆","明天","約","今天有什麼"]},
+  {id:"mail",name:"信件技師",role:"Gmail 提醒",x:13,y:28,w:[17,26],c:"#47e08c",keys:["信","郵件","gmail","mail","回覆"]},
+  {id:"stock",name:"策略技師",role:"台股・美股簡報",x:31,y:7,w:[29,9],c:"#f2c230",keys:["股","台股","美股","收盤","大盤","投資","etf","外資","投信","法人","本益比","營收","殖利率","財報","融資"]},
+  {id:"shop",name:"電商技師",role:"蝦皮（待上線）",x:35,y:29,w:[33,26],c:"#c27bff",keys:["蝦皮","訂單","商品","賣場","出貨"],off:true},
+  {id:"crawl",name:"爬蟲技師",role:"每小時抓新聞",x:27,y:32,w:[27,26],c:"#ff7a45",keys:["爬","網站","新聞","抓"]}
 ];
 /* 狀態：idle 待命 / busy 作業中 / error 故障 / off 未上線
    meta：status.json 帶來的細節（task 正在做什麼、since 開始時間、last_done、last_msg） */
 const esc=v=>String(v??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const state={},meta={},STUCK_MIN=40;
-crew.forEach(m=>{state[m.id]=m.off?"off":"idle";meta[m.id]={};m.px=m.x;m.py=m.y});
+crew.forEach(m=>{state[m.id]=m.off?"off":"idle";meta[m.id]={};m.px=m.x;m.py=m.y;m.moving=false});
 const minsSince=iso=>iso?(Date.now()-new Date(iso))/60000:null;
 const isStuck=id=>state[id]==="busy"&&minsSince(meta[id].since)>STUCK_MIN;
 /* 作業中走到賽車旁的工位，其他狀態回到自己的崗位 */
@@ -258,64 +311,111 @@ const goal=m=>state[m.id]==="busy"?m.w:[m.x,m.y];
 const stage=document.getElementById("stage");
 crew.forEach(m=>{
   const b=document.createElement("button");b.className="lbl";b.id="l-"+m.id;b.style.setProperty("--c",m.c);
-  b.innerHTML=`<span class="nm"></span><span class="tk"></span>`;b.firstChild.textContent=m.name;
+  const short=m.id==="eng"?"工程師":m.name.replace("技師","");
+  b.innerHTML=`<span class="nm"><span class="lg"></span><span class="sm"></span></span><span class="tk"></span>`;b.querySelector(".lg").textContent=m.name;b.querySelector(".sm").textContent=short;
   if(m.id==="eng")b.style.transform="translate(-50%,0)";
   b.onclick=()=>showDetail(m.id);
   stage.append(b);
 });
+const dogBtn=document.createElement("button");dogBtn.className="dog";dogBtn.setAttribute("aria-label","車庫狗 Box");
+dogBtn.onclick=()=>{log("車庫狗 Box",skyMode()==="night"?"呼…呼…（睡著了，維修區一切正常）":"汪！巡完一圈，維修區一切正常。");dogPet=6};
+stage.append(dogBtn);let dogPet=0;
 function placeLabels(){
+  const pos=(el,sx,sy)=>{el.style.left=(sx/cv.width*100)+"%";el.style.top=(sy/cv.height*100)+"%"};
   crew.forEach(m=>{
-    const [sx,sy]=scr(m.px,m.py,3),b=document.getElementById("l-"+m.id);
-    b.style.left=(sx/cv.width*100)+"%";b.style.top=((m.id==="eng"?sy+16:sy-3)/cv.height*100)+"%";
+    const b=document.getElementById("l-"+m.id),[sx,sy]=scr(m.px+1,m.py+1,m.id==="eng"?0:9);
+    pos(b,sx,m.id==="eng"?sy+6:sy-2);
   });
+  const [dx,dy]=scr(dog.x+2,dog.y+1,1);pos(dogBtn,dx,dy);
+}
+
+/* ---------- 技師模型：靴子、腿、連身工作服、手臂、安全帽＋面罩 ---------- */
+function mechVox(m,list){
+  const x=m.px,y=m.py,st=state[m.id],tag=m.id;
+  const suit=st==="off"?"#5d6472":m.c, dark=tint(suit,.72), boot="#1f2128";
+  const step=m.moving&&frame%2, work=st==="busy"&&!m.moving&&!still;
+  const add=(dx,dy,z,c)=>list.push({x:x+dx,y:y+dy,z,c,tag});
+  for(let dx=0;dx<2;dx++){                                          // 兩條腿（走路時交替抬腳）
+    if(!(step&&dx===0))add(dx,0,1,boot); if(!(!step&&m.moving&&dx===1))add(dx,1,1,boot);
+    add(dx,0,2,dark);add(dx,1,2,dark);add(dx,0,3,dark);add(dx,1,3,dark);
+  }
+  for(let dx=0;dx<2;dx++)for(let dy=0;dy<2;dy++){add(dx,dy,4,dark);add(dx,dy,5,suit);add(dx,dy,6,suit)}
+  const up=work?frame%2:-1;                                         // 作業中：輪流舉起手臂（拿氣動扳手）
+  [[-1,0],[2,1]].forEach(([dy],i)=>{
+    const raised=up===i;
+    add(.5,dy,raised?7:6,suit);add(.5,dy,raised?6:5,suit);add(.5,dy,raised?5:4,raised?"#3b3f49":boot);
+  });
+  if(m.id==="eng"){                                                 // 工程師：臉＋耳機＋帽子
+    for(let dy=0;dy<2;dy++){add(0,dy,7,"#e0b48a");add(1,dy,7,"#e0b48a");add(0,dy,8,"#1f2a44");add(1,dy,8,"#1f2a44")}
+    add(.5,-1,7,"#1b1d24");add(.5,2,7,"#1b1d24");
+  }else{                                                            // 技師：安全帽（白底＋個人色帽頂）＋深色面罩
+    for(let dy=0;dy<2;dy++){add(0,dy,7,"#eef0f3");add(1,dy,7,"#1b1d24");add(0,dy,8,suit);add(1,dy,8,suit)}
+  }
 }
 
 /* ---------- render loop ---------- */
-let frame=0, laneY=-30;
+let frame=0, laneY=-30, backCache=null, backMode="";
+function drawBack(){
+  const mode=skyMode();
+  if(backCache&&backMode===mode)return backCache;
+  paintWindow(mode);backMode=mode;
+  backCache=document.createElement("canvas");backCache.width=cv.width;backCache.height=cv.height;
+  const g=backCache.getContext("2d");g.imageSmoothingEnabled=false;
+  [...back.values()].sort((p,q)=>(p.x+p.y)-(q.x+q.y)||p.z-q.z).forEach(v=>{const [sx,sy]=scr(v.x,v.y,v.z);g.drawImage(sprite(v.c),Math.round(sx-A),Math.round(sy))});
+  return backCache;
+}
 function draw(){
   ctx.clearRect(0,0,cv.width,cv.height);
+  ctx.drawImage(drawBack(),0,0);
   const list=[...world.values()];
-  if(laneY>-8&&laneY<GY+2){                               // passing car in pit lane
-    const T="#1fb5a6",K="#1b1c21";
-    const add=(x,y,z,c)=>{if(y>=0&&y<GY)list.push({x,y,z,c})};
-    for(let d=0;d<6;d++)add(22,laneY+d,1,T);
-    add(21,laneY,1,K);add(23,laneY,1,K);add(21,laneY+4,1,K);add(23,laneY+4,1,K);
-    add(22,laneY+2,2,"#f2c230");add(21,laneY+6,1,"#eef0f3");add(22,laneY+6,1,"#eef0f3");add(23,laneY+6,1,"#eef0f3");
+  if(laneY>-14&&laneY<GY+2){                               // 維修道上開過的另一台車
+    const T="#1fb5a6",K="#17181c",W="#eef0f3";
+    const add=(x,y,z,c)=>{if(y>=1&&y<GY)list.push({x,y,z,c})};
+    for(let d=1;d<11;d++)for(let x=42;x<=45;x++)add(x,laneY+d,1,x===42||x===45?K:T);
+    for(let d=2;d<9;d++){add(43,laneY+d,2,T);add(44,laneY+d,2,T)}
+    add(43,laneY+5,3,"#1b1d24");add(44,laneY+5,3,"#f2c230");
+    for(let x=41;x<=46;x++){add(x,laneY,1,W);add(x,laneY+11,1,W)}
+    [[41,1],[46,1],[41,8],[46,8]].forEach(([x,d])=>{add(x,laneY+d,1,K);add(x,laneY+d+1,1,K);add(x,laneY+d,2,K);add(x,laneY+d+1,2,K)});
   }
-  crew.forEach(m=>{                                       // mechanics: boots / suit / helmet
-    list.push({x:m.px,y:m.py,z:1,c:"#22262f",tag:m.id},{x:m.px,y:m.py,z:2,c:m.c,tag:m.id},
-              {x:m.px,y:m.py,z:3,c:m.id==="eng"?"#1b1c21":"#eef0f3",tag:m.id});
-  });
+  crew.forEach(m=>mechVox(m,list));
+  dogVox(list);
   list.sort((p,q)=>(p.x+p.y)-(q.x+q.y)||p.z-q.z);
   for(const v of list){
     let [sx,sy]=scr(v.x,v.y,v.z);
-    if(v.tag&&state[v.tag]==="busy"&&frame%2)sy-=2;
+    if(v.tag&&state[v.tag]==="busy"&&!still&&frame%4===0)sy-=1;
     ctx.drawImage(sprite(v.c),Math.round(sx-A),Math.round(sy));
   }
-  crew.forEach(m=>{                                       // beacon: amber = working, red = fault
+  crew.forEach(m=>{                                       // 頭頂警示燈：黃＝作業中，紅＝故障／卡住
     const st=state[m.id];if(st!=="busy"&&st!=="error")return;
-    const [sx,sy]=scr(m.px,m.py,3).map(Math.round);
-    if(frame%4<3||still){ctx.fillStyle=st==="error"||isStuck(m.id)?"#e0402c":"#f2c230";ctx.fillRect(sx-1,sy-8,2,4);ctx.fillRect(sx-1,sy-3,2,1)}
+    const [sx,sy]=scr(m.px+1,m.py+1,9).map(Math.round);
+    if(frame%4<3||still){ctx.fillStyle=st==="error"||isStuck(m.id)?"#e0402c":"#f2c230";ctx.fillRect(sx-1,sy-9,2,5);ctx.fillRect(sx-1,sy-3,2,2)}
   });
-  placeLabels();
-  if(Object.values(state).includes("busy")&&frame%2){     // car rain light blinks while crew works
-    const [sx,sy]=scr(4,9,2);ctx.fillStyle="#ff3b2f";ctx.fillRect(sx-1,sy+1,2,2);
+  if(Object.values(state).includes("busy")&&frame%2){     // 有人作業時，賽車尾燈閃爍
+    const [sx,sy]=scr(CAR.ox,CAR.oy+6,3);ctx.fillStyle="#ff3b2f";ctx.fillRect(sx-2,sy+2,3,3);
   }
+  if(skyMode()==="night"&&!still){                        // 狗狗睡覺的 z
+    const [sx,sy]=scr(dog.x+3,dog.y,3),k=frame%12;ctx.fillStyle="#cfd6e6";
+    if(k<9){const zx=sx+2+(k>>2),zy=sy-4-k;ctx.fillRect(zx,zy,3,1);ctx.fillRect(zx+1,zy+1,1,1);ctx.fillRect(zx,zy+2,3,1)}
+  }
+  if(dogPet>0){dogPet--;const [sx,sy]=scr(dog.x+3,dog.y,3);ctx.fillStyle="#e0402c";ctx.fillRect(sx+2,sy-6,2,2);ctx.fillRect(sx+5,sy-6,2,2);ctx.fillRect(sx+2,sy-4,5,2);ctx.fillRect(sx+3,sy-2,3,1)}
+  placeLabels();
 }
 let last=0;
 function loop(t){
-  if(t-last>160){last=t;frame++;laneY++;if(laneY>GY+40)laneY=-12;walk(.4);draw()}
+  if(t-last>150){last=t;frame++;laneY++;if(laneY>GY+50)laneY=-14;walk(.5);draw()}
   requestAnimationFrame(loop);
 }
 function walk(step){                                      // 一格一格走向目標（先走 x 再走 y）
   crew.forEach(m=>{
-    const [gx,gy]=goal(m);
+    const [gx,gy]=goal(m);m.moving=true;
     if(Math.abs(gx-m.px)>.01)m.px+=Math.sign(gx-m.px)*Math.min(step,Math.abs(gx-m.px));
     else if(Math.abs(gy-m.py)>.01)m.py+=Math.sign(gy-m.py)*Math.min(step,Math.abs(gy-m.py));
+    else m.moving=false;
   });
 }
 const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
 draw(); if(!still)requestAnimationFrame(loop);
+setInterval(()=>{if(still)draw()},60000);
 
 /* ---------- console ---------- */
 const quick=["今天行程有哪些？","整理未讀重要信件","台股收盤重點","蝦皮今日訂單"];
