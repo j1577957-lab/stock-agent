@@ -73,6 +73,20 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 .vd.買進{background:var(--ok)} .vd.觀望{background:var(--amber)} .vd.不買{background:var(--red)}
 .more{display:inline-block;margin-top:10px;font-family:var(--pixel);font-size:13px;color:var(--amber)}
 .tblwrap{overflow-x:auto}
+/* 利多利空小欄位（和 CREW 狀態欄同大小） */
+.ntabs{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+.ntabs button{font-size:12px;padding:4px 9px}
+.ntabs button.on{background:var(--amber);color:#0d0e12;border-color:var(--amber)}
+.mood{font-family:var(--pixel);font-size:12px;color:var(--mute);margin:0 0 6px}
+.nlist{max-height:228px;overflow-y:auto}
+.nw{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start;font-size:13.5px;padding:6px 0;border-bottom:2px dotted var(--line)}
+.nw:last-child{border-bottom:0}
+.nw a{color:var(--ink);text-decoration:none;overflow-wrap:anywhere}
+.nw a:hover{color:var(--amber)}
+.nt{font-family:var(--pixel);font-size:11px;padding:0 5px;border:2px solid currentColor;line-height:1.5;margin-top:1px}
+.nt.bull{color:var(--red)} .nt.bear{color:var(--ok)}
+.nt.strong.bull{background:var(--red);color:#0d0e12;border-color:var(--red)}
+.nt.strong.bear{background:var(--ok);color:#0d0e12;border-color:var(--ok)}
 </style>
 </head>
 <body>
@@ -103,9 +117,20 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
     </div>
   </div>
 
-  <div class="card px">
-    <p class="label"><span>TEAM RADIO ・ 通訊紀錄</span><span>CH 1</span></p>
-    <div class="radio" id="radio" aria-live="polite"></div>
+  <div class="grid">
+    <div class="card px">
+      <p class="label"><span>NEWS ・ 利多利空</span><span id="newsTime">--</span></p>
+      <div class="ntabs" id="ntabs">
+        <button class="on" data-m="tw">台股</button><button data-m="us">美股</button>
+        <button class="on" data-f="all">多＋空</button><button data-f="bull">利多</button><button data-f="bear">利空</button>
+      </div>
+      <p class="mood" id="mood"></p>
+      <div class="nlist" id="nlist"><p class="note">還沒有新聞，爬蟲技師每小時會出勤一次。</p></div>
+    </div>
+    <div class="card px">
+      <p class="label"><span>TEAM RADIO ・ 通訊紀錄</span><span>CH 1</span></p>
+      <div class="radio" id="radio" aria-live="polite"></div>
+    </div>
   </div>
   <div class="card px">
     <p class="label"><span>STRATEGY ・ 股票看板</span><span id="stkTime">--</span></p>
@@ -374,6 +399,27 @@ async function pullStocks(){
 }
 document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{stkMkt=b.dataset.m;renderStocks()});
 pullStocks();setInterval(pullStocks,60000);
+
+/* ---------- 利多利空小欄位：讀 data/news.json（爬蟲技師每小時更新） ---------- */
+let news={},nMkt="tw",nFil="all";
+const BULL=["利多","偏多"],BEAR=["利空","偏空"];
+const ago=iso=>{const m=Math.round((Date.now()-new Date(iso))/60000);return m<60?m+"分前":m<1440?Math.floor(m/60)+"時前":Math.floor(m/1440)+"天前"};
+function renderNews(){
+  document.querySelectorAll("#ntabs button").forEach(b=>b.classList.toggle("on",b.dataset.m?b.dataset.m===nMkt:b.dataset.f===nFil));
+  const all=news[nMkt]||[],box=document.getElementById("nlist");
+  document.getElementById("newsTime").textContent=news.updated?news.updated.slice(5):"--";
+  const r30=all.slice(0,30),b=r30.filter(n=>BULL.includes(n.label)).length,r=r30.filter(n=>BEAR.includes(n.label)).length;
+  const mood=b-r>=3?'<span class="up">偏多 ▲</span>':r-b>=3?'<span class="dn">偏空 ▼</span>':"中性 ■";
+  document.getElementById("mood").innerHTML=all.length?`近 30 則 <span class="up">多 ${b}</span> ／ <span class="dn">空 ${r}</span> → 氣氛 ${mood}`:"";
+  const list=all.filter(n=>nFil==="all"?(BULL.includes(n.label)||BEAR.includes(n.label)):(nFil==="bull"?BULL:BEAR).includes(n.label)).slice(0,20);
+  if(!list.length){box.innerHTML=`<p class="note">${all.length?"目前沒有這類消息。":"還沒有新聞，爬蟲技師每小時會出勤一次。"}</p>`;return}
+  box.innerHTML=list.map(n=>{const c=BULL.includes(n.label)?"bull":"bear";
+    return `<div class="nw"><span class="nt ${c} ${Math.abs(n.score)>=3?"strong":""}">${esc(n.label)}</span>
+      <div><a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.title)}</a><br><span class="role">${esc(n.source)} ・ ${ago(n.time)}</span></div></div>`}).join("");
+}
+document.querySelectorAll("#ntabs button").forEach(b=>b.onclick=()=>{if(b.dataset.m)nMkt=b.dataset.m;else nFil=b.dataset.f;renderNews()});
+async function pullNews(){try{const r=await fetch("data/news.json?t="+Date.now());if(r.ok){news=await r.json();renderNews()}}catch(e){}}
+pullNews();setInterval(pullNews,300000);
 </script>
 
 </body>
