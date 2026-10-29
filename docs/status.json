@@ -5,7 +5,7 @@
     "mail": "idle",
     "stock": "idle",
     "shop": "off",
-    "crawl": "idle"
+    "crawl": "busy"
   },
   "radio": [
     {
