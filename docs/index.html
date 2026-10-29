@@ -31,6 +31,33 @@ canvas{display:block;width:100%;height:auto;image-rendering:pixelated;image-rend
 .lbl:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 .lbl.busy{background:var(--c);color:#0d0e12}
 .lbl.off{opacity:.55;border-style:dashed}
+.lbl.err{background:var(--red);border-color:var(--red);color:#0d0e12}
+.lbl.warn{border-style:dashed;border-color:var(--amber)}
+.lbl .tk{display:block;font-size:.82em;max-width:9.5em;overflow:hidden;text-overflow:ellipsis;opacity:.9}
+.lbl .tk:empty{display:none}
+@media (max-width:520px){.lbl .tk{display:none}}
+.stage{transition:background 2s}
+.stage.night{background:radial-gradient(ellipse at 50% 40%,#151a2c,#07080b 75%)}
+.stage.day{background:radial-gradient(ellipse at 50% 40%,#28304a,#10131a 75%)}
+/* 賽道看板：開盤旗號＋今日統計 */
+.strip{display:flex;flex-wrap:wrap;gap:6px 16px;font-family:var(--pixel);font-size:13px;color:var(--mute);padding:10px 14px}
+.strip b{font-weight:400;color:var(--ink)}
+.flag{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px;box-shadow:inset -2px -2px 0 #0006}
+.flag.g{background:var(--ok)} .flag.y{background:var(--amber)} .flag.n{background:#4a4f5c} .flag.r{background:var(--red)}
+.strip .alert{color:var(--red)}
+.sound{font-size:12px;padding:3px 8px;box-shadow:none}
+.mech{cursor:pointer}
+.mech:hover{background:var(--panel2)}
+.st.error{color:var(--red)} .st.warn{color:var(--amber)}
+/* 技師卡 */
+.dt{display:grid;gap:8px;font-size:14px}
+.dt h3{font-family:var(--pixel);font-weight:400;font-size:17px;margin:0;display:flex;align-items:center;gap:8px}
+.dt dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:0}
+.dt dt{color:var(--mute);font-size:12.5px}
+.dt dd{margin:0;overflow-wrap:anywhere}
+.dt .hist{font-family:var(--pixel);font-size:12.5px;display:grid;gap:4px;max-height:150px;overflow-y:auto;border-top:2px dotted var(--line);padding-top:8px}
+.dt .hist p{margin:0;overflow-wrap:anywhere}
+.dt button{justify-self:start;font-size:12.5px;padding:4px 10px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media (max-width:720px){.grid{grid-template-columns:1fr}}
 .card{padding:14px;min-width:0}
@@ -94,12 +121,13 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 <div class="wrap">
   <header>
     <h1>PIT GARAGE <span>指揮站</span></h1>
-    <div class="session">BOX 07 ・ 台北 <b id="clock">--:--</b></div>
+    <div class="session">BOX 07 ・ 台北 <b id="clock">--:--</b> <button class="sound" id="sound" aria-pressed="false">音效 關</button></div>
   </header>
 
   <div class="stage px" id="stage">
-    <canvas id="cv" width="180" height="122" aria-label="立體像素維修區：紅色 F1 賽車停在中央，五位技師在周圍待命"></canvas>
+    <canvas id="cv" width="180" height="122" aria-label="立體像素維修區：紅色 F1 賽車停在中央，技師作業時會走到車旁"></canvas>
   </div>
+  <div class="strip px" id="strip" aria-live="polite"></div>
 
   <div class="grid">
     <div class="card px">
@@ -114,6 +142,7 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
     <div class="card px">
       <p class="label"><span>CREW 狀態</span><span id="count"></span></p>
       <div id="roster"></div>
+      <div id="detail" class="dt" hidden></div>
     </div>
   </div>
 
@@ -139,7 +168,7 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
     <div class="verdicts" id="stkVerdicts"></div>
     <a class="more" href="stock.html">完整報告與盤前盤後 ›</a>
   </div>
-  <p class="note">技師狀態與通訊紀錄由 status.json 或 pitGarage 接口更新。</p>
+  <p class="note">技師作業中會走到車旁；名牌變紅＝故障、虛線＝可能卡住。點名牌看工作紀錄與下次出勤。開盤時間未計入國定假日。</p>
 </div>
 
 <script>
@@ -208,29 +237,38 @@ car(4,6);
 
 /* ---------- crew ---------- */
 const crew=[
-  {id:"eng",name:"賽車工程師",role:"總指揮・分派任務",x:3,y:15,c:"#eef0f3",keys:[]},
-  {id:"cal",name:"行程技師",role:"Google 行事曆",x:6,y:4,c:"#4aa3ff",keys:["行程","會議","行事曆","明天","約","今天有什麼"]},
-  {id:"mail",name:"信件技師",role:"Gmail 提醒",x:6,y:14,c:"#47e08c",keys:["信","郵件","gmail","mail","回覆"]},
-  {id:"stock",name:"策略技師",role:"台股・美股簡報",x:16,y:4,c:"#f2c230",keys:["股","台股","美股","收盤","大盤","投資","etf","外資","投信","法人","本益比","營收","殖利率","財報","融資"]},
-  {id:"shop",name:"電商技師",role:"蝦皮（待上線）",x:16,y:14,c:"#c27bff",keys:["蝦皮","訂單","商品","賣場","出貨"],off:true},
-  {id:"crawl",name:"爬蟲技師",role:"每小時抓網站資料",x:11,y:15,c:"#ff7a45",keys:["爬","網站","新聞","抓"]}
+  {id:"eng",name:"賽車工程師",role:"總指揮・分派任務",x:3,y:15,w:[3,15],c:"#eef0f3",keys:[]},
+  {id:"cal",name:"行程技師",role:"Google 行事曆",x:6,y:4,w:[9,5],c:"#4aa3ff",keys:["行程","會議","行事曆","明天","約","今天有什麼"]},
+  {id:"mail",name:"信件技師",role:"Gmail 提醒",x:6,y:14,w:[7,13],c:"#47e08c",keys:["信","郵件","gmail","mail","回覆"]},
+  {id:"stock",name:"策略技師",role:"台股・美股簡報",x:16,y:4,w:[14,5],c:"#f2c230",keys:["股","台股","美股","收盤","大盤","投資","etf","外資","投信","法人","本益比","營收","殖利率","財報","融資"]},
+  {id:"shop",name:"電商技師",role:"蝦皮（待上線）",x:16,y:14,w:[17,13],c:"#c27bff",keys:["蝦皮","訂單","商品","賣場","出貨"],off:true},
+  {id:"crawl",name:"爬蟲技師",role:"每小時抓新聞",x:12,y:16,w:[13,13],c:"#ff7a45",keys:["爬","網站","新聞","抓"]}
 ];
-const state={};crew.forEach(m=>{
-  state[m.id]=m.off?"off":"idle";
-  put(m.x,m.y,1,"#22262f",m.id); put(m.x,m.y,2,m.c,m.id); put(m.x,m.y,3,m.id==="eng"?"#1b1c21":"#eef0f3",m.id);
-});
+/* 狀態：idle 待命 / busy 作業中 / error 故障 / off 未上線
+   meta：status.json 帶來的細節（task 正在做什麼、since 開始時間、last_done、last_msg） */
+const esc=v=>String(v??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const state={},meta={},STUCK_MIN=40;
+crew.forEach(m=>{state[m.id]=m.off?"off":"idle";meta[m.id]={};m.px=m.x;m.py=m.y});
+const minsSince=iso=>iso?(Date.now()-new Date(iso))/60000:null;
+const isStuck=id=>state[id]==="busy"&&minsSince(meta[id].since)>STUCK_MIN;
+/* 作業中走到賽車旁的工位，其他狀態回到自己的崗位 */
+const goal=m=>state[m.id]==="busy"?m.w:[m.x,m.y];
 
-/* ---------- labels ---------- */
+/* ---------- labels（名牌＋頭上泡泡，跟著技師移動） ---------- */
 const stage=document.getElementById("stage");
 crew.forEach(m=>{
-  const [sx,sy]=scr(m.x,m.y,3);
   const b=document.createElement("button");b.className="lbl";b.id="l-"+m.id;b.style.setProperty("--c",m.c);
-  const below=m.id==="eng";
-  b.style.left=(sx/cv.width*100)+"%";b.style.top=((below?sy+16:sy-3)/cv.height*100)+"%";b.textContent=m.name;
-  if(below)b.style.transform="translate(-50%,0)";
-  b.onclick=()=>log(m.name,m.off?"這個崗位還沒上線，之後接上蝦皮就能派工。":`待命中，負責：${m.role}。`);
+  b.innerHTML=`<span class="nm"></span><span class="tk"></span>`;b.firstChild.textContent=m.name;
+  if(m.id==="eng")b.style.transform="translate(-50%,0)";
+  b.onclick=()=>showDetail(m.id);
   stage.append(b);
 });
+function placeLabels(){
+  crew.forEach(m=>{
+    const [sx,sy]=scr(m.px,m.py,3),b=document.getElementById("l-"+m.id);
+    b.style.left=(sx/cv.width*100)+"%";b.style.top=((m.id==="eng"?sy+16:sy-3)/cv.height*100)+"%";
+  });
+}
 
 /* ---------- render loop ---------- */
 let frame=0, laneY=-30;
@@ -244,25 +282,37 @@ function draw(){
     add(21,laneY,1,K);add(23,laneY,1,K);add(21,laneY+4,1,K);add(23,laneY+4,1,K);
     add(22,laneY+2,2,"#f2c230");add(21,laneY+6,1,"#eef0f3");add(22,laneY+6,1,"#eef0f3");add(23,laneY+6,1,"#eef0f3");
   }
+  crew.forEach(m=>{                                       // mechanics: boots / suit / helmet
+    list.push({x:m.px,y:m.py,z:1,c:"#22262f",tag:m.id},{x:m.px,y:m.py,z:2,c:m.c,tag:m.id},
+              {x:m.px,y:m.py,z:3,c:m.id==="eng"?"#1b1c21":"#eef0f3",tag:m.id});
+  });
   list.sort((p,q)=>(p.x+p.y)-(q.x+q.y)||p.z-q.z);
   for(const v of list){
     let [sx,sy]=scr(v.x,v.y,v.z);
     if(v.tag&&state[v.tag]==="busy"&&frame%2)sy-=2;
-    ctx.drawImage(sprite(v.c),sx-A,sy);
+    ctx.drawImage(sprite(v.c),Math.round(sx-A),Math.round(sy));
   }
-  crew.forEach(m=>{                                       // busy beacon
-    if(state[m.id]!=="busy")return;
-    const [sx,sy]=scr(m.x,m.y,3);
-    if(frame%4<3){ctx.fillStyle="#f2c230";ctx.fillRect(sx-1,sy-8,2,4);ctx.fillRect(sx-1,sy-3,2,1)}
+  crew.forEach(m=>{                                       // beacon: amber = working, red = fault
+    const st=state[m.id];if(st!=="busy"&&st!=="error")return;
+    const [sx,sy]=scr(m.px,m.py,3).map(Math.round);
+    if(frame%4<3||still){ctx.fillStyle=st==="error"||isStuck(m.id)?"#e0402c":"#f2c230";ctx.fillRect(sx-1,sy-8,2,4);ctx.fillRect(sx-1,sy-3,2,1)}
   });
+  placeLabels();
   if(Object.values(state).includes("busy")&&frame%2){     // car rain light blinks while crew works
     const [sx,sy]=scr(4,9,2);ctx.fillStyle="#ff3b2f";ctx.fillRect(sx-1,sy+1,2,2);
   }
 }
 let last=0;
 function loop(t){
-  if(t-last>160){last=t;frame++;laneY++;if(laneY>GY+40)laneY=-12;draw()}
+  if(t-last>160){last=t;frame++;laneY++;if(laneY>GY+40)laneY=-12;walk(.4);draw()}
   requestAnimationFrame(loop);
+}
+function walk(step){                                      // 一格一格走向目標（先走 x 再走 y）
+  crew.forEach(m=>{
+    const [gx,gy]=goal(m);
+    if(Math.abs(gx-m.px)>.01)m.px+=Math.sign(gx-m.px)*Math.min(step,Math.abs(gx-m.px));
+    else if(Math.abs(gy-m.py)>.01)m.py+=Math.sign(gy-m.py)*Math.min(step,Math.abs(gy-m.py));
+  });
 }
 const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
 draw(); if(!still)requestAnimationFrame(loop);
@@ -271,15 +321,111 @@ draw(); if(!still)requestAnimationFrame(loop);
 const quick=["今天行程有哪些？","整理未讀重要信件","台股收盤重點","蝦皮今日訂單"];
 const chips=document.getElementById("chips"),task=document.getElementById("task");
 quick.forEach(q=>{const b=document.createElement("button");b.className="chip";b.textContent=q;b.onclick=()=>{task.value=q;task.focus()};chips.append(b)});
+const ST_TXT={idle:"● 待命",busy:"◐ 作業中",error:"✕ 故障",off:"○ 未上線"};
+function stTag(id){return isStuck(id)?["warn","◐ 可能卡住"]:[state[id],ST_TXT[state[id]]||state[id]]}
+function bubble(id){
+  const st=state[id],mt=meta[id];
+  if(isStuck(id))return "超過 "+Math.round(minsSince(mt.since))+" 分鐘沒回報";
+  if(st==="busy")return mt.task||"作業中";
+  if(st==="error")return "需要檢查";
+  return "";
+}
 function render(){
   const roster=document.getElementById("roster");roster.innerHTML="";let on=0;
   crew.forEach(m=>{
     const st=state[m.id];if(st!=="off")on++;
-    roster.insertAdjacentHTML("beforeend",`<div class="mech"><span class="sw" style="--c:${m.c}"></span><span>${m.name}<br><span class="role">${m.role}</span></span><span class="st ${st}">${{idle:"● 待命",busy:"◐ 作業中",off:"○ 未上線"}[st]}</span></div>`);
-    const l=document.getElementById("l-"+m.id);l.classList.toggle("busy",st==="busy");l.classList.toggle("off",st==="off");
+    const [cls,txt]=stTag(m.id),sub=st==="busy"&&meta[m.id].task?"正在："+meta[m.id].task:m.role;
+    roster.insertAdjacentHTML("beforeend",`<div class="mech" role="button" tabindex="0" data-id="${m.id}"><span class="sw" style="--c:${m.c}"></span><span>${m.name}<br><span class="role">${esc(sub)}</span></span><span class="st ${cls}">${txt}</span></div>`);
+    const l=document.getElementById("l-"+m.id);
+    l.classList.toggle("busy",st==="busy"&&!isStuck(m.id));l.classList.toggle("off",st==="off");
+    l.classList.toggle("err",st==="error");l.classList.toggle("warn",isStuck(m.id));
+    l.lastChild.textContent=bubble(m.id);
   });
+  roster.querySelectorAll(".mech").forEach(r=>{r.onclick=()=>showDetail(r.dataset.id);r.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();showDetail(r.dataset.id)}}});
   document.getElementById("count").textContent=on+"/"+crew.length+" 上線";
-  if(still)draw();
+  if(openId)showDetail(openId);
+  renderStrip();
+  if(still){crew.forEach(m=>{[m.px,m.py]=goal(m)});draw()}
+}
+
+/* ---------- 技師卡：點名牌或名單看單一技師 ---------- */
+let openId=null,radioAll=[];
+const tpParts=(d,tz)=>Object.fromEntries(new Intl.DateTimeFormat("en-US",{timeZone:tz,hourCycle:"h23",weekday:"short",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"}).formatToParts(d).map(p=>[p.type,p.value]));
+const hm=d=>{const p=tpParts(d,"Asia/Taipei");return p.hour+":"+p.minute};
+const agoTxt=iso=>{const m=minsSince(iso);if(m==null)return "--";return m<1?"剛剛":m<60?Math.round(m)+" 分鐘前":m<1440?Math.floor(m/60)+" 小時前":Math.floor(m/1440)+" 天前"};
+const todayTag=()=>{const p=tpParts(new Date(),"Asia/Taipei");return p.month+"/"+p.day};
+const radioOf=m=>radioAll.filter(x=>x.tech?x.tech===m.id:x.who===m.name);
+function todayStats(m){
+  const t=todayTag(),r=radioOf(m).filter(x=>String(x.msg).startsWith(t));
+  return {runs:r.length,errs:r.filter(x=>String(x.msg).includes("⚠")).length};
+}
+/* 下次出勤：照 GitHub 排程推算（GitHub 偶爾會晚幾分鐘） */
+function nextRun(id){
+  const now=Date.now();
+  if(id==="crawl"){const d=new Date(now);d.setUTCMinutes(7,0,0);if(d<=now)d.setUTCHours(d.getUTCHours()+1);return d}
+  if(id!=="stock")return null;
+  let t=Math.ceil(now/900000)*900000;
+  for(let i=0;i<7*96;i++,t+=900000){
+    const d=new Date(t),wd=d.getUTCDay(),h=d.getUTCHours();
+    if(wd<1||wd>5||!(h<=7||(h>=12&&h<=22)))continue;
+    const tw=tpParts(d,"Asia/Taipei"),us=tpParts(d,"America/New_York");
+    const inWin=(p,a,b)=>!["Sat","Sun"].includes(p.weekday)&&(+p.hour*60+ +p.minute)>=a&&(+p.hour*60+ +p.minute)<b;
+    if(inWin(tw,480,960)||inWin(us,480,1080))return d;
+  }
+  return null;
+}
+function showDetail(id){
+  const m=crew.find(c=>c.id===id);if(!m)return;openId=id;
+  const box=document.getElementById("detail"),mt=meta[id],[cls,txt]=stTag(id),nx=nextRun(id),s=todayStats(m);
+  document.getElementById("roster").hidden=true;box.hidden=false;
+  const hist=radioOf(m).slice(-6).reverse();
+  box.innerHTML=`<h3><span class="sw" style="--c:${m.c}"></span>${esc(m.name)} <span class="st ${cls}">${txt}</span></h3>
+    <dl>
+      <dt>負責</dt><dd>${esc(m.role)}</dd>
+      ${state[id]==="busy"?`<dt>正在做</dt><dd>${esc(mt.task||"作業中")}（${agoTxt(mt.since)}開始）</dd>`:""}
+      <dt>上次完成</dt><dd>${mt.last_done?agoTxt(mt.last_done)+"："+esc(mt.last_msg||""):"還沒有紀錄"}</dd>
+      <dt>下次出勤</dt><dd>${nx?"約 "+hm(nx):(m.off?"尚未上線":"網頁派工時")}</dd>
+      <dt>今日</dt><dd>出勤 ${s.runs} 次${s.errs?`，<span class="st error">故障 ${s.errs} 次</span>`:"，沒有故障"}</dd>
+    </dl>
+    ${state[id]==="error"?'<p class="note">處理方式：到 GitHub → Actions 打開最近一次紅色 ✕ 的紀錄，截圖給 Claude 看。下次成功出勤會自動恢復。</p>':""}
+    ${isStuck(id)?'<p class="note">超過 40 分鐘沒回報，可能卡住或排程被 GitHub 延後。可到 GitHub → Actions 看是否還在跑。</p>':""}
+    <div class="hist">${hist.length?hist.map(x=>`<p>${esc(x.msg)}</p>`).join(""):'<p class="note">還沒有通訊紀錄。</p>'}</div>
+    <button id="back">‹ 回到全員</button>`;
+  document.getElementById("back").onclick=()=>{openId=null;box.hidden=true;document.getElementById("roster").hidden=false};
+}
+
+/* ---------- 賽道看板：開盤旗號＋今日統計＋資料新鮮度 ---------- */
+let lastUpdated=null;
+function mktOpen(tz,a,b){const p=tpParts(new Date(),tz),t=+p.hour*60+ +p.minute;return !["Sat","Sun"].includes(p.weekday)&&t>=a&&t<b}
+function renderStrip(){
+  const tw=mktOpen("Asia/Taipei",540,810),us=mktOpen("America/New_York",570,960);
+  let runs=0,errs=0;crew.forEach(m=>{const s=todayStats(m);runs+=s.runs;errs+=s.errs});
+  const busy=crew.filter(m=>state[m.id]==="busy").length,age=minsSince(lastUpdated);
+  const stale=age!=null&&age>180;
+  document.getElementById("strip").innerHTML=
+    `<span><i class="flag ${tw?"g":"n"}"></i>台股 <b>${tw?"開盤中":"休市"}</b></span>`+
+    `<span><i class="flag ${us?"g":"n"}"></i>美股 <b>${us?"開盤中":"休市"}</b></span>`+
+    `<span>作業中 <b>${busy}</b></span>`+
+    `<span>今日出勤 <b>${runs}</b></span>`+
+    `<span${errs?' class="alert"':""}>故障 <b>${errs}</b></span>`+
+    `<span${stale?' class="alert"':""}>後台回報 <b>${lastUpdated?agoTxt(lastUpdated):"--"}</b>${stale?"（超過 3 小時，請看 GitHub Actions）":""}</span>`;
+  const h=+tpParts(new Date(),"Asia/Taipei").hour;
+  stage.classList.toggle("night",h>=19||h<6);stage.classList.toggle("day",h>=6&&h<19);
+}
+
+/* ---------- 音效：任務完成時叮一聲（預設關閉） ---------- */
+let soundOn=false,actx=null;
+try{soundOn=localStorage.getItem("pg_sound")==="1"}catch(e){}
+const sBtn=document.getElementById("sound");
+function paintSound(){sBtn.textContent="音效 "+(soundOn?"開":"關");sBtn.setAttribute("aria-pressed",soundOn)}
+sBtn.onclick=()=>{soundOn=!soundOn;try{localStorage.setItem("pg_sound",soundOn?"1":"0")}catch(e){}paintSound();if(soundOn)chime()};
+paintSound();
+function chime(bad){
+  if(!soundOn)return;
+  try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();
+    (bad?[330,220]:[660,990]).forEach((f,i)=>{const o=actx.createOscillator(),g=actx.createGain();o.type="square";o.frequency.value=f;
+      const t=actx.currentTime+i*.12;g.gain.setValueAtTime(.06,t);g.gain.exponentialRampToValueAtTime(.001,t+.11);
+      o.connect(g).connect(actx.destination);o.start(t);o.stop(t+.12)})}catch(e){}
 }
 const radio=document.getElementById("radio");
 /* ---------- 通訊紀錄雲端同步 ----------
@@ -339,7 +485,7 @@ const localBusy=new Set();   // 正在處理網頁任務的技師，不被 statu
 async function dispatch(q,target){
   const who=target?target:crew[0];localBusy.add(who.id);
   if(target){chat("賽車工程師",`Box, box！交給${target.name}。`)}
-  state.eng=target?"idle":"busy";state[who.id]="busy";render();
+  state.eng=target?"idle":"busy";state[who.id]="busy";meta[who.id]={...meta[who.id],task:"網頁任務："+q.slice(0,14),since:new Date().toISOString()};render();
   let pass=passcode(false);
   try{
     if(!pass)throw new Error("沒有輸入通關密碼，任務取消。");
@@ -348,7 +494,7 @@ async function dispatch(q,target){
       r=await fetch(WORKER_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({task:q,crew:who.id,passcode:pass})});}
     const d=await r.json().catch(()=>({}));
     if(!r.ok)throw new Error(d.error||("後台錯誤 "+r.status));
-    chat(d.who||who.name,d.reply,"done");
+    chat(d.who||who.name,d.reply,"done");chime();
     if(!chatSeen)pullChat(false);
   }catch(e){chat(who.name,"⚠️ "+e.message)}
   localBusy.delete(who.id);state[who.id]="idle";state.eng="idle";render();
@@ -385,7 +531,7 @@ tick();setInterval(tick,30000);
    {"crew":{"stock":"busy","crawl":"idle"},"radio":[{"who":"爬蟲技師","msg":"抓到 3 則新聞"}]}
 */
 window.pitGarage={
-  setStatus(id,st){if(id in state){state[id]=st;render()}},
+  setStatus(id,st,task){if(id in state){state[id]=st;meta[id]=st==="busy"?{...meta[id],task:task||"",since:new Date().toISOString()}:meta[id];render()}},
   log(who,msg){log(who,msg,"done")}
 };
 let seen=0;
@@ -393,20 +539,22 @@ async function pull(){
   try{
     const r=await fetch("status.json?t="+Date.now());if(!r.ok)return;
     const d=await r.json();
-    for(const id in (d.crew||{}))if(id in state&&!localBusy.has(id))state[id]=d.crew[id];
-    const rl=d.radio||[],key=(x,i)=>x.id??i+1;
-    rl.forEach((x,i)=>{if(key(x,i)>seen)log(x.who,x.msg,"done")});
+    for(const id in (d.crew||{}))if(id in state&&!localBusy.has(id)){state[id]=d.crew[id];meta[id]=(d.meta||{})[id]||{}}
+    lastUpdated=d.updated||lastUpdated;
+    const rl=d.radio||[],key=(x,i)=>x.id??i+1;radioAll=rl;
+    let fresh=[];
+    rl.forEach((x,i)=>{if(key(x,i)>seen){log(x.who,x.msg,String(x.msg).includes("⚠")?"":"done");fresh.push(x)}});
+    if(seen&&fresh.length)chime(fresh.some(x=>String(x.msg).includes("⚠")));
     if(rl.length)seen=Math.max(seen,...rl.map(key));
     render();
   }catch(e){}
 }
 pullChat(true).then(()=>{flushChat();setInterval(()=>{pullChat(false);flushChat()},60000)});
 pull();setInterval(pull,60000);
-render();log("賽車工程師","Radio check，全員就位。點技師名牌可以看他負責什麼。");
+render();setInterval(render,60000);log("賽車工程師","Radio check，全員就位。點技師名牌可以看他的工作紀錄。");
 
 /* ---------- 股票看板：讀 data/latest.json、data/signals.json ---------- */
 let stkData={},stkMkt="tw";
-const esc=v=>String(v??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 function renderStocks(){
   const m=stkData[stkMkt],box=document.getElementById("stkTable");
   document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("on",b.dataset.m===stkMkt));
