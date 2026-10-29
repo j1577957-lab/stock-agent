@@ -257,8 +257,17 @@ function render(){
   if(still)draw();
 }
 const radio=document.getElementById("radio");
-function log(who,msg,cls=""){
-  const t=new Date().toLocaleTimeString("zh-TW",{hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false,timeZone:"Asia/Taipei"});
+/* 任務對話存在這台裝置的瀏覽器裡（最多 100 筆），重新整理後會自動還原 */
+const CHAT_KEY="pg_chat";
+function loadChat(){try{return JSON.parse(localStorage.getItem(CHAT_KEY))||[]}catch(e){return[]}}
+function chat(who,msg,cls=""){
+  const now=new Date(),fmt=o=>now.toLocaleString("zh-TW",{...o,hour12:false,timeZone:"Asia/Taipei"});
+  log(who,msg,cls);
+  try{const c=loadChat();c.push({t:fmt({month:"2-digit",day:"2-digit"})+" "+fmt({hour:"2-digit",minute:"2-digit"}),who,msg,cls});
+    localStorage.setItem(CHAT_KEY,JSON.stringify(c.slice(-100)))}catch(e){}
+}
+function log(who,msg,cls="",when){
+  const t=when||new Date().toLocaleTimeString("zh-TW",{hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false,timeZone:"Asia/Taipei"});
   const p=document.createElement("p");p.innerHTML=`<span class="t">${t}</span> <span class="who">${who}</span> › <span class="${cls}"></span>`;
   p.lastElementChild.textContent=msg;radio.prepend(p);
 }
@@ -272,7 +281,7 @@ function passcode(reset){
 }
 async function dispatch(q,target){
   const who=target?target:crew[0];
-  if(target){log("賽車工程師",`Box, box！交給${target.name}。`)}
+  if(target){chat("賽車工程師",`Box, box！交給${target.name}。`)}
   state.eng=target?"idle":"busy";state[who.id]="busy";render();
   let pass=passcode(false);
   try{
@@ -282,19 +291,20 @@ async function dispatch(q,target){
       r=await fetch(WORKER_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({task:q,crew:who.id,passcode:pass})});}
     const d=await r.json().catch(()=>({}));
     if(!r.ok)throw new Error(d.error||("後台錯誤 "+r.status));
-    log(d.who||who.name,d.reply,"done");
-  }catch(e){log(who.name,"⚠️ "+e.message)}
+    chat(d.who||who.name,d.reply,"done");
+  }catch(e){chat(who.name,"⚠️ "+e.message)}
   state[who.id]="idle";state.eng="idle";render();
 }
 document.getElementById("send").onclick=()=>{
   const q=task.value.trim();if(!q){task.focus();return}
   const low=q.toLowerCase(),target=crew.find(m=>m.keys.some(k=>low.includes(k)));
-  log("你",q);
   if(WORKER_URL){
+    chat("你",q);
     task.value="";
-    if(target&&target.off){log("賽車工程師",`這是${target.name}的工作，但他還沒上線，先記下來。`);return}
+    if(target&&target.off){chat("賽車工程師",`這是${target.name}的工作，但他還沒上線，先記下來。`);return}
     dispatch(q,target);return;
   }
+  log("你",q);
   state.eng="busy";render();
   setTimeout(()=>{
     state.eng="idle";
@@ -332,6 +342,7 @@ async function pull(){
     render();
   }catch(e){}
 }
+loadChat().forEach(x=>log(x.who,x.msg,x.cls,x.t));
 pull();setInterval(pull,60000);
 render();log("賽車工程師","Radio check，全員就位。點技師名牌可以看他負責什麼。");
 
