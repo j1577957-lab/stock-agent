@@ -155,7 +155,8 @@ def run(mode: str, dry: bool, demo: bool) -> str | None:
         notify.telegram(f"<b>{html.escape(title)}</b>\n\n{html.escape(text)}")
     if ncfg["email"]:
         notify.email(f"[股票Agent] {title}", text)
-    state[f"{market}_{phase}_done"] = today
+    if not dry:  # 模擬測試不算數，不然會擋掉當天真正的報告
+        state[f"{market}_{phase}_done"] = today
     notify.save_state(state)
     return f"{mkt_name}{'盤前' if phase == 'pre' else '盤後'}報告已送出（Telegram／Email／儀表板）"
 
