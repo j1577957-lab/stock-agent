@@ -264,7 +264,7 @@ function log(who,msg,cls=""){
 }
 /* ---------- 真正的任務：交給 Cloudflare 小後台 → Claude ----------
    WORKER_URL 填上後台網址就會啟用；空白時維持原本的示範模式 */
-const WORKER_URL="";
+const WORKER_URL="https://pit-garage.j1577957.workers.dev";
 function passcode(reset){
   let p=null;try{if(reset)localStorage.removeItem("pg_pass");p=localStorage.getItem("pg_pass")}catch(e){}
   if(!p){p=(prompt("請輸入指揮站通關密碼")||"").trim();if(p)try{localStorage.setItem("pg_pass",p)}catch(e){}}
