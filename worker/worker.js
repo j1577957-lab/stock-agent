@@ -6,6 +6,7 @@
  *   ANTHROPIC_API_KEY  你的 Claude API 金鑰
  *   PASSCODE           自己設的通關密碼（網頁第一次送出任務時會問你）
  *   FINMIND_TOKEN      （選填）FinMind 台股資料金鑰，有放就能查完整台股資料
+ *   GITHUB_TOKEN       準時鬧鐘用：GitHub 細粒度權杖（Actions 讀寫，只限 stock-agent）
  *
  * 通訊紀錄存在 Cloudflare 的 Durable Object（內建 SQLite 資料庫，免費方案可用），
  * 部署時會自動建立，不需要另外設定。
@@ -241,7 +242,32 @@ async function askClaude(env, member, task) {
   return "查詢步驟太多，先停在這裡。可以把問題問得更具體一點再試一次。";
 }
 
+/* ---------- 準時鬧鐘：GitHub 的排程常常延遲或跳過，改由 Cloudflare 準時叫醒 ----------
+   需要 Secret：GITHUB_TOKEN（GitHub 細粒度權杖，只給 stock-agent 專案的 Actions 讀寫權限） */
+const GH_REPO = "j1577957-lab/stock-agent";
+async function dispatchWorkflow(env, file) {
+  const r = await fetch(`https://api.github.com/repos/${GH_REPO}/actions/workflows/${file}/dispatches`, {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + env.GITHUB_TOKEN,
+      Accept: "application/vnd.github+json",
+      "User-Agent": "pit-garage-worker",
+      "X-GitHub-Api-Version": "2022-11-28",
+    },
+    body: JSON.stringify({ ref: "main" }),
+  });
+  if (!r.ok) console.log(`啟動 ${file} 失敗：${r.status} ${await r.text()}`);
+  return r.ok;
+}
+
 export default {
+  async scheduled(event, env, ctx) {
+    if (!env.GITHUB_TOKEN) return console.log("尚未設定 GITHUB_TOKEN，略過");
+    // 爬蟲技師：每小時第 7 分；策略技師：交易相關時段每 15 分（時間判斷交給 GitHub 那邊的程式）
+    const file = event.cron === "7 * * * *" ? "news-crawler.yml" : "stock-agent.yml";
+    ctx.waitUntil(dispatchWorkflow(env, file));
+  },
+
   async fetch(request, env) {
     const origin = request.headers.get("Origin") || "";
     if (request.method === "OPTIONS") return new Response(null, { headers: cors(origin) });

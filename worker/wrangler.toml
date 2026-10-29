@@ -11,3 +11,11 @@ class_name = "ChatStore"
 [[migrations]]
 tag = "v1"
 new_sqlite_classes = ["ChatStore"]
+
+# 準時鬧鐘（UTC 時間）：GitHub 內建排程不準，改由 Cloudflare 準時啟動
+[triggers]
+crons = [
+  "*/15 0-7 * * 1-5",   # 台股：台灣 08:00–15:45
+  "*/15 12-22 * * 1-5", # 美股：台灣 20:00–06:45（含夏令/冬令）
+  "7 * * * *",          # 爬蟲技師：每小時第 7 分
+]
