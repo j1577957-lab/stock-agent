@@ -3,7 +3,7 @@
     "eng": "idle",
     "cal": "idle",
     "mail": "idle",
-    "stock": "idle",
+    "stock": "busy",
     "shop": "off",
     "crawl": "idle"
   },
@@ -162,12 +162,14 @@
   "meta": {
     "stock": {
       "last_done": "2026-10-30T04:16:06+08:00",
-      "last_msg": "美股盤後報告已送出（Telegram／Email／儀表板）"
+      "last_msg": "美股盤後報告已送出（Telegram／Email／儀表板）",
+      "since": "2026-10-30T10:09:11+08:00",
+      "task": "台股盤中掃描"
     },
     "crawl": {
       "last_done": "2026-10-30T10:07:33+08:00",
       "last_msg": "新聞掃描：台股新增 67 則（近 30 則 多3／空17），美股新增 20 則（近 30 則 多2／空14）"
     }
   },
-  "updated": "2026-10-30T10:07:33+08:00"
+  "updated": "2026-10-30T10:09:11+08:00"
 }
