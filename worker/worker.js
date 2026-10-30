@@ -392,7 +392,18 @@ export default {
   async fetch(request, env) {
     const origin = request.headers.get("Origin") || "";
     if (request.method === "OPTIONS") return new Response(null, { headers: cors(origin) });
-    if (request.method !== "POST") return json({ ok: true, msg: "Pit Garage 後台運作中" }, 200, origin);
+    if (request.method !== "POST") {
+      // 打開後台網址就能自我檢查：只顯示「有沒有設定」，不會顯示任何密鑰內容
+      const has = (k) => (env[k] ? "✅ 已設定" : "❌ 沒有");
+      return json({
+        ok: true, msg: "Pit Garage 後台運作中", version: "2026-10-31",
+        密鑰檢查: {
+          ANTHROPIC_API_KEY: has("ANTHROPIC_API_KEY"), PASSCODE: has("PASSCODE"), FINMIND_TOKEN: has("FINMIND_TOKEN"),
+          GITHUB_TOKEN: has("GITHUB_TOKEN"), CF_API_TOKEN: has("CF_API_TOKEN"), CF_ACCOUNT_ID: has("CF_ACCOUNT_ID"),
+          ANTHROPIC_ADMIN_KEY: has("ANTHROPIC_ADMIN_KEY"),
+        },
+      }, 200, origin);
+    }
     if (!ALLOWED_ORIGINS.includes(origin) && !origin.startsWith("http://localhost"))
       return json({ error: "不允許的來源" }, 403, origin);
 
