@@ -141,6 +141,17 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 .vd.買進{background:var(--ok)} .vd.觀望{background:var(--amber)} .vd.不買{background:var(--red)}
 .more{display:inline-block;margin-top:10px;font-family:var(--pixel);font-size:13px;color:var(--amber)}
 .tblwrap{overflow-x:auto}
+/* 目前持股 */
+.pf-sum{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--pixel);font-size:13px;margin:0 0 8px;color:var(--mute)}
+.pf-sum b{font-weight:400;color:var(--ink)}
+.pf-news{margin:2px 0 4px;font-size:12.5px;color:var(--mute);white-space:normal;text-align:left;line-height:1.5}
+.pf-news a{color:var(--ink);text-decoration:none}
+.pf-news a:hover{text-decoration:underline}
+.lb{font-family:var(--pixel);font-size:11px;padding:0 4px;margin-right:4px;color:#0d0e12;background:#4a4f5c}
+.lb.利多,.lb.偏多{background:var(--red)} .lb.利空,.lb.偏空{background:var(--ok)}
+.pf-edit{display:grid;gap:6px;margin-top:10px}
+.pf-edit label{display:grid;grid-template-columns:1fr 88px 88px;gap:6px;align-items:center;font-size:13px}
+.pf-edit input{width:100%;background:var(--bg);color:var(--ink);border:2px solid var(--line);border-radius:0;padding:5px 6px;font:14px var(--body)}
 /* 利多利空小欄位（和 CREW 狀態欄同大小） */
 .ntabs{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
 .ntabs button{font-size:12px;padding:4px 9px}
@@ -201,6 +212,13 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
       <p class="label"><span>TEAM RADIO ・ 通訊紀錄</span><span>CH 1</span></p>
       <div class="radio" id="radio" aria-live="polite"></div>
     </div>
+  </div>
+  <div class="card px">
+    <p class="label"><span>PORTFOLIO ・ 目前持股</span><span id="pfTime">--</span></p>
+    <div class="pf-sum" id="pfSum"></div>
+    <div class="tblwrap" id="pfTable"><p class="note">等策略技師下一次掃描後就會出現。</p></div>
+    <div class="row"><button id="pfUnlock">🔒 顯示損益</button><button id="pfEditBtn">編輯股數／成本</button></div>
+    <div class="pf-edit" id="pfEdit" hidden></div>
   </div>
   <div class="card px">
     <p class="label"><span>STRATEGY ・ 股票看板</span><span id="stkTime">--</span></p>
@@ -1344,6 +1362,66 @@ async function pullStocks(){
 }
 document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{stkMkt=b.dataset.m;renderStocks()});
 pullStocks();setInterval(pullStocks,60000);
+
+/* ---------- 目前持股：代號、現價、新聞公開；股數與成本存在 Cloudflare，要通關密碼 ---------- */
+let pfPriv=null;
+const money=n=>Math.round(n).toLocaleString("zh-TW");
+async function pfLoadPrivate(ask){
+  if(!WORKER_URL)return;
+  if(!storedPass()&&!(ask&&passcode(false)))return;
+  try{let d;try{d=await api({action:"holdings_get"})}catch(e){if(String(e.message).includes("密碼")&&ask&&passcode(true))d=await api({action:"holdings_get"});else throw e}
+    pfPriv=d.items||{};document.getElementById("pfUnlock").hidden=true}catch(e){log("策略技師","⚠️ 讀取持股失敗："+e.message)}
+}
+async function pullPortfolio(){
+  const get=n=>fetch("data/"+n+"?t="+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
+  const [latest,news]=await Promise.all([get("latest.json"),get("news.json")]);
+  const meta=(news&&news.holdings_meta)||[];
+  const scanned=["tw","us"].flatMap(m=>((latest&&latest[m]&&latest[m].stocks)||[]));
+  const bySym=Object.fromEntries(scanned.map(s=>[s.symbol,s]));
+  const list=[...meta];
+  scanned.filter(s=>s.holding&&!list.some(x=>x.symbol===s.symbol)).forEach(s=>list.push({symbol:s.symbol,name:s.name}));
+  const box=document.getElementById("pfTable"),sum=document.getElementById("pfSum");
+  if(!list.length){box.innerHTML='<p class="note">還沒有持股資料。</p>';return}
+  const priv=pfPriv||{};let mv=0,cost=0,priced=0;
+  const rows=list.map(h=>{
+    const s=bySym[h.symbol]||{},p=priv[h.symbol],c=s.change_pct>0?"up":s.change_pct<0?"dn":"";
+    let pl="";
+    if(p&&s.price){const v=s.price*p.shares,k=p.avg*p.shares;mv+=v;cost+=k;priced++;
+      const d=v-k,cl=d>0?"up":d<0?"dn":"";pl=`<td>${p.shares}<br><span class="sym">均 ${p.avg}</span></td><td class="${cl}">${d>0?"+":""}${money(d)}<br><span class="sym">${(d/k*100).toFixed(2)}%</span></td>`}
+    else if(pfPriv)pl='<td class="sym">-</td><td class="sym">-</td>';
+    const ma=s.above_ma20_pct==null?"-":(s.above_ma20_pct>=0?"站上月線 ":"月線下 ")+s.above_ma20_pct+"%";
+    const nws=((news&&news.holdings&&news.holdings[h.symbol])||[]).slice(0,3).map(n=>
+      `<div><span class="lb ${esc(n.label)}">${esc(n.label)}</span><a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.title)}</a></div>`).join("")||"暫無相關新聞";
+    return `<tr><td>${esc(h.name)}<br><span class="sym">${esc(h.symbol)}</span></td>
+      <td class="${c}">${s.price??"-"}</td><td class="${c}">${s.change_pct==null?"-":(s.change_pct>0?"+":"")+s.change_pct+"%"}</td>
+      <td class="sym">${ma}</td>${pl}</tr>
+      <tr><td colspan="${pfPriv?6:4}"><div class="pf-news">${nws}</div></td></tr>`;
+  }).join("");
+  box.innerHTML=`<table class="stk"><thead><tr><th>持股</th><th>現價</th><th>漲跌</th><th>月線</th>${pfPriv?"<th>股數</th><th>損益</th>":""}</tr></thead><tbody>${rows}</tbody></table>`;
+  if(pfPriv&&priced){const d=mv-cost,cl=d>0?"up":d<0?"dn":"";
+    sum.innerHTML=`<span>市值 <b>${money(mv)}</b></span><span>成本 <b>${money(cost)}</b></span><span>損益 <b class="${cl}">${d>0?"+":""}${money(d)}（${(d/cost*100).toFixed(2)}%）</b></span>`}
+  else sum.innerHTML=pfPriv?'<span>按「編輯股數／成本」填入後就會計算損益</span>':"";
+  const t=(latest&&latest.tw&&latest.tw.time)||"--";document.getElementById("pfTime").textContent="價格 "+t.slice(5);
+  pfList=list;
+}
+let pfList=[];
+document.getElementById("pfUnlock").onclick=async()=>{await pfLoadPrivate(true);pullPortfolio()};
+document.getElementById("pfEditBtn").onclick=async()=>{
+  const ed=document.getElementById("pfEdit");
+  if(!ed.hidden){ed.hidden=true;return}
+  if(!pfPriv)await pfLoadPrivate(true);if(!pfPriv)return;
+  ed.innerHTML='<label><span class="sym">持股</span><span class="sym">股數</span><span class="sym">平均成本</span></label>'+
+    pfList.map(h=>{const p=pfPriv[h.symbol]||{};return `<label><span>${esc(h.name)}</span><input type="number" min="0" step="1" inputmode="numeric" data-s="${esc(h.symbol)}" data-k="shares" value="${p.shares??""}" aria-label="${esc(h.name)} 股數"><input type="number" min="0" step="0.01" inputmode="decimal" data-s="${esc(h.symbol)}" data-k="avg" value="${p.avg??""}" aria-label="${esc(h.name)} 平均成本"></label>`}).join("")+
+    '<div class="row"><button class="go" id="pfSave">儲存</button><button id="pfCancel">取消</button></div><p class="note">股數填 0 代表已全部賣出。只存在你的 Cloudflare 後台，網站上別人看不到。</p>';
+  ed.hidden=false;
+  document.getElementById("pfCancel").onclick=()=>{ed.hidden=true};
+  document.getElementById("pfSave").onclick=async()=>{
+    const items={};ed.querySelectorAll("input").forEach(i=>{const o=items[i.dataset.s]||(items[i.dataset.s]={});o[i.dataset.k]=Number(i.value||0)});
+    try{const d=await api({action:"holdings_set",items});pfPriv=d.items||{};ed.hidden=true;chat("策略技師","💼 持股已更新");pullPortfolio()}
+    catch(e){log("策略技師","⚠️ 儲存持股失敗："+e.message)}
+  };
+};
+pfLoadPrivate(false).then(pullPortfolio);setInterval(pullPortfolio,60000);
 
 /* ---------- 利多利空小欄位：讀 data/news.json（爬蟲技師每小時更新） ---------- */
 let news={},nMkt="tw",nFil="all";

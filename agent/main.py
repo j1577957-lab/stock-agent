@@ -3,6 +3,7 @@
 用法：
   python -m agent.main                 自動依現在時間決定要做什麼
   python -m agent.main tw_intraday     強制執行某個模式（tw_pre / tw_intraday / tw_post / us_pre / us_intraday / us_post）
+                                       tw_scan / us_scan：只更新價格，不呼叫 AI、不通知
   加上 --dry-run   不呼叫 Claude（不花錢），用模擬結果測試整個流程與通知
   加上 --demo-data 不抓真實股價，用假資料測試（給開發測試用）
 """
@@ -39,15 +40,50 @@ def demo_fetch(symbol: str):
     return symbol, df, pd.DataFrame()
 
 
+def holdings(cfg: dict, market: str) -> list[dict]:
+    return (cfg.get("holdings") or {}).get(market) or []
+
+
+def holding_alerts(snaps: list[dict], state: dict, cfg: dict, today: str, market: str) -> list[str]:
+    """持股警示：大跌、大漲、跌破月線。同一檔同一種警示一天只通知一次。"""
+    acfg = cfg.get("holding_alerts") or {}
+    sent = state.setdefault("holding_alerts", {})
+    for d in list(sent):
+        if d != today:
+            sent.pop(d)
+    today_sent = sent.setdefault(today, {})
+    out = []
+    for s in snaps:
+        if not s.get("holding") or s.get("error") or not s.get("is_today"):
+            continue
+        chg, kinds = s.get("change_pct") or 0, []
+        if acfg.get("drop_pct") and chg <= -acfg["drop_pct"]:
+            kinds.append(("drop", f"📉 單日下跌 {chg}%"))
+        if acfg.get("rise_pct") and chg >= acfg["rise_pct"]:
+            kinds.append(("rise", f"📈 單日上漲 +{chg}%"))
+        if acfg.get("ma20_break") and s.get("ma20_cross") == "down":
+            kinds.append(("ma20", f"⚠️ 跌破月線 {s.get('ma20')}"))
+        done = today_sent.setdefault(s["symbol"], [])
+        for key, text in kinds:
+            if key in done:
+                continue
+            done.append(key)
+            out.append(f"{s['name']} {s['price']}：{text}")
+    return out
+
+
 def scan(market: str, cfg: dict, *, intraday: bool, demo: bool) -> list[dict]:
     from agent import data
 
     today = clock.market_today(market)
     progress = clock.session_progress(market) if intraday else 1.0
     snaps = []
-    for stock in cfg["watchlist"][market]:
+    held = {h["symbol"] for h in holdings(cfg, market)}
+    stocks = list(cfg["watchlist"][market])
+    stocks += [h for h in holdings(cfg, market) if h["symbol"] not in {s["symbol"] for s in stocks}]
+    for stock in stocks:
         sym, daily, intra = (demo_fetch if demo else data.fetch)(stock["symbol"])
-        base = {"symbol": sym, "name": stock["name"]}
+        base = {"symbol": sym, "name": stock["name"], "holding": stock["symbol"] in held}
         if daily.empty:
             print(f"  ✗ {stock['name']} {stock['symbol']} 抓不到資料")
             snaps.append({**base, "error": "抓不到資料", "candidate": False, "score": 0})
@@ -79,6 +115,9 @@ def run(mode: str, dry: bool, demo: bool) -> str | None:
     notify.save_scan(market, mode, stamp, snaps)
     state = notify.load_state()
     ncfg = cfg["notify"]
+
+    if phase == "scan":  # 只更新價格（網頁看板用），不呼叫 AI、不通知
+        return f"{mkt_name}價格更新 {sum(1 for s in snaps if not s.get('error'))} 檔"
 
     if phase == "intraday":
         judged = state.setdefault("judged", {})
@@ -114,11 +153,21 @@ def run(mode: str, dry: bool, demo: bool) -> str | None:
                 if ncfg["email"]:
                     subject, body = notify.format_signal(sig, as_html=False)
                     notify.email(f"[股票Agent] {subject}", body)
+        alerts = holding_alerts(snaps, state, cfg, today, market)
+        if alerts:
+            text = "💼 持股警示\n" + "\n".join(alerts) + "\n\n（價格可能延遲 15–20 分鐘；不構成投資建議）"
+            print(text)
+            if ncfg["telegram"]:
+                import html
+                notify.telegram(html.escape(text))
+            if ncfg["email"]:
+                notify.email("[股票Agent] 💼 持股警示", text)
         notify.save_state(state)
         n_ok = sum(1 for s in snaps if not s.get('error'))
         n_c = sum(1 for s in snaps if s.get('candidate'))
         msg = f"{mkt_name}盤中掃描 {n_ok} 檔，{n_c} 檔通過初篩"
-        return msg + ("；判斷：" + "、".join(results) if results else "")
+        msg += "；判斷：" + "、".join(results) if results else ""
+        return msg + ("；持股警示：" + "、".join(a.split("：")[0] for a in alerts) if alerts else "")
 
     # 盤前 / 盤後
     if phase == "post" and not any(s.get("is_today") for s in snaps):
@@ -138,7 +187,20 @@ def run(mode: str, dry: bool, demo: bool) -> str | None:
             "；".join(f"{s['name']} {s['judge']['verdict']}（{s['judge'].get('summary', '')}）" for s in todays)
             or "無（沒有股票通過初篩）")
 
-    slim = [{k: s.get(k) for k in ("name", "symbol", "price", "change_pct", "ma20", "above_ma20_pct",
+    held = [s for s in snaps if s.get("holding")]
+    if held:
+        news = notify._load("news.json", {}).get("holdings", {})
+        lines = []
+        for s in held:
+            items = (news.get(s["symbol"]) or [])[:5]
+            lines.append(f"{s['name']}（{s['symbol']}）近期新聞：" +
+                         ("；".join(f"[{n['label']}] {n['title']}" for n in items) or "無"))
+        extra += ("\n\n使用者目前持有：" + "、".join(s["name"] for s in held) +
+                  "。請在報告最前面加一段「💼 我的持股」，逐檔點評：今天表現、技術面位置（月線、RSI）、"
+                  "相關新聞是利多還是利空、接下來要注意的支撐與壓力價位。這些是槓桿 ETF，要提醒波動風險。\n" +
+                  "\n".join(lines))
+
+    slim = [{k: s.get(k) for k in ("name", "symbol", "holding", "price", "change_pct", "ma20", "above_ma20_pct",
                                     "rsi", "k", "d", "vol_ratio", "score", "reasons", "blockers", "error")}
             for s in snaps]
     if market == "tw" and not demo:

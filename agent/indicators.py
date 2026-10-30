@@ -125,7 +125,13 @@ def analyze(daily: pd.DataFrame, intra: pd.DataFrame, cfg: dict, *,
         candidate = False
         blockers.append("今天沒有交易資料（可能休市）")
 
+    # 今天有沒有穿越月線（給持股警示用）
+    prev_above = prev["Close"] >= df["ma20"].iloc[-2]
+    now_above = price >= last["ma20"]
+    ma20_cross = "down" if prev_above and not now_above else "up" if now_above and not prev_above else None
+
     return {
+        "ma20_cross": ma20_cross,
         "price": _r(price),
         "change_pct": _r((price / prev["Close"] - 1) * 100),
         "date": last_date,

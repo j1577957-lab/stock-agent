@@ -33,6 +33,7 @@ TZ = ZoneInfo("Asia/Taipei")
 TASK_NAMES = {
     "tw_pre": "台股盤前報告", "tw_intraday": "台股盤中掃描", "tw_post": "台股盤後報告",
     "us_pre": "美股盤前報告", "us_intraday": "美股盤中掃描", "us_post": "美股盤後報告",
+    "tw_scan": "台股價格更新", "us_scan": "美股價格更新",
     "news": "抓台股、美股新聞",
 }
 

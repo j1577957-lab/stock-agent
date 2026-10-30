@@ -40,7 +40,7 @@ jobs:
       - name: 抓新聞
         if: steps.gate.outputs.run == 'true'
         run: |
-          pip install -q requests
+          pip install -q requests pyyaml
           python -m agent.news | tee "$RUNNER_TEMP/news.log"
           cp docs/data/news.json "$RUNNER_TEMP/news.json"
 

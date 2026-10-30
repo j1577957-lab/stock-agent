@@ -22,6 +22,17 @@ export class ChatStore extends DurableObject {
     this.sql.exec(
       "CREATE TABLE IF NOT EXISTS chat (id INTEGER PRIMARY KEY AUTOINCREMENT, t TEXT, who TEXT, msg TEXT, cls TEXT)"
     );
+    this.sql.exec("CREATE TABLE IF NOT EXISTS kv (key TEXT PRIMARY KEY, value TEXT)");
+  }
+  /* 私人資料（例如持股股數、成本），用 key 存一份 JSON */
+  getValue(key) {
+    const row = this.sql.exec("SELECT value FROM kv WHERE key = ?", key).toArray()[0];
+    return row ? JSON.parse(row.value) : null;
+  }
+  setValue(key, value) {
+    this.sql.exec("INSERT INTO kv (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value",
+      key, JSON.stringify(value));
+    return { ok: true };
   }
   append(items) {
     const now = taipeiStamp();
@@ -194,6 +205,13 @@ async function askClaude(env, member, task) {
     `回答規則：繁體中文、口語、精簡，200 字以內；不要用 Markdown 標題或表格，可以用「・」分點；` +
     `台灣時間現在是 ${new Date().toLocaleString("zh-TW", { timeZone: "Asia/Taipei" })}。`;
   if (member.stockData) system += await stockContext();
+  if (member.stockData && env.CHAT) {
+    try {
+      const h = await chatStore(env).getValue("holdings");
+      if (h && Object.keys(h).length)
+        system += `\n【使用者目前持股（股數、平均成本）】${JSON.stringify(h)}。問到持股時，用最新價格算損益並給建議。`;
+    } catch {}
+  }
 
   const messages = [{ role: "user", content: task }];
   const body = { model: MODEL, max_tokens: 1500, system, messages };
@@ -280,6 +298,21 @@ export default {
     const { task, crew = "eng", passcode, action = "task" } = input || {};
 
     if (!env.PASSCODE || passcode !== env.PASSCODE) return json({ error: "通關密碼錯誤" }, 401, origin);
+
+    // 持股股數與成本（私人資料）
+    if (action === "holdings_get" || action === "holdings_set") {
+      if (!env.CHAT) return json({ error: "資料庫尚未啟用" }, 501, origin);
+      const store = chatStore(env);
+      if (action === "holdings_get") return json({ items: (await store.getValue("holdings")) || {} }, 200, origin);
+      const items = {};
+      for (const [sym, v] of Object.entries(input.items || {})) {
+        const shares = Number(v?.shares), avg = Number(v?.avg);
+        if (!/^[0-9A-Z.]{1,15}$/.test(sym) || !(shares >= 0) || !(avg >= 0)) continue;
+        if (shares > 0) items[sym] = { shares, avg, updated: taipeiStamp() };
+      }
+      await store.setValue("holdings", items);
+      return json({ ok: true, items }, 200, origin);
+    }
 
     // 通訊紀錄：讀取 / 新增 / 清空
     if (action === "history" || action === "append" || action === "clear") {

@@ -9,7 +9,7 @@ on:
   workflow_dispatch:              # 允許在網頁上手動按「Run workflow」測試
     inputs:
       mode:
-        description: "模式（auto 自動判斷，或 tw_pre / tw_intraday / tw_post / us_pre / us_intraday / us_post）"
+        description: "模式（auto 自動判斷，或 tw_pre / tw_intraday / tw_post / us_pre / us_intraday / us_post；只更新價格用 tw_scan）"
         default: "auto"
       dry_run:
         description: "模擬模式（不呼叫 Claude、不花錢）"

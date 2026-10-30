@@ -27,8 +27,8 @@ KEEP_HOURS = 48        # 保留最近幾小時的新聞
 MAX_PER_MARKET = 80    # 每個市場最多保留幾則
 
 # ---------- 新聞來源 ----------
-def google_news(q: str) -> str:
-    return f"https://news.google.com/rss/search?q={quote(q)}+when:1d&hl=zh-TW&gl=TW&ceid=TW:zh-Hant"
+def google_news(q: str, days: int = 1) -> str:
+    return f"https://news.google.com/rss/search?q={quote(q)}+when:{days}d&hl=zh-TW&gl=TW&ceid=TW:zh-Hant"
 
 SOURCES = {
     "tw": [
@@ -125,11 +125,11 @@ def norm(title: str) -> str:
     return re.sub(r"[\s\W_]+", "", title)[:40]
 
 
-def crawl(market: str, old: list[dict]) -> tuple[list[dict], int]:
+def crawl(market: str, old: list[dict], sources: list | None = None, keep: int = MAX_PER_MARKET) -> tuple[list[dict], int]:
     cutoff = datetime.now(timezone.utc) - timedelta(hours=KEEP_HOURS)
     seen = {norm(n["title"]): n for n in old if datetime.fromisoformat(n["time"]) >= cutoff}
     new = 0
-    for kind, url in SOURCES[market]:
+    for kind, url in (sources or SOURCES[market]):
         try:
             items = FETCHERS[kind](url)
             print(f"  ✓ {kind} 抓到 {len(items)} 則")
@@ -142,7 +142,7 @@ def crawl(market: str, old: list[dict]) -> tuple[list[dict], int]:
                 continue
             seen[key] = {**it, "time": it["time"].isoformat(), **classify(it["title"])}
             new += 1
-    items = sorted(seen.values(), key=lambda n: n["time"], reverse=True)[:MAX_PER_MARKET]
+    items = sorted(seen.values(), key=lambda n: n["time"], reverse=True)[:keep]
     old_keys = {norm(n["title"]) for n in old}
     new = sum(norm(n["title"]) not in old_keys for n in items)  # 只算真的留下來的新新聞
     return items, new
@@ -162,6 +162,29 @@ def main() -> str:
         bull = sum(n["label"] in ("利多", "偏多") for n in items[:30])
         bear = sum(n["label"] in ("利空", "偏空") for n in items[:30])
         parts.append(f"{name}新增 {new} 則（近 30 則 多{bull}／空{bear}）")
+    # 持股專屬新聞（config.yaml 的 holdings）
+    data["holdings"] = {}
+    data["holdings_meta"] = []
+    try:
+        import yaml
+        cfg = yaml.safe_load((ROOT / "config.yaml").read_text(encoding="utf-8"))
+        held = [h for m in ("tw", "us") for h in ((cfg.get("holdings") or {}).get(m) or [])]
+    except Exception as e:
+        print(f"  ✗ 讀不到持股設定：{e}")
+        held = []
+    hparts = []
+    for h in held:
+        print(f"== 持股 {h['name']} ==")
+        q = h.get("news") or h["name"]
+        items, new = crawl("holding", (old.get("holdings") or {}).get(h["symbol"], []),
+                           sources=[("google", google_news(q, days=3))], keep=30)
+        data["holdings"][h["symbol"]] = items
+        data["holdings_meta"].append({"symbol": h["symbol"], "name": h["name"]})
+        bad = sum(n["label"] in ("利空", "偏空") for n in items[:10])
+        good = sum(n["label"] in ("利多", "偏多") for n in items[:10])
+        hparts.append(f"{h['name']} 多{good}／空{bad}")
+    if hparts:
+        parts.append("持股：" + "、".join(hparts))
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     summary = "新聞掃描：" + "，".join(parts)

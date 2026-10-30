@@ -26,6 +26,23 @@ watchlist:
     - { symbol: "TXN",  name: "Texas Instruments" }
     - { symbol: "SPCX", name: "SpaceX" }
 
+# ---------- 目前持股（只放代號；股數、成本存在 Cloudflare，要通關密碼才看得到）----------
+# news: 爬蟲技師幫這檔抓新聞用的關鍵字（槓桿 ETF 跟著指數走，所以也查指數新聞）
+# 加碼或減碼股數：到指揮站「目前持股」小格按「編輯」修改
+# 新買一檔：照格式加一行；全部賣掉：刪掉那一行
+holdings:
+  tw:
+    - { symbol: "00631L.TW", name: "元大台灣50正2",   news: "00631L OR 台灣50正2 OR 台灣50指數" }
+    - { symbol: "00670L.TW", name: "富邦NASDAQ正2",    news: "00670L OR 那斯達克 OR NASDAQ" }
+    - { symbol: "00685L.TW", name: "群益臺灣加權正2", news: "00685L OR 加權指數 OR 台股大盤" }
+  us: []
+
+# 持股警示（盤中觸發時 Telegram／Email 通知，同一檔同一種警示一天只通知一次）
+holding_alerts:
+  drop_pct: 3          # 單日跌超過幾 % 通知
+  rise_pct: 5          # 單日漲超過幾 % 通知
+  ma20_break: true     # 跌破月線（20 日均線）通知
+
 # ---------- 初篩條件（能不能買的第一關，不用 AI、不花錢）----------
 screen:
   min_score: 3              # 加分條件拿到幾分以上，才交給 AI 分析（越高越嚴格）
