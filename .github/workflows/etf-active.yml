@@ -1,0 +1,59 @@
+# 爬蟲技師：主動式 ETF 持股追蹤（找出加碼／新買進的股票）。一般不需要修改。
+# 想看爬蟲「搜尋過程」：GitHub 專案頁 → Actions → 左邊選「爬蟲技師（主動ETF持股）」→ 點任一次執行
+name: 爬蟲技師（主動ETF持股）
+
+on:
+  schedule:
+    # GitHub 用 UTC 時間（台灣時間 -8 小時）
+    - cron: "40 13 * * 1-5"   # 台灣 21:40（投信公布當天持股後）
+    - cron: "40 23 * * 0-4"   # 台灣隔天 07:40（補抓較晚更新的）
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: etf-active
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 指揮站：爬蟲技師作業中
+        run: |
+          python agent/status.py busy crawl
+          git config user.name "stock-agent-bot"
+          git config user.email "stock-agent-bot@users.noreply.github.com"
+          git add docs/status.json
+          git diff --cached --quiet || (git commit -q -m "爬蟲技師作業中" && (git pull --rebase -q || true) && git push -q) || true
+
+      - name: 爬主動式 ETF 持股（過程都在這一步）
+        run: |
+          pip install -q requests
+          python -m agent.etf_active | tee "$RUNNER_TEMP/etf.log"
+          mkdir -p "$RUNNER_TEMP/out" && cp -r docs/data/etf docs/data/etf_changes.json "$RUNNER_TEMP/out/"
+          { echo '## 主動式 ETF 爬蟲執行紀錄'; echo '```'; cat "$RUNNER_TEMP/etf.log"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: 更新網頁資料＋技師設回待命
+        if: always()
+        run: |
+          git config user.name "stock-agent-bot"
+          git config user.email "stock-agent-bot@users.noreply.github.com"
+          MSG=$(tail -n 1 "$RUNNER_TEMP/etf.log" 2>/dev/null | grep '^主動ETF' || echo "⚠️ 主動ETF爬蟲執行失敗，請到 GitHub Actions 查看")
+          for i in 1 2 3 4 5; do
+            git fetch -q origin "$GITHUB_REF_NAME" && git reset -q --hard "origin/$GITHUB_REF_NAME"
+            [ -d "$RUNNER_TEMP/out" ] && mkdir -p docs/data && cp -r "$RUNNER_TEMP/out/." docs/data/
+            python agent/status.py idle crawl "$MSG"
+            git add docs/data/etf docs/data/etf_changes.json docs/status.json 2>/dev/null; git add docs/status.json
+            git commit -q -m "更新主動ETF持股" && git push -q && exit 0
+            sleep $((i * 4))
+          done
+          exit 1
