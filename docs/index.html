@@ -330,7 +330,7 @@ stage.insertAdjacentHTML("beforeend",`
   <div class="modes" role="group" aria-label="視角">
     <button data-mode="garage" class="on">維修區</button><button data-mode="overview">全場</button><button data-mode="tv">轉播</button><button data-mode="chase">跟車</button><button data-mode="onboard">車載</button><button data-mode="tower">88 大樓</button>
   </div>
-  <div class="hud-r"><button id="boxbox" title="叫 #07 下一圈進站">BOX BOX</button><button id="qbtn" title="切換畫質（會重新載入）">畫質 ${QHI?"高":"標準"}</button><button id="fullbtn" aria-pressed="false">全螢幕</button></div>
+  <div class="hud-r"><button id="boxbox" title="叫 #07 下一圈進站">BOX BOX</button><button id="sndbtn" aria-pressed="false" title="引擎、pit 區、大樓環境音（建議戴耳機）">音效 關</button><button id="qbtn" title="切換畫質（會重新載入）">畫質 ${QHI?"高":"標準"}</button><button id="fullbtn" aria-pressed="false">全螢幕</button></div>
   <div class="lift" id="lift" hidden><div class="lift-h"><button id="liftUp" aria-label="上一層">▲</button><div><b id="liftF">1F</b><span id="liftN"></span></div><button id="liftDn" aria-label="下一層">▼</button></div><div class="lift-c" id="liftC"></div><div class="lift-list" id="liftList"></div></div>
   <div class="tower" id="tower" aria-live="off"></div>
   <div class="speedo" id="speedo" hidden></div>
@@ -1563,11 +1563,275 @@ function init3d(){
     ourRoof.visible=!(mode==="garage"&&camera.position.distanceTo(GT())<70);
     wheelG.userData.rot.rotation.z+=still?0:dt*.035;wheelG.userData.gond.forEach(g=>g.rotation.z=-wheelG.userData.rot.rotation.z)}
 
+  /* =====================================================================
+     音效：全部用 Web Audio 即時合成，不載入任何音檔
+     - 賽車：V6 引擎（轉速跟車速、8 速變速箱升檔斷油／退檔補油＋排氣爆音）
+       每台車是 3D 定位聲源（雙聲道／HRTF），有距離衰減、空氣吸收、都卜勒
+     - pit 區：氣動扳手、千斤頂、無線電、發電機、工具聲；看台觀眾
+     - 88 大樓：每種樓層有自己的空間殘響和環境音
+     ===================================================================== */
+  const SFX=(()=>{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    let ctx=null,on=false,master,trackBus,trackLP,trackG,towerBus,towerG,trackRev,towerRev,towerSend,trackSend,noiseB,pinkB,brownB,jitter;
+    let lastUpd=0,muted=false,envKey="",envCur=null,prevFloor=null,wasGo=false,windBed=null,field=null,crowdSrc=[],garage=null,shiftCount=0;
+    const st=new Map(),voices=[],NV=QHI?5:3,GEARV=[0,23,33,42,51,59,67,76,95];
+    const DIST=(()=>{const n=2048,c=new Float32Array(n);for(let i=0;i<n;i++){const x=i/(n-1)*2-1;c[i]=Math.tanh(x*2.2)*.9}return c})();
+    const R=(a,b)=>a+Math.random()*(b-a),clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+    const now=()=>ctx.currentTime;
+    /* ---------- 小工具 ---------- */
+    function mkBuf(kind){const n=ctx.sampleRate*3|0,b=ctx.createBuffer(2,n,ctx.sampleRate);
+      for(let ch=0;ch<2;ch++){const d=b.getChannelData(ch);let l=0,b0=0,b1=0,b2=0;
+        for(let i=0;i<n;i++){const w=Math.random()*2-1;
+          if(kind==="brown"){l=(l+.02*w)/1.02;d[i]=l*3.5}
+          else if(kind==="pink"){b0=.99765*b0+w*.099;b1=.963*b1+w*.2965;b2=.57*b2+w*1.0526;d[i]=(b0+b1+b2+w*.1848)*.16}
+          else d[i]=w}}
+      return b}
+    function src(buf,t,loop=true){const s=ctx.createBufferSource();s.buffer=buf;s.loop=loop;s.start(t??now(),Math.random()*2.5);return s}
+    function osc(type,f,t){const o=ctx.createOscillator();o.type=type;o.frequency.value=f;o.start(t??now());return o}
+    function filt(type,f,Q=1){const b=ctx.createBiquadFilter();b.type=type;b.frequency.value=f;b.Q.value=Q;return b}
+    function gain(v=0){const g=ctx.createGain();g.gain.value=v;return g}
+    function sp(v){if(!ctx.createStereoPanner)return gain(1);const p=ctx.createStereoPanner();p.pan.value=v;return p}
+    function setP(p,x,y,z){if(p.positionX){p.positionX.value=x;p.positionY.value=y;p.positionZ.value=z}else p.setPosition(x,y,z)}
+    function pan(x,y,z,ref=6,roll=1){const p=ctx.createPanner();p.panningModel=QHI?"HRTF":"equalpower";p.distanceModel="inverse";p.refDistance=ref;p.rolloffFactor=roll;p.maxDistance=20000;setP(p,x,y,z);return p}
+    function ir(sec,decay,lp){const n=Math.max(1,ctx.sampleRate*sec|0),b=ctx.createBuffer(2,n,ctx.sampleRate);
+      for(let ch=0;ch<2;ch++){const d=b.getChannelData(ch);let y=0;const k=Math.exp(-2*Math.PI*lp/ctx.sampleRate);
+        for(let i=0;i<n;i++){y=(1-k)*(Math.random()*2-1)+k*y;d[i]=y*3*Math.pow(1-i/n,decay)*(i<300?i/300:1)}}
+      return b}
+    /* 一次性聲音：噪音、音調 */
+    function nz(out,t,dur,o={}){const g=gain(0),s=src(o.buf||noiseB,t),f=filt(o.type||"bandpass",o.f||1000,o.Q||1);
+      s.connect(f).connect(g).connect(out);const pk=o.peak??.4,a=o.a??.003;
+      g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(pk,t+a);
+      if(o.hold){g.gain.setValueAtTime(pk,t+dur-o.rel);g.gain.linearRampToValueAtTime(0,t+dur)}else g.gain.setTargetAtTime(0,t+a,dur/4);
+      if(o.f2)f.frequency.exponentialRampToValueAtTime(o.f2,t+dur);s.stop(t+dur+.1);return g}
+    function tone(out,t,fr,dur,o={}){const g=gain(0),s=osc(o.type||"sine",fr,t);s.connect(g).connect(out);const pk=o.peak??.2,a=o.a??.004;
+      g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(pk,t+a);
+      if(o.hold){g.gain.setValueAtTime(pk,t+dur-o.rel);g.gain.linearRampToValueAtTime(0,t+dur)}else g.gain.setTargetAtTime(0,t+a,dur/4);
+      if(o.f2)s.frequency.exponentialRampToValueAtTime(o.f2,t+dur);s.stop(t+dur+.1);return s}
+    const at=(p,ref=5,roll=1)=>{const pn=pan(p.x,p.y,p.z,ref,roll);pn.connect(trackBus);return pn};
+
+    /* ---------- 啟動 ---------- */
+    function init(){ctx=new AC({latencyHint:"interactive"});
+      try{if(navigator.audioSession)navigator.audioSession.type="playback"}catch(e){}
+      noiseB=mkBuf("white");pinkB=mkBuf("pink");brownB=mkBuf("brown");
+      const comp=ctx.createDynamicsCompressor();comp.threshold.value=-10;comp.knee.value=6;comp.ratio.value=8;comp.attack.value=.003;comp.release.value=.2;
+      master=gain(0);master.connect(comp).connect(ctx.destination);
+      trackBus=gain(1);trackLP=filt("lowpass",20000,.5);trackG=gain(1);trackBus.connect(trackLP).connect(trackG).connect(master);
+      towerBus=gain(1);towerG=gain(0);towerBus.connect(towerG).connect(master);
+      trackRev=ctx.createConvolver();trackRev.buffer=ir(1.3,3.2,5000);trackSend=gain(0);trackBus.connect(trackSend).connect(trackRev).connect(trackG);
+      towerRev=ctx.createConvolver();towerRev.buffer=ir(1.5,3,6000);towerSend=gain(.3);towerBus.connect(towerSend).connect(towerRev).connect(towerG);
+      /* 引擎的燃燒不均：很慢的噪音拿來抖動頻率 */
+      jitter=filt("lowpass",70,.7);src(noiseB).connect(jitter);
+      for(let k=0;k<NV;k++)voices.push(mkVoice());
+      /* 遠處車群的低吼 */
+      field={g:gain(0),f:filt("lowpass",380,.8)};src(brownB).connect(field.f).connect(field.g).connect(trackBus);
+      {const o=osc("sawtooth",160),of=filt("lowpass",300,.7),og=gain(.15);o.connect(of).connect(og).connect(field.f);field.o=o}
+      /* 風 */
+      windBed={g:gain(0),f:filt("bandpass",500,.6)};src(pinkB).connect(windBed.f).connect(windBed.g).connect(master);
+      /* 看台觀眾：主直道兩側 */
+      [[-1,90],[1,-90]].forEach(([sd_,ds])=>{const p=pose(ds,sd_*(sd_>0?wl[0]:wr[0])+sd_*28,{}),pn=at(V(p.x,p.y+8,p.z),40,1),g=gain(.05),f=filt("bandpass",650,.4);
+        src(pinkB).connect(f).connect(g).connect(pn);crowdSrc.push(g)});
+      /* 我們的車庫：發電機＋空壓機底噪 */
+      {const p=GT(),pn=at(p,3,1.3),g=gain(.05);garage={p,pn,g,t:0,cmp:0};g.connect(pn);
+        [[60,.5],[120,.35],[180,.12]].forEach(([f,a])=>{const o=osc("sine",f),og=gain(a);o.connect(og).connect(g)});
+        const n=src(brownB),nf=filt("lowpass",250,.7),ng=gain(.6);n.connect(nf).connect(ng).connect(g)}
+      document.addEventListener("visibilitychange",()=>{if(!ctx)return;if(document.hidden)ctx.suspend();else if(on)ctx.resume()});
+      setInterval(()=>{if(!on||!ctx)return;const idle=performance.now()-lastUpd>1500;if(idle!==muted){muted=idle;master.gain.setTargetAtTime(idle?0:.9,now(),.15)}},250)}
+
+    /* ---------- 引擎聲音（一台車一組） ---------- */
+    function mkVoice(){const v={car:null};
+      v.mix=gain(1);
+      v.oA=osc("sawtooth",200);v.oB=osc("square",100);v.oC=osc("triangle",300);v.tb=osc("sine",3000);
+      const gA=gain(.5),gB=gain(.3),gC=gain(.22);v.oA.connect(gA).connect(v.mix);v.oB.connect(gB).connect(v.mix);v.oC.connect(gC).connect(v.mix);
+      v.nF=filt("bandpass",600,1.4);v.nG=gain(.35);src(noiseB).connect(v.nF).connect(v.nG).connect(v.mix);
+      v.jg=gain(0);jitter.connect(v.jg);v.jg.connect(v.oA.frequency);v.jg.connect(v.oB.frequency);v.jg.connect(v.oC.frequency);
+      v.ws=ctx.createWaveShaper();v.ws.curve=DIST;v.ws.oversample=QHI?"2x":"none";
+      v.lp=filt("lowpass",1500,1.1);v.hp=filt("highpass",45,.7);v.sg=gain(1);v.g=gain(0);v.fx=gain(1);v.tbG=gain(0);
+      v.p=pan(0,0,0,9,1.05);
+      v.mix.connect(v.ws).connect(v.hp).connect(v.lp).connect(v.sg).connect(v.g).connect(v.p);
+      v.tb.connect(v.tbG).connect(v.p);v.fx.connect(v.p);v.p.connect(trackBus);return v}
+    const voiceOf=c=>voices.find(v=>v.car===c);
+    function pop(v,t,big){nz(v.fx,t,big?.05:.025,{type:"lowpass",f:big?900:1800,Q:.8,peak:big?1.1:R(.4,.9)})}
+    function shiftFx(c,dir){const v=voiceOf(c);if(!v)return;const t=now();shiftCount++;
+      if(dir>0){v.sg.gain.cancelScheduledValues(t);v.sg.gain.setValueAtTime(1,t);v.sg.gain.linearRampToValueAtTime(.18,t+.012);v.sg.gain.linearRampToValueAtTime(1,t+.075);
+        nz(v.fx,t,.02,{type:"bandpass",f:2600,Q:2,peak:.25})}
+      else{v.sg.gain.cancelScheduledValues(t);v.sg.gain.setValueAtTime(1,t);v.sg.gain.linearRampToValueAtTime(1.6,t+.025);v.sg.gain.linearRampToValueAtTime(1,t+.13);
+        const n=2+Math.random()*4|0;for(let k=0;k<n;k++)pop(v,t+.04+Math.random()*.22,k===0)}}
+    const tv=V(),fw=V(),up=V();
+    function listen(){const L_=ctx.listener,p=camera.position;fw.set(0,0,-1).applyQuaternion(camera.quaternion);up.set(0,1,0).applyQuaternion(camera.quaternion);
+      if(L_.positionX){L_.positionX.value=p.x;L_.positionY.value=p.y;L_.positionZ.value=p.z;L_.forwardX.value=fw.x;L_.forwardY.value=fw.y;L_.forwardZ.value=fw.z;L_.upX.value=up.x;L_.upY.value=up.y;L_.upZ.value=up.z}
+      else{L_.setPosition(p.x,p.y,p.z);L_.setOrientation(fw.x,fw.y,fw.z,up.x,up.y,up.z)}}
+    function stepCars(dt,t,inTower){
+      cars.forEach(c=>{let s=st.get(c);if(!s){s={g:1,rpm:4500,pv:c.v,acc:0,d:null,vr:0,cut:0,dn:0,thr:.3,pd:c.pitDone,blip:0};st.set(c,s)}
+        const a=dt>0?(c.v-s.pv)/dt:0;s.pv=c.v;s.acc+=(a-s.acc)*Math.min(1,dt*8);
+        const stopped=c.v<.3,lim=c.mode==="pit"&&c.pitDone!==1&&c.v>3;
+        s.thr=stopped?(go?.0:.12+(s.blip>0?.8:0)):lim?.5:s.acc>1.2?1:s.acc<-4?.03:.5;
+        if(!go&&stopped){s.blip-=dt;if(s.blip<-R(1.2,4))s.blip=R(.15,.35)}
+        const r=g=>11800*c.v/GEARV[g];
+        if(stopped)s.g=1;
+        else if(s.g<8&&r(s.g)>11500&&s.acc>-1){s.g++;s.cut=.06;shiftFx(c,1)}
+        else if(s.g>1&&s.dn<=0&&r(s.g-1)<11300&&(s.acc<-3||r(s.g)<7000)){s.g--;s.dn=.14;shiftFx(c,-1)}
+        s.dn-=dt;s.cut-=dt;
+        let tg=stopped?(s.blip>0?9500:4300):Math.max(5200,r(s.g));if(lim)tg=Math.min(tg,10500);
+        s.rpm+=(tg-s.rpm)*Math.min(1,dt*(s.cut>0?45:stopped?6:14));
+        const d=c.obj.position.distanceTo(camera.position);
+        if(s.d!=null&&dt>0){const vr=-(d-s.d)/dt;s.vr+=(clamp(vr,-150,150)-s.vr)*Math.min(1,dt*6)}s.d=d;
+        /* 進站：停下來那一刻換胎 */
+        if(s.pd!==c.pitDone){if(c.pitDone===1)pitStop(c);s.pd=c.pitDone}});
+      /* 只給最近的幾台車真正的引擎聲（主角車一定有） */
+      const fol=(mode==="chase"||mode==="onboard"||mode==="tv")?follow:null;
+      const rank=cars.slice().sort((a,b)=>(a===fol?-1:st.get(a).d)-(b===fol?-1:st.get(b).d)).slice(0,NV);
+      voices.forEach(v=>{if(v.car&&!rank.includes(v.car)){v.car=null;v.g.gain.setTargetAtTime(0,t,.04)}});
+      rank.forEach(c=>{if(voiceOf(c))return;const v=voices.find(v=>!v.car);if(!v)return;v.car=c;v.g.gain.cancelScheduledValues(t);v.g.gain.setValueAtTime(0,t);v.fresh=true});
+      let far=0;
+      cars.forEach(c=>{const s=st.get(c),v=voiceOf(c);if(!v){if(c.mode==="track"&&go)far+=14/(14+s.d);return}
+        const dop=clamp(343/(343-s.vr),.6,1.7),f=s.rpm/60*3*dop,air=clamp(1-s.d/1600,.1,1),k=v.fresh?0:.012;v.fresh=false;
+        v.oA.frequency.setTargetAtTime(f,t,.012);v.oB.frequency.setTargetAtTime(f*.5,t,.012);v.oC.frequency.setTargetAtTime(f*1.5,t,.012);v.tb.frequency.setTargetAtTime(f*11.3,t,.02);
+        v.jg.gain.setTargetAtTime(f*.6,t,.05);v.nF.frequency.setTargetAtTime(f*2.1,t,.02);
+        v.lp.frequency.setTargetAtTime((420+s.rpm/12000*(1500+5200*s.thr))*air,t,.03);
+        let lvl=(.22+.78*s.thr)*(c===fol&&mode==="onboard"?.75:1);
+        if(c.mode==="pit"&&c.pitDone!==1&&c.v>3&&Math.random()<.5)lvl*=.55; /* 維修區限速器的「噠噠噠」 */
+        v.g.gain.setTargetAtTime(lvl*.55,t,.025);v.tbG.gain.setTargetAtTime(.02*s.thr*air*s.rpm/12000,t,.05);
+        const o=c.obj.position;setP(v.p,o.x,o.y+.6,o.z);
+        if(s.thr<.08&&c.v>20&&Math.random()<dt*5)pop(v,t+Math.random()*.05)});
+      field.g.gain.setTargetAtTime(Math.min(.35,far*.5),t,.3)}
+    /* ---------- pit stop：千斤頂、4 支氣動扳手 ---------- */
+    function gun(p,t,dur){const pn=at(p,3,1.15),e=gain(0);e.connect(pn);
+      const n=src(noiseB,t),bf=filt("bandpass",2100,2.5),am=gain(.5),lfo=osc("square",R(55,70),t),lg=gain(.5);n.connect(bf).connect(am).connect(e);lfo.connect(lg).connect(am.gain);
+      const w=osc("sawtooth",650,t),wf=filt("lowpass",2400,1),wg=gain(.22);w.frequency.linearRampToValueAtTime(1050,t+dur*.6);w.connect(wf).connect(wg).connect(e);
+      e.gain.setValueAtTime(0,t);e.gain.linearRampToValueAtTime(1,t+.01);e.gain.setValueAtTime(1,t+dur-.04);e.gain.linearRampToValueAtTime(0,t+dur);
+      [n,lfo,w].forEach(s=>s.stop(t+dur+.05))}
+    function clunk(p,t,pk=.9){const pn=at(p,4,1.1);tone(pn,t,90,.25,{peak:pk,f2:45});nz(pn,t,.08,{type:"bandpass",f:900,Q:1.5,peak:pk*.6})}
+    function hiss(p,t,dur=.6,pk=.4){const pn=at(p,4,1.1);nz(pn,t,dur,{type:"highpass",f:3500,Q:.7,peak:pk,a:.01,hold:true,rel:dur*.6})}
+    function pitStop(c){if(!on)return;const t=now()+.05,o=c.obj;o.updateMatrixWorld();
+      const w=[[1.7,.8],[1.7,-.8],[-1.6,.8],[-1.6,-.8]].map(([x,z])=>o.localToWorld(V(x,.3,z)));
+      clunk(o.localToWorld(V(2.6,.2,0)),t);clunk(o.localToWorld(V(-2.6,.2,0)),t+.04);
+      w.forEach(p=>{const t1=t+.18+Math.random()*.12;gun(p,t1,R(.28,.38));gun(p,t1+R(1.1,1.35),R(.35,.45))});
+      hiss(o.position,t+2.05,.5,.35);clunk(o.position,t+2.1,.7)}
+    /* ---------- 無線電（車庫、警衛） ---------- */
+    function radio(out,t,len=R(1,2.2)){nz(out,t,.07,{type:"highpass",f:2200,peak:.18});
+      const s=src(noiseB,t+.08),f=filt("bandpass",1200,4),g=gain(0),f2=filt("bandpass",700,3);s.connect(f).connect(g).connect(out);s.connect(f2).connect(g);
+      let x=t+.1;while(x<t+len){const syl=R(.06,.16);g.gain.setTargetAtTime(R(.15,.4),x,.012);f.frequency.setTargetAtTime(R(900,1700),x,.02);g.gain.setTargetAtTime(.02,x+syl,.015);x+=syl+R(.02,.09)}
+      g.gain.setTargetAtTime(0,x,.02);s.stop(x+.2);tone(out,x+.05,1000,.08,{type:"square",peak:.05,hold:true,rel:.01});nz(out,x+.14,.06,{type:"highpass",f:2500,peak:.12})}
+    function stepGarage(dt,t,inTower){const busy=crew.filter(m=>state[m.id]==="busy").length;
+      const near=camera.position.distanceTo(garage.p);trackSend.gain.setTargetAtTime(inTower?0:near<60?.5:near<200?.15:0,t,.3);
+      garage.t-=dt;if(garage.t<=0){garage.t=busy?R(.8,3):R(3,9);const p=garage.p.clone().add(V(R(-4,4),R(.3,1.2),R(-3,3))),pn=at(p,2.5,1.3),r=Math.random();
+        if(r<.35){const n=6+Math.random()*10|0;for(let k=0;k<n;k++)nz(pn,t+k*R(.045,.07),.015,{type:"bandpass",f:3200,Q:3,peak:.35})}       /* 棘輪扳手 */
+        else if(r<.55){[1,2.76,5.4].forEach((m,i)=>tone(pn,t,R(380,520)*m,.6,{peak:.12/(i+1)}));nz(pn,t,.05,{type:"bandpass",f:1800,peak:.3})}  /* 工具箱、鐵件碰撞 */
+        else if(r<.75)nz(pn,t,R(.4,1),{type:"highpass",f:3000,peak:.2,a:.02,hold:true,rel:.2});                                           /* 吹氣槍 */
+        else if(r<.88)gun(p,t,R(.25,.5));                                                                                                        /* 試扳手 */
+        else{garage.cmp=R(3,6);clunk(p,t,.4)}}                                                                                                   /* 空壓機啟動 */
+      if(garage.cmp>0){garage.cmp-=dt;garage.g.gain.setTargetAtTime(.14,t,.2)}else garage.g.gain.setTargetAtTime(.05,t,.4)}
+
+    /* ---------- 88 大樓：每種樓層的環境音 ---------- */
+    const out=()=>envCur.g;
+    const ding=(o,t,pk=.12)=>{[[1318.5,0],[1046.5,.32]].forEach(([f,d])=>{tone(o,t+d,f,1.4,{peak:pk});tone(o,t+d,f*2.76,.5,{peak:pk*.25})})};
+    const S={
+      steps:(t,hard)=>{const p=sp(R(-.8,.8));p.connect(out());const n=4+Math.random()*6|0,iv=R(.45,.6);for(let k=0;k<n;k++)nz(p,t+k*iv,hard?.05:.07,{type:hard?"bandpass":"lowpass",f:hard?2400:900,Q:hard?1.5:.7,peak:hard?.12:.09})},
+      hard:t=>S.steps(t,true),soft:t=>S.steps(t,false),
+      keys:t=>{const p=sp(R(-.7,.7));p.connect(out());let x=t;const n=8+Math.random()*20|0;for(let k=0;k<n;k++){nz(p,x,.018,{type:"bandpass",f:R(2800,4200),Q:2,peak:R(.05,.1)});x+=Math.random()<.15?R(.25,.5):R(.06,.16)}},
+      phone:t=>{const p=sp(R(-.8,.8));p.connect(out());for(let r=0;r<2;r++)for(let k=0;k<16;k++)tone(p,t+r*1.6+k*.05,k%2?1600:1200,.05,{type:"square",peak:.025,hold:true,rel:.005})},
+      printer:t=>{const p=sp(R(-.8,.8));p.connect(out());const d=R(2.5,4);nz(p,t,d,{type:"bandpass",f:900,Q:1.2,peak:.05,a:.2,hold:true,rel:.3});for(let k=0;k<d/.32;k++)nz(p,t+.2+k*.32,.08,{type:"bandpass",f:1500,Q:2,peak:.06});tone(p,t,220,d,{type:"triangle",peak:.02,a:.2,hold:true,rel:.3})},
+      ding:t=>ding(out(),t,.07),
+      vacuum:t=>{const p=sp(R(-1,1));p.connect(out());const d=R(5,9);if(p.pan)p.pan.linearRampToValueAtTime(R(-1,1),t+d);
+        nz(p,t,d,{type:"bandpass",f:1300,Q:.6,peak:.06,a:.6,hold:true,rel:.8});tone(p,t,330,d,{type:"sawtooth",peak:.012,a:.6,hold:true,rel:.8,f2:310})},
+      radio:t=>{const p=sp(R(-.7,.7));p.connect(out());radio(p,t)},
+      clink:t=>{const p=sp(R(-.9,.9));p.connect(out());const r=R(.8,1.3);tone(p,t,2900*r,.35,{peak:.04});tone(p,t,4180*r,.2,{peak:.025});if(Math.random()<.4)tone(p,t+R(.08,.2),3400*r,.25,{peak:.03})},
+      beep:t=>{const p=sp(R(-.6,.6));p.connect(out());tone(p,t,2800,.09,{type:"square",peak:.02,hold:true,rel:.01})},
+      cart:t=>{const p=sp(-1);p.connect(out());const d=R(1.2,2.2);if(p.pan)p.pan.linearRampToValueAtTime(1,t+d);const g=nz(p,t,d,{type:"bandpass",f:2600,Q:1.5,peak:.04,a:.2,hold:true,rel:.3});const l=osc("square",28,t),lg=gain(.03);l.connect(lg).connect(g.gain);l.stop(t+d)},
+      sizzle:t=>{const p=sp(R(-.6,.6));p.connect(out());nz(p,t,R(2,4),{type:"highpass",f:4500,Q:.5,peak:.03,a:.1,hold:true,rel:1})},
+      boom:t=>{const p=sp(R(-.3,.3));p.connect(out());tone(p,t,R(42,60),2,{peak:.45,f2:30,a:.05});nz(p,t,1.5,{type:"lowpass",f:140,peak:.25,a:.05,buf:brownB})},
+      pop:t=>{const p=sp(R(-.3,.3));p.connect(out());nz(p,t,.012,{type:"bandpass",f:R(1200,2200),Q:2,peak:.12})},
+      carPass:t=>{const dir=Math.random()<.5?-1:1,p=sp(-dir);p.connect(out());const d=R(2.5,4);if(p.pan)p.pan.linearRampToValueAtTime(dir,t+d);
+        nz(p,t,d,{type:"lowpass",f:420,peak:.12,a:d*.45,hold:true,rel:d*.5,buf:brownB});tone(p,t,R(55,75),d,{type:"sawtooth",peak:.03,a:d*.45,hold:true,rel:d*.5});
+        if(Math.random()<.3)tone(p,t+d*.4,1150,.5,{peak:.02,f2:1050})},
+      gate:t=>{const p=sp(R(-.8,.8));p.connect(out());tone(p,t,1800,.12,{peak:.03,hold:true,rel:.01});tone(p,t+.18,1800,.12,{peak:.03,hold:true,rel:.01})},
+      clank:t=>{const p=sp(R(-.8,.8));p.connect(out());[1,2.4,3.9].forEach((m,i)=>tone(p,t,R(160,260)*m,1.2,{peak:.08/(i+1)}));nz(p,t,.06,{type:"bandpass",f:1200,peak:.2})},
+      hiss:t=>{const p=sp(R(-.8,.8));p.connect(out());nz(p,t,R(1,2.5),{type:"highpass",f:3000,peak:.05,a:.05,hold:true,rel:.6})},
+      shutter:t=>{const p=sp(R(-.8,.8));p.connect(out());nz(p,t,.02,{type:"bandpass",f:3000,Q:2,peak:.08});nz(p,t+.06,.02,{type:"bandpass",f:2400,Q:2,peak:.06})},
+      heli:t=>{const p=sp(-1);p.connect(out());const d=R(7,10);if(p.pan)p.pan.linearRampToValueAtTime(1,t+d);const g=nz(p,t,d,{type:"lowpass",f:260,peak:.25,a:d*.4,hold:true,rel:d*.5,buf:brownB});const l=osc("square",R(16,19),t),lg=gain(.12);l.connect(lg).connect(g.gain);l.stop(t+d)}
+    };
+    /* 背景音樂：百貨的輕音樂、餐廳鋼琴、電影院的悶響 */
+    const PROG={mall:[[60,64,67,71],[57,60,64,67],[53,57,60,64],[55,59,62,65]],piano:[[50,53,57,60,64],[43,47,53,57,64],[48,52,55,59,62],[45,49,55,57,61]],pad:[[60,67,71,76],[57,64,67,72]],film:[[38,45,50],[36,43,48]]};
+    const mf=m=>440*2**((m-69)/12);
+    function music(e,t){const m=e.mus;if(!m)return;const beat=60/(m.style==="piano"?72:m.style==="mall"?88:60);
+      while(m.next<t+.35){const x=m.next,ch=PROG[m.style][Math.floor(m.step/8)%PROG[m.style].length],s=m.step%8;
+        if(m.style==="mall"){if(s===0)ch.forEach(n=>tone(m.out,x,mf(n),beat*8,{type:"triangle",peak:.035,a:.5,hold:true,rel:1}));tone(m.out,x,mf(ch[(s*3)%ch.length]+12),beat*.9,{peak:.05})}
+        else if(m.style==="piano"){if(s===0||s===5)ch.forEach((n,i)=>{const y=x+i*.04;tone(m.out,y,mf(n),2.4,{peak:.05});tone(m.out,y,mf(n)*2,1,{peak:.012})});if(s===3||s===6||Math.random()<.25){const n=ch[Math.random()*ch.length|0]+12;tone(m.out,x,mf(n),1.4,{peak:.045});tone(m.out,x,mf(n)*2,.6,{peak:.01})}}
+        else if(m.style==="pad"){if(s===0)ch.forEach(n=>tone(m.out,x,mf(n),beat*8,{type:"sine",peak:.04,a:1.5,hold:true,rel:2}))}
+        else if(s===0)ch.forEach(n=>tone(m.out,x,mf(n),beat*8,{type:"sawtooth",peak:.02,a:1,hold:true,rel:1.5}));
+        m.next+=beat/2;m.step++}}
+    const ENV={
+      park:  {rev:[2.6,2.2,3000],hum:[[100,.012],[120,.006]],bed:[[brownB,"lowpass",160,.12]],ev:[["carPass",5,12],["soft",4,9],["gate",12,25],["radio",25,50]]},
+      market:{rev:[1.1,3,5000],bab:[.045,6],hum:[[60,.008]],ev:[["beep",1.2,3.5],["cart",5,12],["clink",4,9],["soft",3,6]],mus:["mall",.6]},
+      lobby: {rev:[2.4,2.6,6000],bab:[.03,5],bed:[[noiseB,"highpass",1800,.012]],ev:[["ding",5,12],["hard",2,5],["radio",12,25],["vacuum",25,50]],mus:["pad",.7]},
+      mall:  {rev:[1.7,3,5500],bab:[.04,6],ev:[["hard",1.5,4],["ding",14,28],["beep",8,16],["vacuum",30,60]],mus:["mall",1]},
+      food:  {rev:[1.3,3,5000],bab:[.075,8],ev:[["clink",.5,1.8],["sizzle",4,9],["beep",8,18]],mus:["mall",.5]},
+      cinema:{rev:[1,4,3000],bab:[.015,3],ev:[["boom",2,5],["pop",.12,.5]],mus:["film",1]},
+      office:{rev:[.7,4,5000],bed:[[brownB,"lowpass",300,.07]],hum:[[120,.003]],bab:[.01,2],ev:[["keys",1,3.5],["phone",10,25],["printer",14,30],["soft",4,9],["ding",30,60],["vacuum",25,55]]},
+      sky:   {rev:[1.9,3,6000],bab:[.045,6],ev:[["ding",4,9],["clink",1,3],["hard",2,5]],mus:["pad",.8]},
+      mech:  {rev:[1.5,2,2500],hum:[[50,.05],[100,.03],[150,.012]],bed:[[pinkB,"bandpass",420,.1],[brownB,"lowpass",110,.16]],ev:[["clank",6,14],["hiss",8,16],["radio",20,40]]},
+      dining:{rev:[1.4,3,5000],bab:[.022,4],ev:[["clink",1,3]],mus:["piano",1]},
+      deck:  {rev:[.6,5,5000],wind:.06,bab:[.025,4],ev:[["shutter",4,10],["hard",3,7]]},
+      roof:  {rev:[.05,8,8000],wind:.22,hum:[[60,.015]],ev:[["heli",20,40],["clank",8,15]]}
+    };
+    const irCache={};
+    function startEnv(fl){const key=fl.type,E=ENV[key]||ENV.office,t=now(),e={key,g:gain(0),srcs:[],bab:[],ev:[],mus:null,E};e.g.connect(towerBus);
+      e.g.gain.setTargetAtTime(1,t,.35);
+      const k=E.rev.join();towerRev.buffer=irCache[k]||(irCache[k]=ir(...E.rev));towerSend.gain.setTargetAtTime(Math.min(.6,E.rev[0]*.22),t,.2);
+      (E.hum||[]).forEach(([f,a])=>{const o=osc("sine",f),g=gain(a);o.connect(g).connect(e.g);e.srcs.push(o)});
+      (E.bed||[]).forEach(([b,ty,f,a])=>[-.6,.6].forEach(pv=>{const s=src(b),fi=filt(ty,f,.7),g=gain(a),p=sp(pv);s.connect(fi).connect(g).connect(p).connect(e.g);e.srcs.push(s)}));
+      if(E.bab){const [lv,n]=E.bab;for(let i=0;i<n;i++){const s=src(pinkB),f=filt("bandpass",R(350,950),R(3,6)),g=gain(0),p=sp(R(-.9,.9));s.connect(f).connect(g).connect(p).connect(e.g);e.srcs.push(s);e.bab.push({f,g,lv,t:0,base:f.frequency.value})}
+        const s=src(pinkB),f=filt("bandpass",500,.5),g=gain(lv*.6);s.connect(f).connect(g).connect(e.g);e.srcs.push(s)}
+      if(E.wind){const s=src(pinkB),f=filt("bandpass",420,.5),g=gain(E.wind);s.connect(f).connect(g).connect(e.g);e.srcs.push(s);e.wind={f,g,a:E.wind}}
+      e.ev=(E.ev||[]).map(([fn,a,b])=>({fn,a,b,t:R(.3,a)}));
+      if(E.mus){const g=gain(E.mus[1]),f=filt("lowpass",E.mus[0]==="film"?220:2600,.7);g.connect(f).connect(e.g);e.mus={style:E.mus[0],next:t+.2,step:0,out:g};if(E.mus[0]==="film")e.srcs.push()}
+      return e}
+    function stopEnv(e){if(!e)return;const t=now();e.g.gain.setTargetAtTime(0,t,.25);setTimeout(()=>{e.srcs.forEach(s=>{try{s.stop()}catch(_){}});e.g.disconnect()},1500)}
+    function stepEnv(e,dt,t){const c=towerAPI.counts();
+      e.bab.forEach(b=>{b.t-=dt;if(b.t<=0){b.t=R(.08,.22);const talk=Math.random()<.7;b.g.gain.setTargetAtTime(talk?b.lv*R(.5,1.3):0,t,.03);b.f.frequency.setTargetAtTime(b.base*R(.75,1.3),t,.04)}});
+      if(e.wind){e.wind.g.gain.setTargetAtTime(e.wind.a*R(.5,1.6),t,.6);e.wind.f.frequency.setTargetAtTime(R(300,700),t,.8)}
+      e.ev.forEach(x=>{x.t-=dt;if(x.t<=0){x.t=R(x.a,x.b);
+        if(x.fn==="vacuum"&&!c.cleaner)return;if(x.fn==="radio"&&!c.guard&&e.key!=="mech")return;S[x.fn](t+.02)}});
+      music(e,t)}
+
+    /* ---------- 每一格畫面更新 ---------- */
+    function update(dt){if(!on||!ctx||ctx.state!=="running")return;lastUpd=performance.now();if(muted){muted=false;master.gain.setTargetAtTime(.9,now(),.15)}
+      const t=now(),inTower=mode==="tower";listen();
+      /* 大樓裡：外面的賽車聲被牆隔掉、越高越小（觀景台和頂樓才又聽得到） */
+      const fl=inTower?towerAPI.cur:null,f=fl?fl.f:0,open=fl&&(fl.type==="deck"||fl.type==="roof");
+      trackLP.frequency.setTargetAtTime(inTower?(open?2500:450):20000,t,.2);
+      trackG.gain.setTargetAtTime(inTower?(open?.25:clamp(.25-f*.0028,.02,.25)):1,t,.25);
+      towerG.gain.setTargetAtTime(inTower?1:0,t,.3);
+      if(inTower&&fl){if(envKey!==fl.type){stopEnv(envCur);envCur=startEnv(fl);envKey=fl.type}
+        if(prevFloor!==null&&prevFloor!==fl.f){ding(towerBus,t+.05,.1);nz(towerBus,t,.9,{type:"lowpass",f:300,f2:900,peak:.12,a:.3,buf:brownB})}
+        prevFloor=fl.f;stepEnv(envCur,dt,t)}
+      else if(envCur){stopEnv(envCur);envCur=null;envKey="";prevFloor=null}
+      if(!still)stepCars(dt,t,inTower);
+      stepGarage(dt,t,inTower);
+      /* 觀眾：燈熄那一刻歡呼 */
+      if(go&&!wasGo)crowdSrc.forEach(g=>{g.gain.setTargetAtTime(.5,t,.4);g.gain.setTargetAtTime(.05,t+2.5,1.5)});wasGo=go;
+      const h=camera.position.y;windBed.g.gain.setTargetAtTime(inTower?0:clamp(h/1500,.006,.12)*R(.7,1.3),t,.5)}
+    function setOn(v){if(v&&!ctx){if(!AC)return false;init()}
+      on=v;if(!ctx)return false;
+      if(v){ctx.resume();master.gain.setTargetAtTime(.9,now(),.2)}else{master.gain.setTargetAtTime(0,now(),.1);setTimeout(()=>{if(!on)ctx.suspend()},300)}
+      return true}
+    function teamRadio(){if(!on||!ctx||mode==="tower")return;radio(at(garage.p.clone().add(V(0,1.2,0)),3,1.2),now()+.05,R(.8,1.6))}
+    return {setOn,update,teamRadio,get on(){return on},get ok(){return !!AC},stats:()=>({ctx:ctx&&ctx.state,voices:voices.map(v=>v.car&&v.car.team.no),shifts:shiftCount,env:envKey,
+      cars:cars.slice(0,4).map(c=>{const s=st.get(c);return s&&{g:s.g,rpm:Math.round(s.rpm),vr:+s.vr.toFixed(1)}})})}
+  })();
+  {const b=document.getElementById("sndbtn");let want=false;try{want=localStorage.getItem("pg_snd")==="on"}catch(e){}
+    if(!SFX.ok)b.hidden=true;
+    const paint=()=>{b.textContent=SFX.on?"音效 開":"音效 關";b.setAttribute("aria-pressed",SFX.on)};
+    b.onclick=()=>{const v=!SFX.on;SFX.setOn(v);paint();try{localStorage.setItem("pg_snd",v?"on":"off")}catch(e){}
+      if(v)log("賽車工程師",coarse?"音效開啟。iPhone 請把側邊的靜音鍵關掉、音量調大，戴耳機最有感。":"音效開啟。戴耳機聽，車子從左邊到右邊、由遠到近都聽得出來。","done")};
+    /* 之前開過音效：使用者第一次碰畫面時自動打開（瀏覽器規定要先有點擊） */
+    if(want){b.textContent="音效 開（點畫面）";const first=()=>{removeEventListener("pointerdown",first,true);if(!SFX.on){SFX.setOn(true);paint()}};addEventListener("pointerdown",first,true)}
+    window.__sfxRadio=()=>SFX.teamRadio()}
   /* ---------- 主迴圈 ---------- */
   let last=performance.now(),clock=0,uiT=0,boardT=0,skyT=0,visible=true;
   new IntersectionObserver(es=>{visible=es[0].isIntersecting}).observe(stage);
   function frame(dt){clock+=dt;if(!still){stepRace(dt)}cars.forEach(c=>{placeCar(c);c.rain.color.copy(C(skyM!=="day"||c.mode==="pit"?((clock*3+c.team.skill*9)%1<.5?"#ff2a1a":"#3a0c08"):"#3a0c08"))});
-    watchCrew();animCrew(dt,clock);if(mode==="tower")towerAPI.update(dt);towerAPI.avi.forEach(a=>a.visible=still||(clock*.8)%1<.5);stepCamera(dt);renderer.render(scene,camera);placeLabels()}
+    watchCrew();animCrew(dt,clock);if(mode==="tower")towerAPI.update(dt);towerAPI.avi.forEach(a=>a.visible=still||(clock*.8)%1<.5);stepCamera(dt);SFX.update(dt);renderer.render(scene,camera);placeLabels()}
   function loop(now){requestAnimationFrame(loop);const dt=Math.min(.05,(now-last)/1000);last=now;if(!visible&&!full||document.hidden)return;
     uiT+=dt;boardT+=dt;skyT+=dt;
     if(boardT>.5){boardT=0;paintBoard();const r=ranked();paintChart({kmh:ours.v*3.6,pos:r.indexOf(ours)+1,lap:Math.max(1,ours.lap),last:ours.last&&fmt(ours.last)})}
@@ -1580,7 +1844,7 @@ function init3d(){
   setMode("garage");fly=null;camera.position.copy(garagePos());controls.target.copy(GT());camera.lookAt(controls.target);
   if(still)draw();else requestAnimationFrame(loop);
   if(document.fonts)document.fonts.ready.then(()=>{boardSig="";paintBoard()});
-  window.__pg={cars,setMode,L,LAP_IDEAL,sUnder,sOver,camera,controls,stepRace,frame,info:()=>renderer.info.render};
+  window.__pg={cars,setMode,L,LAP_IDEAL,sUnder,sOver,camera,controls,stepRace,frame,info:()=>renderer.info.render,sfx:SFX,tick:dt=>{stepRace(dt);cars.forEach(placeCar);stepCamera(dt);SFX.update(dt)}};
 
   /* ---------- 4K 截圖：3840 寬 ---------- */
   shot4k=()=>{const W4=3840,H4=Math.round(3840/camera.aspect);renderer.setPixelRatio(1);renderer.setSize(W4,H4,false);
@@ -1746,6 +2010,7 @@ async function pullChat(first){
   }catch(e){if(first)lsGet(CHAT_KEY,[]).forEach(x=>log(x.who,x.msg,x.cls,x.t))}
 }
 function log(who,msg,cls="",when){
+  if(who==="賽車工程師"&&!when&&window.__sfxRadio)window.__sfxRadio();
   const t=when||new Date().toLocaleTimeString("zh-TW",{hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false,timeZone:"Asia/Taipei"});
   const p=document.createElement("p");p.innerHTML=`<span class="t">${t}</span> <span class="who">${who}</span> › <span class="${cls}"></span>`;
   p.lastElementChild.textContent=msg;radio.prepend(p);
