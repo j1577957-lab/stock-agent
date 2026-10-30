@@ -25,7 +25,10 @@ h1 span{color:var(--amber)}
 .session b{color:var(--ok);font-weight:400}
 .px{background:var(--panel);box-shadow:0 0 0 2px var(--line),4px 4px 0 2px #000;border-radius:0}
 .stage{position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 40%,#1c2030,#0d0e12 75%)}
-canvas{display:block;width:100%;height:auto;image-rendering:pixelated;image-rendering:crisp-edges}
+#cv{display:block;width:100%;height:auto;aspect-ratio:3/2;cursor:grab}
+#cv:active{cursor:grabbing}
+.nogl #cv,.nogl .lbl,.nogl .dog{display:none}
+.nogl-msg{padding:40px 16px;text-align:center}
 .lbl{position:absolute;transform:translate(-50%,-100%);font-family:var(--pixel);font-size:clamp(10px,1.9vw,13px);
   background:#0d0e12e6;color:var(--ink);border:2px solid var(--c);padding:1px 6px;white-space:nowrap;cursor:pointer;line-height:1.4}
 .lbl:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
@@ -35,7 +38,7 @@ canvas{display:block;width:100%;height:auto;image-rendering:pixelated;image-rend
 .lbl.warn{border-style:dashed;border-color:var(--amber)}
 .lbl .tk{display:block;font-size:.82em;max-width:9.5em;overflow:hidden;text-overflow:ellipsis;opacity:.9}
 .lbl .tk:empty{display:none}
-.dog{position:absolute;transform:translate(-50%,-70%);width:7%;height:7%;min-width:28px;min-height:22px;background:transparent;border:0;box-shadow:none;padding:0;cursor:pointer}
+.dog{position:absolute;transform:translate(-50%,-90%);width:6%;height:7%;min-width:28px;min-height:22px;background:transparent;border:0;box-shadow:none;padding:0;cursor:pointer;color:var(--amber);font-family:var(--pixel);font-size:12px}
 .dog:focus-visible{outline:2px dashed var(--amber)}
 .lbl .sm{display:none}
 @media (max-width:520px){.lbl .tk,.lbl .lg{display:none}.lbl .sm{display:inline}.lbl{padding:0 4px;font-size:10px}}
@@ -124,11 +127,11 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 <div class="wrap">
   <header>
     <h1>PIT GARAGE <span>指揮站</span></h1>
-    <div class="session">BOX 07 ・ 台北 <b id="clock">--:--</b> <button class="sound" id="sound" aria-pressed="false">音效 關</button></div>
+    <div class="session">BOX 07 ・ 台北 <b id="clock">--:--</b> <button class="sound" id="sound" aria-pressed="false">音效 關</button> <button class="sound" id="shot">4K 截圖</button></div>
   </header>
 
   <div class="stage px" id="stage">
-    <canvas id="cv" width="340" height="232" aria-label="立體像素維修區：紅色 F1 賽車停在中央，技師作業時會走到車旁"></canvas>
+    <canvas id="cv" aria-label="3D 維修區：紅色 F1 賽車停在中央，技師作業時會走到車旁。可以左右拖曳轉動視角"></canvas>
   </div>
   <div class="strip px" id="strip" aria-live="polite"></div>
 
@@ -171,124 +174,21 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
     <div class="verdicts" id="stkVerdicts"></div>
     <a class="more" href="stock.html">完整報告與盤前盤後 ›</a>
   </div>
-  <p class="note">技師作業中會走到車旁；名牌變紅＝故障、虛線＝可能卡住。點名牌看工作紀錄與下次出勤。開盤時間未計入國定假日。</p>
+  <p class="note">技師作業中會走到車旁；名牌變紅＝故障、虛線＝可能卡住。點技師或名牌看工作紀錄與下次出勤，左右拖曳可轉動視角。開盤時間未計入國定假日。</p>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-/* ---------- voxel engine（高解析版：每格是舊版的 1/2，細節多 4 倍） ---------- */
-const A=4,B=2,H=4, OX=144, OY=52, GX=48, GY=36, LANE=40;
-const cv=document.getElementById("cv"), ctx=cv.getContext("2d"); ctx.imageSmoothingEnabled=false;
-const sprites={};
-function rgb(hex){const n=parseInt(hex.slice(1),16);return[n>>16,n>>8&255,n&255]}
-function shade(hex,f){const m=v=>Math.max(0,Math.min(255,Math.round(v*f)));return rgb(hex).map(m)}
-const toHex=a=>"#"+a.map(v=>v.toString(16).padStart(2,"0")).join("");
-const tint=(hex,f)=>toHex(shade(hex,f));
-function sprite(hex){
-  if(sprites[hex])return sprites[hex];
-  const c=document.createElement("canvas");c.width=8;c.height=8;const g=c.getContext("2d"),img=g.createImageData(8,8);
-  const T=shade(hex,1.16),L=shade(hex,.9),R=shade(hex,.68);
-  for(let j=0;j<8;j++)for(let i=0;i<8;i++){
-    const x=i+.5,y=j+.5;let col=null;
-    if(Math.abs(x-4)/4+Math.abs(y-2)/2<=1)col=T;
-    else if(x<4&&y>=2+x/2&&y<=6+x/2)col=L;
-    else if(x>=4&&y>=4-(x-4)/2&&y<=8-(x-4)/2)col=R;
-    if(col){const k=(j*8+i)*4;img.data[k]=col[0];img.data[k+1]=col[1];img.data[k+2]=col[2];img.data[k+3]=255}
-  }
-  g.putImageData(img,0,0);return sprites[hex]=c;
-}
-const scr=(x,y,z)=>[OX+(x-y)*A, OY+(x+y)*B-z*H];
-const hash=(x,y)=>{let h=x*374761393+y*668265263;h=(h^(h>>13))*1274126177;return((h^(h>>16))>>>0)/4294967295};
-const world=new Map(), back=new Map();   // back = 地板與牆（永遠在最後面，預先畫好）
-const put=(x,y,z,c)=>(z===0||x===0||y===0?back:world).set(x+","+y+","+z,{x,y,z,c});
-const box=(x0,x1,y0,y1,z0,z1,c)=>{for(let x=x0;x<=x1;x++)for(let y=y0;y<=y1;y++)for(let z=z0;z<=z1;z++)put(x,y,z,typeof c==="function"?c(x,y,z):c)};
-
-/* ---------- 維修區地板、牆面 ---------- */
-for(let x=0;x<GX;x++)for(let y=0;y<GY;y++){
-  let c=((x>>1)+(y>>1))%2?"#4a4f5a":"#454a55";
-  if(x>=LANE)c=(x===44&&y%8<4)?"#d8dbe0":"#26282e";
-  if(x===LANE)c="#e9ecef";
-  const inBox=x>=6&&x<=38&&y>=6&&y<=30, edge=inBox&&(x===6||x===38||y===6||y===30);
-  if(edge)c="#f2c230";
-  if(x>=12&&x<=13&&(y===11||y===25)||x>=31&&x<=32&&(y===11||y===25))c="#e9ecef";   // 換胎定位 T 字
-  const lit=x<LANE?.84+.3*Math.max(0,1-Math.hypot(x-23,(y-18)*1.3)/24):1;   // 車庫頂燈打在賽車周圍
-  put(x,y,0,tint(c,lit*(.96+hash(x,y)*.08)));
-}
-for(let x=0;x<LANE;x++)for(let z=1;z<=12;z++)put(x,0,z,z>=11?"#2a2e38":"#3a3f4c");
-for(let y=1;y<GY;y++)for(let z=1;z<=12;z++)put(0,y,z,z>=11?"#2a2e38":"#3a3f4c");
-box(0,0,3,12,6,10,(x,y,z)=>z===8?"#eef0f3":"#c8321f");                     // 左牆車隊旗幟
-box(3,10,0,0,5,9,(x,y,z)=>z===9||x===3||x===10?"#1b1d24":(z+x)%3?"#1f5fd1":"#47e08c");   // 遙測螢幕
-box(32,38,0,0,4,9,(x,y,z)=>(x+z)%3===0?"#ff9b2f":"#565c69");               // 工具掛板
-
-/* 窗外天空（參考 Claude Office 的日夜窗景）：依台北時間變化 */
+/* ---------- 3D 引擎（three.js）：真正的立體畫面，照螢幕解析度原生渲染，4K 螢幕也清晰 ----------
+   座標：沿用舊版格子（1 格 = 0.18 公尺）。x 往維修道、y（3D 裡的 z）往畫面前方。 */
+const CELL=0.18;
+const cv=document.getElementById("cv"), stage=document.getElementById("stage");
+const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const coarse=matchMedia("(pointer: coarse)").matches;
 function skyMode(){const h=+new Intl.DateTimeFormat("en-US",{timeZone:"Asia/Taipei",hourCycle:"h23",hour:"2-digit"}).format(new Date());
   return h>=6&&h<17?"day":h>=17&&h<19?"dusk":"night"}
-function paintWindow(mode){
-  const sky={day:["#7cc0f0","#a9d8f7"],dusk:["#e2774a","#f2b25c"],night:["#0f1530","#1a2448"]}[mode];
-  for(let x=13;x<=30;x++)for(let z=5;z<=10;z++){
-    let c=x===13||x===30||z===5||z===10?"#1b1d24":sky[z>7?0:1];
-    const bh=[3,5,4,6,3,4,7,5,3,4,6,4,5,3,4,6][x-14]||0;            // 城市剪影
-    if(x>13&&x<30&&z>5&&z<10&&z-5<=bh-1){c=mode==="night"?((x*7+z)%4===0?"#ffd56a":"#1b2133"):mode==="dusk"?"#6b4a5a":"#8b9ab3"}
-    else if(mode==="night"&&x>13&&x<30&&z>5&&z<10&&hash(x,z)>.86)c="#e9ecef";   // 星星
-    back.set(x+",0,"+z,{x,y:0,z,c});
-  }
-}
 
-/* ---------- 擺設 ---------- */
-box(16,21,1,3,1,5,(x,y,z)=>z%2===0&&y===3?"#8f2416":"#c8321f");            // 工具車
-box(16,21,1,3,6,6,"#3b3f49");
-const tyreStack=(x0,y0,blanket)=>box(x0,x0+2,y0,y0+2,1,6,(x,y,z)=>z%2===0?"#17181c":blanket);   // 輪胎＋保溫毯
-tyreStack(33,1,"#c8321f");tyreStack(36,1,"#eef0f3");tyreStack(36,4,"#c8321f");
-box(1,1,12,20,1,4,"#2f6f73");box(2,3,12,20,1,2,"#3a8a8f");                  // 休息區沙發（參考 Star Office 的休息角）
-box(2,3,12,12,3,3,"#2f6f73");box(2,3,20,20,3,3,"#2f6f73");
-box(1,2,23,25,1,7,(x,y,z)=>z===4?"#9aa3b2":"#dfe3ea");                       // 冰箱
-box(3,3,24,24,1,3,"#5d6472");box(3,3,24,24,4,4,"#7a4a2a");                   // 咖啡機
-box(2,6,28,33,3,3,"#5d6472");box(4,5,30,31,3,3,"#1b1d24");                   // 工程師桌＋鍵盤
-[[2,28],[6,28],[2,33],[6,33]].forEach(([x,y])=>box(x,x,y,y,1,2,"#3b3f49"));
-box(2,2,29,32,4,7,(x,y,z)=>y===29||y===32||z===7?"#1b1d24":(z+y)%2?"#2b6cff":"#47e08c");   // 工程師螢幕
-box(39,39,0,0,1,12,"#5d6472");                                              // 車庫門柱
-
-/* ---------- F1 賽車（車頭朝維修道 +x） ---------- */
-function car(ox,oy){
-  const R="#d8382a",R2="#a8281b",W="#eef0f3",K="#17181c",G="#3b3f49",Y="#f2c230",TT="#2a2c33";
-  const p=(x,y,z,c)=>put(ox+x,oy+y,z,c), b=(x0,x1,y0,y1,z0,z1,c)=>box(ox+x0,ox+x1,oy+y0,oy+y1,z0,z1,c);
-  const tyre=(x0,x1,y0,y1,zh,stripe)=>{const cx=(x0+x1)/2,cz=(1+zh)/2;
-    for(let x=x0;x<=x1;x++)for(let y=y0;y<=y1;y++)for(let z=1;z<=zh;z++){
-      if((x===x0||x===x1)&&(z===1||z===zh))continue;               // 圓角
-      const outer=(y0===0&&y===0)||(y1===12&&y===12),d=Math.hypot(x-cx,z-cz);
-      p(x,y,z,outer?(d<1.1?"#9aa3b2":d<2.2&&d>1.5?stripe:K):(z===zh?TT:K));
-    }};
-  b(3,27,3,9,1,1,K); b(0,2,3,9,1,2,K);                              // 底板、擴散器
-  b(9,22,5,7,2,4,R); b(23,26,5,7,2,3,R); b(27,28,6,6,2,2,R);        // 單體殼、鼻錐
-  b(12,18,2,4,2,2,R2); b(12,18,8,10,2,2,R2);                        // 側箱下緣（內凹）
-  b(10,18,2,4,3,4,R); b(10,18,8,10,3,4,R);                          // 側箱
-  for(let x=10;x<=17;x++){p(x,2,4,W);p(x,10,4,W)}                   // 側箱白線
-  b(13,15,10,10,3,3,Y); b(18,18,2,3,3,4,K); b(18,18,9,10,3,4,K);    // 贊助色塊、進氣口
-  b(3,17,5,7,5,5,R); b(6,16,6,6,6,6,W);                             // 引擎蓋、白色條紋
-  b(14,17,5,7,6,7,R); p(17,6,7,K); p(15,6,8,Y);                     // 進氣盒、T 型鏡頭
-  for(let x=5;x<=11;x++)p(x,6,7,R2);                                // 鯊魚鰭
-  b(18,21,5,7,5,5,K);                                               // 座艙
-  for(let x=18;x<=21;x++){p(x,5,7,G);p(x,7,7,G)} b(22,22,6,6,5,7,G); b(17,17,5,7,6,6,G);   // Halo
-  p(20,3,5,K);p(20,9,5,K);p(20,4,5,K);p(20,8,5,K);                  // 後照鏡
-  p(25,3,3,K);p(25,4,3,K);p(25,8,3,K);p(25,9,3,K);p(5,3,4,K);p(5,9,4,K);   // 懸吊
-  b(0,2,1,1,3,9,R2); b(0,2,11,11,3,9,R2);                           // 尾翼端板
-  b(0,1,2,10,8,8,R); b(0,1,2,10,9,9,W); b(2,2,6,6,3,7,K); b(1,2,2,10,4,4,K);   // 尾翼主翼、DRS、支架、下翼
-  p(0,6,3,"#4a1410");                                               // 雨燈
-  b(29,31,0,12,1,1,W); b(29,30,1,11,2,2,R); b(29,31,0,0,1,3,R2); b(29,31,12,12,1,3,R2);   // 前翼
-  tyre(2,7,0,2,6,"#e0402c"); tyre(2,7,10,12,6,"#e0402c");           // 後輪（紅線＝軟胎）
-  tyre(23,27,0,2,5,"#e0402c"); tyre(23,27,10,12,5,"#e0402c");       // 前輪
-}
-const CAR={ox:7,oy:12}; car(CAR.ox,CAR.oy);
-
-/* ---------- 車庫狗 Box（參考別人辦公室裡的寵物） ---------- */
-const dog={x:5,y:21};
-function dogVox(list){
-  const D="#d9a441",E="#a8742a",{x,y}=dog,night=skyMode()==="night";
-  for(let i=0;i<3;i++)for(let j=0;j<2;j++)list.push({x:x+i,y:y+j,z:1,c:D});
-  list.push({x:x+3,y,z:1,c:D},{x:x+3,y:y+1,z:1,c:D},{x:x+3,y,z:2,c:E},{x:x+4,y,z:1,c:"#1b1d24"});
-  if(!night||still)list.push({x:x-1,y:y+(frame%2),z:frame%4<2?2:1,c:E});  // 尾巴搖
-  else list.push({x:x-1,y,z:1,c:E});
-}
-/* ---------- crew（x,y＝自己的崗位；w＝作業時走到車旁的位置） ---------- */
+/* ---------- crew（x,y＝自己的崗位；w＝作業時走到車旁的位置，單位是格子） ---------- */
 const crew=[
   {id:"eng",name:"賽車工程師",role:"總指揮・分派任務",x:8,y:30,w:[8,30],c:"#eef0f3",keys:[]},
   {id:"cal",name:"行程技師",role:"Google 行事曆",x:12,y:7,w:[17,9],c:"#4aa3ff",keys:["行程","會議","行事曆","明天","約","今天有什麼"]},
@@ -307,8 +207,7 @@ const isStuck=id=>state[id]==="busy"&&minsSince(meta[id].since)>STUCK_MIN;
 /* 作業中走到賽車旁的工位，其他狀態回到自己的崗位 */
 const goal=m=>state[m.id]==="busy"?m.w:[m.x,m.y];
 
-/* ---------- labels（名牌＋頭上泡泡，跟著技師移動） ---------- */
-const stage=document.getElementById("stage");
+/* ---------- 名牌＋頭上泡泡（HTML，跟著 3D 位置移動） ---------- */
 crew.forEach(m=>{
   const b=document.createElement("button");b.className="lbl";b.id="l-"+m.id;b.style.setProperty("--c",m.c);
   const short=m.id==="eng"?"工程師":m.name.replace("技師","");
@@ -318,104 +217,445 @@ crew.forEach(m=>{
   stage.append(b);
 });
 const dogBtn=document.createElement("button");dogBtn.className="dog";dogBtn.setAttribute("aria-label","車庫狗 Box");
-dogBtn.onclick=()=>{log("車庫狗 Box",skyMode()==="night"?"呼…呼…（睡著了，維修區一切正常）":"汪！巡完一圈，維修區一切正常。");dogPet=6};
-stage.append(dogBtn);let dogPet=0;
-function placeLabels(){
-  const pos=(el,sx,sy)=>{el.style.left=(sx/cv.width*100)+"%";el.style.top=(sy/cv.height*100)+"%"};
-  crew.forEach(m=>{
-    const b=document.getElementById("l-"+m.id),[sx,sy]=scr(m.px+1,m.py+1,m.id==="eng"?0:9);
-    pos(b,sx,m.id==="eng"?sy+6:sy-2);
-  });
-  const [dx,dy]=scr(dog.x+2,dog.y+1,1);pos(dogBtn,dx,dy);
-}
+dogBtn.onclick=()=>petDog();stage.append(dogBtn);
+function petDog(){log("車庫狗 Box",skyMode()==="night"?"呼…呼…（睡著了，維修區一切正常）":"汪！巡完一圈，維修區一切正常。");dogJump=1;if(still)draw()}
+let dogJump=0;
 
-/* ---------- 技師模型：靴子、腿、連身工作服、手臂、安全帽＋面罩 ---------- */
-function mechVox(m,list){
-  const x=m.px,y=m.py,st=state[m.id],tag=m.id;
-  const suit=st==="off"?"#5d6472":m.c, dark=tint(suit,.72), boot="#1f2128";
-  const step=m.moving&&frame%2, work=st==="busy"&&!m.moving&&!still;
-  const add=(dx,dy,z,c)=>list.push({x:x+dx,y:y+dy,z,c,tag});
-  for(let dx=0;dx<2;dx++){                                          // 兩條腿（走路時交替抬腳）
-    if(!(step&&dx===0))add(dx,0,1,boot); if(!(!step&&m.moving&&dx===1))add(dx,1,1,boot);
-    add(dx,0,2,dark);add(dx,1,2,dark);add(dx,0,3,dark);add(dx,1,3,dark);
-  }
-  for(let dx=0;dx<2;dx++)for(let dy=0;dy<2;dy++){add(dx,dy,4,dark);add(dx,dy,5,suit);add(dx,dy,6,suit)}
-  const up=work?frame%2:-1;                                         // 作業中：輪流舉起手臂（拿氣動扳手）
-  [[-1,0],[2,1]].forEach(([dy],i)=>{
-    const raised=up===i;
-    add(.5,dy,raised?7:6,suit);add(.5,dy,raised?6:5,suit);add(.5,dy,raised?5:4,raised?"#3b3f49":boot);
-  });
-  if(m.id==="eng"){                                                 // 工程師：臉＋耳機＋帽子
-    for(let dy=0;dy<2;dy++){add(0,dy,7,"#e0b48a");add(1,dy,7,"#e0b48a");add(0,dy,8,"#1f2a44");add(1,dy,8,"#1f2a44")}
-    add(.5,-1,7,"#1b1d24");add(.5,2,7,"#1b1d24");
-  }else{                                                            // 技師：安全帽（白底＋個人色帽頂）＋深色面罩
-    for(let dy=0;dy<2;dy++){add(0,dy,7,"#eef0f3");add(1,dy,7,"#1b1d24");add(0,dy,8,suit);add(1,dy,8,suit)}
-  }
-}
+let draw=()=>{};      // 重畫一次（減少動態模式用）
+let shot4k=null;      // 4K 截圖
 
-/* ---------- render loop ---------- */
-let frame=0, laneY=-30, backCache=null, backMode="";
-function drawBack(){
-  const mode=skyMode();
-  if(backCache&&backMode===mode)return backCache;
-  paintWindow(mode);backMode=mode;
-  backCache=document.createElement("canvas");backCache.width=cv.width;backCache.height=cv.height;
-  const g=backCache.getContext("2d");g.imageSmoothingEnabled=false;
-  [...back.values()].sort((p,q)=>(p.x+p.y)-(q.x+q.y)||p.z-q.z).forEach(v=>{const [sx,sy]=scr(v.x,v.y,v.z);g.drawImage(sprite(v.c),Math.round(sx-A),Math.round(sy))});
-  return backCache;
-}
-function draw(){
-  ctx.clearRect(0,0,cv.width,cv.height);
-  ctx.drawImage(drawBack(),0,0);
-  const list=[...world.values()];
-  if(laneY>-14&&laneY<GY+2){                               // 維修道上開過的另一台車
-    const T="#1fb5a6",K="#17181c",W="#eef0f3";
-    const add=(x,y,z,c)=>{if(y>=1&&y<GY)list.push({x,y,z,c})};
-    for(let d=1;d<11;d++)for(let x=42;x<=45;x++)add(x,laneY+d,1,x===42||x===45?K:T);
-    for(let d=2;d<9;d++){add(43,laneY+d,2,T);add(44,laneY+d,2,T)}
-    add(43,laneY+5,3,"#1b1d24");add(44,laneY+5,3,"#f2c230");
-    for(let x=41;x<=46;x++){add(x,laneY,1,W);add(x,laneY+11,1,W)}
-    [[41,1],[46,1],[41,8],[46,8]].forEach(([x,d])=>{add(x,laneY+d,1,K);add(x,laneY+d+1,1,K);add(x,laneY+d,2,K);add(x,laneY+d+1,2,K)});
-  }
-  crew.forEach(m=>mechVox(m,list));
-  dogVox(list);
-  list.sort((p,q)=>(p.x+p.y)-(q.x+q.y)||p.z-q.z);
-  for(const v of list){
-    let [sx,sy]=scr(v.x,v.y,v.z);
-    if(v.tag&&state[v.tag]==="busy"&&!still&&frame%4===0)sy-=1;
-    ctx.drawImage(sprite(v.c),Math.round(sx-A),Math.round(sy));
-  }
-  crew.forEach(m=>{                                       // 頭頂警示燈：黃＝作業中，紅＝故障／卡住
-    const st=state[m.id];if(st!=="busy"&&st!=="error")return;
-    const [sx,sy]=scr(m.px+1,m.py+1,9).map(Math.round);
-    if(frame%4<3||still){ctx.fillStyle=st==="error"||isStuck(m.id)?"#e0402c":"#f2c230";ctx.fillRect(sx-1,sy-9,2,5);ctx.fillRect(sx-1,sy-3,2,2)}
+function init3d(){
+  if(!window.THREE)throw new Error("3D 程式庫沒有載入");
+  const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true,powerPreference:"high-performance"});
+  renderer.outputEncoding=THREE.sRGBEncoding;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;
+  renderer.physicallyCorrectLights=false;
+  renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+  const scene=new THREE.Scene();
+  scene.fog=new THREE.Fog(0x0d0e12,24,40);
+  const ANISO=renderer.capabilities.getMaxAnisotropy();
+
+  /* ---------- 小工具 ---------- */
+  const C=h=>new THREE.Color(h).convertSRGBToLinear();
+  const std=(h,r=.6,m=0,o={})=>new THREE.MeshStandardMaterial({color:C(h),roughness:r,metalness:m,...o});
+  const paint=(h,o={})=>new THREE.MeshPhysicalMaterial({color:C(h),roughness:.3,metalness:.25,clearcoat:1,clearcoatRoughness:.06,...o});
+  const glow=h=>new THREE.MeshBasicMaterial({color:C(h),toneMapped:false});
+  function mk(geo,mat,x=0,y=0,z=0,parent=scene,shadow=true){const m=new THREE.Mesh(geo,mat);m.position.set(x,y,z);m.castShadow=m.receiveShadow=shadow;parent.add(m);return m}
+  const bx=(w,h,d)=>new THREE.BoxGeometry(w,h,d);
+  function rrShape(w,h,r){const s=new THREE.Shape(),x=-w/2,y=-h/2;r=Math.min(r,w/2,h/2);
+    s.moveTo(x+r,y);s.lineTo(x+w-r,y);s.quadraticCurveTo(x+w,y,x+w,y+r);s.lineTo(x+w,y+h-r);s.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+    s.lineTo(x+r,y+h);s.quadraticCurveTo(x,y+h,x,y+h-r);s.lineTo(x,y+r);s.quadraticCurveTo(x,y,x+r,y);return s}
+  function rbox(w,h,d,r=.02){r=Math.min(r,w*.45,h*.45,d*.45);
+    const g=new THREE.ExtrudeGeometry(rrShape(w-2*r,h-2*r,r),{depth:d-2*r,bevelEnabled:true,bevelThickness:r,bevelSize:r,bevelSegments:3,curveSegments:4});
+    g.translate(0,0,-(d-2*r)/2);return g}
+  function capsule(r,len,seg=8,rad=16){const p=[];
+    for(let i=0;i<=seg;i++){const a=-Math.PI/2+i/seg*Math.PI/2;p.push(new THREE.Vector2(Math.max(0,r*Math.cos(a)),-len/2+r*Math.sin(a)))}
+    for(let i=0;i<=seg;i++){const a=i/seg*Math.PI/2;p.push(new THREE.Vector2(Math.max(0,r*Math.cos(a)),len/2+r*Math.sin(a)))}
+    return new THREE.LatheGeometry(p,rad)}
+  function rod(a,b,r,mat,parent=scene){const A=new THREE.Vector3(...a),B=new THREE.Vector3(...b),d=B.clone().sub(A);
+    const m=mk(new THREE.CylinderGeometry(r,r,d.length(),8),mat,0,0,0,parent);m.position.copy(A).add(B).multiplyScalar(.5);
+    m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.normalize());return m}
+  function ctex(w,h,fn){const c=document.createElement("canvas");c.width=w;c.height=h;const g=c.getContext("2d");fn(g,w,h);
+    const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;t.anisotropy=ANISO;t.userData={g,c,w,h};return t}
+  function noise(g,w,h,n,a){for(let i=0;i<n;i++){g.fillStyle=Math.random()<.5?`rgba(255,255,255,${a})`:`rgba(0,0,0,${a*1.4})`;g.fillRect(Math.random()*w,Math.random()*h,1+Math.random()*2,1+Math.random()*2)}}
+  const W=([gx,gy])=>[(gx+1)*CELL,(gy+1)*CELL];   // 技師格子 → 公尺
+
+  /* ---------- 反光用的環境（模擬室內燈箱） ---------- */
+  const env=new THREE.Scene();
+  env.add(new THREE.Mesh(new THREE.BoxGeometry(24,10,24),new THREE.MeshBasicMaterial({color:new THREE.Color(.09,.1,.12),side:THREE.BackSide})));
+  [[0,4.8,0,14,.2,3,5],[0,4.8,-6,14,.2,1.5,3],[-11.8,3,0,.2,3,10,1.4],[11.8,2.5,4,.2,2,8,.9]].forEach(([x,y,z,w,h,d,k])=>{
+    const p=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),new THREE.MeshBasicMaterial({color:new THREE.Color(k,k,k*1.05)}));p.position.set(x,y,z);env.add(p)});
+  const pm=new THREE.PMREMGenerator(renderer);scene.environment=pm.fromScene(env,.03).texture;pm.dispose();
+
+  /* ---------- 地板（環氧樹脂地坪＋維修區標線） ---------- */
+  const S=coarse?220:340;
+  const floorTex=ctex(Math.round(7.2*S),Math.round(6.48*S),(g,w,h)=>{
+    g.fillStyle="#4d525d";g.fillRect(0,0,w,h);noise(g,w,h,w*h/80,.03);
+    g.strokeStyle="rgba(0,0,0,.25)";g.lineWidth=Math.max(1,S*.005);
+    for(let x=1.44;x<7.2;x+=1.44){g.beginPath();g.moveTo(x*S,0);g.lineTo(x*S,h);g.stroke()}
+    for(let z=1.62;z<6.48;z+=1.62){g.beginPath();g.moveTo(0,z*S);g.lineTo(w,z*S);g.stroke()}
+    const rg=g.createRadialGradient(4*S,3.24*S,0,4*S,3.24*S,4.6*S);rg.addColorStop(0,"rgba(255,255,255,.06)");rg.addColorStop(1,"rgba(0,0,0,.18)");g.fillStyle=rg;g.fillRect(0,0,w,h);
+    g.strokeStyle="#f2c230";g.lineWidth=.07*S;g.strokeRect(1.08*S,1.08*S,5.76*S,4.32*S);
+    g.fillStyle="#e9ecef";                                           // 換胎定位 T 字
+    [[2.11,1.98,-1],[5.71,1.98,-1],[2.11,4.5,1],[5.71,4.5,1]].forEach(([x,z,s])=>{g.fillRect((x-.28)*S,(z-.025)*S,.56*S,.05*S);g.fillRect((x-.025)*S,(s<0?z:z-.24)*S,.05*S,.24*S)});
+    g.save();g.beginPath();g.rect(6.98*S,0,.22*S,h);g.clip();g.fillStyle="#f2c230";g.fillRect(6.98*S,0,.22*S,h);  // 警示斜線
+    g.fillStyle="#1b1d24";for(let z=-1;z<7;z+=.3){g.beginPath();g.moveTo(6.98*S,z*S);g.lineTo(7.2*S,(z+.22)*S);g.lineTo(7.2*S,(z+.37)*S);g.lineTo(6.98*S,(z+.15)*S);g.fill()}g.restore();
+    g.fillStyle="rgba(242,194,48,.85)";g.font=`700 ${.32*S}px "Chakra Petch","Arial Black",sans-serif`;g.textBaseline="middle";
+    g.fillText("BOX 07",1.3*S,6.05*S);g.font=`700 ${.18*S}px "Arial",sans-serif`;g.fillStyle="rgba(233,236,239,.55)";g.fillText("PIT GARAGE ・ 指揮站",2.75*S,6.07*S);
+    noise(g,w,h,w*h/400,.025);
   });
-  if(Object.values(state).includes("busy")&&frame%2){     // 有人作業時，賽車尾燈閃爍
-    const [sx,sy]=scr(CAR.ox,CAR.oy+6,3);ctx.fillStyle="#ff3b2f";ctx.fillRect(sx-2,sy+2,3,3);
+  const floor=mk(new THREE.PlaneGeometry(7.2,6.48),std("#ffffff",.38,0,{map:floorTex,envMapIntensity:.6}),3.6,0,3.24,scene,false);
+  floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;
+  mk(bx(7.2,.3,6.48),std("#2a2d35",.8),3.6,-.151,3.24,scene,false);              // 地台厚度
+  const laneTex=ctex(512,1024,(g,w,h)=>{g.fillStyle="#2a2c32";g.fillRect(0,0,w,h);noise(g,w,h,60000,.05);
+    g.fillStyle="#e9ecef";g.fillRect(0,0,w*.035,h);g.fillRect(w*.965,0,w*.035,h);g.fillRect(w*.49,0,w*.02,h*.5)});
+  laneTex.wrapT=THREE.RepeatWrapping;laneTex.repeat.set(1,5.5);
+  const lane=mk(new THREE.PlaneGeometry(2.8,22),std("#ffffff",.85,0,{map:laneTex,envMapIntensity:.3}),8.6,0,3,scene,false);
+  lane.rotation.x=-Math.PI/2;lane.receiveShadow=true;
+  mk(bx(2.8,.3,22),std("#1f2127",.9),8.6,-.151,3,scene,false);
+
+  /* ---------- 牆面 ---------- */
+  const wallTex=(len)=>ctex(Math.round(len*160),512,(g,w,h)=>{const s=w/len,v=h/3.2;
+    g.fillStyle="#353b48";g.fillRect(0,0,w,h);
+    for(let x=0;x<len;x+=1.2){const gr=g.createLinearGradient(x*s,0,(x+1.2)*s,0);gr.addColorStop(0,"rgba(255,255,255,.04)");gr.addColorStop(1,"rgba(0,0,0,.06)");g.fillStyle=gr;g.fillRect(x*s,0,1.2*s,h);
+      g.fillStyle="rgba(0,0,0,.35)";g.fillRect(x*s,0,2,h)}
+    g.fillStyle="#2a2f3a";g.fillRect(0,h-.9*v,w,.9*v);g.fillStyle="#4a5160";g.fillRect(0,h-.92*v,w,.03*v);
+    g.fillStyle="#23262f";g.fillRect(0,0,w,.3*v);
+    g.fillStyle="#c8321f";g.fillRect(0,.55*v,w,.09*v);g.fillStyle="#eef0f3";g.fillRect(0,.66*v,w,.025*v);
+    noise(g,w,h,w*h/120,.03)});
+  const wallSide=std("#2a2e38",.8);
+  mk(bx(7.35,3.2,.15),[wallSide,wallSide,wallSide,wallSide,std("#ffffff",.75,0,{map:wallTex(7.35)}),wallSide],3.6,1.6,-.075);
+  mk(bx(.15,3.2,6.63),[std("#ffffff",.75,0,{map:wallTex(6.63)}),wallSide,wallSide,wallSide,wallSide,wallSide],-.075,1.6,3.24);
+  mk(rbox(.2,3.3,.2,.03),std("#5d6472",.5,.4),7.25,1.65,0);                       // 車庫門柱
+
+  /* 窗外城市（依台北時間換白天／黃昏／夜晚） */
+  const skyTex=ctex(1024,480,()=>{});
+  function paintSky(mode){const {g,w,h}=skyTex.userData;
+    const sky={day:["#5aa6e6","#bfe3fb"],dusk:["#3b2c5a","#f0a35c"],night:["#070b1c","#1b2550"]}[mode];
+    const gr=g.createLinearGradient(0,0,0,h);gr.addColorStop(0,sky[0]);gr.addColorStop(1,sky[1]);g.fillStyle=gr;g.fillRect(0,0,w,h);
+    if(mode==="night")for(let i=0;i<90;i++){g.fillStyle=`rgba(255,255,255,${.3+Math.random()*.6})`;g.fillRect(Math.random()*w,Math.random()*h*.55,2,2)}
+    if(mode==="day"){g.fillStyle="rgba(255,255,255,.75)";[[180,90],[620,60],[860,120]].forEach(([x,y])=>{g.beginPath();g.ellipse(x,y,80,18,0,0,7);g.ellipse(x+50,y-10,50,16,0,0,7);g.fill()})}
+    let x=0;const rnd=(a=>()=>(a=(a*16807)%2147483647)/2147483647)(7);
+    while(x<w){const bw=50+rnd()*90,bh=120+rnd()*240;
+      g.fillStyle=mode==="night"?"#111729":mode==="dusk"?"#4a3550":"#7d8fae";g.fillRect(x,h-bh,bw,bh);
+      for(let yy=h-bh+14;yy<h-10;yy+=18)for(let xx=x+8;xx<x+bw-10;xx+=16){
+        const on=mode==="night"?rnd()<.45:mode==="dusk"?rnd()<.25:false;
+        g.fillStyle=on?"#ffd56a":mode==="day"?"rgba(220,235,255,.55)":"rgba(0,0,0,.25)";g.fillRect(xx,yy,8,10)}
+      x+=bw+4+rnd()*10}
+    skyTex.needsUpdate=true}
+  const win=mk(new THREE.PlaneGeometry(2.8,1.3),new THREE.MeshBasicMaterial({map:skyTex,toneMapped:false}),3.9,1.72,.012,scene,false);
+  const frameM=std("#1b1d24",.4,.6);
+  [[3.9,2.4,2.96,.08],[3.9,1.04,2.96,.08]].forEach(([x,y,w,h])=>mk(rbox(w,h,.08,.02),frameM,x,y,.03));
+  [2.46,3.2,3.9,4.6,5.34].forEach(x=>mk(rbox(.07,1.3,.07,.015),frameM,x,1.72,.03));
+  mk(rbox(3.0,.06,.2,.02),std("#5d6472",.5,.3),3.9,1.0,.1);                       // 窗台
+
+  /* 遙測螢幕（顯示真的技師狀態）＋行情螢幕 */
+  const boardTex=ctex(768,432,()=>{}), chartTex=ctex(768,432,()=>{});
+  let boardSig="";
+  function paintBoard(){
+    const sig=crew.map(m=>state[m.id]+(isStuck(m.id)?"!":"")).join();if(sig===boardSig)return;boardSig=sig;
+    const {g,w,h}=boardTex.userData;g.fillStyle="#0a1020";g.fillRect(0,0,w,h);
+    g.fillStyle="#f2c230";g.font='700 34px "DotGothic16",monospace';g.fillText("CREW ・ BOX 07",28,52);
+    g.fillStyle="#8d94a3";g.font='24px "DotGothic16",monospace';g.fillText(new Date().toLocaleTimeString("zh-TW",{hour:"2-digit",minute:"2-digit",hour12:false,timeZone:"Asia/Taipei"}),w-110,52);
+    crew.forEach((m,i)=>{const y=100+i*54,st=isStuck(m.id)?"warn":state[m.id];
+      g.fillStyle=m.c;g.fillRect(28,y-22,22,22);g.fillStyle="#e9ecef";g.font='28px "DotGothic16",monospace';g.fillText(m.name,66,y);
+      g.fillStyle={idle:"#47e08c",busy:"#f2c230",error:"#e0402c",off:"#6b7280",warn:"#f2c230"}[st];
+      g.fillText({idle:"待命",busy:"作業中",error:"故障",off:"未上線",warn:"卡住?"}[st],w-150,y)});
+    boardTex.needsUpdate=true}
+  const series=Array.from({length:60},(_,i)=>50+Math.sin(i/5)*8);
+  function paintChart(){const {g,w,h}=chartTex.userData;
+    series.push(Math.max(10,Math.min(90,series[series.length-1]+(Math.random()-.48)*5)));series.shift();
+    g.fillStyle="#08130f";g.fillRect(0,0,w,h);g.strokeStyle="rgba(71,224,140,.12)";g.lineWidth=1;
+    for(let y=80;y<h;y+=60){g.beginPath();g.moveTo(0,y);g.lineTo(w,y);g.stroke()}
+    g.fillStyle="#47e08c";g.font='700 32px "DotGothic16",monospace';g.fillText("TELEMETRY",28,50);
+    g.beginPath();series.forEach((v,i)=>{const x=20+i*(w-40)/59,y=h-20-v/100*(h-100);i?g.lineTo(x,y):g.moveTo(x,y)});
+    g.strokeStyle="#47e08c";g.lineWidth=4;g.stroke();g.lineTo(w-20,h-20);g.lineTo(20,h-20);g.fillStyle="rgba(71,224,140,.12)";g.fill();
+    g.fillStyle="#e9ecef";g.font='26px "DotGothic16",monospace';g.fillText("LAP 1:2"+(8+Math.random()).toFixed(3),w-260,50);
+    chartTex.needsUpdate=true}
+  paintBoard();paintChart();
+  const bezel=std("#15161a",.35,.5);
+  [[.75,boardTex],[1.65,chartTex]].forEach(([x,t])=>{mk(rbox(.86,.56,.05,.02),bezel,x,1.55,.03);
+    mk(new THREE.PlaneGeometry(.8,.45),new THREE.MeshBasicMaterial({map:t,toneMapped:false}),x,1.55,.058,scene,false)});
+  mk(rbox(1.9,.04,.06),bezel,1.2,1.2,.05);
+
+  /* 工具板 */
+  mk(rbox(1.1,.8,.03,.01),std("#565c69",.7),6.35,1.75,.02);
+  [["#ff9b2f",6.0,1.9,.05,.32],["#c9ced6",6.18,1.85,.04,.42],["#c9ced6",6.34,1.95,.03,.3],["#e0402c",6.52,1.85,.06,.36],["#ff9b2f",6.72,1.95,.04,.28]]
+    .forEach(([c,x,y,w,h])=>mk(rbox(w,h,.03,.01),std(c,.35,.6),x,y,.06));
+  mk(new THREE.CylinderGeometry(.07,.07,.42,16),paint("#d8382a"),.3,.21,.3);      // 滅火器
+  mk(new THREE.CylinderGeometry(.03,.04,.08,10),std("#15161a",.4),.3,.46,.3);
+
+  /* 工具車 */
+  const red=paint("#c8321f");
+  mk(rbox(1.08,.9,.5,.03),red,3.42,.5,.42);
+  mk(rbox(1.12,.05,.54,.02),std("#5d6472",.45,.6),3.42,.97,.42);
+  for(let i=0;i<5;i++){mk(bx(1.0,.008,.01),std("#5a1209",.6),3.42,.2+i*.15,.675);mk(rbox(.3,.025,.03,.01),std("#d6dae0",.2,1),3.42,.27+i*.15,.69)}
+  [[3.0,.05],[3.84,.05]].forEach(([x])=>{mk(new THREE.CylinderGeometry(.04,.04,.03,12),std("#15161a",.6),x,.04,.55).rotation.z=Math.PI/2});
+  const laptop=new THREE.Group();laptop.position.set(3.15,1.0,.42);scene.add(laptop);
+  mk(rbox(.34,.015,.24,.006),std("#aeb4bf",.3,.8),0,0,0,laptop);
+  const lid=mk(rbox(.34,.22,.012,.006),std("#aeb4bf",.3,.8),0,.11,-.12,laptop);lid.rotation.x=-.25;
+  mk(new THREE.PlaneGeometry(.31,.19),new THREE.MeshBasicMaterial({map:chartTex,toneMapped:false}),0,0,.007,lid,false);
+
+  /* 輪胎架（輪胎＋保溫毯） */
+  function tyreStack(x,z,blanket){for(let i=0;i<3;i++){
+    if(i<2){mk(new THREE.CylinderGeometry(.31,.31,.27,32),std(blanket,.9),x,.15+i*.29,z);mk(new THREE.CylinderGeometry(.312,.312,.03,32),std("#15161a",.8),x,.15+i*.29,z)}
+    else{mk(new THREE.CylinderGeometry(.3,.3,.27,32),std("#17181c",.85),x,.74,z);mk(new THREE.CylinderGeometry(.2,.2,.275,24),std("#2f3239",.35,.8),x,.74,z);
+      mk(new THREE.TorusGeometry(.25,.008,6,40),glow("#e0402c"),x,.88,z).rotation.x=Math.PI/2}}}
+  tyreStack(6.12,.42,"#c8321f");tyreStack(6.72,.42,"#e9ecef");tyreStack(6.72,1.02,"#c8321f");
+
+  /* 休息區：沙發、冰箱、咖啡機 */
+  const fab=std("#2f6f73",.92),fab2=std("#3a8a8f",.92);
+  mk(rbox(.72,.24,1.5,.05),fab,.42,.2,2.97);
+  [2.62,3.32].forEach(z=>mk(rbox(.55,.14,.66,.06),fab2,.48,.39,z));
+  mk(rbox(.18,.55,1.5,.06),fab,.12,.55,2.97);
+  [2.18,3.76].forEach(z=>mk(rbox(.72,.42,.16,.06),fab,.42,.33,z));
+  mk(rbox(.26,.26,.1,.05),std("#c8321f",.9),.32,.62,3.42).rotation.z=.3;
+  mk(rbox(.55,1.35,.55,.04),std("#dfe3ea",.3,.2),.32,.68,4.25);
+  const drinks=ctex(256,512,(g,w,h)=>{g.fillStyle="#123047";g.fillRect(0,0,w,h);
+    for(let r=0;r<5;r++){g.fillStyle="#2a5a7a";g.fillRect(0,r*100+92,w,6);for(let i=0;i<6;i++){g.fillStyle=["#e0402c","#47e08c","#f2c230","#4aa3ff","#eef0f3"][(r+i)%5];g.fillRect(14+i*40,r*100+30,22,60)}}});
+  const door=mk(new THREE.PlaneGeometry(.46,1.1),new THREE.MeshStandardMaterial({map:drinks,roughness:.1,metalness:.3,emissive:C("#3a6a90"),emissiveIntensity:.25,emissiveMap:drinks}),.6,.7,4.25,scene,false);
+  door.rotation.y=Math.PI/2;
+  mk(rbox(.55,.9,.5,.03),std("#5d6472",.5,.3),.32,.45,4.85);
+  mk(rbox(.25,.32,.22,.03),std("#1b1d24",.3,.6),.3,1.06,4.85);
+  mk(new THREE.SphereGeometry(.012,8,8),glow("#e0402c"),.43,1.15,4.8);
+  mk(new THREE.CylinderGeometry(.035,.03,.08,16),std("#f4f4f4",.3),.42,.94,4.98);
+
+  /* 工程師桌 */
+  mk(rbox(.82,.05,1.06,.015),std("#3b3f49",.45,.3),.75,.75,5.55);
+  [[.4,5.06],[1.1,5.06],[.4,6.04],[1.1,6.04]].forEach(([x,z])=>mk(bx(.04,.73,.04),std("#5d6472",.4,.6),x,.37,z));
+  [[5.27,boardTex],[5.83,chartTex]].forEach(([z,t])=>{mk(rbox(.04,.34,.52,.015),bezel,.48,1.05,z);
+    const s=mk(new THREE.PlaneGeometry(.48,.28),new THREE.MeshBasicMaterial({map:t,toneMapped:false}),.503,1.05,z,scene,false);s.rotation.y=Math.PI/2;
+    mk(bx(.03,.18,.03),bezel,.46,.86,z)});
+  mk(rbox(.16,.02,.42,.006),std("#1b1d24",.5),.9,.785,5.55);
+
+  /* 左牆車隊旗 */
+  const flagTex=ctex(256,512,(g,w,h)=>{g.fillStyle="#c8321f";g.fillRect(0,0,w,h);g.fillStyle="#eef0f3";
+    g.beginPath();g.moveTo(0,h*.55);g.lineTo(w/2,h*.4);g.lineTo(w,h*.55);g.lineTo(w,h*.62);g.lineTo(w/2,h*.47);g.lineTo(0,h*.62);g.fill();
+    g.font='700 120px "Chakra Petch","Arial Black",sans-serif';g.textAlign="center";g.fillText("07",w/2,h*.3)});
+  const flag=mk(new THREE.PlaneGeometry(.7,1.4),std("#ffffff",.85,0,{map:flagTex,side:THREE.DoubleSide}),.015,2.0,1.2,scene,false);flag.rotation.y=Math.PI/2;
+
+  /* 頂燈（照亮賽車） */
+  [2.7,3.8].forEach(z=>{mk(rbox(3.4,.06,.14,.02),std("#2b2e36",.4,.5),4.0,3.55,z);
+    mk(bx(3.3,.01,.08),glow("#fff6e6"),4.0,3.515,z,scene,false);rod([2.6,3.58,z],[2.6,4.6,z],.006,std("#888",.5));rod([5.4,3.58,z],[5.4,4.6,z],.006,std("#888",.5))});
+
+  /* ---------- F1 賽車 ---------- */
+  function buildCar(body,accent,helmetC){
+    const car=new THREE.Group();
+    const P=paint(body),P2=paint(accent),K=std("#15161a",.35,.4),KM=std("#101114",.55,.2),Wt=paint("#eef0f3");
+    const add=(g,m,x,y,z)=>mk(g,m,x,y,z,car);
+    /* 車身（俯視輪廓擠出，再把鼻錐往下壓、側箱壓低） */
+    const top=[[1.15,.36],[1.5,.7],[2.4,.73],[2.95,.66],[3.25,.42],[3.8,.34],[4.5,.22],[5.2,.11],[5.45,.06]];
+    const sh=new THREE.Shape();sh.moveTo(.45,-.3);sh.lineTo(.45,.3);sh.splineThru(top.map(([x,w])=>new THREE.Vector2(x,w)));
+    sh.lineTo(5.45,-.06);sh.splineThru(top.slice(0,-1).reverse().map(([x,w])=>new THREE.Vector2(x,-w)));sh.lineTo(.45,-.3);
+    const bg=new THREE.ExtrudeGeometry(sh,{depth:.26,bevelEnabled:true,bevelThickness:.05,bevelSize:.05,bevelSegments:5,curveSegments:40});
+    bg.rotateX(Math.PI/2);bg.translate(0,.41,0);
+    const pa=bg.attributes.position;
+    for(let i=0;i<pa.count;i++){let x=pa.getX(i),y=pa.getY(i),z=pa.getZ(i);const base=.1;
+      let f=1;if(x>3.7)f*=1-.5*Math.min(1,(x-3.7)/1.75);if(Math.abs(z)>.38)f*=1-.22*Math.min(1,(Math.abs(z)-.38)/.3);
+      pa.setY(i,base+(y-base)*f)}
+    bg.computeVertexNormals();
+    add(bg,P,0,0,0);
+    /* 引擎蓋＋進氣盒（側視輪廓擠出） */
+    const ec=new THREE.Shape();ec.moveTo(.5,.38);ec.lineTo(.5,.5);ec.splineThru([new THREE.Vector2(1.4,.6),new THREE.Vector2(2.4,.75),new THREE.Vector2(2.95,.95)]);
+    ec.lineTo(3.12,.97);ec.lineTo(3.2,.62);ec.lineTo(3.3,.42);ec.lineTo(.5,.38);
+    const eg=new THREE.ExtrudeGeometry(ec,{depth:.2,bevelEnabled:true,bevelThickness:.07,bevelSize:.05,bevelSegments:5,curveSegments:24});eg.translate(0,0,-.1);
+    add(eg,P,0,0,0);
+    add(rbox(.05,.17,.2,.02),K,3.13,.83,0);                                           // 進氣口
+    const fin=new THREE.Shape();fin.moveTo(.4,.58);fin.lineTo(.4,.9);fin.lineTo(1.5,.8);fin.lineTo(2.1,.66);fin.lineTo(.4,.58);
+    const fg=new THREE.ExtrudeGeometry(fin,{depth:.012,bevelEnabled:false});fg.translate(0,0,-.006);add(fg,P2,0,0,0);   // 鯊魚鰭
+    add(rbox(1.7,.03,.012,.005),Wt,1.65,.69,.165).rotation.z=.12;add(rbox(1.7,.03,.012,.005),Wt,1.65,.69,-.165).rotation.z=.12;
+    /* 座艙、車手、Halo */
+    add(rbox(.62,.06,.44,.03),KM,3.55,.47,0);
+    add(new THREE.SphereGeometry(.12,24,16),paint(helmetC),3.42,.6,0);
+    const vis=add(new THREE.SphereGeometry(.122,24,10,-.9,1.8,1.25,.45),std("#0b0c10",.05,.8),3.42,.6,0);vis.rotation.y=Math.PI/2;
+    const hg=new THREE.TorusGeometry(.27,.024,10,40,Math.PI*1.2);hg.rotateZ(-Math.PI*.6);hg.rotateX(Math.PI/2);
+    add(hg,K,3.53,.78,0);
+    rod([3.8,.78,0],[3.92,.47,0],.024,K,car);
+    [1,-1].forEach(s=>rod([3.53+.27*Math.cos(Math.PI*.6),.78,s*.27*Math.sin(Math.PI*.6)],[3.44,.5,s*.27],.02,K,car));
+    add(new THREE.SphereGeometry(.018,8,8),glow("#f2c230"),3.0,1.0,0);                // T 型鏡頭
+    [1,-1].forEach(s=>{rod([3.05,.48,s*.36],[3.05,.66,s*.5],.012,K,car);add(rbox(.04,.07,.14,.015),P,3.05,.68,s*.52)});
+    /* 地板、擴散器 */
+    add(rbox(4.6,.03,1.5,.01),KM,2.7,.065,0);add(rbox(.5,.12,1.0,.02),KM,.25,.12,0);
+    /* 尾翼 */
+    add(rbox(.36,.035,.92,.012),P,.2,.88,0);add(rbox(.2,.025,.92,.01),Wt,.12,.96,0).rotation.z=.35;
+    [1,-1].forEach(s=>add(rbox(.46,.62,.02,.008),P2,.22,.66,s*.47));
+    add(rbox(.08,.42,.03,.01),K,.24,.62,0);add(rbox(.25,.02,.8,.008),K,.32,.42,0);
+    const rain=add(rbox(.02,.05,.08,.008),new THREE.MeshBasicMaterial({color:C("#3a0c08"),toneMapped:false}),.02,.3,0);
+    /* 前翼 */
+    add(rbox(.46,.03,1.92,.01),Wt,5.38,.08,0);
+    add(rbox(.3,.025,1.8,.01),P,5.32,.13,0).rotation.z=.2;add(rbox(.18,.02,1.7,.01),P,5.26,.18,0).rotation.z=.35;
+    [1,-1].forEach(s=>{add(rbox(.5,.22,.02,.008),P2,5.35,.15,s*.96);rod([5.1,.3,s*.05],[5.15,.1,s*.12],.012,K,car)});
+    /* 輪胎（車輪用旋轉曲面，帶圓角胎肩、軟胎紅線、輪框） */
+    function wheel(x,R,w,s){const ri=R*.58,c=.06,p=[];
+      p.push(new THREE.Vector2(ri,-w/2));for(let i=0;i<=6;i++){const a=-Math.PI/2+i/6*Math.PI/2;p.push(new THREE.Vector2(R-c+c*Math.cos(a),-w/2+c+c*Math.sin(a)))}
+      for(let i=0;i<=6;i++){const a=i/6*Math.PI/2;p.push(new THREE.Vector2(R-c+c*Math.cos(a),w/2-c+c*Math.sin(a)))}p.push(new THREE.Vector2(ri,w/2));
+      const tg=new THREE.LatheGeometry(p,48);tg.rotateX(Math.PI/2);
+      const g=new THREE.Group();g.position.set(x,R,s*.82);car.add(g);
+      mk(tg,std("#141518",.88),0,0,0,g);
+      const st=mk(new THREE.TorusGeometry(R*.82,.009,6,64),std("#e0402c",.5),0,0,s*(w/2+.002),g,false);
+      const rim=mk(new THREE.CylinderGeometry(ri,ri,w*.92,40),std("#2a2c32",.25,.9),0,0,0,g);rim.rotation.x=Math.PI/2;
+      for(let i=0;i<10;i++){const sp=mk(bx(ri*1.7,.018,.012),std("#3b3f49",.2,1),0,0,s*(w*.46),g);sp.rotation.z=i*Math.PI/10}
+      mk(new THREE.CylinderGeometry(.05,.05,.04,6),std("#d6dae0",.2,1),0,0,s*(w*.47),g).rotation.x=Math.PI/2;
+      return g}
+    wheel(.85,.36,.4,1);wheel(.85,.36,.4,-1);wheel(4.45,.34,.34,1);wheel(4.45,.34,.34,-1);
+    [1,-1].forEach(s=>{                                               // 懸吊
+      rod([3.9,.42,s*.28],[4.45,.4,s*.68],.012,K,car);rod([3.95,.2,s*.22],[4.45,.26,s*.68],.012,K,car);rod([4.0,.4,s*.22],[4.45,.2,s*.66],.01,K,car);
+      rod([1.25,.42,s*.35],[.85,.42,s*.64],.013,K,car);rod([1.2,.2,s*.3],[.85,.24,s*.64],.013,K,car)});
+    /* 塗裝文字 */
+    const dec=ctex(512,96,(g,w,h)=>{g.clearRect(0,0,w,h);g.fillStyle="#ffffff";g.font='italic 700 62px "Chakra Petch","Arial Black",sans-serif';g.textBaseline="middle";g.fillText("PIT GARAGE",14,50);
+      g.fillStyle="#f2c230";g.fillRect(420,18,80,64);g.fillStyle="#15161a";g.font='700 52px "Arial Black",sans-serif';g.fillText("07",428,52)});
+    [1,-1].forEach(s=>{const d=mk(new THREE.PlaneGeometry(1.0,.19),new THREE.MeshStandardMaterial({map:dec,transparent:true,roughness:.3,polygonOffset:true,polygonOffsetFactor:-2}),2.15,.25,s*.83,car,false);if(s<0)d.rotation.y=Math.PI});
+    return {car,rain}}
+  const main=buildCar("#d8382a","#a8281b","#f2c230");
+  main.car.position.set(7*CELL,0,18*CELL);scene.add(main.car);
+  const pass=buildCar("#1fb5a6","#147a70","#eef0f3");
+  pass.car.scale.setScalar(.82);pass.car.rotation.y=-Math.PI/2;pass.car.position.set(8.6-.0,0,-14);scene.add(pass.car);
+  pass.car.traverse(o=>{o.castShadow=false});
+
+  /* ---------- 技師 ---------- */
+  function buildMech(m){
+    const g=new THREE.Group(),eng=m.id==="eng";scene.add(g);g.userData.id=m.id;
+    const suit=paint(m.c,{roughness:.55,clearcoat:.2,metalness:.05});
+    const pants=eng?std("#1f2a44",.7):suit, boot=std("#15161a",.45,.2);
+    const body=new THREE.Group();g.add(body);
+    const legs=[1,-1].map(s=>{const p=new THREE.Group();p.position.set(s*.1,.9,0);body.add(p);
+      mk(capsule(.085,.58),pants,0,-.4,0,p);mk(rbox(.13,.1,.25,.04),boot,0,-.84,.04,p);return p});
+    const torso=mk(capsule(.17,.3),suit,0,1.22,0,body);torso.scale.set(1.08,1,.78);
+    mk(new THREE.CylinderGeometry(.166,.166,.05,24),std("#15161a",.5),0,1.0,0,body).scale.set(1.05,1,.72);
+    if(!eng){mk(rbox(.22,.045,.02,.008),std("#eef0f3",.5),0,1.33,.115,body);mk(rbox(.1,.06,.02,.008),std("#15161a",.5),.06,1.24,.115,body)}
+    else{mk(rbox(.12,.08,.02,.008),std("#c8321f",.5),.05,1.32,.115,body)}
+    const arms=[1,-1].map(s=>{const p=new THREE.Group();p.position.set(s*.23,1.42,0);body.add(p);
+      mk(capsule(.062,.36),suit,0,-.24,0,p);mk(new THREE.SphereGeometry(.058,14,10),std("#15161a",.6),0,-.5,0,p);return p});
+    const gun=new THREE.Group();gun.position.set(0,-.55,.08);arms[1].add(gun);gun.visible=false;
+    mk(rbox(.08,.1,.18,.02),std("#2a2c32",.35,.7),0,0,0,gun);mk(new THREE.CylinderGeometry(.03,.03,.12,12),std("#f2c230",.4,.5),0,0,.14,gun).rotation.x=Math.PI/2;
+    const head=new THREE.Group();head.position.set(0,1.62,0);body.add(head);
+    mk(new THREE.CylinderGeometry(.05,.05,.08,10),eng?std("#e0b48a",.6):suit,0,.0,0,head);
+    if(eng){
+      mk(new THREE.SphereGeometry(.125,24,18),std("#e0b48a",.6),0,.13,0,head);
+      mk(new THREE.SphereGeometry(.13,24,12,0,Math.PI*2,0,1.1),std("#1f2a44",.7),0,.15,0,head);
+      mk(rbox(.17,.015,.12,.006),std("#1f2a44",.7),0,.2,.12,head);
+      const hs=new THREE.TorusGeometry(.14,.012,8,24,Math.PI);mk(hs,std("#15161a",.4),0,.14,0,head);
+      [1,-1].forEach(s=>mk(new THREE.CylinderGeometry(.045,.045,.03,16),std("#15161a",.4),s*.14,.12,0,head).rotation.z=Math.PI/2);
+      rod([-.14,.1,0],[-.08,.05,.12],.006,std("#15161a",.4),head);
+    }else{
+      mk(new THREE.SphereGeometry(.15,28,20),paint("#eef0f3"),0,.15,0,head);
+      mk(new THREE.SphereGeometry(.153,28,12,0,Math.PI*2,0,.85),paint(m.c),0,.15,0,head);
+      const v=mk(new THREE.SphereGeometry(.155,28,10,Math.PI/2-.95,1.9,1.2,.55),new THREE.MeshPhysicalMaterial({color:C("#0b0c10"),roughness:.04,metalness:.7,clearcoat:1}),0,.15,0,head);
+    }
+    const beacon=mk(new THREE.SphereGeometry(.05,16,12),glow("#f2c230"),0,2.05,0,g,false);beacon.visible=false;
+    const pick=mk(new THREE.CylinderGeometry(.3,.3,1.9,8),new THREE.MeshBasicMaterial({visible:false}),0,.95,0,g,false);pick.userData.id=m.id;
+    return {g,body,legs,arms,head,gun,beacon,suit,base:C(m.c),pick,phase:Math.random()*6,ang:0}}
+  const rigs={};crew.forEach(m=>rigs[m.id]=buildMech(m));
+
+  /* ---------- 車庫狗 Box ---------- */
+  const dog=new THREE.Group();dog.position.set(1.05,0,3.95);dog.rotation.y=.6;scene.add(dog);
+  const fur=std("#d9a441",.85),fur2=std("#a8742a",.85);
+  const dbody=new THREE.Group();dog.add(dbody);
+  const torsoD=mk(capsule(.11,.3),fur,0,.3,0,dbody);torsoD.rotation.x=Math.PI/2;
+  const dhead=new THREE.Group();dhead.position.set(0,.42,.24);dbody.add(dhead);
+  mk(new THREE.SphereGeometry(.1,20,16),fur,0,0,0,dhead);mk(rbox(.09,.07,.1,.03),fur2,0,-.03,.1,dhead);
+  mk(new THREE.SphereGeometry(.018,8,8),std("#15161a",.3),0,-.01,.155,dhead);
+  [1,-1].forEach(s=>{mk(new THREE.SphereGeometry(.015,8,8),std("#15161a",.2),s*.045,.03,.085,dhead);const e=mk(rbox(.05,.09,.02,.01),fur2,s*.07,.05,-.01,dhead);e.rotation.z=s*.5});
+  mk(rbox(.17,.03,.03,.01),std("#c8321f",.5),0,.33,.17,dbody);                   // 項圈
+  const dlegs=[[.06,.12],[-.06,.12],[.06,-.12],[-.06,-.12]].map(([x,z])=>mk(capsule(.03,.14),fur,x,.12,z,dbody));
+  const tail=new THREE.Group();tail.position.set(0,.36,-.24);dbody.add(tail);
+  mk(capsule(.022,.12),fur2,0,.06,-.03,tail).rotation.x=-.6;
+  const dogPick=mk(new THREE.SphereGeometry(.3,8,8),new THREE.MeshBasicMaterial({visible:false}),0,.3,0,dog,false);
+
+  /* ---------- 燈光 ---------- */
+  const hemi=new THREE.HemisphereLight(C("#b7c7ea"),C("#2a2a30"),.5);scene.add(hemi);
+  const key=new THREE.DirectionalLight(C("#ffffff"),.75);key.position.set(9,12,10);key.target.position.set(3.8,0,3.2);
+  key.castShadow=true;key.shadow.mapSize.set(coarse?1024:2048,coarse?1024:2048);
+  Object.assign(key.shadow.camera,{left:-7,right:7,top:7,bottom:-7,near:2,far:32});key.shadow.bias=-.0004;key.shadow.normalBias=.02;
+  scene.add(key,key.target);
+  const spot=new THREE.SpotLight(C("#fff1dc"),1.1,14,.85,.7,1.2);spot.position.set(4.0,5.6,3.3);spot.target.position.set(4.0,0,3.3);
+  spot.castShadow=!coarse;spot.shadow.mapSize.set(1024,1024);spot.shadow.bias=-.0005;scene.add(spot,spot.target);
+  const winL=new THREE.PointLight(C("#9cc8ff"),.5,7,1.5);winL.position.set(3.9,1.8,.7);scene.add(winL);
+  let mode="";
+  function applySky(){const m=skyMode();if(m===mode)return;mode=m;paintSky(m);
+    const P={day:[.6,.85,1.0,"#bfe3fb",.6],dusk:[.42,.6,1.15,"#f0a35c",.5],night:[.28,.35,1.35,"#5a74c8",.35]}[m];
+    hemi.intensity=P[0];key.intensity=P[1];spot.intensity=P[2];winL.color=C(P[3]);winL.intensity=P[4];
+    stage.classList.toggle("night",m==="night");}
+  applySky();
+
+  /* ---------- 鏡頭（可拖曳旋轉） ---------- */
+  const camera=new THREE.PerspectiveCamera(24,1.5,.1,90);
+  const TGT=new THREE.Vector3(4.0,.65,3.25);
+  let dragAz=0,dragPol=0,drag=null,clock=0;
+  function placeCam(){const a=.8+dragAz+(still||drag?0:Math.sin(clock*.12)*.035),p=1.0+dragPol,d=18.5;
+    camera.position.set(TGT.x+d*Math.sin(p)*Math.cos(a),TGT.y+d*Math.cos(p),TGT.z+d*Math.sin(p)*Math.sin(a));camera.lookAt(TGT)}
+  cv.style.touchAction="pan-y";
+  cv.addEventListener("pointerdown",e=>{drag={x:e.clientX,y:e.clientY,az:dragAz,pol:dragPol,moved:0}});
+  addEventListener("pointermove",e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag.moved=Math.max(drag.moved,Math.abs(dx)+Math.abs(dy));
+    dragAz=Math.max(-.75,Math.min(.75,drag.az+dx*.006));if(e.pointerType!=="touch")dragPol=Math.max(-.3,Math.min(.25,drag.pol-dy*.004));if(still)draw()});
+  addEventListener("pointerup",e=>{if(drag&&drag.moved<6&&e.target===cv)pickAt(e);drag=null});
+  addEventListener("pointercancel",()=>{drag=null});
+  const ray=new THREE.Raycaster();
+  function pickAt(e){const r=cv.getBoundingClientRect();ray.setFromCamera({x:(e.clientX-r.left)/r.width*2-1,y:-(e.clientY-r.top)/r.height*2+1},camera);
+    const hit=ray.intersectObjects([...crew.map(m=>rigs[m.id].pick),dogPick],false)[0];if(!hit)return;
+    if(hit.object===dogPick)petDog();else showDetail(hit.object.userData.id)}
+
+  /* ---------- 尺寸與畫質（4K 螢幕原生解析度；太慢會自動降一點） ---------- */
+  const DPR_MAX=coarse?Math.min(devicePixelRatio||1,2):Math.min((devicePixelRatio||1)*1.25,3);
+  let dpr=DPR_MAX,slow=0;
+  function resize(){const w=Math.max(1,stage.clientWidth),h=Math.round(w/1.5);renderer.setPixelRatio(dpr);renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
+  new ResizeObserver(()=>{resize();if(still)draw()}).observe(stage);resize();
+
+  /* ---------- 動畫 ---------- */
+  const v3=new THREE.Vector3();
+  function placeLabels(){
+    const pos=(el,x,y,z,dy=0)=>{v3.set(x,y,z).project(camera);el.style.left=((v3.x+1)/2*100)+"%";el.style.top=((1-v3.y)/2*100+dy)+"%"};
+    crew.forEach(m=>{const [x,z]=W([m.px,m.py]);pos(document.getElementById("l-"+m.id),x,m.id==="eng"?0:2.15,z,m.id==="eng"?2:0)});
+    pos(dogBtn,dog.position.x,.35,dog.position.z);
+    dogBtn.textContent=mode==="night"?"z Z":"";
   }
-  if(skyMode()==="night"&&!still){                        // 狗狗睡覺的 z
-    const [sx,sy]=scr(dog.x+3,dog.y,3),k=frame%12;ctx.fillStyle="#cfd6e6";
-    if(k<9){const zx=sx+2+(k>>2),zy=sy-4-k;ctx.fillRect(zx,zy,3,1);ctx.fillRect(zx+1,zy+1,1,1);ctx.fillRect(zx,zy+2,3,1)}
+  const angTo=(a,b)=>{let d=b-a;while(d>Math.PI)d-=2*Math.PI;while(d<-Math.PI)d+=2*Math.PI;return d};
+  function animate(dt,t){
+    const anyBusy=crew.some(m=>state[m.id]==="busy");
+    crew.forEach(m=>{
+      const R=rigs[m.id],st=state[m.id],[gx,gy]=goal(m),sp=4*dt;
+      if(still){m.px=gx;m.py=gy;m.moving=false}
+      else{m.moving=true;let dx=0,dz=0;
+        if(Math.abs(gx-m.px)>.01){dx=Math.sign(gx-m.px);m.px+=dx*Math.min(sp,Math.abs(gx-m.px))}
+        else if(Math.abs(gy-m.py)>.01){dz=Math.sign(gy-m.py);m.py+=dz*Math.min(sp,Math.abs(gy-m.py))}
+        else m.moving=false;
+        if(m.moving)R.face=Math.atan2(dx,dz)}
+      const [x,z]=W([m.px,m.py]);R.g.position.set(x,0,z);
+      if(!m.moving)R.face=m.id==="eng"?-Math.PI/2:st==="busy"?(z<3.24?0:Math.PI):Math.atan2(4.0-x,3.24-z);
+      R.ang+=angTo(R.ang,R.face)*Math.min(1,dt*8);R.g.rotation.y=R.ang;
+      R.suit.color.copy(st==="off"?C("#6b7280"):R.base);
+      let la=0,ra=0,leg=0,bob=0,tilt=0,lz=0,rz=0;
+      if(m.moving){R.phase+=dt*9;leg=Math.sin(R.phase)*.6;la=-leg*.7;ra=leg*.7;bob=Math.abs(Math.sin(R.phase))*.03}
+      else if(st==="busy"){R.phase+=dt*(m.id==="eng"?14:9);
+        if(m.id==="eng"){la=-1.1+Math.sin(R.phase)*.08;ra=-1.1+Math.cos(R.phase)*.08;lz=.25;rz=-.25}
+        else{ra=-1.35+Math.sin(R.phase)*.12;la=-.9+Math.cos(R.phase*.5)*.25;bob=Math.abs(Math.sin(R.phase*.5))*.04;tilt=.25}}
+      else if(st==="error"){tilt=.45;la=.1;ra=.1;lz=.1;rz=-.1}
+      else{R.phase+=dt*1.5;la=Math.sin(R.phase)*.04;ra=-la}
+      R.legs[0].rotation.x=leg;R.legs[1].rotation.x=-leg;
+      R.arms[0].rotation.x=la;R.arms[1].rotation.x=ra;R.arms[0].rotation.z=lz;R.arms[1].rotation.z=rz;
+      R.body.position.y=bob;R.head.rotation.x=tilt;
+      R.gun.visible=st==="busy"&&!m.moving&&m.id!=="eng";
+      const blink=still||(t*2.5)%1<.7;
+      R.beacon.visible=(st==="busy"||st==="error")&&blink;
+      R.beacon.material.color.copy(C(st==="error"||isStuck(m.id)?"#ff3b2f":"#f2c230"));
+    });
+    main.rain.material.color.copy(C(anyBusy&&(still||(t*3)%1<.5)?"#ff2a1a":"#3a0c08"));
+    /* 狗：白天搖尾巴、晚上睡覺、被點會跳一下 */
+    const night=mode==="night";
+    tail.rotation.z=night||still?0:Math.sin(t*12)*.5;
+    dbody.position.y=dogJump>0?Math.sin((1-dogJump)*Math.PI)*.25:0;dogJump=Math.max(0,dogJump-dt*1.6);
+    dlegs.forEach(l=>l.visible=!night);dbody.position.y+=night?-.12:0;dhead.rotation.x=night?.5:Math.sin(t*1.3)*.08;
+    /* 維修道上開過的車 */
+    if(!still){pass.car.position.z+=dt*6;if(pass.car.position.z>22)pass.car.position.z=-30}
+    else pass.car.position.z=-30;
+    pass.car.visible=pass.car.position.z>-14;
   }
-  if(dogPet>0){dogPet--;const [sx,sy]=scr(dog.x+3,dog.y,3);ctx.fillStyle="#e0402c";ctx.fillRect(sx+2,sy-6,2,2);ctx.fillRect(sx+5,sy-6,2,2);ctx.fillRect(sx+2,sy-4,5,2);ctx.fillRect(sx+3,sy-2,3,1)}
-  placeLabels();
+  let last=performance.now(),boardT=0,chartT=0,skyT=0;
+  draw=()=>{applySky();paintBoard();animate(0,clock);placeCam();renderer.render(scene,camera);placeLabels()};
+  let visible=true;new IntersectionObserver(es=>{visible=es[0].isIntersecting}).observe(stage);
+  function loop(now){
+    requestAnimationFrame(loop);
+    const dt=Math.min(.1,(now-last)/1000);last=now;if(!visible||document.hidden)return;
+    clock+=dt;boardT+=dt;chartT+=dt;skyT+=dt;
+    if(boardT>1){boardT=0;paintBoard()} if(chartT>1.5){chartT=0;paintChart()} if(skyT>30){skyT=0;applySky()}
+    animate(dt,clock);placeCam();renderer.render(scene,camera);placeLabels();
+    if(dt>1/28)slow+=dt;else slow=Math.max(0,slow-dt*.5);
+    if(slow>2&&dpr>1){dpr=Math.max(1,dpr-.25);resize();slow=0}
+  }
+  if(still)draw();else requestAnimationFrame(loop);
+  if(document.fonts)document.fonts.ready.then(()=>{boardSig="";paintBoard()});
+
+  /* ---------- 4K 截圖：3840×2560 ---------- */
+  shot4k=()=>{const W4=3840,H4=2560;renderer.setPixelRatio(1);renderer.setSize(W4,H4,false);camera.aspect=1.5;camera.updateProjectionMatrix();
+    renderer.render(scene,camera);const url=cv.toDataURL("image/png");resize();renderer.render(scene,camera);
+    const a=document.createElement("a");a.href=url;a.download="pit-garage-4k.png";document.body.append(a);a.click();a.remove();
+    log("賽車工程師","4K 截圖已存好（3840×2560）。","done")};
 }
-let last=0;
-function loop(t){
-  if(t-last>150){last=t;frame++;laneY++;if(laneY>GY+50)laneY=-14;walk(.5);draw()}
-  requestAnimationFrame(loop);
+try{init3d()}catch(e){
+  console.error(e);stage.classList.add("nogl");
+  stage.insertAdjacentHTML("beforeend",'<p class="note nogl-msg">這台裝置沒辦法顯示 3D 畫面（'+esc(e.message)+'）。技師狀態請看下方名單。</p>');
 }
-function walk(step){                                      // 一格一格走向目標（先走 x 再走 y）
-  crew.forEach(m=>{
-    const [gx,gy]=goal(m);m.moving=true;
-    if(Math.abs(gx-m.px)>.01)m.px+=Math.sign(gx-m.px)*Math.min(step,Math.abs(gx-m.px));
-    else if(Math.abs(gy-m.py)>.01)m.py+=Math.sign(gy-m.py)*Math.min(step,Math.abs(gy-m.py));
-    else m.moving=false;
-  });
-}
-const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
-draw(); if(!still)requestAnimationFrame(loop);
-setInterval(()=>{if(still)draw()},60000);
+{const b=document.getElementById("shot");if(b){if(shot4k)b.onclick=()=>shot4k();else b.hidden=true}}
 
 /* ---------- console ---------- */
 const quick=["今天行程有哪些？","整理未讀重要信件","台股收盤重點","蝦皮今日訂單"];
