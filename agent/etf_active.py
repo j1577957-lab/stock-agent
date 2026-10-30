@@ -139,11 +139,22 @@ def diff(hist: dict) -> dict | None:
 
 
 SEED_URL = "https://xiaoyu-etf.pages.dev/etf/{code}"
-SEED_ROW = re.compile(r"^\d+\s+(\w+)\s+(.+?)\s+([\d.]+)%\s+([\d,]+)\s")
+# 欄位：# 代號 名稱 權重 張數 市值 日增減(張) 股價漲跌
+SEED_ROW = re.compile(r"^\d+\s+(\w+)\s+(.+?)\s+([\d.]+)%\s+([\d,]+)\s+(\S+)\s+([+-]?[\d,]+)\s")
 
 
-def fetch_prev_from_seed(code: str, before: str) -> tuple[str, dict] | None:
-    """第一次執行時沒有「前一天」可以比，改從籌碼小宇網站補抓前一天的持股（張數）。"""
+def prev_business_day(d: str) -> str:
+    from datetime import date, timedelta
+    x = date.fromisoformat(d) - timedelta(days=1)
+    while x.weekday() >= 5:
+        x -= timedelta(days=1)
+    return x.isoformat()
+
+
+def fetch_prev_from_seed(code: str, cur_date: str, cur: dict) -> tuple[str, dict] | None:
+    """第一次執行時沒有「前一天」可以比：從籌碼小宇網站讀「張數」和「日增減」，
+    倒推出前一個交易日的持股（前一天張數 = 今天張數 − 日增減）。
+    會先確認它的今天張數和 MoneyDJ 抓到的一致，才採用。"""
     try:
         r = requests.get(SEED_URL.format(code=code), headers=HEADERS, timeout=20)
         r.raise_for_status()
@@ -151,23 +162,30 @@ def fetch_prev_from_seed(code: str, before: str) -> tuple[str, dict] | None:
     except Exception as e:
         log(f"    ✗ 補抓 {code} 失敗：{e}")
         return None
-    page = r.text
-    dates = [f"{y}-{int(m):02d}-{int(d):02d}" for y, m, d in DATE.findall(page)]
-    dates = [d for d in dates if d < before]
-    if not dates:
-        log(f"    · {code} 補抓來源沒有比 {before} 更早的日期")
-        return None
-    d = max(dates)
-    holdings = {}
-    for tr in re.findall(r"<tr[^>]*>(.*?)</tr>", page, re.S | re.I):
+    rows = []
+    for tr in re.findall(r"<tr[^>]*>(.*?)</tr>", r.text, re.S | re.I):
         m = SEED_ROW.match(text_of(tr))
         if m:
-            sym, nm, w, z = m.groups()
-            holdings[sym] = {"name": nm.strip(), "weight": float(w), "shares": float(z.replace(",", "")) * 1000}
-    if not holdings:
+            sym, nm, w, z, _, chg, = m.groups()
+            rows.append((sym, nm.replace("清空", "").strip(), float(w),
+                         float(z.replace(",", "")), float(chg.replace(",", "").replace("+", ""))))
+    if not rows:
         log(f"    · {code} 補抓來源讀不到持股表")
         return None
-    log(f"    ✓ 補抓 {code} 前一天（{d}）持股 {len(holdings)} 檔，來源：籌碼小宇")
+    same = sum(1 for sym, _, _, z, _ in rows if z > 0 and sym in cur and round(cur[sym]["shares"] / 1000) == z)
+    held = sum(1 for r_ in rows if r_[3] > 0)
+    if held == 0 or same / held < 0.8:
+        log(f"    · {code} 補抓來源的持股日期和 MoneyDJ 不同（{same}/{held} 檔張數一致），不採用")
+        return None
+    d = prev_business_day(cur_date)
+    holdings = {}
+    for sym, nm, w, z, chg in rows:
+        before = z - chg
+        if before > 0:
+            # 今天張數和日增減沒變的，直接沿用 MoneyDJ 的精確股數，避免四捨五入誤差
+            shares = cur[sym]["shares"] if (chg == 0 and sym in cur) else before * 1000
+            holdings[sym] = {"name": nm, "weight": w if chg == 0 else 0, "shares": shares}
+    log(f"    ✓ 補抓 {code} 前一交易日（{d}）持股 {len(holdings)} 檔｜來源：籌碼小宇「日增減」，{same}/{held} 檔張數與 MoneyDJ 核對一致")
     return d, holdings
 
 
@@ -199,7 +217,7 @@ def main() -> str:
             continue
         hist = save_snapshot(info)
         if len(hist["days"]) < 2:
-            seed = fetch_prev_from_seed(info["code"], info["date"])
+            seed = fetch_prev_from_seed(info["code"], info["date"], info["holdings"])
             time.sleep(0.8)
             if seed:
                 hist["days"][seed[0]] = seed[1]
