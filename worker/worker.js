@@ -8,6 +8,7 @@
  *   FINMIND_TOKEN      （選填）FinMind 台股資料金鑰，有放就能查完整台股資料
  *   GITHUB_TOKEN       準時鬧鐘用：GitHub 細粒度權杖（Actions 讀寫，只限 stock-agent）
  *   CF_API_TOKEN、CF_ACCOUNT_ID  （選填）網頁顯示 Cloudflare 用量用
+ *   ANTHROPIC_ADMIN_KEY （選填）網頁顯示 Claude API 實際花費用（sk-ant-admin01-...）
  *
  * 通訊紀錄存在 Cloudflare 的 Durable Object（內建 SQLite 資料庫，免費方案可用），
  * 部署時會自動建立，不需要另外設定。
@@ -308,6 +309,60 @@ async function cloudflareUsage(env) {
   return data;
 }
 
+/* ---------- Claude API 花費（Anthropic 官方 Cost Report，約 5 分鐘內更新） ----------
+   需要 Secret：ANTHROPIC_ADMIN_KEY（sk-ant-admin01-... 管理員金鑰，只用來讀帳單） */
+async function claudeCost(env) {
+  if (!env.ANTHROPIC_ADMIN_KEY) return { configured: false };
+  const store = env.CHAT ? chatStore(env) : null;
+  const cached = store && (await store.getValue("claude_cost_cache"));
+  if (cached && Date.now() - cached.at < 5 * 60 * 1000) return cached.data;
+
+  const now = new Date();
+  const todayUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+  const monthStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1));
+  const from = new Date(Math.min(monthStart, todayUTC - 6 * 864e5));   // 本月＋最近 7 天
+  const buckets = [];
+  let page = null;
+  for (let i = 0; i < 5; i++) {
+    const u = new URL("https://api.anthropic.com/v1/organizations/cost_report");
+    u.searchParams.set("starting_at", from.toISOString());
+    u.searchParams.set("bucket_width", "1d");
+    u.searchParams.set("limit", "31");
+    u.searchParams.append("group_by[]", "description");
+    if (page) u.searchParams.set("page", page);
+    const r = await fetch(u, { headers: { "x-api-key": env.ANTHROPIC_ADMIN_KEY, "anthropic-version": "2023-06-01" } });
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(d.error?.message || "Anthropic " + r.status);
+    buckets.push(...(d.data || []));
+    if (!d.has_more || !d.next_page) break;
+    page = d.next_page;
+  }
+  const usd = (results) => (results || []).reduce((t, x) => t + Number(x.amount || 0), 0) / 100;  // amount 單位是「分」
+  const day = (b) => b.starting_at.slice(0, 10);
+  const byDay = {};
+  for (const b of buckets) byDay[day(b)] = (byDay[day(b)] || 0) + usd(b.results);
+  const todayKey = todayUTC.toISOString().slice(0, 10);
+  const todayItems = {};
+  for (const b of buckets.filter((b) => day(b) === todayKey))
+    for (const x of b.results || []) {
+      const k = x.model ? `${x.model}・${x.cost_type === "web_search" ? "上網搜尋" : x.token_type === "output_tokens" ? "輸出" : "輸入"}`
+                        : x.cost_type === "web_search" ? "上網搜尋" : (x.description || "其他");
+      todayItems[k] = (todayItems[k] || 0) + Number(x.amount || 0) / 100;
+    }
+  const last7 = [];
+  for (let i = 6; i >= 0; i--) { const k = new Date(todayUTC - i * 864e5).toISOString().slice(0, 10); last7.push({ day: k, usd: byDay[k] || 0 }); }
+  const data = {
+    configured: true,
+    updated: taipeiStamp(),
+    today_usd: byDay[todayKey] || 0,
+    month_usd: Object.entries(byDay).filter(([k]) => k >= monthStart.toISOString().slice(0, 10)).reduce((t, [, v]) => t + v, 0),
+    last7,
+    today_items: Object.entries(todayItems).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([k, v]) => ({ name: k, usd: v })),
+  };
+  if (store) await store.setValue("claude_cost_cache", { at: Date.now(), data });
+  return data;
+}
+
 /* ---------- 準時鬧鐘：GitHub 的排程常常延遲或跳過，改由 Cloudflare 準時叫醒 ----------
    需要 Secret：GITHUB_TOKEN（GitHub 細粒度權杖，只給 stock-agent 專案的 Actions 讀寫權限） */
 const GH_REPO = "j1577957-lab/stock-agent";
@@ -348,6 +403,10 @@ export default {
     if (!env.PASSCODE || passcode !== env.PASSCODE) return json({ error: "通關密碼錯誤" }, 401, origin);
 
     // Cloudflare 用量（不含私人資料，但一樣要通關密碼，避免被亂刷）
+    if (action === "claude_cost") {
+      try { return json(await claudeCost(env), 200, origin); }
+      catch (e) { return json({ error: "讀取 Claude 花費失敗：" + e.message }, 500, origin); }
+    }
     if (action === "usage") {
       try { return json(await cloudflareUsage(env), 200, origin); }
       catch (e) { return json({ error: "讀取用量失敗：" + e.message }, 500, origin); }

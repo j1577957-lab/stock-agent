@@ -159,6 +159,19 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 .us-bar{height:8px;background:var(--bg);border:1px solid var(--line);margin-top:4px}
 .us-bar i{display:block;height:100%;background:var(--ok)}
 .us-bar i.hi{background:var(--amber)} .us-bar i.max{background:var(--red)}
+.cc-big{display:flex;flex-wrap:wrap;gap:6px 26px;align-items:baseline;margin-bottom:10px}
+.cc-big div{display:grid}
+.cc-big span{font-size:12px;color:var(--mute)}
+.cc-big b{font-family:var(--pixel);font-weight:400;font-size:26px;color:var(--amber);line-height:1.2}
+.cc-big small{font-size:12px;color:var(--mute)}
+.cc-7{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;align-items:end;height:84px;margin:4px 0 2px}
+.cc-7 div{display:grid;align-items:end;height:100%;text-align:center}
+.cc-7 i{display:block;background:var(--amber);min-height:2px;box-shadow:2px 2px 0 #000}
+.cc-7 i.now{background:var(--red)}
+.cc-7l{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;font-size:11px;color:var(--mute);text-align:center;font-family:var(--pixel)}
+.cc-items{margin-top:10px;font-size:13px}
+.cc-items p{display:flex;justify-content:space-between;margin:0;padding:3px 0;border-bottom:2px dotted var(--line)}
+.cc-items p:last-child{border-bottom:0}
 .pf-edit input{width:100%;background:var(--bg);color:var(--ink);border:2px solid var(--line);border-radius:0;padding:5px 6px;font:14px var(--body)}
 /* 利多利空小欄位（和 CREW 狀態欄同大小） */
 .ntabs{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
@@ -227,6 +240,10 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
     <div class="tblwrap" id="pfTable"><p class="note">等策略技師下一次掃描後就會出現。</p></div>
     <div class="row"><button id="pfUnlock">🔒 顯示損益</button><button id="pfEditBtn">編輯股數／成本</button></div>
     <div class="pf-edit" id="pfEdit" hidden></div>
+  </div>
+  <div class="card px">
+    <p class="label"><span>CLAUDE ・ API 花費</span><span id="ccTime">--</span></p>
+    <div id="ccost"><p class="note">載入中…</p></div>
   </div>
   <div class="card px">
     <p class="label"><span>USAGE ・ 用量與費用</span><span id="usTime">--</span></p>
@@ -1501,6 +1518,29 @@ async function pullUsage(){
   box.innerHTML=rows.join("")||'<p class="note">讀不到用量資料。</p>';
 }
 pullUsage();setInterval(pullUsage,5*60*1000);
+
+/* ---------- Claude API 花費（Anthropic 官方帳單資料，約 5 分鐘延遲）---------- */
+const USD_TWD=32;   // 約略匯率，只用來換算台幣參考
+const usd=v=>"US$"+(v<10?v.toFixed(3):v.toFixed(2));
+const twd=v=>"約 NT$"+Math.round(v*USD_TWD).toLocaleString("zh-TW");
+async function pullClaudeCost(){
+  const box=document.getElementById("ccost");
+  if(!WORKER_URL){box.innerHTML='<p class="note">還沒有接後台。</p>';return}
+  if(!storedPass()){box.innerHTML='<p class="note">按「🔒 顯示損益」輸入通關密碼後顯示。</p>';return}
+  let d;try{d=await api({action:"claude_cost"})}catch(e){box.innerHTML=`<p class="note">讀取失敗：${esc(e.message)}</p>`;return}
+  if(!d.configured){box.innerHTML='<p class="note">還沒設定：需要在 Cloudflare 加一個密鑰 ANTHROPIC_ADMIN_KEY（Anthropic 管理員金鑰，只能讀帳單）。設定方法見 worker/教學.md。</p>';return}
+  const max=Math.max(...d.last7.map(x=>x.usd),.001);
+  box.innerHTML=`<div class="cc-big">
+      <div><span>今天</span><b>${usd(d.today_usd)}</b><small>${twd(d.today_usd)}</small></div>
+      <div><span>本月累計</span><b>${usd(d.month_usd)}</b><small>${twd(d.month_usd)}</small></div></div>
+    <div class="cc-7" aria-label="最近 7 天每日花費">${d.last7.map((x,i)=>`<div title="${x.day}：${usd(x.usd)}"><i class="${i===6?"now":""}" style="height:${Math.max(2,x.usd/max*100)}%"></i></div>`).join("")}</div>
+    <div class="cc-7l">${d.last7.map(x=>`<span>${x.day.slice(5).replace("-","/")}</span>`).join("")}</div>
+    <div class="cc-items">${d.today_items.length?d.today_items.map(x=>`<p><span>${esc(x.name)}</span><span>${usd(x.usd)}</span></p>`).join(""):'<p><span class="sym">今天還沒有花費</span><span></span></p>'}</div>
+    <p class="note" style="margin-top:8px">資料來自 Anthropic 帳單，約 5 分鐘延遲；一天以台灣早上 8 點換日（帳單用 UTC）。台幣以 1 美元 ≈ ${USD_TWD} 元粗估。</p>`;
+  document.getElementById("ccTime").textContent="更新 "+d.updated;
+}
+pullClaudeCost();setInterval(pullClaudeCost,5*60*1000);
+document.getElementById("pfUnlock").addEventListener("click",()=>setTimeout(pullClaudeCost,1500));
 document.getElementById("pfUnlock").addEventListener("click",()=>setTimeout(pullUsage,1500));
 
 /* ---------- 利多利空小欄位：讀 data/news.json（爬蟲技師每小時更新） ---------- */
