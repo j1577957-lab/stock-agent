@@ -39,7 +39,7 @@ jobs:
         run: |
           pip install -q requests
           python -m agent.etf_active | tee "$RUNNER_TEMP/etf.log"
-          mkdir -p "$RUNNER_TEMP/out" && cp -r docs/data/etf docs/data/etf_changes.json "$RUNNER_TEMP/out/"
+          mkdir -p "$RUNNER_TEMP/out" && cp -r docs/data/etf docs/data/etf_changes.json docs/data/etf_log.txt "$RUNNER_TEMP/out/"
           { echo '## 主動式 ETF 爬蟲執行紀錄'; echo '```'; cat "$RUNNER_TEMP/etf.log"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
 
       - name: 更新網頁資料＋技師設回待命
@@ -52,7 +52,7 @@ jobs:
             git fetch -q origin "$GITHUB_REF_NAME" && git reset -q --hard "origin/$GITHUB_REF_NAME"
             [ -d "$RUNNER_TEMP/out" ] && mkdir -p docs/data && cp -r "$RUNNER_TEMP/out/." docs/data/
             python agent/status.py idle crawl "$MSG"
-            git add docs/data/etf docs/data/etf_changes.json docs/status.json 2>/dev/null; git add docs/status.json
+            git add docs/data/etf docs/data/etf_changes.json docs/data/etf_log.txt docs/status.json 2>/dev/null; git add docs/status.json
             git commit -q -m "更新主動ETF持股" && git push -q && exit 0
             sleep $((i * 4))
           done

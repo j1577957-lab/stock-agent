@@ -40,8 +40,12 @@ ROW = re.compile(r"(.+?)\((\w+)\.(TW|TWO)\)\s+([\d.]+)\s+([\d,]+(?:\.\d+)?)")
 DATE = re.compile(r"(20\d\d)[/-](\d{1,2})[/-](\d{1,2})")
 
 
+LOG_LINES: list[str] = []
+
+
 def log(msg: str) -> None:
     print(msg, flush=True)
+    LOG_LINES.append(msg)
 
 
 def text_of(fragment: str) -> str:
@@ -124,7 +128,7 @@ def diff(hist: dict) -> dict | None:
     for sym in set(a) | set(b):
         sa = a.get(sym, {}).get("shares", 0)
         sb = b.get(sym, {}).get("shares", 0)
-        if sa == sb:
+        if abs(sb - sa) < 1000 and sa and sb:  # 不到 1 張的差異視為雜訊（股數四捨五入）
             continue
         kind = "新買進" if sa == 0 else "出清" if sb == 0 else "加碼" if sb > sa else "減碼"
         nm = (b.get(sym) or a.get(sym))["name"]
@@ -132,6 +136,39 @@ def diff(hist: dict) -> dict | None:
                                "delta": sb - sa, "weight": b.get(sym, {}).get("weight", 0)})
     out["changes"].sort(key=lambda c: -abs(c["delta"]))
     return out
+
+
+SEED_URL = "https://xiaoyu-etf.pages.dev/etf/{code}"
+SEED_ROW = re.compile(r"^\d+\s+(\w+)\s+(.+?)\s+([\d.]+)%\s+([\d,]+)\s")
+
+
+def fetch_prev_from_seed(code: str, before: str) -> tuple[str, dict] | None:
+    """第一次執行時沒有「前一天」可以比，改從籌碼小宇網站補抓前一天的持股（張數）。"""
+    try:
+        r = requests.get(SEED_URL.format(code=code), headers=HEADERS, timeout=20)
+        r.raise_for_status()
+        r.encoding = "utf-8"
+    except Exception as e:
+        log(f"    ✗ 補抓 {code} 失敗：{e}")
+        return None
+    page = r.text
+    dates = [f"{y}-{int(m):02d}-{int(d):02d}" for y, m, d in DATE.findall(page)]
+    dates = [d for d in dates if d < before]
+    if not dates:
+        log(f"    · {code} 補抓來源沒有比 {before} 更早的日期")
+        return None
+    d = max(dates)
+    holdings = {}
+    for tr in re.findall(r"<tr[^>]*>(.*?)</tr>", page, re.S | re.I):
+        m = SEED_ROW.match(text_of(tr))
+        if m:
+            sym, nm, w, z = m.groups()
+            holdings[sym] = {"name": nm.strip(), "weight": float(w), "shares": float(z.replace(",", "")) * 1000}
+    if not holdings:
+        log(f"    · {code} 補抓來源讀不到持股表")
+        return None
+    log(f"    ✓ 補抓 {code} 前一天（{d}）持股 {len(holdings)} 檔，來源：籌碼小宇")
+    return d, holdings
 
 
 def lots(n: float) -> str:
@@ -160,7 +197,16 @@ def main() -> str:
         if not info["date"]:
             log(f"  ? {info['code']} 找不到資料日期，略過比較")
             continue
-        d = diff(save_snapshot(info))
+        hist = save_snapshot(info)
+        if len(hist["days"]) < 2:
+            seed = fetch_prev_from_seed(info["code"], info["date"])
+            time.sleep(0.8)
+            if seed:
+                hist["days"][seed[0]] = seed[1]
+                hist["days"] = dict(sorted(hist["days"].items()))
+                (SNAP_DIR / f"{info['code']}.json").write_text(
+                    json.dumps(hist, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+        d = diff(hist)
         if d is None:
             no_prev.append(info["code"])
             log(f"  · {info['code']} 只有 {info['date']} 一天的資料，下次執行才能比較")
@@ -193,6 +239,7 @@ def main() -> str:
     summary = (f"主動ETF：{len(found)} 檔，被加碼 {len(buys)} 檔股票" + (f"（{top}）" if top else "")
                if diffs else f"主動ETF：已記錄 {len(found)} 檔持股快照，下次執行開始比對加碼")
     log("\n" + summary)
+    (ROOT / "docs" / "data" / "etf_log.txt").write_text("\n".join(LOG_LINES) + "\n", encoding="utf-8")
     return summary
 
 
