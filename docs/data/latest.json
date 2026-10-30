@@ -243,12 +243,14 @@
   ]
  },
  "tw": {
-  "mode": "tw_post",
-  "time": "2026-10-30 14:37",
+  "mode": "tw_scan",
+  "time": "2026-10-30 14:40",
   "stocks": [
    {
     "symbol": "5465.TWO",
     "name": "富驊",
+    "holding": false,
+    "ma20_cross": null,
     "price": 37.8,
     "change_pct": 2.44,
     "date": "2026-10-30",
@@ -264,7 +266,7 @@
     "macd_hist": -0.319,
     "vol_ratio": 0.66,
     "high20_prev": 45.35,
-    "vwap": 37.46,
+    "vwap": 37.22,
     "score": 0,
     "reasons": [],
     "blockers": [],
@@ -285,6 +287,8 @@
    {
     "symbol": "00406A.TW",
     "name": "主動中信台灣收益",
+    "holding": false,
+    "ma20_cross": null,
     "price": 8.6,
     "change_pct": -6.32,
     "date": "2026-10-30",
@@ -327,6 +331,8 @@
    {
     "symbol": "1802.TW",
     "name": "台玻",
+    "holding": false,
+    "ma20_cross": null,
     "price": 62.3,
     "change_pct": 0.48,
     "date": "2026-10-30",
@@ -365,6 +371,8 @@
    {
     "symbol": "2409.TW",
     "name": "友達",
+    "holding": false,
+    "ma20_cross": null,
     "price": 30.65,
     "change_pct": -9.99,
     "date": "2026-10-30",
@@ -404,6 +412,8 @@
    {
     "symbol": "2303.TW",
     "name": "聯電",
+    "holding": false,
+    "ma20_cross": null,
     "price": 111.5,
     "change_pct": -3.46,
     "date": "2026-10-30",
@@ -446,6 +456,8 @@
    {
     "symbol": "6182.TWO",
     "name": "合晶",
+    "holding": false,
+    "ma20_cross": null,
     "price": 93.9,
     "change_pct": -6.57,
     "date": "2026-10-30",
@@ -485,6 +497,8 @@
    {
     "symbol": "8261.TW",
     "name": "富鼎",
+    "holding": false,
+    "ma20_cross": null,
     "price": 139.5,
     "change_pct": -5.42,
     "date": "2026-10-30",
@@ -526,6 +540,8 @@
    {
     "symbol": "2449.TW",
     "name": "京元電子",
+    "holding": false,
+    "ma20_cross": null,
     "price": 253.5,
     "change_pct": -5.94,
     "date": "2026-10-30",
@@ -565,6 +581,8 @@
    {
     "symbol": "2375.TW",
     "name": "凱美",
+    "holding": false,
+    "ma20_cross": null,
     "price": 110.0,
     "change_pct": -6.38,
     "date": "2026-10-30",
@@ -604,6 +622,8 @@
    {
     "symbol": "00685L.TW",
     "name": "群益臺灣加權正2",
+    "holding": true,
+    "ma20_cross": null,
     "price": 11.24,
     "change_pct": -7.94,
     "date": "2026-10-30",
@@ -641,6 +661,94 @@
      11.75,
      12.21,
      11.24
+    ]
+   },
+   {
+    "symbol": "00631L.TW",
+    "name": "元大台灣50正2",
+    "holding": true,
+    "ma20_cross": null,
+    "price": 34.16,
+    "change_pct": -7.38,
+    "date": "2026-10-30",
+    "is_today": true,
+    "ma5": 35.57,
+    "ma10": 36.11,
+    "ma20": 38.27,
+    "ma60": 36.66,
+    "above_ma20_pct": -10.7,
+    "rsi": 36.0,
+    "k": 21.0,
+    "d": 18.0,
+    "macd_hist": -0.521,
+    "vol_ratio": 2.21,
+    "high20_prev": 41.94,
+    "vwap": 34.07,
+    "score": 2,
+    "reasons": [
+     "量能放大 2.2 倍",
+     "KD 低檔黃金交叉（K=21）"
+    ],
+    "blockers": [
+     "股價在月線之下",
+     "月線往下彎"
+    ],
+    "candidate": false,
+    "recent_closes": [
+     37.14,
+     37.15,
+     36.51,
+     35.87,
+     36.61,
+     35.61,
+     35.61,
+     35.6,
+     36.88,
+     34.16
+    ]
+   },
+   {
+    "symbol": "00670L.TW",
+    "name": "富邦NASDAQ正2",
+    "holding": true,
+    "ma20_cross": null,
+    "price": 187.8,
+    "change_pct": -6.15,
+    "date": "2026-10-30",
+    "is_today": true,
+    "ma5": 194.24,
+    "ma10": 196.83,
+    "ma20": 206.25,
+    "ma60": 202.39,
+    "above_ma20_pct": -8.9,
+    "rsi": 37.0,
+    "k": 21.0,
+    "d": 18.0,
+    "macd_hist": -2.234,
+    "vol_ratio": 2.81,
+    "high20_prev": 221.7,
+    "vwap": 186.45,
+    "score": 2,
+    "reasons": [
+     "量能放大 2.8 倍",
+     "KD 低檔黃金交叉（K=21）"
+    ],
+    "blockers": [
+     "股價在月線之下",
+     "月線往下彎"
+    ],
+    "candidate": false,
+    "recent_closes": [
+     200.25,
+     203.45,
+     198.15,
+     195.8,
+     199.45,
+     195.3,
+     195.3,
+     192.7,
+     200.1,
+     187.8
     ]
    }
   ]
