@@ -62,6 +62,8 @@ BEARISH = {
     "恐慌": 1, "賣壓": 1, "拋售": 2, "地緣": 1, "戰爭": 1,
 }
 # 這些詞出現時，代表上面的詞被「否定」了（例如「漲勢不再」），那個方向不算分
+# 標題有這些字的通常是討論區發文，不是新聞，略過
+NOISE = ("股市爆料", "爆料同學會", "討論區", "PTT")
 NEGATIONS = ("不再", "收斂", "縮小", "暫緩", "解除", "落空")
 
 
@@ -138,7 +140,7 @@ def crawl(market: str, old: list[dict], sources: list | None = None, keep: int =
             continue
         for it in items:
             key = norm(it["title"])
-            if not key or key in seen or it["time"] < cutoff:
+            if not key or key in seen or it["time"] < cutoff or any(w in it["title"] for w in NOISE):
                 continue
             seen[key] = {**it, "time": it["time"].isoformat(), **classify(it["title"])}
             new += 1
