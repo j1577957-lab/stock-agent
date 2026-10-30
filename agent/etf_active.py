@@ -128,7 +128,7 @@ def diff(hist: dict) -> dict | None:
     for sym in set(a) | set(b):
         sa = a.get(sym, {}).get("shares", 0)
         sb = b.get(sym, {}).get("shares", 0)
-        if abs(sb - sa) < 1000 and sa and sb:  # 不到 1 張的差異視為雜訊（股數四捨五入）
+        if abs(sb - sa) < 1000:  # 不到 1 張的差異（零股、四捨五入）視為雜訊
             continue
         kind = "新買進" if sa == 0 else "出清" if sb == 0 else "加碼" if sb > sa else "減碼"
         nm = (b.get(sym) or a.get(sym))["name"]
