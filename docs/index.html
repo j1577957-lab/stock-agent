@@ -889,6 +889,16 @@ function init3d(){
   const cars=TEAMS.map((t,k)=>{const c=makeCar(t);scene.add(c.car);const g=GRID(k);
     return {team:t,obj:c.car,rain:c.rain,s:g.s,lat:g.lat-RLs[wrap(Math.round(g.s/DS))],latT:0,v:0,mode:"track",a:0,stopT:0,pitReq:false,lapStart:0,lap:0,last:null,best:null,box:A_G0+.4-(k?BAY*(2*k):0),side:0,pose:{},pitDone:0,nextPit:6+Math.random()*10}});
   const ours=cars[0];
+  /* ---------- 持股賽車：持股依損益排名，第 1 名的車最快、排在計時塔最上面 ---------- */
+  let holdBasis="";
+  function setHoldings(list,basis){
+    cars.forEach(c=>{if(c.hold){c.team.skill=c.team.baseSkill;c.hold=null;c.nextPit=c.lap+6+Math.random()*10}});
+    const pool=cars.filter(c=>c!==ours);
+    list.slice(0,pool.length).forEach((h,i)=>{const c=pool[i];if(c.team.baseSkill==null)c.team.baseSkill=c.team.skill;
+      c.team.skill=1.035-i*.007;c.hold={...h,rank:i};c.nextPit=1e9});
+    holdBasis=basis||"";
+  }
+  window.pitRace={setHoldings};
   let raceT=0,lightsT=still?99:0,go=still,lightsOn=0;
   if(still)cars.forEach((c,k)=>{c.s=k*(L/cars.length)+40;c.v=vProf[wrap(Math.round(c.s/DS))]});
   const fmt=t=>t==null?"--":`${Math.floor(t/60)}:${(t%60).toFixed(3).padStart(6,"0")}`;
@@ -975,15 +985,19 @@ function init3d(){
     const r=cv.getBoundingClientRect();ray.setFromCamera({x:(e.clientX-r.left)/r.width*2-1,y:-(e.clientY-r.top)/r.height*2+1},camera);
     const hits=ray.intersectObjects([...crew.map(m=>rigs[m.id].pick),dogPick,...cars.map(c=>c.obj)],true);if(!hits.length)return;
     const o=hits[0].object;if(o===dogPick)return petDog();if(o.userData.id)return showDetail(o.userData.id);
-    const car=cars.find(c=>c.obj===o.parent);if(car){follow=car;setMode("chase");log("賽車工程師",`鏡頭跟著 #${car.team.no} ${car.team.name}。`)}});
+    const car=cars.find(c=>c.obj===o.parent);if(car){follow=car;setMode("chase");log("賽車工程師",`鏡頭跟著 #${car.team.no} ${car.hold?car.hold.name:car.team.name}。`)}});
 
   /* ---------- 計時塔、速度表、小地圖 ---------- */
   const tower=document.getElementById("tower"),speedo=document.getElementById("speedo"),mm=document.getElementById("minimap"),mg=mm.getContext("2d");
-  const ranked=()=>cars.slice().sort((a,b)=>b.s-a.s);
+  const ranked=()=>{const h=cars.filter(c=>c.hold).sort((a,b)=>a.hold.rank-b.hold.rank);
+    return [...h,...cars.filter(c=>!c.hold).sort((a,b)=>b.s-a.s)]};
   function paintTower(){const r=ranked(),lead=r[0],avg=55;
-    tower.innerHTML=`<div class="tw-h">${go?"LAP "+Math.max(1,lead.lap):"起跑準備 "+"●".repeat(lightsOn)}</div>`+r.map((c,k)=>{const gap=k?"+"+((lead.s-c.s)/avg).toFixed(1):"Leader";
-      return `<button class="tw-r${c===ours?" me":""}${c===follow&&mode!=="garage"&&mode!=="overview"?" fol":""}" data-i="${cars.indexOf(c)}"><b>${k+1}</b><i style="background:${c.team.c}"></i><span>${c.team.code}</span><em>${c.mode==="pit"?"PIT":gap}</em></button>`}).join("")+
-      `<div class="tw-f">#07 最快 ${fmt(ours.best)}<br>理論圈速 ${fmt(LAP_IDEAL)}</div>`;
+    const lastHold=r.filter(c=>c.hold).pop(),ref=lastHold||lead;
+    tower.innerHTML=`<div class="tw-h">${go?"LAP "+Math.max(1,lead.lap):"起跑準備 "+"●".repeat(lightsOn)}</div>`+r.map((c,k)=>{
+      const gap=c.hold?c.hold.label:(k?"+"+(Math.abs(ref.s-c.s)/avg).toFixed(1):"Leader");
+      const cls=c.hold?(c.hold.score>0?' style="color:var(--red)"':c.hold.score<0?' style="color:var(--ok)"':""):"";
+      return `<button class="tw-r${c===ours?" me":""}${c===follow&&mode!=="garage"&&mode!=="overview"?" fol":""}" data-i="${cars.indexOf(c)}" title="${c.hold?c.hold.name:c.team.name}"><b>${k+1}</b><i style="background:${c.team.c}"></i><span>${c.hold?c.hold.short:c.team.code}</span><em${cls}>${c.mode==="pit"?"PIT":gap}</em></button>`}).join("")+
+      `<div class="tw-f">${holdBasis?holdBasis+"<br>":""}#07 最快 ${fmt(ours.best)}<br>理論圈速 ${fmt(LAP_IDEAL)}</div>`;
     tower.querySelectorAll(".tw-r").forEach(b=>b.onclick=()=>{follow=cars[+b.dataset.i];if(mode==="garage"||mode==="overview")setMode("chase")})}
   const mmB={x0:Math.min(...cx),x1:Math.max(...cx),z0:Math.min(...cz),z1:Math.max(...cz)};
   function mmXY(x,z){const w=mm.width,h=mm.height,pad=8*devicePixelRatio,s=Math.min((w-2*pad)/(mmB.x1-mmB.x0),(h-2*pad)/(mmB.z1-mmB.z0));
@@ -1077,7 +1091,7 @@ function init3d(){
     uiT+=dt;boardT+=dt;skyT+=dt;
     if(boardT>.5){boardT=0;paintBoard();const r=ranked();paintChart({kmh:ours.v*3.6,pos:r.indexOf(ours)+1,lap:Math.max(1,ours.lap),last:ours.last&&fmt(ours.last)})}
     if(uiT>.25){uiT=0;paintTower();paintMini();
-      const f=follow;speedo.hidden=!(mode==="chase"||mode==="onboard"||mode==="tv");if(!speedo.hidden)speedo.innerHTML=`<b style="--c:${f.team.c}">#${f.team.no} ${f.team.name}</b><span>${Math.round(f.v*3.6)}<small> km/h</small></span><em>${f.mode==="pit"?"PIT LANE":"LAP "+Math.max(1,f.lap)} ・ 上圈 ${fmt(f.last)}</em>`}
+      const f=follow;speedo.hidden=!(mode==="chase"||mode==="onboard"||mode==="tv");if(!speedo.hidden)speedo.innerHTML=`<b style="--c:${f.team.c}">#${f.team.no} ${f.hold?f.hold.name+" "+f.hold.label:f.team.name}</b><span>${Math.round(f.v*3.6)}<small> km/h</small></span><em>${f.mode==="pit"?"PIT LANE":"LAP "+Math.max(1,f.lap)} ・ 上圈 ${fmt(f.last)}</em>`}
     if(skyT>30){skyT=0;applySky()}
     frame(dt);
     if(dt>1/26)slow+=dt;else slow=Math.max(0,slow-dt*.5);if(slow>2&&dpr>1){dpr=Math.max(1,dpr-.25);resize();slow=0}}
@@ -1402,6 +1416,14 @@ async function pullPortfolio(){
     sum.innerHTML=`<span>市值 <b>${money(mv)}</b></span><span>成本 <b>${money(cost)}</b></span><span>損益 <b class="${cl}">${d>0?"+":""}${money(d)}（${(d/cost*100).toFixed(2)}%）</b></span>`}
   else sum.innerHTML=pfPriv?'<span>按「編輯股數／成本」填入後就會計算損益</span>':"";
   const t=(latest&&latest.tw&&latest.tw.time)||"--";document.getElementById("pfTime").textContent="價格 "+t.slice(5);
+  /* 賽車排名：有通關密碼 → 依損益金額；沒有 → 依今日漲跌幅 */
+  const usePL=!!(pfPriv&&list.some(h=>pfPriv[h.symbol]&&bySym[h.symbol]&&bySym[h.symbol].price));
+  const race=list.map(h=>{const s=bySym[h.symbol]||{},p=(pfPriv||{})[h.symbol];
+      const short=h.symbol.replace(/\.TWO?$/,"");
+      if(usePL){if(!p||!s.price)return null;const d=(s.price-p.avg)*p.shares;return {symbol:h.symbol,name:h.name,short,score:d,label:(d>0?"+":"")+money(d)}}
+      if(s.change_pct==null)return null;return {symbol:h.symbol,name:h.name,short,score:s.change_pct,label:(s.change_pct>0?"+":"")+s.change_pct+"%"}})
+    .filter(Boolean).sort((a,b)=>b.score-a.score);
+  if(window.pitRace)window.pitRace.setHoldings(race,race.length?(usePL?"持股依損益排名":"持股依今日漲跌（解鎖看損益）"):"");
   pfList=list;
 }
 let pfList=[];
