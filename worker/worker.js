@@ -7,6 +7,7 @@
  *   PASSCODE           自己設的通關密碼（網頁第一次送出任務時會問你）
  *   FINMIND_TOKEN      （選填）FinMind 台股資料金鑰，有放就能查完整台股資料
  *   GITHUB_TOKEN       準時鬧鐘用：GitHub 細粒度權杖（Actions 讀寫，只限 stock-agent）
+ *   CF_API_TOKEN、CF_ACCOUNT_ID  （選填）網頁顯示 Cloudflare 用量用
  *
  * 通訊紀錄存在 Cloudflare 的 Durable Object（內建 SQLite 資料庫，免費方案可用），
  * 部署時會自動建立，不需要另外設定。
@@ -260,6 +261,53 @@ async function askClaude(env, member, task) {
   return "查詢步驟太多，先停在這裡。可以把問題問得更具體一點再試一次。";
 }
 
+/* ---------- Cloudflare 用量（給網頁「用量與費用」小格） ----------
+   需要 Secret：CF_API_TOKEN（權限 Account Analytics: Read）、CF_ACCOUNT_ID
+   免費方案：Workers 每天 10 萬次請求（UTC 00:00＝台灣 08:00 歸零），Durable Objects 每天 10 萬次請求，費用 0 元 */
+const FREE_DAILY = { workers: 100000, durable: 100000 };
+async function cfGraphQL(env, query, variables) {
+  const r = await fetch("https://api.cloudflare.com/client/v4/graphql", {
+    method: "POST",
+    headers: { Authorization: "Bearer " + env.CF_API_TOKEN, "Content-Type": "application/json" },
+    body: JSON.stringify({ query, variables }),
+  });
+  const d = await r.json();
+  if (d.errors?.length) throw new Error(d.errors[0].message);
+  return d.data?.viewer?.accounts?.[0] || {};
+}
+const sumOf = (rows, key) => (rows || []).reduce((t, r) => t + (r.sum?.[key] || 0), 0);
+async function cloudflareUsage(env) {
+  if (!env.CF_API_TOKEN || !env.CF_ACCOUNT_ID) return { configured: false };
+  const store = env.CHAT ? chatStore(env) : null;
+  const cached = store && (await store.getValue("usage_cache"));
+  if (cached && Date.now() - cached.at < 5 * 60 * 1000) return cached.data;   // 5 分鐘內用快取
+
+  const now = new Date();
+  const day = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+  const month = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1));
+  const q = `query($acct:String!,$s:Time!,$e:Time!){viewer{accounts(filter:{accountTag:$acct}){
+    w:workersInvocationsAdaptive(limit:1000,filter:{datetime_geq:$s,datetime_leq:$e}){sum{requests errors subrequests}}
+    d:durableObjectsInvocationsAdaptiveGroups(limit:1000,filter:{datetime_geq:$s,datetime_leq:$e}){sum{requests}}}}}`;
+  const run = (s) => cfGraphQL(env, q, { acct: env.CF_ACCOUNT_ID, s: s.toISOString(), e: now.toISOString() });
+  const [today, mtd] = await Promise.all([run(day), run(month)]);
+  const data = {
+    configured: true,
+    updated: taipeiStamp(),
+    plan: "免費方案",
+    cost_usd: 0,
+    today: {
+      workers: sumOf(today.w, "requests"), errors: sumOf(today.w, "errors"),
+      subrequests: sumOf(today.w, "subrequests"), durable: sumOf(today.d, "requests"),
+    },
+    month: { workers: sumOf(mtd.w, "requests"), durable: sumOf(mtd.d, "requests") },
+    limits: FREE_DAILY,
+  };
+  // 如果改用付費方案（每月 US$5，含 1000 萬次請求），超出部分每 100 萬次 US$0.30 —— 給使用者參考
+  data.paid_estimate_usd = 5 + Math.max(0, data.month.workers - 10_000_000) / 1e6 * 0.3;
+  if (store) await store.setValue("usage_cache", { at: Date.now(), data });
+  return data;
+}
+
 /* ---------- 準時鬧鐘：GitHub 的排程常常延遲或跳過，改由 Cloudflare 準時叫醒 ----------
    需要 Secret：GITHUB_TOKEN（GitHub 細粒度權杖，只給 stock-agent 專案的 Actions 讀寫權限） */
 const GH_REPO = "j1577957-lab/stock-agent";
@@ -298,6 +346,12 @@ export default {
     const { task, crew = "eng", passcode, action = "task" } = input || {};
 
     if (!env.PASSCODE || passcode !== env.PASSCODE) return json({ error: "通關密碼錯誤" }, 401, origin);
+
+    // Cloudflare 用量（不含私人資料，但一樣要通關密碼，避免被亂刷）
+    if (action === "usage") {
+      try { return json(await cloudflareUsage(env), 200, origin); }
+      catch (e) { return json({ error: "讀取用量失敗：" + e.message }, 500, origin); }
+    }
 
     // 持股股數與成本（私人資料）
     if (action === "holdings_get" || action === "holdings_set") {

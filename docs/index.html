@@ -152,6 +152,13 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 .lb.利多,.lb.偏多{background:var(--red)} .lb.利空,.lb.偏空{background:var(--ok)}
 .pf-edit{display:grid;gap:6px;margin-top:10px}
 .pf-edit label{display:grid;grid-template-columns:1fr 88px 88px;gap:6px;align-items:center;font-size:13px}
+.us-row{display:grid;grid-template-columns:110px 1fr auto;gap:10px;align-items:center;font-size:13.5px;padding:7px 0;border-bottom:2px dotted var(--line)}
+.us-row:last-child{border-bottom:0}
+.us-row b{font-family:var(--pixel);font-weight:400;color:var(--amber);font-size:13px}
+.us-row em{font-style:normal;font-family:var(--pixel);font-size:13px;color:var(--ok);white-space:nowrap}
+.us-bar{height:8px;background:var(--bg);border:1px solid var(--line);margin-top:4px}
+.us-bar i{display:block;height:100%;background:var(--ok)}
+.us-bar i.hi{background:var(--amber)} .us-bar i.max{background:var(--red)}
 .pf-edit input{width:100%;background:var(--bg);color:var(--ink);border:2px solid var(--line);border-radius:0;padding:5px 6px;font:14px var(--body)}
 /* 利多利空小欄位（和 CREW 狀態欄同大小） */
 .ntabs{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
@@ -220,6 +227,10 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
     <div class="tblwrap" id="pfTable"><p class="note">等策略技師下一次掃描後就會出現。</p></div>
     <div class="row"><button id="pfUnlock">🔒 顯示損益</button><button id="pfEditBtn">編輯股數／成本</button></div>
     <div class="pf-edit" id="pfEdit" hidden></div>
+  </div>
+  <div class="card px">
+    <p class="label"><span>USAGE ・ 用量與費用</span><span id="usTime">--</span></p>
+    <div id="usage"><p class="note">載入中…</p></div>
   </div>
   <div class="card px">
     <p class="label"><span>STRATEGY ・ 股票看板</span><span id="stkTime">--</span></p>
@@ -1457,6 +1468,40 @@ document.getElementById("pfEditBtn").onclick=async()=>{
   };
 };
 pfLoadPrivate(false).then(pullPortfolio);setInterval(pullPortfolio,60000);
+
+/* ---------- 用量與費用：Cloudflare（後台查）、GitHub Actions（公開 API）、Claude（估算呼叫次數） ---------- */
+const GH_API="https://api.github.com/repos/j1577957-lab/stock-agent/actions";
+const n0=v=>(v||0).toLocaleString("zh-TW");
+function bar(used,limit){const p=Math.min(100,used/limit*100);return `<div class="us-bar" title="${p.toFixed(1)}%"><i class="${p>90?"max":p>60?"hi":""}" style="width:${Math.max(p,.5)}%"></i></div>`}
+async function pullUsage(){
+  const box=document.getElementById("usage"),rows=[];
+  const tpeDay=new Date(Date.now()+8*3600e3).toISOString().slice(0,10);
+  /* Cloudflare */
+  let cf=null,cfMsg="";
+  if(!WORKER_URL)cfMsg="還沒有接後台";
+  else if(!storedPass())cfMsg="按「🔒 顯示損益」輸入通關密碼後顯示";
+  else{try{cf=await api({action:"usage"})}catch(e){cfMsg="讀取失敗："+esc(e.message)}}
+  if(cf&&cf.configured){const t=cf.today,l=cf.limits;
+    rows.push(`<div class="us-row"><b>Cloudflare</b><span>今日請求 ${n0(t.workers)} / ${n0(l.workers)}${bar(t.workers,l.workers)}
+      <span class="sym">資料庫 ${n0(t.durable)} / ${n0(l.durable)}・錯誤 ${n0(t.errors)}・本月 ${n0(cf.month.workers)} 次・台灣 08:00 歸零</span></span><em>NT$0<br><span class="sym">${esc(cf.plan)}</span></em></div>`);
+    document.getElementById("usTime").textContent="更新 "+cf.updated}
+  else rows.push(`<div class="us-row"><b>Cloudflare</b><span class="sym">${cf&&!cf.configured?"用量查詢還沒設定（需要在 Cloudflare 加 CF_API_TOKEN、CF_ACCOUNT_ID 兩個密鑰）":cfMsg}</span><em>NT$0<br><span class="sym">免費方案</span></em></div>`);
+  /* GitHub Actions：公開專案免費 */
+  try{const cnt=async f=>{const r=await fetch(`${GH_API}/workflows/${f}/runs?per_page=1&created=>=${tpeDay}T00:00:00%2B08:00`);return r.ok?(await r.json()).total_count:null};
+    const [a,b]=await Promise.all([cnt("stock-agent.yml"),cnt("news-crawler.yml")]);
+    rows.push(`<div class="us-row"><b>GitHub Actions</b><span>今日執行 ${a==null||b==null?"-":n0(a+b)} 次<br><span class="sym">策略技師 ${a??"-"}・爬蟲技師 ${b??"-"}（公開專案不限分鐘數）</span></span><em>NT$0<br><span class="sym">公開專案</span></em></div>`)}
+  catch(e){}
+  /* Claude API：估算今天的 AI 呼叫次數（實際費用以 Anthropic 帳單為準） */
+  try{const get=n=>fetch("data/"+n+"?t="+Date.now()).then(r=>r.ok?r.json():[]).catch(()=>[]);
+    const [sig,rep]=await Promise.all([get("signals.json"),get("reports.json")]);
+    const today=x=>(x.time||"").startsWith(tpeDay)&&!x.dry_run;
+    const ns=(sig||[]).filter(today).length,nr=(rep||[]).filter(today).length;
+    rows.push(`<div class="us-row"><b>Claude API</b><span>今日 AI 呼叫約 ${ns*2+nr} 次<br><span class="sym">買點分析＋判斷 ${ns} 檔・盤前盤後報告 ${nr} 份（不含指揮站問答與晨報）</span></span><em><a class="more" style="margin:0" href="https://console.anthropic.com/settings/billing" target="_blank" rel="noopener">看帳單 ›</a></em></div>`)}
+  catch(e){}
+  box.innerHTML=rows.join("")||'<p class="note">讀不到用量資料。</p>';
+}
+pullUsage();setInterval(pullUsage,5*60*1000);
+document.getElementById("pfUnlock").addEventListener("click",()=>setTimeout(pullUsage,1500));
 
 /* ---------- 利多利空小欄位：讀 data/news.json（爬蟲技師每小時更新） ---------- */
 let news={},nMkt="tw",nFil="all";
