@@ -38,11 +38,12 @@ h1 span{color:var(--amber)}
 .modes button.on{background:var(--amber);color:#0d0e12;border-color:var(--amber)}
 .hud-r{position:absolute;right:8px;top:8px;display:flex;gap:4px}
 #boxbox{color:#ff6a55;border-color:#ff6a55}
-.tower{position:absolute;left:8px;top:42px;width:152px;background:rgba(13,14,18,.84);border:2px solid var(--line);font-size:12px;display:grid;pointer-events:auto}
+.tower{position:absolute;left:8px;top:42px;width:196px;background:rgba(13,14,18,.84);border:2px solid var(--line);font-size:12px;display:grid;pointer-events:auto}
 .tw-h{padding:3px 8px;color:var(--amber);border-bottom:1px solid var(--line)}
 .tw-r{display:grid;grid-template-columns:16px 4px 1fr auto;gap:6px;align-items:center;padding:1px 8px;background:none;border:0;box-shadow:none;color:var(--ink);font-family:var(--pixel);font-size:12px;text-align:left;line-height:1.5}
 .tw-r:active{transform:none}
 .tw-r b{font-weight:400;color:var(--mute)}
+.tw-r span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .tw-r i{width:4px;height:12px}
 .tw-r em{font-style:normal;color:var(--mute);font-variant-numeric:tabular-nums}
 .tw-r.me{background:rgba(216,56,42,.35)}
@@ -61,7 +62,7 @@ h1 span{color:var(--amber)}
 .stage.full{position:fixed;inset:0;z-index:50;box-shadow:none}
 .stage.full #cv{width:100%;height:100%;aspect-ratio:auto;touch-action:none}
 .stage.full .hud{inset:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
-@media (max-width:600px){.tower{width:132px}.tw-r{font-size:11px;line-height:1.4}.tw-r:nth-of-type(n+7):not(.me){display:none}.minimap{width:150px;height:84px}.stage:not(.full) .tower,.stage:not(.full) .minimap{display:none}.modes button,.hud-r button{font-size:11px;padding:2px 5px}.stage:not(.full) .speedo span{font-size:18px}}
+@media (max-width:600px){.tower{width:168px}.tw-r{font-size:11px;line-height:1.4}.tw-r:nth-of-type(n+7):not(.me){display:none}.minimap{width:150px;height:84px}.stage:not(.full) .tower,.stage:not(.full) .minimap{display:none}.modes button,.hud-r button{font-size:11px;padding:2px 5px}.stage:not(.full) .speedo span{font-size:18px}}
 
 .nogl-msg{padding:40px 16px;text-align:center}
 .lbl{position:absolute;transform:translate(-50%,-100%);font-family:var(--pixel);font-size:clamp(10px,1.9vw,13px);
@@ -482,14 +483,18 @@ function init3d(){
     {no:"27",code:"KUR",name:"KURO",c:"#1b1c22",a:"#d4a83a",h:"#d4a83a",skill:.978},
     {no:"31",code:"SOR",name:"SORA",c:"#6fc3f2",a:"#eef0f3",h:"#1f3a7a",skill:.975},
     {no:"63",code:"YUK",name:"YUKI",c:"#f4f5f7",a:"#d8382a",h:"#d8382a",skill:.972}];
+  /* 車身貼紙：隊名（持股車改成股票名稱，字太長會自動縮小）＋車號 */
+  function drawDecal(c,w,h,team,label){c.clearRect(0,0,w,h);c.textAlign="left";c.fillStyle=team.c==="#f4f5f7"||team.c==="#f2d230"||team.c==="#c9ced6"?"#15161a":"#ffffff";
+      const txt=label||team.name;let fs=58;
+      do{c.font=`italic 700 ${fs}px "Chakra Petch","Noto Sans TC","Arial Black",sans-serif`;fs-=2}while(c.measureText(txt).width>388&&fs>22);
+      c.textBaseline="middle";c.fillText(txt,14,50);
+      c.fillStyle="#f2c230";c.fillRect(410,14,92,68);c.fillStyle="#15161a";c.font='700 52px "Arial Black",sans-serif';c.textAlign="center";c.fillText(team.no,456,52)}
   function makeCar(team){
-    const g=new THREE.Group(),dec=ctex(512,96,(c,w,h)=>{c.clearRect(0,0,w,h);c.fillStyle=team.c==="#f4f5f7"||team.c==="#f2d230"||team.c==="#c9ced6"?"#15161a":"#ffffff";
-      c.font='italic 700 58px "Chakra Petch","Arial Black",sans-serif';c.textBaseline="middle";c.fillText(team.name,14,50);
-      c.fillStyle="#f2c230";c.fillRect(410,14,92,68);c.fillStyle="#15161a";c.font='700 52px "Arial Black",sans-serif';c.textAlign="center";c.fillText(team.no,456,52)});
+    const g=new THREE.Group(),dec=ctex(512,96,(c,w,h)=>drawDecal(c,w,h,team));
     const mats={paint:paint(team.c),accent:paint(team.a),helmet:paint(team.h),decal:new THREE.MeshStandardMaterial({map:dec,transparent:true,roughness:.3,polygonOffset:true,polygonOffsetFactor:-2}),
       rain:new THREE.MeshBasicMaterial({color:C("#3a0c08"),toneMapped:false})};
     Object.entries(CARGEO).forEach(([role,geo])=>{const m=new THREE.Mesh(geo,mats[role]||ROLE[role]);m.castShadow=role!=="decal";m.receiveShadow=true;g.add(m)});
-    g.rotation.order="YZX";g.userData.team=team;return {car:g,rain:mats.rain}}
+    g.rotation.order="YZX";g.userData.team=team;return {car:g,rain:mats.rain,decal:dec}}
 
   /* =====================================================================
      BOX 07 維修區（放在 pit 樓最靠出口的那一格；x 往賽道、z 沿主直線前進方向）
@@ -887,15 +892,23 @@ function init3d(){
      比賽：12 台車沿著速度曲線跑、會超車、會進站
      ===================================================================== */
   const cars=TEAMS.map((t,k)=>{const c=makeCar(t);scene.add(c.car);const g=GRID(k);
-    return {team:t,obj:c.car,rain:c.rain,s:g.s,lat:g.lat-RLs[wrap(Math.round(g.s/DS))],latT:0,v:0,mode:"track",a:0,stopT:0,pitReq:false,lapStart:0,lap:0,last:null,best:null,box:A_G0+.4-(k?BAY*(2*k):0),side:0,pose:{},pitDone:0,nextPit:6+Math.random()*10}});
+    return {team:t,obj:c.car,rain:c.rain,decal:c.decal,s:g.s,lat:g.lat-RLs[wrap(Math.round(g.s/DS))],latT:0,v:0,mode:"track",a:0,stopT:0,pitReq:false,lapStart:0,lap:0,last:null,best:null,box:A_G0+.4-(k?BAY*(2*k):0),side:0,pose:{},pitDone:0,nextPit:6+Math.random()*10}});
   const ours=cars[0];
   /* ---------- 持股賽車：持股依損益排名，第 1 名的車最快、排在計時塔最上面 ---------- */
   let holdBasis="";
+  function relabel(c,label){const u=c.decal&&c.decal.userData;if(!u||c.decalLabel===label)return;
+    drawDecal(u.g,u.w,u.h,c.team,label);c.decal.needsUpdate=true;c.decalLabel=label}
   function setHoldings(list,basis){
-    cars.forEach(c=>{if(c.hold){c.team.skill=c.team.baseSkill;c.hold=null;c.nextPit=c.lap+6+Math.random()*10}});
-    const pool=cars.filter(c=>c!==ours);
-    list.slice(0,pool.length).forEach((h,i)=>{const c=pool[i];if(c.team.baseSkill==null)c.team.baseSkill=c.team.skill;
-      c.team.skill=1.035-i*.007;c.hold={...h,rank:i};c.nextPit=1e9});
+    const pool=cars.filter(c=>c!==ours),bySym={};
+    pool.forEach(c=>{if(c.hold)bySym[c.hold.symbol]=c});
+    const used=new Set();
+    /* 同一檔持股盡量留在同一台車上，排名變了只換速度，不換車 */
+    const assign=list.slice(0,pool.length).map(h=>{const c=bySym[h.symbol];if(c){used.add(c);return [h,c]}return [h,null]});
+    const free=pool.filter(c=>!used.has(c)&&!c.hold).concat(pool.filter(c=>!used.has(c)&&c.hold));
+    assign.forEach(a=>{if(!a[1]){a[1]=free.shift();used.add(a[1])}});
+    pool.forEach(c=>{if(c.hold&&!used.has(c)){c.team.skill=c.team.baseSkill;c.hold=null;c.nextPit=c.lap+6+Math.random()*10;relabel(c,null)}});
+    assign.forEach(([h,c],i)=>{if(c.team.baseSkill==null)c.team.baseSkill=c.team.skill;
+      c.team.skill=1.035-i*.007;c.hold={...h,rank:i};c.nextPit=1e9;relabel(c,h.name)});
     holdBasis=basis||"";
   }
   window.pitRace={setHoldings};
@@ -996,7 +1009,7 @@ function init3d(){
     tower.innerHTML=`<div class="tw-h">${go?"LAP "+Math.max(1,lead.lap):"起跑準備 "+"●".repeat(lightsOn)}</div>`+r.map((c,k)=>{
       const gap=c.hold?c.hold.label:(k?"+"+(Math.abs(ref.s-c.s)/avg).toFixed(1):"Leader");
       const cls=c.hold?(c.hold.score>0?' style="color:var(--red)"':c.hold.score<0?' style="color:var(--ok)"':""):"";
-      return `<button class="tw-r${c===ours?" me":""}${c===follow&&mode!=="garage"&&mode!=="overview"?" fol":""}" data-i="${cars.indexOf(c)}" title="${c.hold?c.hold.name:c.team.name}"><b>${k+1}</b><i style="background:${c.team.c}"></i><span>${c.hold?c.hold.short:c.team.code}</span><em${cls}>${c.mode==="pit"?"PIT":gap}</em></button>`}).join("")+
+      return `<button class="tw-r${c===ours?" me":""}${c===follow&&mode!=="garage"&&mode!=="overview"?" fol":""}" data-i="${cars.indexOf(c)}" title="${c.hold?c.hold.name:c.team.name}"><b>${k+1}</b><i style="background:${c.team.c}"></i><span>${c.hold?c.hold.name:c.team.code}</span><em${cls}>${c.mode==="pit"?"PIT":gap}</em></button>`}).join("")+
       `<div class="tw-f">${holdBasis?holdBasis+"<br>":""}#07 最快 ${fmt(ours.best)}<br>理論圈速 ${fmt(LAP_IDEAL)}</div>`;
     tower.querySelectorAll(".tw-r").forEach(b=>b.onclick=()=>{follow=cars[+b.dataset.i];if(mode==="garage"||mode==="overview")setMode("chase")})}
   const mmB={x0:Math.min(...cx),x1:Math.max(...cx),z0:Math.min(...cz),z1:Math.max(...cz)};
