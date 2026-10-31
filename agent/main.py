@@ -72,6 +72,24 @@ def holding_alerts(snaps: list[dict], state: dict, cfg: dict, today: str, market
     return out
 
 
+def send_holding_alerts(snaps: list[dict], state: dict, cfg: dict, today: str, market: str,
+                        closing: bool = False) -> list[str]:
+    """檢查持股警示並發 Telegram／Email，回傳這次新發出的警示。"""
+    alerts = holding_alerts(snaps, state, cfg, today, market)
+    if alerts:
+        ncfg = cfg["notify"]
+        head = "💼 持股警示（收盤）" if closing else "💼 持股警示"
+        tail = "（收盤價；不構成投資建議）" if closing else "（價格可能延遲 15–20 分鐘；不構成投資建議）"
+        text = head + "\n" + "\n".join(alerts) + "\n\n" + tail
+        print(text)
+        if ncfg["telegram"]:
+            import html
+            notify.telegram(html.escape(text))
+        if ncfg["email"]:
+            notify.email(f"[股票Agent] {head}", text)
+    return alerts
+
+
 def scan(market: str, cfg: dict, *, intraday: bool, demo: bool) -> list[dict]:
     from agent import data
 
@@ -153,21 +171,13 @@ def run(mode: str, dry: bool, demo: bool) -> str | None:
                 if ncfg["email"]:
                     subject, body = notify.format_signal(sig, as_html=False)
                     notify.email(f"[股票Agent] {subject}", body)
-        alerts = holding_alerts(snaps, state, cfg, today, market)
-        if alerts:
-            text = "💼 持股警示\n" + "\n".join(alerts) + "\n\n（價格可能延遲 15–20 分鐘；不構成投資建議）"
-            print(text)
-            if ncfg["telegram"]:
-                import html
-                notify.telegram(html.escape(text))
-            if ncfg["email"]:
-                notify.email("[股票Agent] 💼 持股警示", text)
+        alerts = send_holding_alerts(snaps, state, cfg, today, market)
         notify.save_state(state)
         n_ok = sum(1 for s in snaps if not s.get('error'))
         n_c = sum(1 for s in snaps if s.get('candidate'))
         msg = f"{mkt_name}盤中掃描 {n_ok} 檔，{n_c} 檔通過初篩"
         msg += "；判斷：" + "、".join(results) if results else ""
-        return msg + ("；持股警示：" + "、".join(a.split("：")[0] for a in alerts) if alerts else "")
+        return msg + ("；持股警示：" + "、".join(dict.fromkeys(a.split("：")[0] for a in alerts)) if alerts else "")
 
     # 盤前 / 盤後
     if phase == "post" and not any(s.get("is_today") for s in snaps):
@@ -175,6 +185,11 @@ def run(mode: str, dry: bool, demo: bool) -> str | None:
         state[f"{market}_post_done"] = today
         notify.save_state(state)
         return f"{mkt_name}今天休市，不產生盤後報告"
+
+    # 收盤後補發持股警示：盤中已經發過的同一種警示不會重複（盤中沒被叫醒或漏掉時才會補發）
+    post_alerts = send_holding_alerts(snaps, state, cfg, today, market, closing=True) if phase == "post" else []
+    if post_alerts:
+        notify.save_state(state)
 
     extra = ""
     if phase == "post":
@@ -220,7 +235,8 @@ def run(mode: str, dry: bool, demo: bool) -> str | None:
     if not dry:  # 模擬測試不算數，不然會擋掉當天真正的報告
         state[f"{market}_{phase}_done"] = today
     notify.save_state(state)
-    return f"{mkt_name}{'盤前' if phase == 'pre' else '盤後'}報告已送出（Telegram／Email／儀表板）"
+    msg = f"{mkt_name}{'盤前' if phase == 'pre' else '盤後'}報告已送出（Telegram／Email／儀表板）"
+    return msg + ("；收盤持股警示：" + "、".join(dict.fromkeys(a.split("：")[0] for a in post_alerts)) if post_alerts else "")
 
 
 if __name__ == "__main__":
