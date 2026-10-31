@@ -63,7 +63,8 @@ BEARISH = {
 }
 # 這些詞出現時，代表上面的詞被「否定」了（例如「漲勢不再」），那個方向不算分
 # 標題有這些字的通常是討論區發文，不是新聞，略過
-NOISE = ("股市爆料", "爆料同學會", "討論區", "PTT")
+# 「個股概覽」是報價頁、「禮券／抽獎」是活動廣告，也一起略過
+NOISE = ("股市爆料", "爆料同學會", "討論區", "討論牆", "PTT", "個股概覽", "禮券", "抽獎")
 NEGATIONS = ("不再", "收斂", "縮小", "暫緩", "解除", "落空")
 
 
@@ -129,7 +130,9 @@ def norm(title: str) -> str:
 
 def crawl(market: str, old: list[dict], sources: list | None = None, keep: int = MAX_PER_MARKET) -> tuple[list[dict], int]:
     cutoff = datetime.now(timezone.utc) - timedelta(hours=KEEP_HOURS)
-    seen = {norm(n["title"]): n for n in old if datetime.fromisoformat(n["time"]) >= cutoff}
+    # 舊資料也重新過濾一次雜訊（篩選規則更新後，之前存下來的討論區發文才會被清掉）
+    seen = {norm(n["title"]): n for n in old
+            if datetime.fromisoformat(n["time"]) >= cutoff and not any(w in n["title"] for w in NOISE)}
     new = 0
     for kind, url in (sources or SOURCES[market]):
         try:
