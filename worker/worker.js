@@ -381,12 +381,49 @@ async function dispatchWorkflow(env, file) {
   return r.ok;
 }
 
+/* 省執行次數：沒事做的時段（盤前前、盤後報告已送出後）就不叫醒策略技師。
+   時段和 agent/clock.py 一樣；真正要做什麼仍由 GitHub 那邊的程式判斷。
+   只要有任何不確定（例如讀不到 state.json），一律照常叫醒，寧可多跑也不要漏跑。 */
+const MARKETS = {
+  tw: { tz: "Asia/Taipei", pre: [480, 539], intraday: [540, 815], post: [825, 959] },        // 08:00–08:59 / 09:00–13:35 / 13:45–15:59
+  us: { tz: "America/New_York", pre: [480, 569], intraday: [570, 965], post: [970, 1079] }, // 08:00–09:29 / 09:30–16:05 / 16:10–17:59
+};
+function localNow(tz, now = new Date()) {
+  const p = Object.fromEntries(new Intl.DateTimeFormat("en-US", {
+    timeZone: tz, year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", weekday: "short", hourCycle: "h23",
+  }).formatToParts(now).map((x) => [x.type, x.value]));
+  return { date: `${p.year}-${p.month}-${p.day}`, mins: Number(p.hour) * 60 + Number(p.minute), weekend: p.weekday === "Sat" || p.weekday === "Sun" };
+}
+async function stockAgentNeeded(now = new Date()) {
+  const phases = [];
+  for (const [m, cfg] of Object.entries(MARKETS)) {
+    const t = localNow(cfg.tz, now);
+    if (t.weekend) continue;
+    for (const ph of ["pre", "intraday", "post"])
+      if (t.mins >= cfg[ph][0] && t.mins <= cfg[ph][1]) phases.push({ m, ph, date: t.date });
+  }
+  if (!phases.length) return false;                              // 不在任何時段
+  if (phases.some((x) => x.ph === "intraday")) return true;      // 盤中一律跑
+  try {
+    const r = await fetch(SITE_DATA + "state.json?t=" + Date.now());
+    if (!r.ok) return true;
+    const state = await r.json();
+    return phases.some((x) => state[`${x.m}_${x.ph}_done`] !== x.date);  // 盤前/盤後今天還沒做完才跑
+  } catch {
+    return true;
+  }
+}
+
 export default {
   async scheduled(event, env, ctx) {
     if (!env.GITHUB_TOKEN) return console.log("尚未設定 GITHUB_TOKEN，略過");
-    // 爬蟲技師：每小時第 7 分；策略技師：交易相關時段每 15 分（時間判斷交給 GitHub 那邊的程式）
-    const file = event.cron === "7 * * * *" ? "news-crawler.yml" : "stock-agent.yml";
-    ctx.waitUntil(dispatchWorkflow(env, file));
+    // 爬蟲技師：每小時第 7 分；策略技師：交易相關時段每 15 分
+    if (event.cron === "7 * * * *") return ctx.waitUntil(dispatchWorkflow(env, "news-crawler.yml"));
+    ctx.waitUntil((async () => {
+      if (await stockAgentNeeded()) return dispatchWorkflow(env, "stock-agent.yml");
+      console.log("策略技師現在沒事做（不在時段內，或盤前/盤後報告已送出），略過");
+    })());
   },
 
   async fetch(request, env) {
@@ -396,7 +433,7 @@ export default {
       // 打開後台網址就能自我檢查：只顯示「有沒有設定」，不會顯示任何密鑰內容
       const has = (k) => (env[k] ? "✅ 已設定" : "❌ 沒有");
       return json({
-        ok: true, msg: "Pit Garage 後台運作中", version: "2026-10-31",
+        ok: true, msg: "Pit Garage 後台運作中", version: "2026-10-31b",
         密鑰檢查: {
           ANTHROPIC_API_KEY: has("ANTHROPIC_API_KEY"), PASSCODE: has("PASSCODE"), FINMIND_TOKEN: has("FINMIND_TOKEN"),
           GITHUB_TOKEN: has("GITHUB_TOKEN"), CF_API_TOKEN: has("CF_API_TOKEN"), CF_ACCOUNT_ID: has("CF_ACCOUNT_ID"),
