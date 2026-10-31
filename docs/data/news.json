@@ -1,6 +1,15 @@
 {
- "updated": "2026-10-31 17:07",
+ "updated": "2026-10-31 17:29",
  "tw": [
+  {
+   "title": "台股主動式誰10月最強？僅這一檔百億元高息ETF贏大盤| 存股族愛ETF | 股市",
+   "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBtWFRYMTh2ZENoU2F3NVl5bEx0MVZ5eWxRMGNOUEsxTzczT3N5RFgtMG9HOWZRZHc0STI0RHVSYW9XYW9MVHBCM1FrLUxFTzRjSDY0?oc=5",
+   "source": "UDN",
+   "time": "2026-10-31T09:07:13+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
   {
    "title": "台股周一要挫著等了嗎？不敗教主籲堅強活下去 列15檔「美而廉」股",
    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5HamI5aS1qN2RvN1pqT0R3d2FCWU83SFpQU09xb0FCQ3pyZ05rVHB4WW4tbzdmbXRwLS00N1Z5WU1YLUEzaWhuaXBKU2FOY1lMNzlnZnRmN08?oc=5",
@@ -311,10 +320,30 @@
    ]
   },
   {
+   "title": "個股概覽 | 個股 - 股市",
+   "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTFBfVGtPUmhQeF9nalNLNm9zTGJWQlREWTlFa2dVeEhkNElpN1d0OXlyaFF3U3NaYnBodklvejVEU1YtdkNl?oc=5",
+   "source": "CMoney",
+   "time": "2026-10-31T05:35:16+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
    "title": "〈熱門股〉研華Q3獲利創高、展望正向 無懼大盤跌千點逆勢收紅",
    "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9GenFhUlFSb3h4eTBDUkNsR2lNMG9LMWlOdFl4TUFwSDJBODV5T0NZWl92dmJadTVxN3U3clpsWHZ0d2l5ekJkMlZEUlk0X0U?oc=5",
    "source": "鉅亨網",
    "time": "2026-10-31T05:30:03+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "收紅"
+   ]
+  },
+  {
+   "title": "【本週復盤】金融股抗跌，「銀行金控」連3天收紅！-起漲K線",
+   "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOMnVFbkRsUTk2d2VJbTRBYWFzQklKb1lVcnNIQjlzSjhxMmpVTDVadk12VmIxeWpXSk1jNkpUTlFzRXJuOVN5RzVFVzBpWi1DOHZfNG1pTGU4RWNsQ0dXcW9pSmxEWHJDb3pTcURfRDE3MElVVGRwOURJRUxXbVFWdThTUFY?oc=5",
+   "source": "CMoney投資網誌",
+   "time": "2026-10-31T05:12:01+00:00",
    "label": "偏多",
    "score": 1,
    "hits": [
@@ -376,6 +405,18 @@
    ]
   },
   {
+   "title": "【台股盤後】10月下跌2728點！台股今跌1156點收45211點跌破半年線| 金融",
+   "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBodW9US3gxa0RHcHVsYk9DQ2psWHJENV9XYnlDd3JDeWlYYXFxY3JvUkpHbGRyMlJjbGZXZDRjWmxSc1VUeUhIdG03U1JHTlpjMjBUVUZGWENid0FUUlFlQ0oySGw2X2V4UVhPV19GelRzUVFLZFlYNEtvYnJlWFE?oc=5",
+   "source": "非凡新聞台",
+   "time": "2026-10-31T04:57:06+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "跌破",
+    "下跌"
+   ]
+  },
+  {
    "title": "美科技巨頭財報掀賣壓！台股會受多大衝擊？謝金河解析台灣真實處境- 產業",
    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9sQXZMWDJHZzdVcDcxZDZLcFduaWtUUHh5RE9mM2djY010eWJ0TVRDZ1VzMDQweVBlNUFxVkxfMERySkNRcllCSWsyMmxHbVBiQW9IeVlieGdtQzBKRjlF?oc=5",
    "source": "工商時報",
@@ -423,6 +464,15 @@
    "url": "https://news.google.com/rss/articles/CBMiqgNBVV95cUxQd3FDaGNxQWxHcnBiWnpPTkxuTHFIcnhRWldWZXoyMWV4MGZhZlQ4NHZCWVZYcEY0enhfNkJlM0FiZTV5bzFMVUpDYm1XWTFlZUdJRzBZazFudm5rd2xHSXd1RzhEX19GUHhzR0hRd1FBaW1BcFFGR0dRT1FZYndJV0hTU2tYSmNHMldQZE9kcUxKSVBaUGR1eGRzVGh3SE91UHJoa2lfS0dBYzV4UGdEZmdGaTJZRXFHQU5OUlF6WTF1UF9wN3U0NlJDV09xdmE4RVF6Tl9jWTBKZEw3TFVHRTYxeUJWSnBiSVhXYlZGVmxhSmZSd3hQTTQ1QXlySGdhaTF0V0dLYl9LVzdBTGcwNGV3cXVBLXRocERpb3pEWG0yc2drX2tHWEpGLWw2RkY3bEpXLTBKUThIX19hTG5LYXJGMEdSM21CbnFpQXlSU1lfUjNXc1hra3pIMV9xbnpsTVprTW9LWjJwcmJlTnBPNlYzNWZDQ0tRUjZwNllVUkE5eTMxUjk2RTV2ekxOdGgzT3Nmbzg1QUhjVlN3bENuc0hiRGs4SS1BU0E?oc=5",
    "source": "Yahoo股市",
    "time": "2026-10-31T04:34:54+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "00403A、00981A差在哪？首配11月除息、經理人績效、成份股8檔重疊一次看",
+   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBCUi13UDBfTFMzWUJ2cllSR2N0bmQtTWdLOTV4NTdRMEhXQkJxWndRR21Db3lYbU5tWmE5Z0VtRWQ1OVhLNVJmOUFXZEVpLU82MFlTRWNaNU5pbUJQQjM5eQ?oc=5",
+   "source": "經理人",
+   "time": "2026-10-31T04:25:49+00:00",
    "label": "中性",
    "score": 0,
    "hits": []
@@ -798,61 +848,18 @@
    "label": "中性",
    "score": 0,
    "hits": []
-  },
-  {
-   "title": "AI供應鏈無畏大盤破半年線！被動元件與ASIC財報佳，國巨產能估逾95%-財經焦點情報站",
-   "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQLXM0OEFYamxYeUt2RjRyZy1BV2prLVVyWkx2NjRxVXhodXRqdTMzeUU0X3R5Y1VzRUZ0U3FkME54MzlLMnpwQW5sYUdKX2ZPQTUyZFllQkZPeDN4dXZnOFI5eUJMc0xLSkk4ZDJmTzlYeDlnWFNDcjVoOHdrTXhSdVVn?oc=5",
-   "source": "CMoney投資網誌",
-   "time": "2026-10-31T01:39:26+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "美科技股崩跌、AI賽道雜音　謝金河：台灣賣鏟子衝擊不會那麼大",
-   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBnT2pQRG1HVWVpaWhMQ2ltaUpzRHVuSmc3NlFIWVFsMkI3WXhrZ0poWFZleGI4WWhLaVRlTG5wNHVNWDVxLTJMZGZ3SEMxWXhQb2fSAVBBVV95cUxOODhzc0xDT0Q1TDR6bUJRNDdzZ1Z2NUpESHRSMXZFWU9tZmFJWVo2M2Nabnlhb0pMSkxBa0dsY2JKWGlBWlZqaXVMTkNtaVd3bw?oc=5",
-   "source": "ETtoday財經雲",
-   "time": "2026-10-31T01:37:00+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "崩跌"
-   ]
-  },
-  {
-   "title": "台股最慘10月政府不憂、業者看好- 上市櫃",
-   "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFB0Y0VNNTJrN0Y4SkRfel9MZ182OGtqcnZsZ3FmT1ZSaDZJM1ZodXBUV3l1LW9jeVZfQkZDTFlYLWc3WG9kNDBvZmF0RDRVYWt0M0g2WHFjVzU5bUVzX0pSd2wzWVlEbFprS1E?oc=5",
-   "source": "旺得富理財網",
-   "time": "2026-10-31T01:30:00+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "看好"
-   ]
-  },
-  {
-   "title": "短線雜音干擾台股反覆測底！專家看AI需求未變　教戰攻守布局策略",
-   "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE5EUG5PdkowandRSUdrUy1hd0gyMDhVVGEyZ1hLTW9pSlRtemRlYUtqeFFyOUlETGlFU2ZBYjB3bl9MZjR1Rm5SMzBhSHXSAVJBVV95cUxPdUpXNERWZURDSTV2UzM0dHZkOVF4Yk9sTlpreDg5YWJGdllmc3BRRTVxQWY0djRQNW5OTEZKRVM5cGZDWFNmYkNZMWVzRXFDYklB?oc=5",
-   "source": "NOWnews今日新聞",
-   "time": "2026-10-31T01:29:27+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "台達電打入跌停! 台股重挫1156點驚險守4萬5",
-   "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5obXd2dm5Uc3ZzUnlHWHJQTzlWeU5HY3h4aFJtbHF4SXJhQzBkSFpXdVdKeUp5Zk5EYXR1a09hX2FyTGhwczBqaHJKN3RpZmdyU1Vwa3M0aGNucWs?oc=5",
-   "source": "非凡新聞台",
-   "time": "2026-10-31T01:28:30+00:00",
-   "label": "利空",
-   "score": -4,
-   "hits": [
-    "跌停",
-    "重挫"
-   ]
   }
  ],
  "us": [
+  {
+   "title": "奧特曼訪南韓會三星高層！OpenAI深化記憶體合作、劍指AI資料中心與星際之門",
+   "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE4tR2FIWFVKTmduUTQ2X0c0N2RiYU9IZWU0SDJIOU8za1Q4Tl9VUWlRcjU0VW0zcTBpeU1DTWluT1RaaTdRS3ZycUgyTQ?oc=5",
+   "source": "鉅亨網",
+   "time": "2026-10-31T09:10:04+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
   {
    "title": "美股週線重挫！蘋果財報登場、機器人SPAC與Flex分拆成為週一三大風向",
    "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOMW8xTVZNVzNRaWZkdjY5YzlkY3JuSXVkdlJWVnNEOWRya1E4M2FCWE10Z09Zd0RaUzRzYkd0TnZVeDRpcVU2bUxpN2RiWG5vWUlVSlFSRVV0U21rd19rMUpyQnEyTUI3S2VzS25GTGlIUHVfczRqTjBDOXZUT3pLTGhsYWVBdl9CMEpLcm9B?oc=5",
@@ -892,6 +899,17 @@
    "hits": []
   },
   {
+   "title": "科技巨頭失寵！美國小型股迎翻身契機 3大利多曝光",
+   "url": "https://news.google.com/rss/articles/CBMi2wJBVV95cUxNSHV2YlBjTmxrT1VSbGo2OGo2dUd1YjNxSHZRZTNjQzdxRnF0Ym1VUWFjTVZ6NzJHZ25ySlR3b0JoZm1abTVvLXhwU1BqTUpmUVZFaU05UGJvTVkwTUhJMnk4aVlMVDJEbnVheUZMTS1qLWMtOVEzZl9DdFluWk1MdENYQ1o0WVg4cGhBZEhYeXVHUG1qSXRaQllwUzdyZG9qZGh3SkJkWUpFZTFQcmtQeHZrbGQtanFlT3VLZHNqYV83VFJ1aDdDcWhKT1JmU0lRWmVCNTlwNnU3aDZHcHBDcjdUbWdyVDlUTTZWTkRkUS1WNnRFUVlKbXRJN1BWZm83YjRzdFNSdVlSTzhxZU9xSlBSVmM5bEpOREVSdV9EQzUxS09uaXdkU20xaDEzYnZfTXhBZlpfcEVYUk1iWHFpMkVEU21MVlpmMlZabUo4SXlnUG9NRjZLZEZwTQ?oc=5",
+   "source": "Yahoo股市",
+   "time": "2026-10-31T08:25:00+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "利多"
+   ]
+  },
+  {
    "title": "黑石：Anthropic在IPO後或只能獲得「垃圾」評級！融資成本恐攀升",
    "url": "https://news.cnyes.com/news/id/6642878",
    "source": "鉅亨網",
@@ -917,6 +935,17 @@
    "label": "中性",
    "score": 0,
    "hits": []
+  },
+  {
+   "title": "10月殺瘋了！台股市值蒸發近9兆 股民人均慘賠60萬",
+   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE90aTFLcW9rczJfZnpLTm83YzRORlFGM2NTVC05eU5odkE2dE9XbXh1SVNycEVEUHFFWkgtWGNyNC0xZXdoQ2lObkpEd3JLLXlNMlBJOXk5WDlZbjlHczBn0gFkQVVfeXFMTldQdVlwRDZuT0JOUW5YRW9vLTdjQ29xT2FTWUlzY1ppUC1iZ3BBX2tmelpJdDU2Y1Rlb3hsNURIMVJ4RGdSdU8zWW9RRGVtQWRvOWF3ekkwM0dyNWZYaVdERnNqWg?oc=5",
+   "source": "自由財經",
+   "time": "2026-10-31T07:44:44+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "蒸發"
+   ]
   },
   {
    "title": "不只Google大跌！財報優於預期也崩25%，美股大企業盤後接連暴跌！",
@@ -1646,35 +1675,6 @@
     "崩跌",
     "失守"
    ]
-  },
-  {
-   "title": "美股開盤 英特爾股價狂崩3成",
-   "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBRS2pQaHVTZWFfYlVkbVI3ZlUtNWxLSmNna1R2cGM5LXAteEYxd2tVX1RqYUIxMldTSFRhSXNTaUJKbEJWWS14VF96bktMTjlONnd0X3ZtdEFldjRCQWRKYVcwTWQyTEc4dXc?oc=5",
-   "source": "旺得富理財網",
-   "time": "2026-10-31T01:30:00+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "美股財報後資金大搬風，AI與半導體賣壓會擴散到哪？-柏宇 KD 獲利模式",
-   "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPUkRRTmVXTnljc0JKVlVsV1hEekhGVzhITGxqcjV4U3BkYV9qYmpMWDRyR0RWbll2MEpzeGJMWXRYMlgzUGRhX3pEeHRfb1UyejZ0cVJxbkJHSVZzX1ZTX0FfUm9CejdIdHpUa3BPOU1CcEtmNlpTWm5oYUJ4OTBVTw?oc=5",
-   "source": "CMoney投資網誌",
-   "time": "2026-10-31T01:27:05+00:00",
-   "label": "偏空",
-   "score": -1,
-   "hits": [
-    "賣壓"
-   ]
-  },
-  {
-   "title": "Okta將於11月4日納入標普500指數，Kenvue被剔除",
-   "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5rbVBkVmV2REgxQTM5bXRBRDRLaXpWaWxFdHBndWdRbjNzRmY2dm5UTmQxRldBZnhoQVR4MVBKOEx0MHZUbXVVRkx0UHE2d180elZsRUxwLXJsT0RJTXVRLXMxR2JUaUcyeHc?oc=5",
-   "source": "TradingView",
-   "time": "2026-10-31T01:26:44+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
   }
  ],
  "holdings": {
