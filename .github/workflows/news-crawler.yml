@@ -3,7 +3,7 @@ name: 爬蟲技師（股市新聞）
 
 on:
   schedule:
-    - cron: "7 * * * *"   # 每小時第 7 分鐘（全天、每天）
+    - cron: "7 * * * *"   # 每小時第 7 分鐘（週六不掃、週日 20:00 後掃一次，由 agent/news.py 判斷）
   workflow_dispatch:      # 允許在網頁上手動按「Run workflow」測試
 
 permissions:

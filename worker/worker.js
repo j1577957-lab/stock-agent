@@ -415,11 +415,24 @@ async function stockAgentNeeded(now = new Date()) {
   }
 }
 
+/* 爬蟲技師週末規則（和 agent/news.py 一樣）：週六不掃；週日只在台灣 20:00 掃一次（21:00 再叫一次當備援，
+   GitHub 那邊會判斷已經掃過就略過） */
+function newsCrawlerNeeded(now = new Date()) {
+  const wd = new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Taipei", weekday: "short" }).format(now);
+  const hour = Math.floor(localNow("Asia/Taipei", now).mins / 60);
+  if (wd === "Sat") return false;
+  if (wd === "Sun") return hour === 20 || hour === 21;
+  return true;
+}
+
 export default {
   async scheduled(event, env, ctx) {
     if (!env.GITHUB_TOKEN) return console.log("尚未設定 GITHUB_TOKEN，略過");
     // 爬蟲技師：每小時第 7 分；策略技師：交易相關時段每 15 分
-    if (event.cron === "7 * * * *") return ctx.waitUntil(dispatchWorkflow(env, "news-crawler.yml"));
+    if (event.cron === "7 * * * *") {
+      if (!newsCrawlerNeeded()) return console.log("週末：爬蟲技師週六休息、週日 20:00 才掃一次，略過");
+      return ctx.waitUntil(dispatchWorkflow(env, "news-crawler.yml"));
+    }
     ctx.waitUntil((async () => {
       if (await stockAgentNeeded()) return dispatchWorkflow(env, "stock-agent.yml");
       console.log("策略技師現在沒事做（不在時段內，或盤前/盤後報告已送出），略過");
@@ -433,7 +446,7 @@ export default {
       // 打開後台網址就能自我檢查：只顯示「有沒有設定」，不會顯示任何密鑰內容
       const has = (k) => (env[k] ? "✅ 已設定" : "❌ 沒有");
       return json({
-        ok: true, msg: "Pit Garage 後台運作中", version: "2026-10-31b",
+        ok: true, msg: "Pit Garage 後台運作中", version: "2026-11-01",
         密鑰檢查: {
           ANTHROPIC_API_KEY: has("ANTHROPIC_API_KEY"), PASSCODE: has("PASSCODE"), FINMIND_TOKEN: has("FINMIND_TOKEN"),
           GITHUB_TOKEN: has("GITHUB_TOKEN"), CF_API_TOKEN: has("CF_API_TOKEN"), CF_ACCOUNT_ID: has("CF_ACCOUNT_ID"),

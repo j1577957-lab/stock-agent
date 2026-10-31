@@ -2,6 +2,7 @@
 
 用法：
   python -m agent.news            抓新聞，更新 docs/data/news.json
+                                  （週六不掃；週日 20:00 後掃一次、整理週末兩天的新聞，不跑持股新聞）
   python -m agent.news --test     不上網，用內建範例標題測試關鍵字判斷
 
 想調整判斷方式，只要改下面 BULLISH / BEARISH 兩個關鍵字清單：
@@ -30,18 +31,24 @@ MAX_PER_MARKET = 80    # 每個市場最多保留幾則
 def google_news(q: str, days: int = 1) -> str:
     return f"https://news.google.com/rss/search?q={quote(q)}+when:{days}d&hl=zh-TW&gl=TW&ceid=TW:zh-Hant"
 
-SOURCES = {
-    "tw": [
-        ("google", google_news("台股")),
-        ("google", google_news("加權指數")),
-        ("cnyes", "https://api.cnyes.com/media/api/v1/newslist/category/tw_stock?limit=30"),
-    ],
-    "us": [
-        ("google", google_news("美股")),
-        ("google", google_news("道瓊 OR 那斯達克 OR 標普500")),
-        ("cnyes", "https://api.cnyes.com/media/api/v1/newslist/category/wd_stock?limit=30"),
-    ],
-}
+
+def sources(days: int = 1) -> dict:
+    """days：Google 新聞往回找幾天（週日整理週末新聞用 2 天）"""
+    return {
+        "tw": [
+            ("google", google_news("台股", days)),
+            ("google", google_news("加權指數", days)),
+            ("cnyes", "https://api.cnyes.com/media/api/v1/newslist/category/tw_stock?limit=30"),
+        ],
+        "us": [
+            ("google", google_news("美股", days)),
+            ("google", google_news("道瓊 OR 那斯達克 OR 標普500", days)),
+            ("cnyes", "https://api.cnyes.com/media/api/v1/newslist/category/wd_stock?limit=30"),
+        ],
+    }
+
+
+SOURCES = sources()
 
 # ---------- 關鍵字（可自行增減）----------
 BULLISH = {
@@ -158,11 +165,14 @@ def main() -> str:
         old = json.loads(OUT.read_text(encoding="utf-8"))
     except Exception:
         old = {}
-    data = {"updated": datetime.now(TPE).strftime("%Y-%m-%d %H:%M")}
+    now = datetime.now(TPE)
+    weekend = now.weekday() >= 5
+    data = {"updated": now.strftime("%Y-%m-%d %H:%M")}
     parts = []
+    src = sources(days=2 if weekend else 1)  # 週日一次整理週末兩天的新聞
     for market, name in (("tw", "台股"), ("us", "美股")):
         print(f"== {name} ==")
-        items, new = crawl(market, old.get(market, []))
+        items, new = crawl(market, old.get(market, []), sources=src[market])
         data[market] = items
         bull = sum(n["label"] in ("利多", "偏多") for n in items[:30])
         bear = sum(n["label"] in ("利空", "偏空") for n in items[:30])
@@ -178,6 +188,11 @@ def main() -> str:
         print(f"  ✗ 讀不到持股設定：{e}")
         held = []
     hparts = []
+    if weekend:  # 週末不跑持股新聞，保留週五的資料
+        print("== 週末不跑持股新聞 ==")
+        data["holdings"] = old.get("holdings") or {}
+        data["holdings_meta"] = old.get("holdings_meta") or []
+        held = []
     for h in held:
         print(f"== 持股 {h['name']} ==")
         q = h.get("news") or h["name"]
@@ -208,6 +223,27 @@ SAMPLES = [
     "通膨降溫 美股四大指數齊揚",
 ]
 
+SUNDAY_HOUR = 20  # 週日只在台灣時間這個整點之後掃一次（整理週末新聞）
+
+
+def weekend_skip(now: datetime | None = None) -> str | None:
+    """週末規則：週六不掃；週日只在 SUNDAY_HOUR 點後掃一次。要略過時回傳原因。"""
+    now = (now or datetime.now(TPE)).astimezone(TPE)
+    if now.weekday() == 5:
+        return "週六休息，不掃新聞"
+    if now.weekday() == 6:
+        if now.hour < SUNDAY_HOUR:
+            return f"週日 {SUNDAY_HOUR}:00 後才掃一次"
+        try:
+            t = json.loads(OUT.read_text(encoding="utf-8"))["updated"]
+            last = datetime.strptime(t, "%Y-%m-%d %H:%M").replace(tzinfo=TPE)
+            if last.date() == now.date() and last.hour >= SUNDAY_HOUR:
+                return "週日已經掃過一次"
+        except Exception:
+            pass
+    return None
+
+
 def recently_updated(minutes: int = 20) -> bool:
     """GitHub 排程和 Cloudflare 鬧鐘可能都觸發，20 分鐘內跑過就略過"""
     try:
@@ -221,8 +257,9 @@ def recently_updated(minutes: int = 20) -> bool:
 if __name__ == "__main__":
     if "--gate" in sys.argv:
         import os
-        run = "false" if recently_updated() and "--force" not in sys.argv else "true"
-        print(f"run={run}" + ("" if run == "true" else "（20 分鐘內已經抓過，這次略過）"))
+        why = None if "--force" in sys.argv else (weekend_skip() or ("20 分鐘內已經抓過" if recently_updated() else None))
+        run = "false" if why else "true"
+        print(f"run={run}" + (f"（{why}，這次略過）" if why else ""))
         if os.environ.get("GITHUB_OUTPUT"):
             with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
                 f.write(f"run={run}\n")
