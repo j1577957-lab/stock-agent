@@ -70,9 +70,9 @@ jobs:
           git config user.name "stock-agent-bot"
           git config user.email "stock-agent-bot@users.noreply.github.com"
           MSG=$(cat "$RUNNER_TEMP/stock_msg.txt" 2>/dev/null || echo "⚠️ ${{ steps.gate.outputs.mode }} 執行失敗，請到 GitHub Actions 查看")
-          # 先把這次產生的資料存起來（爬蟲技師的 news.json 不動）
+          # 先把這次產生的資料存起來（只存策略技師自己寫的檔案；爬蟲技師的 news.json、主動ETF 的 etf_changes.json 不動）
           mkdir -p "$RUNNER_TEMP/out"
-          for f in docs/data/*.json; do [ "$(basename "$f")" = news.json ] || cp "$f" "$RUNNER_TEMP/out/"; done
+          for f in latest.json signals.json reports.json state.json; do [ -f "docs/data/$f" ] && cp "docs/data/$f" "$RUNNER_TEMP/out/" || true; done
           # 每次都從 GitHub 最新版本重做，避免和爬蟲技師、晨報同時更新時打架
           for i in 1 2 3 4 5; do
             git rebase --abort 2>/dev/null || true
