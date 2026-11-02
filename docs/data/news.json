@@ -1,11 +1,38 @@
 {
- "updated": "2026-11-03 04:43",
+ "updated": "2026-11-03 05:07",
  "tw": [
   {
    "title": "台股熱潮大閱兵！「27檔」融資籌碼大增",
    "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxPTTRRdTJwaUpkcHpMdnBuaFhuR05IbFltWkdVSmtmaEVEejNMOXdLVnROWEpZSzQ5OFR6Z19ubG9BaEQ2akVXdE9mNy1YbEx6NGZIbnh6OUhHVjBYWkswX05sSThic3FJRS1xZnE3VWlIUzUxcU04aFpCUzZ5dlZVV0hOYk1Fai15SHZDNWVzUGlJYWJ3T2dZMFZJMTFqNGZSMXdDX2pyajl2czV3cUxWYTQzbFM2ak5KLUZ1ZmRDby1vbVFXRWE2X08yUFhGbVNfcW9vZ01xVHg4WWpxVE9uS3lMZzdValdDbXNkWWRTdnl4R1BMX3pvdDUyeXBHOWFR?oc=5",
    "source": "Yahoo新聞",
    "time": "2026-11-02T20:35:00+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "愈跌愈買台股ETF受益人攀峰- 投資理財- 工商時報",
+   "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1QbHFac0hCSElucFZYVFBfUHY2SFFEVXFYaEhnYmZwWklQS1h2U3lybGsxaWRpcUFJTkx2dFFhWjdScGdRanNjN3ZUNkcyYWtPUi13c1U4clB5N0NiNFJhRTRIMzlPd1A2T3dj?oc=5",
+   "source": "中時新聞網",
+   "time": "2026-11-02T20:10:00+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "台股氣虛3檔高息ETF力守正報酬- 投資理財- 工商時報",
+   "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBwLWdFbjFCSVVQRnljaTFDcldsT3FITC1NMVBiMkoxeExTLVJjbGNVNkNLOUgtTGFZY1RqbXRESFVWNGdENVp5QjlCSFlDRFpjY1hoblJIMTNOUHBXbTFkNEd0LUlGS2QxRUR3?oc=5",
+   "source": "中時新聞網",
+   "time": "2026-11-02T20:10:00+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "操盤心法－台股基本面佳 靜待落底買點",
+   "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1KTVNCMzR2c2lYLVJmei1sRmR4YzF0RmxPSk1VWktCaGdYVGw2alJPWEdNU0dvNHlKMzFTeFEyQU40cWVwTjZseGUyTjNJSENTUHpiNXNJLWw2Ql9qQk9oalhTeWZnZndBNEYw?oc=5",
+   "source": "中時新聞網",
+   "time": "2026-11-02T20:10:00+00:00",
    "label": "中性",
    "score": 0,
    "hits": []
@@ -89,6 +116,15 @@
   {
    "title": "45K攻防戰八大公股行庫撒銀彈- 日報",
    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1TeHVwR3pYVWFqOHMwc2NvU3U5VlFFT2JzUVlTWENfVjJ0TEhDOFEzcDllOUtPckxwS2F2aF9BTGV0SFkxYzJ4NFhBdEpmdC1hTkxHQUtYek8zZE9NanM4?oc=5",
+   "source": "工商時報",
+   "time": "2026-11-02T19:00:00+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "台股有底氣台積電再現仙人指路- 日報",
+   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBzZWVYdHBJYUFEYVh6Qm5faC0teVNTTk52YjhfRUppZkhGRnVLYjlkN0o3bWd6UjIwTk83WjNsbHZFVGRnQ0NGSWU3NVhpZGJBRlRMb3Y3Wi1qLXluU0NV?oc=5",
    "source": "工商時報",
    "time": "2026-11-02T19:00:00+00:00",
    "label": "中性",
@@ -763,52 +799,50 @@
    "label": "中性",
    "score": 0,
    "hits": []
-  },
+  }
+ ],
+ "us": [
   {
-   "title": "營收速報  - 德律(3030)10月營收9.26億元年增率高達71.93％",
-   "url": "https://news.cnyes.com/news/id/6644191",
-   "source": "鉅亨網",
-   "time": "2026-11-02T11:50:17+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "年增"
-   ]
-  },
-  {
-   "title": "TrendForce: 預估2027年AI網通與互連產值將達2798億美元",
-   "url": "https://news.cnyes.com/news/id/6644134",
-   "source": "鉅亨網",
-   "time": "2026-11-02T11:46:21+00:00",
+   "title": "【04:52 即時新聞】Sezzle(SEZL) 盤中挫跌5% 技術指標高檔鈍化後拉回修正",
+   "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1wRHVLSk4zaVlYUzk2NmUtc3BFMkh2c3NwS2VscERlS1lyQndIQ0M1YUxMVHM1UV9UT1Y5Yy1VbnRJVDktR2huamx1aU16YW9LYnA2VGtHRkI?oc=5",
+   "source": "CMoney",
+   "time": "2026-11-02T20:52:38+00:00",
    "label": "中性",
    "score": 0,
    "hits": []
   },
   {
-   "title": "科技股估值修正掀外資提款潮，連三日砍台股逾2500億，央行出手穩匯！-財經焦點情報站",
-   "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNdks5Uy1TLXVXeTFKOEp0a3gySWc0RzJxdTJjYWRBdWdaY2xibE1hWklTUTQxTnp5NzgtNXI0VXdGU3dZSk52QkhpRXB1Qlpzck9zSXA0V0hOSGpiRzg5TFpNQlI5TzNNNzloMW9YcVB2anNVSkNJTk9QeHRCdm1RT2pR?oc=5",
-   "source": "CMoney投資網誌",
-   "time": "2026-11-02T11:45:33+00:00",
-   "label": "偏空",
-   "score": -1,
+   "title": "【04:50 即時新聞】Baxter International(BAX) 盤中勁揚5％：KD高檔、MACD翻多助攻反彈",
+   "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1sQ20wMm80blJFZjllTzJEY25iNTVNRHh4amNkVkhnY0tGR1RZTXkzWExvMC1wN3BUdWIzdTFvWUd5SUJVS2gyLURWdl9JbTFCVF9NQUhNWTRGSFlRd21QSWZDZ1BVRmc?oc=5",
+   "source": "CMoney",
+   "time": "2026-11-02T20:50:05+00:00",
+   "label": "利多",
+   "score": 2,
    "hits": [
-    "提款"
+    "反彈",
+    "勁揚"
    ]
   },
   {
-   "title": "【台股盤後】電子、金融齊跌 台股下跌291點 收44920點",
-   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE40dEs3TXdSSmJ2U1RHQjhiRkI3b1ZMSkM5UzQ0ZjdacmdiYTVrdXVNZ3hCYWp6YUgyMUthaFNOY3VIRHk0ZDBQM3MwaHlOVzBkUnpHaTJVNkw1THM0X3MzOQ?oc=5",
-   "source": "非凡新聞台",
-   "time": "2026-11-02T11:44:47+00:00",
+   "title": "川普稱不急於再轟炸伊朗 白宮三派分歧、卡達提談判草案",
+   "url": "https://news.cnyes.com/news/id/6644528",
+   "source": "鉅亨網",
+   "time": "2026-11-02T20:50:03+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "盤中速報 - 伊魯米納(ILMN-US)大跌5.07%，報224.03美元",
+   "url": "https://news.cnyes.com/news/id/6644534",
+   "source": "鉅亨網",
+   "time": "2026-11-02T20:47:58+00:00",
    "label": "利空",
    "score": -2,
    "hits": [
-    "下跌",
-    "齊跌"
+    "大跌"
    ]
-  }
- ],
- "us": [
+  },
   {
    "title": "標題 : 美元回落、油價暴跌引爆市場震盪 — 蘋果、甲骨文重挫、選情與就業資料成下一波風向標",
    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9pM0gtOG5mdGZnZnJULW9aOEo1OTQzbkU3S3BDMm40aDdwR3JhUU1zNHZlVXRrQm9KVy1NaGx5LXVwVlZ2clNWN2NXWk9PNVJKdmp3ZVpkLTMyaTA5VE5HSjdUUXdiaG8?oc=5",
@@ -822,6 +856,15 @@
    ]
   },
   {
+   "title": "美國期中選舉勝負難料，標普500逼近歷史高點、美債殖利率成焦點",
+   "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9YQWU3ZUIxUndDMDFISUZpZHUtOERCY0Z4TmVJMkxSX1N4b0VvYWYyT3VIcFZES2NTNHVZVGoxRUVNU0NYbXgyOTJWMFlDcDh2MkZJRWRHbzZSc2xDc2tvRnpWRG96RVdDMDNjTndZakZUR21WWDR0UVF3?oc=5",
+   "source": "BigGo 財經",
+   "time": "2026-11-02T20:35:00+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
    "title": "【04:33 即時新聞】Illumina(ILMN) 盤中重挫逾5％：技術面高檔轉弱、KD失守引發賣壓",
    "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1ydjZtbnpvWWhQWnZoY3JhV04tdXhZNkxyNjd6Wnc4TjUtWkw4UFNWVm5VcTEyQzhIaWpJWEFaTVVTNFBBYlZLYmNwZXRnRE5KQVBUNnBCLWZqOVl2TEthVkh0NXVzN1E?oc=5",
    "source": "CMoney",
@@ -832,6 +875,17 @@
     "重挫",
     "失守",
     "賣壓"
+   ]
+  },
+  {
+   "title": "【04:32 即時新聞】Okta(OKTA) 日內重挫逾10％：KD高檔急殺、MACD翻空壓回年線附近",
+   "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5yRWFNYjk1MHo2NjF1eE1Ock5MbVR5a1hxemRWUVlBTV9WdGRIUFM2N3FZOVg2WFY3dkZQVTVSLUtiUTdPZGpYbENnU3hBX3VYN3BBR3ZDT3FwdWt6aVM4eFhELWl6a1U?oc=5",
+   "source": "CMoney",
+   "time": "2026-11-02T20:32:46+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "重挫"
    ]
   },
   {
@@ -865,6 +919,18 @@
    "score": -2,
    "hits": [
     "重挫"
+   ]
+  },
+  {
+   "title": "【04:31 即時新聞】Silicon Motion Technology (SIMO) 盤中重挫逾10% 技術指標偏空、跌破年線壓力沉重",
+   "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5YQkc2VUNFcVIySmZWMWpuTGVtQlZIRkQxVjBSb211ckotQm56VFBQOWNKZ2pWZ0tXUlJCQVBGYUE4Z3lhUDRyRVBoYzlNY3ZfaE1XY0h4Q092dDRJaVZSdXZpbXBNTkU?oc=5",
+   "source": "CMoney",
+   "time": "2026-11-02T20:31:01+00:00",
+   "label": "利空",
+   "score": -3,
+   "hits": [
+    "重挫",
+    "跌破"
    ]
   },
   {
@@ -908,6 +974,17 @@
    "score": 2,
    "hits": [
     "大漲"
+   ]
+  },
+  {
+   "title": "【04:18 即時新聞】Stryker (SYK) 盤中勁揚逾5%：周線支撐＋KD高檔、MACD翻多推升股價",
+   "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOLWJkLXo1aGFlLWFjMlFKR3ZQT2twRmtxRjYzYUJRSTAyZFlGZG9XMTJrSjNRU09BcDhBYWJsbV8xbVdxUjc0SXFnM1VGSlFXMnNqeEp4VURSWHp6SDRaOEhxWmlzenQzT2JLRFJqZGpQSGNFTDBLQndadzlpNlR6M3Badi1rbmtXUjdOWmRtS2JuampsN252SlZiS3F6OVdJbXFqVzVaYmw5MGZqOE9BbmIxdmxlTkYwbjF3YjYyeHpCUDNYMVJGXzd5NWgxUm8?oc=5",
+   "source": "CMoney投資網誌",
+   "time": "2026-11-02T20:18:25+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "勁揚"
    ]
   },
   {
@@ -1586,82 +1663,6 @@
    "hits": [
     "大漲"
    ]
-  },
-  {
-   "title": "【即時新聞】輝達(NVDA)等巨頭熄火拖累標普500指數，等權重指數卻逆勢飆升近5%創15年最佳",
-   "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOeWdwakozMm5ZU3VCYi1kZ1ZSSjVFYVhvcVBjendlUjBfMTVhVHRCUXZrVGNBTERET3hBOWg0QnA0NHlxNC1BSllZVE1WMGc1U1pXV2dQMk1BdkFEN1dDdDQ0MEd1Njg5eGpHNWUwZkQ3ZXZ4SmY4OUZaOERLM1cyU0dfRGJBRWwwX1BBWDViWU4?oc=5",
-   "source": "CMoney投資網誌",
-   "time": "2026-11-02T16:37:42+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "$標普500指數ETF-SPDR (SPY.US)$ 這裏快速剝個頭皮",
-   "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPclE3ZHo5eWdscC1vc1BuaVp2VVg3eVZlc1N3X19yWXMzQW5OcW11SzVYLU4tQVB5S3ZnVUFqaHVVS3ZUd3h1UUFJYjdaZjFhYzZmWnJlRWwyUmxRUHNMNzNIdE5TajA5ZXhFaXNSeHljVkpQVnJiY3F2NVczQy1zaFBWdTVoM3NCc09lem5EZGY5bC1FZ1hsekFMS3MtS2Ju?oc=5",
-   "source": "Moomoo",
-   "time": "2026-11-02T16:30:34+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "Check Point押注AI資安轉型 資料中心東西向流量成2027新成長引擎",
-   "url": "https://news.cnyes.com/news/id/6644449",
-   "source": "鉅亨網",
-   "time": "2026-11-02T16:30:20+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "灣海岸銀行母公司Narragansett掛牌那斯達克 開盤10.8美元、超額認購完成募資",
-   "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5jRkZNS0ZsOFo4Rm5nd1FHb0N1dGN2SUxWZ3ptcmZBd3h5RFMwUWk2VFJaazFsNWxWTFdrV2JJVS1YcS00a2Qxamh4S1FXSlBhV0I0SGNoR0k2ZEZFcTF5RXFxRWFtT3hBZFQtMy1QQzVfNm5aYXhNaTJB?oc=5",
-   "source": "BigGo 財經",
-   "time": "2026-11-02T16:25:00+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "美股盤中追蹤 | 伊諾維奧製藥現升192.99%",
-   "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQeDdtV0ZSdDRYNHAydF83OUktbVl1cDZDMi1xSUVUR0thLXFTTjZfbGJQMnNieXdRSV9QVDVoSTJHQ3kzWUdvZGt3WWxSR252UkNaRnFEWm1QVHhXa3d5c1lSZEpMYVFWMFYzOFVIWENxTFZsQjVIcjVjSVVHOURkQXk1Y3k4S1hBbkdhUVIyampMSFZwUEJzSmItN1ktU2F5X1lqX25JZ2pwUQ?oc=5",
-   "source": "Moomoo",
-   "time": "2026-11-02T16:25:00+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "Okta獲納入標普500指數 11月4日開盤前取代Kenvue",
-   "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE53ejVKbERCX2hHZkxIZmVmcFNSVjBocDVNYk45eEpzQTg0Y1ZDWnZDUzJMVDFnVVVFZUp6WkVaVl9uRGozMVJwZDRpUVRHdEw5Z01DRDdneGM2VV9McU1Md1pIaTViVDl0LUdzQVN2eDNtSDZpWFdUdWdR?oc=5",
-   "source": "BigGo 財經",
-   "time": "2026-11-02T16:20:17+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "盤中速報 - 宣偉(SHW-US)大漲5.01%，報349.26美元",
-   "url": "https://news.cnyes.com/news/id/6644444",
-   "source": "鉅亨網",
-   "time": "2026-11-02T16:17:36+00:00",
-   "label": "利多",
-   "score": 2,
-   "hits": [
-    "大漲"
-   ]
-  },
-  {
-   "title": "鉅亨速報 - Factset 最新調查：Sterling Infrastructure Inc(STRL-US)EPS預估上修至21.81元，預估目標價為748.50元",
-   "url": "https://news.cnyes.com/news/id/6644443",
-   "source": "鉅亨網",
-   "time": "2026-11-02T16:16:03+00:00",
-   "label": "利多",
-   "score": 2,
-   "hits": [
-    "上修"
-   ]
   }
  ],
  "holdings": {
@@ -1866,6 +1867,15 @@
    }
   ],
   "00670L.TW": [
+   {
+    "title": "【即時新聞】蘋果(AAPL)與帕蘭泰爾(PLTR)財報前湧爆量看空交易，暗示波動恐加劇！",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBUV2VDUHJPOUswcVk1LTlybDFSblZ4NnRLSTdKZERZeGpFcTlkYk5La25CSHJ6Qk1NTnAtTmZzQ0V3QTc1WkRjOU9WUkpnVWpTb29uRVRtYVo?oc=5",
+    "source": "CMoney",
+    "time": "2026-11-02T20:37:33+00:00",
+    "label": "中性",
+    "score": 0,
+    "hits": []
+   },
    {
     "title": "CrowdStrike lands an upgrade, and Jim Cramer's advice on Apple ahead of earnings",
     "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5PRmpBV2dHdzhxSWZrUDNfNXJ0Q0pabzJ2XzhidVYxa0Y1TFhXOHgxcW5VSGdUWUxyUUlLaktMcHN2d0hTU3F6MkRQX2xUbmtJci1oc2s3MUg?oc=5",
@@ -2143,15 +2153,6 @@
     "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE83emJHOTMxeFEzSURSNVRTYmJXY1ZjUGUtSmkwMlVLV0wxdUI4Zl9Wa0l6UFJnQlMtQUxtSEFMOWYwbnZzamNYVERlOWd0VGZCaVE?oc=5",
     "source": "Yahoo 財經",
     "time": "2026-11-01T15:57:46+00:00",
-    "label": "中性",
-    "score": 0,
-    "hits": []
-   },
-   {
-    "title": "搶攻AI下個黃金十年！Nasdaq指數調整選股規則",
-    "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9DMDR4dW0tMzF2WW54U01NS0Vad3A3ZjlYdEVRNmR1enFTbHVWUzBEMlRTSmF6UVoxbGR2VEdMNFItUWF3bkdHSnBxaUNXNWdHYW9jdElUajRYOEhuSEptdWFwVGxuUQ?oc=5",
-    "source": "民視財經網",
-    "time": "2026-11-01T15:08:43+00:00",
     "label": "中性",
     "score": 0,
     "hits": []
