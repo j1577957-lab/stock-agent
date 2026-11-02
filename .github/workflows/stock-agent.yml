@@ -45,7 +45,7 @@ jobs:
           git config user.name "stock-agent-bot"
           git config user.email "stock-agent-bot@users.noreply.github.com"
           git add docs/status.json
-          git diff --cached --quiet || (git commit -q -m "策略技師作業中" && (git pull --rebase -q || true) && git push -q) || true
+          git diff --cached --quiet || (git commit -q -m "策略技師作業中" && (git pull --rebase -q || git rebase --abort || true) && git push -q) || true
 
       - name: 安裝套件
         if: steps.gate.outputs.mode != 'none'
@@ -75,6 +75,7 @@ jobs:
           for f in docs/data/*.json; do [ "$(basename "$f")" = news.json ] || cp "$f" "$RUNNER_TEMP/out/"; done
           # 每次都從 GitHub 最新版本重做，避免和爬蟲技師、晨報同時更新時打架
           for i in 1 2 3 4 5; do
+            git rebase --abort 2>/dev/null || true
             git fetch -q origin "$GITHUB_REF_NAME" && git reset -q --hard "origin/$GITHUB_REF_NAME"
             cp "$RUNNER_TEMP"/out/*.json docs/data/ 2>/dev/null || true
             if [ -n "$MSG" ]; then python agent/status.py idle stock "$MSG"; else python agent/status.py idle stock; fi

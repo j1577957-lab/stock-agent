@@ -33,7 +33,7 @@ jobs:
           git config user.name "stock-agent-bot"
           git config user.email "stock-agent-bot@users.noreply.github.com"
           git add docs/status.json
-          git diff --cached --quiet || (git commit -q -m "爬蟲技師作業中" && (git pull --rebase -q || true) && git push -q) || true
+          git diff --cached --quiet || (git commit -q -m "爬蟲技師作業中" && (git pull --rebase -q || git rebase --abort || true) && git push -q) || true
 
       - name: 爬主動式 ETF 持股（過程都在這一步）
         run: |
@@ -49,6 +49,7 @@ jobs:
           git config user.email "stock-agent-bot@users.noreply.github.com"
           MSG=$(tail -n 1 "$RUNNER_TEMP/etf.log" 2>/dev/null | grep '^主動ETF' || echo "⚠️ 主動ETF爬蟲執行失敗，請到 GitHub Actions 查看")
           for i in 1 2 3 4 5; do
+            git rebase --abort 2>/dev/null || true
             git fetch -q origin "$GITHUB_REF_NAME" && git reset -q --hard "origin/$GITHUB_REF_NAME"
             [ -d "$RUNNER_TEMP/out" ] && mkdir -p docs/data && cp -r "$RUNNER_TEMP/out/." docs/data/
             python agent/status.py idle crawl "$MSG"
