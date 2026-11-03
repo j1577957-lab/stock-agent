@@ -71,7 +71,14 @@ BEARISH = {
 # 這些詞出現時，代表上面的詞被「否定」了（例如「漲勢不再」），那個方向不算分
 # 標題有這些字的通常是討論區發文，不是新聞，略過
 # 「個股概覽」是報價頁、「禮券／抽獎」是活動廣告，也一起略過
-NOISE = ("股市爆料", "爆料同學會", "討論區", "討論牆", "PTT", "個股概覽", "禮券", "抽獎")
+NOISE = ("股市爆料", "爆料同學會", "討論區", "討論牆", "PTT", "個股概覽", "禮券", "抽獎", "即時價格")
+# TradingView 的財報數字頁（例如「某公司的每股資本支出 – NASDAQ:XXXX」）和 Yahoo 的指數成分股頁（「(^代號) 成份」）
+# 都不是新聞，常常因為標題有「NASDAQ」被搜進持股新聞
+NOISE_RE = re.compile(r"\s[–—-]\s(?:NASDAQ|NYSE|AMEX|NYSEARCA|TWSE|TPEX|OTC)[:：][A-Z0-9.]+\s*$|\(\^[A-Z0-9.]+\)\s*成份")
+
+
+def is_noise(title: str) -> bool:
+    return any(w in title for w in NOISE) or bool(NOISE_RE.search(title))
 NEGATIONS = ("不再", "收斂", "縮小", "暫緩", "解除", "落空")
 
 
@@ -139,7 +146,7 @@ def crawl(market: str, old: list[dict], sources: list | None = None, keep: int =
     cutoff = datetime.now(timezone.utc) - timedelta(hours=KEEP_HOURS)
     # 舊資料也重新過濾一次雜訊（篩選規則更新後，之前存下來的討論區發文才會被清掉）
     seen = {norm(n["title"]): n for n in old
-            if datetime.fromisoformat(n["time"]) >= cutoff and not any(w in n["title"] for w in NOISE)}
+            if datetime.fromisoformat(n["time"]) >= cutoff and not is_noise(n["title"])}
     new = 0
     for kind, url in (sources or SOURCES[market]):
         try:
@@ -150,7 +157,7 @@ def crawl(market: str, old: list[dict], sources: list | None = None, keep: int =
             continue
         for it in items:
             key = norm(it["title"])
-            if not key or key in seen or it["time"] < cutoff or any(w in it["title"] for w in NOISE):
+            if not key or key in seen or it["time"] < cutoff or is_noise(it["title"]):
                 continue
             seen[key] = {**it, "time": it["time"].isoformat(), **classify(it["title"])}
             new += 1
