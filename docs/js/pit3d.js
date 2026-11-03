@@ -15,6 +15,10 @@ function init3d(){
   scene.fog=new THREE.FogExp2(0x9fb3cc,.00017);
   const ANISO=renderer.capabilities.getMaxAnisotropy();
   const V=(x=0,y=0,z=0)=>new THREE.Vector3(x,y,z);
+  /* 載入寫實素材的進度（貼圖、模型、真人） */
+  {const el=document.createElement("div");el.className="assetload";el.textContent="載入寫實素材…";stage.append(el);
+    THREE.DefaultLoadingManager.onProgress=(u,n,t)=>{el.textContent=`載入寫實素材 ${n}/${t}`;el.hidden=false};
+    THREE.DefaultLoadingManager.onLoad=()=>{el.textContent="寫實素材載入完成";setTimeout(()=>el.hidden=true,1500);if(still)draw()}}
   const TEX=makeTexLib(THREE,renderer,{QHI}),MODELS=makeModels(THREE,renderer),PEOPLE=makePeople(THREE,MODELS),SKY=makeSky(THREE,renderer);scene.add(SKY.sky);
 
   /* ---------- 小工具 ---------- */
@@ -392,14 +396,14 @@ function init3d(){
     const gr=g.createLinearGradient(0,h*.42,0,h);gr.addColorStop(0,"#fff4dc");gr.addColorStop(1,"#8a8f99");g.fillStyle=gr;g.fillRect(14,h*.42,w-28,h*.58);
     g.fillStyle="rgba(0,0,0,.25)";g.fillRect(60,h*.62,w-120,h*.25);g.fillStyle="#15161a";g.fillRect(0,0,14,h);g.fillRect(w-14,0,14,h)});
   doorTex.wrapS=THREE.RepeatWrapping;doorTex.repeat.set(NB,1);
-  const conc=std("#8d929b",.8),concD=std("#5d6270",.85);
+  const concT=()=>TEX.set("concrete_wall_008",[1,1],{normal:false}),conc=TEX.triplanar(new THREE.MeshStandardMaterial({...concT(),color:C("#c9ccd0")}),3),concD=TEX.triplanar(new THREE.MeshStandardMaterial({...concT(),color:C("#7d828c")}),3);
   const front=mk(new THREE.PlaneGeometry(-zFar,3.6),std("#ffffff",.6,0,{map:doorTex,emissive:C("#3a3326"),emissiveMap:doorTex,emissiveIntensity:.0}),7.22,1.8,zFar/2-.16);front.rotation.y=Math.PI/2;
   mk(bx(7.2,4.2,-zFar),concD,3.6,2.1,zFar/2-.16);
   /* 二樓（貴賓室玻璃）：我們這格上面那段單獨一塊，在維修區視角時藏起來 */
   const glassTex=ctex(1024,256,(g,w,h)=>{const gr=g.createLinearGradient(0,0,0,h);gr.addColorStop(0,"#9fc4e6");gr.addColorStop(1,"#3a5a7a");g.fillStyle=gr;g.fillRect(0,0,w,h);
     g.fillStyle="#1b2433";for(let x=0;x<w;x+=64)g.fillRect(x,0,5,h);g.fillRect(0,h*.48,w,6);g.fillStyle="rgba(255,255,255,.18)";for(let x=0;x<w;x+=64){g.beginPath();g.moveTo(x+10,0);g.lineTo(x+40,0);g.lineTo(x+20,h);g.lineTo(x+8,h);g.fill()}});
   glassTex.wrapS=THREE.RepeatWrapping;
-  const glassM=new THREE.MeshStandardMaterial({map:glassTex,roughness:.08,metalness:.6,emissive:C("#ffd28a"),emissiveIntensity:0,emissiveMap:glassTex});
+  const glassM=new THREE.MeshPhysicalMaterial({map:glassTex,roughness:.04,metalness:.85,clearcoat:1,clearcoatRoughness:.02,emissive:C("#ffd28a"),emissiveIntensity:0,emissiveMap:glassTex});
   function upper(z0,z1,parent){const len=z1-z0,gt=glassTex.clone();gt.needsUpdate=true;gt.repeat.set(len/8,1);gt.wrapS=THREE.RepeatWrapping;
     const gm=glassM.clone();gm.map=gt;gm.emissiveMap=gt;
     mk(bx(10.5,.5,len),concD,3.9,4.45,(z0+z1)/2,parent);mk(bx(10.5,.4,len),conc,3.9,8.9,(z0+z1)/2,parent);
@@ -420,8 +424,8 @@ function init3d(){
   workTex.wrapS=workTex.wrapT=THREE.RepeatWrapping;workTex.repeat.set(1,(zB-zA)/BAY);workTex.offset.y=(zA%BAY)/BAY;
   const wk=mk(new THREE.PlaneGeometry(2.8,zB-zA),std("#ffffff",.75,0,{map:workTex}),8.6,.03,(zA+zB)/2,PB,false);wk.rotation.x=-Math.PI/2;wk.receiveShadow=true;
   const fastTex=ctex(256,512,(g,w,h)=>{g.fillStyle="#2a2c32";g.fillRect(0,0,w,h);noise(g,w,h,20000,.05)});fastTex.wrapT=THREE.RepeatWrapping;fastTex.repeat.set(1,(zB-zA)/20);
-  const fl=mk(new THREE.PlaneGeometry(12.8,zB-zA),std("#ffffff",.85,0,{map:fastTex}),16.4,.025,(zA+zB)/2,PB,false);fl.rotation.x=-Math.PI/2;fl.receiveShadow=true;
-  mk(rbox(.8,1.1,zB-zA,.05),std("#e9ecef",.6),17.7,.55,(zA+zB)/2);
+  const fl=mk(new THREE.PlaneGeometry(12.8,zB-zA),new THREE.MeshStandardMaterial({...TEX.set("asphalt_02",[3,(zB-zA)/4.2]),color:C("#8a8c90")}),16.4,.025,(zA+zB)/2,PB,false);fl.rotation.x=-Math.PI/2;fl.receiveShadow=true;
+  mk(rbox(.8,1.1,zB-zA,.05),TEX.triplanar(new THREE.MeshStandardMaterial({...TEX.set("concrete_wall_008",[1,1],{normal:false}),color:C("#f2f2f0")}),2),17.7,.55,(zA+zB)/2);
   const fenceTex=ctex(64,64,(g,w,h)=>{g.clearRect(0,0,w,h);g.strokeStyle="rgba(210,215,222,.9)";g.lineWidth=2;g.beginPath();g.moveTo(0,0);g.lineTo(w,h);g.moveTo(w,0);g.lineTo(0,h);g.stroke()});
   fenceTex.wrapS=fenceTex.wrapT=THREE.RepeatWrapping;fenceTex.repeat.set((zB-zA)/.6,5);
   mk(new THREE.PlaneGeometry(zB-zA,3),new THREE.MeshStandardMaterial({map:fenceTex,transparent:true,alphaTest:.3,side:THREE.DoubleSide,roughness:.4,metalness:.6}),17.7,2.6,(zA+zB)/2,PB,false).rotation.y=Math.PI/2;
@@ -433,11 +437,14 @@ function init3d(){
   [zA+3,zB-3].forEach(z=>{mk(new THREE.PlaneGeometry(12.6,.4),glow("#eef0f3"),16.4,.04,z,PB,false).rotation.x=-Math.PI/2});
   /* 圍場：卡車、車隊休息車 */
   const padTex=ctex(256,256,(g,w,h)=>{g.fillStyle="#5b5f68";g.fillRect(0,0,w,h);noise(g,w,h,12000,.05)});padTex.wrapS=padTex.wrapT=THREE.RepeatWrapping;padTex.repeat.set(10,50);
-  const pad=mk(new THREE.PlaneGeometry(92,zB-zFar+90),std("#ffffff",.9,0,{map:padTex}),-36,.012,(zFar+zB)/2+15,PB,false);pad.rotation.x=-Math.PI/2;pad.receiveShadow=true;
+  const pad=mk(new THREE.PlaneGeometry(92,zB-zFar+90),new THREE.MeshStandardMaterial({...TEX.set("pavement_02",[92/4,(zB-zFar+90)/4]),color:C("#b9bbbf")}),-36,.012,(zFar+zB)/2+15,PB,false);pad.rotation.x=-Math.PI/2;pad.receiveShadow=true;
   for(let k=0;k<12;k++){const t=TEAMS[k],z=3.24-k*2.6*BAY;
-    mk(rbox(13.5,3.9,2.5,.15),std(t.c,.35,.3),-12,2.05,z);mk(rbox(2.4,3.2,2.5,.15),std("#2a2d35",.4,.4),-4.2,1.75,z);
-    mk(rbox(15,4.6,7.5,.3),std(k%2?"#2b2e36":"#e9ecef",.25,.5),-30,2.3,z+1);mk(new THREE.PlaneGeometry(14,1.2),glassM,-30,3.2,z+4.8,PB,false)}
+    mk(rbox(13.5,3.9,2.5,.15),paint(t.c,{metalness:.3,roughness:.32}),-12,2.05,z);mk(rbox(2.4,3.2,2.5,.15),paint("#2a2d35",{metalness:.4}),-4.2,1.75,z);
+    mk(rbox(15,4.6,7.5,.3),paint(k%2?"#2b2e36":"#e9ecef",{metalness:.5,roughness:.2}),-30,2.3,z+1);mk(new THREE.PlaneGeometry(14,1.2),glassM,-30,3.2,z+4.8,PB,false)}
   mergeByMaterial(PB);P0=scene;
+  /* 圍場的真實道具：路燈、水泥護欄、油桶、垃圾桶 */
+  for(let k=0;k<10;k++){prop("street_lamp_02",{x:-21,z:6-k*16,h:7,ry:Math.PI/2,parent:PB});if(k%2===0)prop("metal_trash_can",{x:-20,z:2-k*16,h:.95,parent:PB})}
+  for(let k=0;k<6;k++)prop("barrel_02",{x:-5.5+(k%2)*.7,z:-22-k*.7,h:.9,ry:k,parent:PB});
   /* 進出 pit 的匝道（世界座標，跟著直線算） */
   function ribbonGeo(n,fn){const pos=[],uv=[],idx=[];for(let i=0;i<=n;i++){const [l,r,v]=fn(i/n);pos.push(...l,...r);uv.push(0,v,1,v);if(i<n){const a=i*2;idx.push(a,a+1,a+2,a+1,a+3,a+2)}}
     const g=new THREE.BufferGeometry();g.setAttribute("position",new THREE.Float32BufferAttribute(pos,3));g.setAttribute("uv",new THREE.Float32BufferAttribute(uv,2));g.setIndex(idx);g.computeVertexNormals();return g}
@@ -657,7 +664,7 @@ function init3d(){
   /* 材質（外觀全部會被切面裁掉） */
   const towerMats=[],tm=m=>{m.clippingPlanes=[cut];m.clipShadows=true;towerMats.push(m);return m};
   const stP=brushedSteel([3,3]),SS=tm(new THREE.MeshPhysicalMaterial({color:C("#d7dade"),metalness:1,roughness:.26,map:stP.map,normalMap:stP.normalMap,normalScale:new THREE.Vector2(.4,.4),clearcoat:.25}));
-  const IRON=tm(std("#34373e",.42,.85)),fcP=fairConcrete([8,8]),FC=tm(std("#ffffff",.82,0,{map:fcP.map,normalMap:fcP.normalMap}));
+  const IRON=tm(new THREE.MeshPhysicalMaterial({...TEX.set("metal_plate",[1,1],{normal:false}),color:C("#3a3d44"),metalness:.85,roughness:.42,clearcoat:.2})),FC=tm(TEX.triplanar(new THREE.MeshStandardMaterial({...TEX.set("concrete_wall_008",[1,1],{normal:false}),color:C("#d4d4d2")}),3));
   /* 帷幕玻璃：一張貼圖 = 4 層樓 × 8 跨，夜晚亮燈的窗格隨機 */
   const GW=1024*TX,glassC=ctex(GW,GW,(g,w,h)=>{const fh=h/4,bw=w/8;
     for(let r=0;r<4;r++)for(let c=0;c<8;c++){const gr=g.createLinearGradient(c*bw,r*fh,c*bw+bw,r*fh+fh);gr.addColorStop(0,"#5f7a92");gr.addColorStop(.5,"#9fb6c9");gr.addColorStop(1,"#4a6278");g.fillStyle=gr;g.fillRect(c*bw,r*fh,bw,fh)
@@ -728,7 +735,7 @@ function init3d(){
   const iM={fc:(()=>{const t=TEX.set("concrete_wall_008",[1,1],{normal:false});delete t.normalScale;return TEX.triplanar(new THREE.MeshStandardMaterial({...t,color:C("#d6d6d4"),metalness:0}),2.8)})(),
     floor:(()=>{const p=pbr(512*TX,512*TX,(g,w,h)=>{g.fillStyle="#8a8d91";g.fillRect(0,0,w,h);for(let i=0;i<30;i++){const gr=g.createRadialGradient(Math.random()*w,Math.random()*h,0,Math.random()*w,Math.random()*h,w*.3);gr.addColorStop(0,"rgba(255,255,255,.07)");gr.addColorStop(1,"rgba(0,0,0,0)");g.fillStyle=gr;g.fillRect(0,0,w,h)}
       speckle(g,w,h,w*h/20,["rgba(0,0,0,.08)","rgba(255,255,255,.07)"],1,2);g.fillStyle="rgba(40,40,44,.45)";g.fillRect(0,0,w,2*TX);g.fillRect(0,0,2*TX,h)},(g,w,h)=>{speckle(g,w,h,w*h/25,["#707070","#909090"],1,2);g.fillStyle="#404040";g.fillRect(0,0,w,3*TX);g.fillRect(0,0,3*TX,h)},1,[1,1]);
-      const t=TEX.set("concrete_floor_worn_001",[1,1]);return new THREE.MeshPhysicalMaterial({...t,color:C("#a9a8a5"),metalness:0,clearcoat:.25,clearcoatRoughness:.3,envMapIntensity:.45})})(),
+      const t=TEX.set("concrete_floor_worn_001",[1,1]);return new THREE.MeshPhysicalMaterial({...t,color:C("#8f8e8b"),metalness:0,clearcoat:.15,clearcoatRoughness:.35,envMapIntensity:.3})})(),
     ss:new THREE.MeshPhysicalMaterial({color:C("#d4d7db"),metalness:1,roughness:.3,map:brushedSteel([1,1]).map,anisotropy:.8,clearcoat:.15}),
     iron:std("#26282d",.45,.75),wood:std("#ffffff",.55,0,{map:woodTex().map}),glass:new THREE.MeshPhysicalMaterial({color:C("#d8ecff"),transparent:true,opacity:.22,roughness:.04,metalness:.1,depthWrite:false}),
     black:std("#17181c",.5,.2),white:std("#eef0f3",.5),leather:std("#6b3f24",.55),screen:glow("#7fc4ff"),bulb:glow("#ffcf7a"),red:std("#b8261c",.6),plant:std("#3f7a3a",.85),pot:std("#3b3f47",.6),
