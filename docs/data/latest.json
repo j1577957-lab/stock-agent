@@ -1,7 +1,7 @@
 {
  "us": {
-  "mode": "us_post",
-  "time": "2026-11-03 05:16",
+  "mode": "us_pre",
+  "time": "2026-11-03 21:01",
   "stocks": [
    {
     "symbol": "QQQM",
@@ -11,7 +11,7 @@
     "price": 280.49,
     "change_pct": -1.35,
     "date": "2026-11-02",
-    "is_today": true,
+    "is_today": false,
     "ma5": 291.01,
     "ma10": 292.27,
     "ma20": 298.3,
@@ -21,9 +21,9 @@
     "k": 28.0,
     "d": 37.0,
     "macd_hist": -1.779,
-    "vol_ratio": 1.58,
+    "vol_ratio": 1.6,
     "high20_prev": 314.11,
-    "vwap": 285.11,
+    "vwap": null,
     "score": 1,
     "reasons": [
      "量能放大 1.6 倍"
@@ -54,7 +54,7 @@
     "price": 338.32,
     "change_pct": -1.83,
     "date": "2026-11-02",
-    "is_today": true,
+    "is_today": false,
     "ma5": 344.56,
     "ma10": 344.61,
     "ma20": 342.36,
@@ -64,11 +64,13 @@
     "k": 49.0,
     "d": 58.0,
     "macd_hist": -0.788,
-    "vol_ratio": 1.37,
+    "vol_ratio": 1.58,
     "high20_prev": 351.73,
-    "vwap": 338.36,
-    "score": 0,
-    "reasons": [],
+    "vwap": null,
+    "score": 1,
+    "reasons": [
+     "量能放大 1.6 倍"
+    ],
     "blockers": [
      "股價在月線之下"
     ],
@@ -94,7 +96,7 @@
     "price": 202.06,
     "change_pct": -1.26,
     "date": "2026-11-02",
-    "is_today": true,
+    "is_today": false,
     "ma5": 210.74,
     "ma10": 213.13,
     "ma20": 219.62,
@@ -104,9 +106,9 @@
     "k": 21.0,
     "d": 27.0,
     "macd_hist": -1.825,
-    "vol_ratio": 1.16,
+    "vol_ratio": 1.17,
     "high20_prev": 243.37,
-    "vwap": 207.11,
+    "vwap": null,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -135,7 +137,7 @@
     "price": 229.67,
     "change_pct": -11.22,
     "date": "2026-11-02",
-    "is_today": true,
+    "is_today": false,
     "ma5": 272.54,
     "ma10": 271.2,
     "ma20": 299.88,
@@ -145,9 +147,9 @@
     "k": 33.0,
     "d": 39.0,
     "macd_hist": -5.225,
-    "vol_ratio": 1.32,
+    "vol_ratio": 1.33,
     "high20_prev": 401.74,
-    "vwap": 239.47,
+    "vwap": null,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -176,7 +178,7 @@
     "price": 302.02,
     "change_pct": 0.39,
     "date": "2026-11-02",
-    "is_today": true,
+    "is_today": false,
     "ma5": 306.91,
     "ma10": 295.93,
     "ma20": 289.97,
@@ -188,7 +190,7 @@
     "macd_hist": 1.816,
     "vol_ratio": 1.54,
     "high20_prev": 313.07,
-    "vwap": 306.32,
+    "vwap": null,
     "score": 1,
     "reasons": [
      "量能放大 1.5 倍"
@@ -216,7 +218,7 @@
     "price": 136.37,
     "change_pct": 1.22,
     "date": "2026-11-02",
-    "is_today": true,
+    "is_today": false,
     "ma5": 141.76,
     "ma10": 145.5,
     "ma20": 151.62,
@@ -226,9 +228,9 @@
     "k": 11.0,
     "d": 18.0,
     "macd_hist": -2.103,
-    "vol_ratio": 0.86,
+    "vol_ratio": 0.87,
     "high20_prev": 176.42,
-    "vwap": 140.31,
+    "vwap": null,
     "score": 0,
     "reasons": [],
     "blockers": [
