@@ -285,6 +285,10 @@ const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const coarse=matchMedia("(pointer: coarse)").matches;
 /* 畫質：記在這台裝置；沒選過就電腦用高畫質、手機用標準 */
 const QHI=(()=>{const u=new URLSearchParams(location.search).get("q");if(u==="std"||u==="high")return u==="high";try{const v=localStorage.getItem("pg_q");if(v)return v==="high"}catch(e){}return !coarse})();
+/* 手機省資源模式：手機預設開；如果上次開到一半當掉（Safari 會自動重整），也自動改用省資源模式，連續當掉兩次就先不開 3D */
+const BOOT=(()=>{let n=0;try{n=+(sessionStorage.getItem("pg_boot")||0);sessionStorage.setItem("pg_boot",n+1);setTimeout(()=>{try{sessionStorage.setItem("pg_boot",0)}catch(e){}},30000)}catch(e){}return n})();
+const LITE=(()=>{const u=new URLSearchParams(location.search).get("lite");if(u)return u!=="0";return coarse||BOOT>=1})();
+const NO3D=BOOT>=2&&new URLSearchParams(location.search).get("lite")===null;
 /* 天色跟著鈴鹿當地時間（日本時間） */
 function jstHour(){return +new Intl.DateTimeFormat("en-US",{timeZone:"Asia/Tokyo",hourCycle:"h23",hour:"2-digit"}).format(new Date())}
 function skyMode(){const q=new URLSearchParams(location.search).get("sky");if(q==="day"||q==="dusk"||q==="night")return q;const h=jstHour();return h>=6&&h<17?"day":h>=17&&h<19?"dusk":"night"}
@@ -758,7 +762,7 @@ document.querySelectorAll("#ntabs button").forEach(b=>b.onclick=()=>{if(b.datase
 async function pullNews(){try{const r=await fetch("data/news.json?t="+Date.now());if(r.ok){news=await r.json();renderNews()}}catch(e){}}
 pullNews();setInterval(pullNews,300000);
 </script>
-<script type="module" src="js/pit3d.js?v=1103"></script>
+<script type="module" src="js/pit3d.js?v=1104b"></script>
 
 </body>
 </html>

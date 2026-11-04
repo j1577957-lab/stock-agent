@@ -14,9 +14,9 @@ import {SMAAPass} from "three/addons/postprocessing/SMAAPass.js";
 export const ASSET="assets/";
 
 /* ---------- 掃描材質庫：顏色＋法線＋ARM（R 環境遮蔽、G 粗糙度、B 金屬度） ---------- */
-export function makeTexLib(THREE,renderer,{QHI}){
+export function makeTexLib(THREE,renderer,{QHI,LITE}){
   const TL=new THREE.TextureLoader(),cache={},ANISO=renderer.capabilities.getMaxAnisotropy();
-  const base=(name,kind)=>{const k=name+"_"+kind;if(!cache[k]){const t=TL.load(ASSET+"tex/"+k+".webp");t.wrapS=t.wrapT=THREE.RepeatWrapping;t.anisotropy=ANISO;
+  const base=(name,kind)=>{const k=name+"_"+kind;if(!cache[k]){const t=TL.load(ASSET+(LITE?"tex1k/":"tex/")+k+".webp");t.wrapS=t.wrapT=THREE.RepeatWrapping;t.anisotropy=ANISO;
       if(kind==="c")t.colorSpace=THREE.SRGBColorSpace;cache[k]=t}return cache[k]};
   /* 同一張圖不同重複次數：clone 共用同一份影像，不會重複下載 */
   function set(name,rep=[1,1],{arm=true,normal=true,nscale=1,rot=0}={}){const out={};
