@@ -252,8 +252,8 @@
   ]
  },
  "tw": {
-  "mode": "tw_pre",
-  "time": "2026-11-04 08:00",
+  "mode": "tw_intraday",
+  "time": "2026-11-04 09:00",
   "stocks": [
    {
     "symbol": "5465.TWO",
@@ -279,7 +279,8 @@
     "score": 0,
     "reasons": [],
     "blockers": [
-     "股價在月線之下"
+     "股價在月線之下",
+     "今天沒有交易資料（可能休市）"
     ],
     "candidate": false,
     "recent_closes": [
@@ -322,7 +323,8 @@
     ],
     "blockers": [
      "股價在月線之下",
-     "月線往下彎"
+     "月線往下彎",
+     "今天沒有交易資料（可能休市）"
     ],
     "candidate": false,
     "recent_closes": [
@@ -364,7 +366,9 @@
      "量能放大 2.7 倍",
      "KD 低檔黃金交叉（K=40）"
     ],
-    "blockers": [],
+    "blockers": [
+     "今天沒有交易資料（可能休市）"
+    ],
     "candidate": false,
     "recent_closes": [
      67.4,
@@ -404,7 +408,8 @@
     "reasons": [],
     "blockers": [
      "股價在月線之下",
-     "月線往下彎"
+     "月線往下彎",
+     "今天沒有交易資料（可能休市）"
     ],
     "candidate": false,
     "recent_closes": [
@@ -445,7 +450,8 @@
     "reasons": [],
     "blockers": [
      "股價在月線之下",
-     "月線往下彎"
+     "月線往下彎",
+     "今天沒有交易資料（可能休市）"
     ],
     "candidate": false,
     "recent_closes": [
@@ -486,7 +492,8 @@
     "reasons": [],
     "blockers": [
      "股價在月線之下",
-     "月線往下彎"
+     "月線往下彎",
+     "今天沒有交易資料（可能休市）"
     ],
     "candidate": false,
     "recent_closes": [
@@ -527,7 +534,8 @@
     "reasons": [],
     "blockers": [
      "股價在月線之下",
-     "月線往下彎"
+     "月線往下彎",
+     "今天沒有交易資料（可能休市）"
     ],
     "candidate": false,
     "recent_closes": [
@@ -568,7 +576,8 @@
     "reasons": [],
     "blockers": [
      "股價在月線之下",
-     "月線往下彎"
+     "月線往下彎",
+     "今天沒有交易資料（可能休市）"
     ],
     "candidate": false,
     "recent_closes": [
@@ -609,7 +618,8 @@
     "reasons": [],
     "blockers": [
      "股價在月線之下",
-     "月線往下彎"
+     "月線往下彎",
+     "今天沒有交易資料（可能休市）"
     ],
     "candidate": false,
     "recent_closes": [
@@ -650,7 +660,8 @@
     "reasons": [],
     "blockers": [
      "股價在月線之下",
-     "月線往下彎"
+     "月線往下彎",
+     "今天沒有交易資料（可能休市）"
     ],
     "candidate": false,
     "recent_closes": [
@@ -691,7 +702,8 @@
     "reasons": [],
     "blockers": [
      "股價在月線之下",
-     "月線往下彎"
+     "月線往下彎",
+     "今天沒有交易資料（可能休市）"
     ],
     "candidate": false,
     "recent_closes": [
@@ -734,7 +746,8 @@
     ],
     "blockers": [
      "股價在月線之下",
-     "月線往下彎"
+     "月線往下彎",
+     "今天沒有交易資料（可能休市）"
     ],
     "candidate": false,
     "recent_closes": [
