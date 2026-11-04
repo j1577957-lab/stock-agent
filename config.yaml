@@ -60,8 +60,9 @@ picks:
     fundamental: 50
     technical: 25
     chips: 25
-  daily_budget: 420         # 每天盤前最多用幾次 FinMind（免費版每小時 600 次，要留給其他功能）
-  seed_budget: 500          # 手動執行 tw_picks 補財報資料時最多用幾次
+  candidate_n: 40           # 先用財報與技術面篩出幾檔，才查本益比和籌碼（每檔每天 3 次 FinMind）
+  daily_budget: 170         # 每天盤前最多用幾次 FinMind（實測每小時上限約 300 次，要留給盤前報告和盤中）
+  seed_budget: 280          # 手動執行 tw_picks 補財報資料時最多用幾次
   financial_cache_days: 14  # 財報幾天重抓一次
   revenue_cache_days: 7     # 月營收幾天重抓一次
 
