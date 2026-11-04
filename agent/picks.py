@@ -3,8 +3,9 @@
 流程：
   1. 選範圍：證交所、櫃買中心公開資料的成交額前 N 名，加上觀察清單裡的個股（ETF 沒有財報，不評分）
   2. 技術面：Yahoo 日K（免費）
-  3. 基本面、籌碼面：FinMind。財報和月營收存在快取，不必每天重抓，避免超過免費額度
-  4. 依 config.yaml 的比重算總分，列出前幾名
+  3. 基本面：FinMind 財報和月營收存在快取，不必每天重抓
+  4. 先用財報與技術面篩出候選股，只替候選股查本益比和籌碼，避免超過 FinMind 每小時上限
+  5. 依 config.yaml 的比重算總分，列出前幾名
 
 這是規則算出來的研究清單，不是買賣建議。分數高不代表一定會漲。
 """
@@ -52,14 +53,19 @@ class Budget:
     """記錄這次還能呼叫 FinMind 幾次，避免超過每小時上限。"""
 
     def __init__(self, calls: int):
-        self.left = calls
+        self.limited = finmind.rate_limited
+        self.left = 0 if self.limited else calls
 
     def can(self, n: int = 1) -> bool:
         return self.left >= n
 
     def get(self, dataset: str, sid: str, *, days: int = 30) -> list[dict]:
         self.left -= 1
-        return finmind.get(dataset, sid, days=days)
+        rows = finmind.get(dataset, sid, days=days)
+        if finmind.rate_limited:  # 碰到上限就停，繼續呼叫只是白費
+            self.limited = True
+            self.left = 0
+        return rows
 
 
 # ---------- 選股範圍 ----------
@@ -214,7 +220,7 @@ def compute_revenue(rows: list[dict]) -> dict:
     return out
 
 
-def score_fundamental(fin: dict, rev: dict, per: dict) -> dict:
+def score_fundamental(fin: dict, rev: dict, per: dict, min_coverage: int = 60) -> dict:
     """基本面 0~100 分。查不到的項目不計入滿分，但資料太少就不給分。"""
     earned, possible, good, bad = 0.0, 0.0, [], []
 
@@ -298,8 +304,8 @@ def score_fundamental(fin: dict, rev: dict, per: dict) -> dict:
         elif dy >= 2:
             earned += 3
 
-    # 有資料的項目滿分合計不到 60，就視為資料不足，不給分
-    if possible < 60:
+    # 有資料的項目滿分合計太少，就視為資料不足，不給分
+    if possible < min_coverage:
         return {"score": None, "good": good, "bad": bad, "coverage": round(possible)}
     return {"score": round(earned / possible * 100), "good": good, "bad": bad, "coverage": round(possible)}
 
@@ -558,12 +564,11 @@ def _stale(entry: dict | None, today: date, days: int) -> bool:
 
 
 def refresh_fundamentals(stocks: list[dict], cache: dict, budget: Budget, cfg: dict, today: date,
-                         reserve_per_stock: int = 3) -> None:
-    """更新財報與月營收快取。先保留每天必抓項目（法人、融資、本益比）的額度，剩下的才拿來補快取；
+                         reserve: int = 0) -> None:
+    """更新財報與月營收快取。先保留候選股每天必抓項目（法人、融資、本益比）的額度，剩下的才拿來補快取；
     最久沒更新的優先，所以就算第一天補不完，幾天內也會補齊。"""
     pcfg = cfg["picks"]
     store = cache.setdefault("stocks", {})
-    reserve = reserve_per_stock * len(stocks)
 
     def age(s):
         return (store.get(s["symbol"], {}).get("fin") or {}).get("fetched") or ""
@@ -597,16 +602,30 @@ def total_score(fund: int | None, tech: int | None, chip: int | None, cfg: dict)
     return round((fund * w["fundamental"] + tech * w["technical"] + chip * w["chips"]) / base, 1)
 
 
-def analyze_stock(stock: dict, cache: dict, budget: Budget, cfg: dict, fetch_daily) -> dict | None:
-    """算出一檔股票的三面分數。抓不到股價就回傳 None。"""
+def prelim_stock(stock: dict, cache: dict, cfg: dict, fetch_daily) -> dict | None:
+    """第一階段：只用免費股價和快取的財報打初步分數，不花 FinMind 額度。抓不到股價就回傳 None。"""
     symbol, daily, _ = fetch_daily(stock["symbol"])
     if daily is None or len(daily) < 60:
         return None
-    sid = symbol.split(".")[0]
     tech = score_technical(daily, cfg)
     entry = cache.get("stocks", {}).get(stock["symbol"], {})
     fin = (entry.get("fin") or {}).get("data") or {}
     rev = (entry.get("rev") or {}).get("data") or {}
+    fund = score_fundamental(fin, rev, {}, min_coverage=30)
+    return {"stock": stock, "symbol": symbol, "tech": tech, "fin": fin, "rev": rev,
+            "prelim": total_score(fund["score"], tech["score"], None, cfg)}
+
+
+def select_candidates(prelims: list[dict], n: int) -> list[dict]:
+    """初步分數最高的前 n 檔才查本益比和籌碼；財報資料不足的不列入。"""
+    ok = [p for p in prelims if p["prelim"] is not None]
+    return sorted(ok, key=lambda p: p["prelim"], reverse=True)[:n]
+
+
+def analyze_stock(p: dict, budget: Budget, cfg: dict) -> dict:
+    """第二階段：查候選股的本益比與籌碼，算出三面分數與總分。"""
+    stock, symbol, tech, fin, rev = p["stock"], p["symbol"], p["tech"], p["fin"], p["rev"]
+    sid = symbol.split(".")[0]
 
     per = {}
     if budget.can():
@@ -647,9 +666,12 @@ def rank(results: list[dict], cfg: dict) -> list[dict]:
 def format_report(top: list[dict], meta: dict) -> str:
     lines = [f"🔎 今日值得研究清單（{meta['scope']}）",
              f"評分比重：基本面 {meta['weights']['fundamental']}%、技術面 {meta['weights']['technical']}%、籌碼面 {meta['weights']['chips']}%",
-             f"已評分 {meta['scored']} 檔，其中 {meta['unscored']} 檔資料不足未排名；股價為 {meta['data_date']} 收盤。"]
-    if meta["unscored"] > meta["scored"] / 2:
+             f"先用財報與技術面從 {meta['screened']} 檔篩出候選，其中 {meta['scored']} 檔完成三面評分；"
+             f"{meta['unscored']} 檔資料不足未列入。股價為 {meta['data_date']} 收盤。"]
+    if meta["unscored"] > meta["universe"] / 4:
         lines.append("⚠️ 財報資料還在分批補齊，今天排名只涵蓋部分股票。")
+    if meta.get("limited"):
+        lines.append("⚠️ FinMind 今天這一小時的額度用完，部分股票缺本益比或籌碼資料，排名僅供參考。")
     if not top:
         lines.append("今天沒有股票達到基本面門檻。")
     for i, r in enumerate(top, 1):
@@ -679,29 +701,40 @@ def run(cfg: dict, *, fetch_daily=None, stocks: list[dict] | None = None, seed: 
     universe, scope = build_universe(cfg, cache) if stocks is None else (stocks, "指定股票")
     budget = Budget(pcfg["seed_budget"] if seed else pcfg["daily_budget"])
     print(f"  選股範圍 {len(universe)} 檔，FinMind 額度 {budget.left} 次")
-    refresh_fundamentals(universe, cache, budget, cfg, today, reserve_per_stock=0 if seed else 3)
+    # 每檔候選股每天要查 3 次（本益比、法人、融資），補資料模式不查所以不保留
+    reserve = 0 if seed else 3 * min(pcfg["candidate_n"], len(universe))
+    refresh_fundamentals(universe, cache, budget, cfg, today, reserve=reserve)
     save_cache(cache)  # 先存，後面出錯也不會白抓
 
-    results, failed = [], 0
     if seed:
         have = sum(1 for s in universe if (cache.get("stocks", {}).get(s["symbol"], {}).get("fin") or {}).get("fetched"))
         print(f"  補快取完成：{have}/{len(universe)} 檔有財報資料，剩餘額度 {budget.left}")
-        return {"report": "", "picks": [], "meta": {"seed_have": have, "universe": len(universe)}}
+        return {"report": "", "picks": [], "meta": {"seed_have": have, "universe": len(universe), "limited": budget.limited}}
+
+    prelims = []
     for s in universe:
         try:
-            r = analyze_stock(s, cache, budget, cfg, fetch_daily)
+            p = prelim_stock(s, cache, cfg, fetch_daily)
         except Exception as e:  # 單檔出錯不影響其他股票
-            print(f"  ! {s['name']} 評分失敗：{e}")
-            r = None
-        if r is None:
-            failed += 1
-        else:
-            results.append(r)
+            print(f"  ! {s['name']} 初步評分失敗：{e}")
+            p = None
+        if p is not None:
+            prelims.append(p)
+    candidates = select_candidates(prelims, pcfg["candidate_n"])
+    print(f"  初步評分 {len(prelims)} 檔，{len(candidates)} 檔進入候選")
+
+    results = []
+    for p in candidates:
+        try:
+            results.append(analyze_stock(p, budget, cfg))
+        except Exception as e:
+            print(f"  ! {p['stock']['name']} 評分失敗：{e}")
     ranked_ok = [r for r in results if r["total"] is not None]
-    dates = sorted(r["date"] for r in results)
-    meta = {"scope": scope, "weights": pcfg["weights"], "scored": len(ranked_ok),
-            "unscored": len(results) - len(ranked_ok) + failed,
-            "data_date": dates[-1] if dates else "-", "budget_left": budget.left}
+    dates = sorted(p["tech"]["date"] for p in prelims)
+    n_prelim_ok = sum(1 for p in prelims if p["prelim"] is not None)
+    meta = {"scope": scope, "weights": pcfg["weights"], "universe": len(universe), "screened": n_prelim_ok,
+            "scored": len(ranked_ok), "unscored": len(universe) - n_prelim_ok,
+            "data_date": dates[-1] if dates else "-", "budget_left": budget.left, "limited": budget.limited}
     top = rank(results, cfg)
     print(f"  評分完成：{len(ranked_ok)} 檔有總分，{meta['unscored']} 檔資料不足，FinMind 剩餘額度 {budget.left}")
     return {"report": format_report(top, meta), "picks": top, "all": sorted(ranked_ok, key=lambda r: r["total"], reverse=True),
