@@ -11,9 +11,11 @@ from datetime import date, timedelta
 import requests
 
 API = "https://api.finmindtrade.com/api/v4/data"
+rate_limited = False  # 這次執行是否碰到每小時上限
 
 
 def get(dataset: str, data_id: str | None = None, days: int = 30, start: str | None = None) -> list[dict]:
+    global rate_limited
     token = os.environ.get("FINMIND_TOKEN", "")
     params = {"dataset": dataset, "start_date": start or (date.today() - timedelta(days=days)).isoformat()}
     if data_id:
@@ -29,6 +31,8 @@ def get(dataset: str, data_id: str | None = None, days: int = 30, start: str | N
         return []
     if d.get("status") != 200:
         print(f"  ! FinMind {dataset} {data_id}：{d.get('msg')}")
+        if "upper limit" in str(d.get("msg")):
+            rate_limited = True
         return []
     return d.get("data", [])
 
