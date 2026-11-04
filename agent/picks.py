@@ -14,6 +14,7 @@ from __future__ import annotations
 import json
 import math
 import os
+import time
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -89,26 +90,35 @@ def parse_universe(twse: list[dict], tpex: list[dict]) -> list[dict]:
     return sorted(rows, key=lambda x: x["value"], reverse=True)
 
 
-def _fetch_exchange(url: str) -> list[dict]:
-    try:
-        r = requests.get(url, timeout=30, headers={"User-Agent": "stock-agent"})
-        r.raise_for_status()
-        r.encoding = "utf-8"
-        return r.json()
-    except Exception as e:
-        print(f"  ! 交易所資料抓取失敗 {url}：{e}")
-        return []
+def _fetch_exchange(url: str, attempts: int = 3) -> list[dict]:
+    """櫃買中心的檔案很大，偶爾會傳到一半中斷，所以失敗時重試。"""
+    for i in range(attempts):
+        try:
+            r = requests.get(url, timeout=60, headers={"User-Agent": "stock-agent"})
+            r.raise_for_status()
+            r.encoding = "utf-8"
+            return r.json()
+        except Exception as e:
+            print(f"  ! 交易所資料抓取失敗（第 {i + 1} 次）{url}：{e}")
+            if i + 1 < attempts:
+                time.sleep(5 * (i + 1))
+    return []
 
 
 def build_universe(cfg: dict, cache: dict) -> tuple[list[dict], str]:
     """回傳 (股票清單, 範圍說明)。交易所資料抓不到時用上次的名單，再不行就只看觀察清單。"""
     top_n = cfg["picks"]["universe_top"]
-    ranked = parse_universe(_fetch_exchange(TWSE_URL), _fetch_exchange(TPEX_URL))
+    twse, tpex = _fetch_exchange(TWSE_URL), _fetch_exchange(TPEX_URL)
+    ranked = parse_universe(twse, tpex)
     note = f"成交額前 {top_n} 名＋觀察清單"
-    if ranked:
+    if twse and tpex and ranked:
         cache["universe"] = [{"symbol": x["symbol"], "name": x["name"]} for x in ranked[:top_n]]
-    elif cache.get("universe"):
-        note = "⚠️ 今天抓不到交易所資料，沿用上次的成交額名單＋觀察清單"
+    elif cache.get("universe"):  # 只抓到一個市場時排名會失真，所以不更新名單
+        note = "⚠️ 今天交易所資料不完整，沿用上次的成交額名單＋觀察清單"
+        print("  " + note)
+    elif ranked:
+        cache["universe"] = [{"symbol": x["symbol"], "name": x["name"]} for x in ranked[:top_n]]
+        note = f"⚠️ 今天只抓到{'上市' if twse else '上櫃'}資料：成交額前 {top_n} 名＋觀察清單"
         print("  " + note)
     else:
         note = "⚠️ 抓不到交易所資料，今天只看觀察清單"
