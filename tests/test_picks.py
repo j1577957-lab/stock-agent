@@ -172,10 +172,51 @@ class Ranking(unittest.TestCase):
         self.assertEqual([r["total"] for r in picks.rank(rows, CFG)], [80, 70])
 
     def test_report_mentions_disclaimer_and_empty_case(self):
-        meta = {"scope": "測試", "weights": CFG["picks"]["weights"], "scored": 0, "unscored": 0, "data_date": "-"}
+        meta = {"scope": "測試", "weights": CFG["picks"]["weights"], "universe": 0, "screened": 0, "scored": 0,
+                "unscored": 0, "data_date": "-"}
         text = picks.format_report([], meta)
         self.assertIn("不是買賣建議", text)
         self.assertIn("沒有股票達到", text)
+
+    def test_report_warns_when_rate_limited(self):
+        meta = {"scope": "測試", "weights": CFG["picks"]["weights"], "universe": 10, "screened": 10, "scored": 5,
+                "unscored": 0, "data_date": "-", "limited": True}
+        self.assertIn("額度用完", picks.format_report([], meta))
+
+    def test_candidates_keep_highest_and_skip_missing(self):
+        prelims = [{"prelim": 50}, {"prelim": None}, {"prelim": 90}, {"prelim": 70}]
+        self.assertEqual([p["prelim"] for p in picks.select_candidates(prelims, 2)], [90, 70])
+
+
+class BudgetLimit(unittest.TestCase):
+    def setUp(self):
+        self.addCleanup(setattr, picks.finmind, "get", picks.finmind.get)
+        self.addCleanup(setattr, picks.finmind, "rate_limited", False)
+        picks.finmind.rate_limited = False
+
+    def test_stops_after_hitting_upper_limit(self):
+        def fake_get(*a, **k):
+            picks.finmind.rate_limited = True
+            return []
+        picks.finmind.get = fake_get
+        b = picks.Budget(100)
+        self.assertEqual(b.get("TaiwanStockPER", "2330"), [])
+        self.assertTrue(b.limited)
+        self.assertFalse(b.can())
+
+    def test_starts_empty_if_already_limited(self):
+        picks.finmind.rate_limited = True
+        b = picks.Budget(100)
+        self.assertTrue(b.limited)
+        self.assertEqual(b.left, 0)
+
+    def test_refresh_respects_reserve(self):
+        calls = []
+        picks.finmind.get = lambda dataset, sid, days=30: calls.append(dataset) or []
+        cfg = {"picks": {"revenue_cache_days": 7, "financial_cache_days": 14}}
+        picks.refresh_fundamentals([{"symbol": "2330.TW", "name": "x"}], {}, picks.Budget(5), cfg,
+                                   picks.date(2026, 11, 5), reserve=3)
+        self.assertEqual(calls, ["TaiwanStockMonthRevenue"])  # 5 次只能花 2 次；財報要 3 次所以不抓
 
 
 if __name__ == "__main__":
