@@ -36,6 +36,41 @@ class Universe(unittest.TestCase):
         self.assertEqual([x["symbol"] for x in picks.parse_universe(twse, tpex)], ["6182.TWO", "2330.TW"])
 
 
+class UniverseFallback(unittest.TestCase):
+    CFG = {"picks": {"universe_top": 1}, "watchlist": {"tw": [{"symbol": "00631L.TW", "name": "ETF"}, {"symbol": "6182.TWO", "name": "合晶"}]}}
+    TWSE = [{"Code": "2330", "Name": "台積電", "TradeValue": "100"}]
+    TPEX = [{"SecuritiesCompanyCode": "5465", "CompanyName": "富驊", "TransactionAmount": "500"}]
+
+    def run_with(self, twse, tpex, cache):
+        self.addCleanup(setattr, picks, "_fetch_exchange", picks._fetch_exchange)
+        picks._fetch_exchange = lambda url: twse if url == picks.TWSE_URL else tpex
+        stocks, note = picks.build_universe(self.CFG, cache)
+        return [s["symbol"] for s in stocks], note
+
+    def test_complete_updates_list_and_skips_etf(self):
+        cache = {}
+        symbols, note = self.run_with(self.TWSE, self.TPEX, cache)
+        self.assertEqual(symbols, ["5465.TWO", "6182.TWO"])
+        self.assertNotIn("⚠️", note)
+        self.assertEqual(cache["universe"][0]["symbol"], "5465.TWO")
+
+    def test_one_market_missing_keeps_previous_list(self):
+        cache = {"universe": [{"symbol": "1111.TWO", "name": "舊"}]}
+        symbols, note = self.run_with(self.TWSE, [], cache)
+        self.assertEqual(symbols, ["1111.TWO", "6182.TWO"])
+        self.assertIn("⚠️", note)
+
+    def test_one_market_without_previous_list_warns(self):
+        symbols, note = self.run_with(self.TWSE, [], {})
+        self.assertEqual(symbols, ["2330.TW", "6182.TWO"])
+        self.assertIn("只抓到上市", note)
+
+    def test_nothing_falls_back_to_watchlist(self):
+        symbols, note = self.run_with([], [], {})
+        self.assertEqual(symbols, ["6182.TWO"])
+        self.assertIn("⚠️", note)
+
+
 class Financials(unittest.TestCase):
     def rows(self, day, **vals):
         return [{"date": day, "type": k, "value": v} for k, v in vals.items()]
