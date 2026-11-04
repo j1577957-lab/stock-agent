@@ -19,7 +19,7 @@ function init3d(){
   {const el=document.createElement("div");el.className="assetload";el.textContent="載入寫實素材…";stage.append(el);
     THREE.DefaultLoadingManager.onProgress=(u,n,t)=>{el.textContent=`載入寫實素材 ${n}/${t}`;el.hidden=false};
     THREE.DefaultLoadingManager.onLoad=()=>{el.textContent="寫實素材載入完成";setTimeout(()=>el.hidden=true,1500);if(still)draw()}}
-  const TEX=makeTexLib(THREE,renderer,{QHI}),MODELS=makeModels(THREE,renderer),PEOPLE=makePeople(THREE,MODELS),SKY=makeSky(THREE,renderer);scene.add(SKY.sky);
+  const TEX=makeTexLib(THREE,renderer,{QHI,LITE}),MODELS=makeModels(THREE,renderer),PEOPLE=makePeople(THREE,MODELS),SKY=makeSky(THREE,renderer);scene.add(SKY.sky);
 
   /* ---------- 小工具 ---------- */
   const C=h=>new THREE.Color(h);
@@ -443,8 +443,8 @@ function init3d(){
     mk(rbox(15,4.6,7.5,.3),paint(k%2?"#2b2e36":"#e9ecef",{metalness:.5,roughness:.2}),-30,2.3,z+1);mk(new THREE.PlaneGeometry(14,1.2),glassM,-30,3.2,z+4.8,PB,false)}
   mergeByMaterial(PB);P0=scene;
   /* 圍場的真實道具：路燈、水泥護欄、油桶、垃圾桶 */
-  for(let k=0;k<10;k++){prop("street_lamp_02",{x:-21,z:6-k*16,h:7,ry:Math.PI/2,parent:PB});if(k%2===0)prop("metal_trash_can",{x:-20,z:2-k*16,h:.95,parent:PB})}
-  for(let k=0;k<6;k++)prop("barrel_02",{x:-5.5+(k%2)*.7,z:-22-k*.7,h:.9,ry:k,parent:PB});
+  if(!LITE)for(let k=0;k<10;k++){prop("street_lamp_02",{x:-21,z:6-k*16,h:7,ry:Math.PI/2,parent:PB});if(k%2===0)prop("metal_trash_can",{x:-20,z:2-k*16,h:.95,parent:PB})}
+  if(!LITE)for(let k=0;k<6;k++)prop("barrel_02",{x:-5.5+(k%2)*.7,z:-22-k*.7,h:.9,ry:k,parent:PB});
   /* 進出 pit 的匝道（世界座標，跟著直線算） */
   function ribbonGeo(n,fn){const pos=[],uv=[],idx=[];for(let i=0;i<=n;i++){const [l,r,v]=fn(i/n);pos.push(...l,...r);uv.push(0,v,1,v);if(i<n){const a=i*2;idx.push(a,a+1,a+2,a+1,a+3,a+2)}}
     const g=new THREE.BufferGeometry();g.setAttribute("position",new THREE.Float32BufferAttribute(pos,3));g.setAttribute("uv",new THREE.Float32BufferAttribute(uv,2));g.setIndex(idx);g.computeVertexNormals();return g}
@@ -606,7 +606,7 @@ function init3d(){
   {const seatGeo=mergeGeos([new THREE.BoxGeometry(.46,.08,.42).translate(0,.4,0),new THREE.BoxGeometry(.46,.42,.06).translate(0,.62,.2),new THREE.BoxGeometry(.06,.38,.36).translate(0,.19,0)]);const seatM=new THREE.MeshStandardMaterial({color:C("#1f4fa8"),roughness:.45});
     const si=new THREE.InstancedMesh(seatGeo,seatM,SEATS.length);SEATS.forEach((m,i)=>si.setMatrixAt(i,m));si.receiveShadow=true;scene.add(si);
     const FANS=[["Male_Adult_01","sit_chair_idle_neutral_01"],["Female_Adult_04","sit_chair_idle_neutral_01"],["Male_Adult_05","cheer_01"],["Female_Adult_08","claphands_01"],["Male_Adult_10","sit_chair_idle_neutral_01"],["Female_Adult_12","cheer_01"],["Male_Adult_14","claphands_01"],["Female_Adult_01","sit_chair_idle_neutral_01"]];
-    (async()=>{const avs=await Promise.all(FANS.map(([n])=>PEOPLE.spawn(n)));await Promise.all(avs.map((a,i)=>a.play(FANS[i][1],0,{offset:.3})));
+    if(!LITE)(async()=>{const avs=await Promise.all(FANS.map(([n])=>PEOPLE.spawn(n)));await Promise.all(avs.map((a,i)=>a.play(FANS[i][1],0,{offset:.3})));
       const sc=new THREE.Scene();sc.add(new THREE.AmbientLight(0xffffff,1.2));const dl=new THREE.DirectionalLight(0xffffff,2.2);dl.position.set(2,4,5);sc.add(dl);
       const cam=new THREE.OrthographicCamera(-.45,.45,1.9,-.1,.1,20);cam.position.set(0,0,5);
       const sprites=avs.map((a,i)=>{a.mixer.update(1.1+i*.37);const sit=/sit/.test(FANS[i][1]);a.root.position.set(0,sit?-.45:-.0,0);sc.add(a.root);
@@ -775,7 +775,7 @@ function init3d(){
     guard:["Security_Male_01","Security_Female_01"],cleaner:["Gardener_Male_01","Construction_Female_01"],
     shopper:["Male_Adult_01","Male_Adult_05","Male_Adult_10","Male_Adult_14","Female_Adult_01","Female_Adult_04","Female_Adult_08","Female_Adult_12"],
     clerk:["Business_Female_03","Business_Male_05","Business_Female_01"],chef:["Chef_Female_01"],waiter:["Business_Male_03","Business_Female_02"],maint:["Construction_Male_06"],mannequin:["Female_Adult_04","Male_Adult_10"]};
-  const MAX_PEOPLE=QHI?140:60;
+  const MAX_PEOPLE=LITE?14:QHI?140:60;
   function Crowd(people,parent){
     let alive=true;const list=people.slice(0,MAX_PEOPLE);
     const mopGeo=mergeGeos([new THREE.CylinderGeometry(.015,.015,1.35,8).rotateX(.75).translate(0,.62,.42),new THREE.BoxGeometry(.38,.05,.14).translate(0,.03,.9)]);
@@ -971,7 +971,7 @@ function init3d(){
     focus:fl=>{const t=TW.localToWorld(V(fl.s*.12,fl.y+1,fl.s*.12)),d=fl.s*.95;return {t,p:TW.localToWorld(V(fl.s*.12+d*.62,fl.y+d*.85,fl.s*.12+d*.72))}},glassMats,avi,pick:towerPick};
   /* 樹：Poly Haven 掃描樹木。遠處用「十字面片」替身（從真樹拍下來的貼圖），鏡頭附近換成真的 3D 樹 */
   const TREES=[];
-  {let tries=0;const NT=QHI?3200:(coarse?1200:2200);
+  {let tries=0;const NT=LITE?450:QHI?3200:2200;
     while(TREES.length<NT&&tries<80000){tries++;const x=minX+Math.random()*(maxX-minX),z=minZ+Math.random()*(maxZ-minZ);
       if(nearTrack(x,z,26))continue;if(NO_TREE.some(([a,b,r])=>(a-x)**2+(b-z)**2<r*r))continue;
       const lp=toG(x,z);if(lp.x>-95&&lp.x<40&&lp.z>zFar-60&&lp.z<zB+60)continue;
@@ -997,7 +997,7 @@ function init3d(){
       list.forEach((t,i)=>{const s=t.h/k.sz.y;q.setFromAxisAngle(V(0,1,0),t.ry);m4.compose(V(t.x,-k.b.min.y*s*0,t.z),q,V(s,s,s));im.setMatrixAt(i,m4);t.i=i;t.m=m4.clone()});
       im.castShadow=true;im.receiveShadow=false;im.frustumCulled=false;scene.add(im);return {im,list}});
     /* 近景真樹：每種最多 40 棵，跟著鏡頭換 */
-    const CAP=QHI?40:14;
+    const CAP=LITE?0:QHI?40:14;
     const reals=kinds.map(k=>{const parts=[];k.root.traverse(o=>{if(o.isMesh){const im=new THREE.InstancedMesh(o.geometry,o.material,CAP);im.count=0;im.castShadow=true;im.receiveShadow=true;im.frustumCulled=false;im.userData.base=o.matrixWorld.clone();scene.add(im);parts.push(im)}});return parts});
     let shown=kinds.map(()=>[]);
     treeAPI.update=()=>{const cp=camera.position;
@@ -1014,7 +1014,7 @@ function init3d(){
      燈光、天色
      ===================================================================== */
   const hemi=new THREE.HemisphereLight(C("#b7c7ea"),C("#3a4a30"),.55);scene.add(hemi);
-  const sun=new THREE.DirectionalLight(C("#ffffff"),.9);sun.castShadow=true;sun.shadow.mapSize.set(QHI?4096:(coarse?1024:2048),QHI?4096:(coarse?1024:2048));scene.add(sun,sun.target);
+  const sun=new THREE.DirectionalLight(C("#ffffff"),.9);sun.castShadow=true;sun.shadow.mapSize.set(LITE?1024:QHI?4096:2048,LITE?1024:QHI?4096:2048);scene.add(sun,sun.target);
   const sunDir=V(.45,.75,.35).normalize();
   let mode="",skyM="";
   function applySky(){const m=skyMode();if(m===skyM)return;skyM=m;paintSky(m);
@@ -1183,7 +1183,7 @@ function init3d(){
     const x=mmB.x0+((e.clientX-r.left)*D-x0)/s,z=mmB.z0+((e.clientY-r.top)*D-y0)/s;setMode("overview",{target:V(x,0,z)})});
 
   /* ---------- 尺寸與畫質（4K 螢幕原生解析度；太慢會自動降一點） ---------- */
-  const DPR_MAX=coarse?Math.min(devicePixelRatio||1,1.75):Math.min((devicePixelRatio||1)*1.25,2.5);
+  const DPR_MAX=LITE?Math.min(devicePixelRatio||1,1.25):Math.min((devicePixelRatio||1)*1.25,2.5);
   let dpr=DPR_MAX,slow=0;
   function resize(){const w=Math.max(1,stage.clientWidth),h=full?Math.max(1,stage.clientHeight):Math.round(w/1.5);renderer.setPixelRatio(dpr);renderer.setSize(w,h,false);POST.setSize(w,h,dpr);camera.aspect=w/h;camera.updateProjectionMatrix()}
   new ResizeObserver(()=>{resize();if(still)draw()}).observe(stage);resize();
@@ -1535,7 +1535,7 @@ function init3d(){
   window.__pg={scene,cars,setMode,L,LAP_IDEAL,sUnder,sOver,camera,controls,stepRace,frame,info:()=>renderer.info.render,view:(p,t,fov=35)=>{window.__pause=true;fly=null;camera.position.set(...p);controls.target.set(...t);camera.fov=fov;camera.lookAt(controls.target);camera.updateProjectionMatrix();stepCamera(0);camera.position.set(...p);camera.lookAt(controls.target);POST.render();return "ok"},carPos:i=>{const o=cars[i].obj.position;return [o.x,o.y,o.z,cars[i].obj.rotation.y]},G:()=>{const v=G.localToWorld(V(4,0,3.2));return [v.x,v.y,v.z]},render:()=>{POST.render();return "r"},ptTest:(w,n)=>import("./photo.js").then(m=>m.pathTracePhoto({THREE,renderer,scene,camera,sun,skyMode:skyM,hide:[SKY.sky,sky],width:w,samples:n})).then(r=>{if(r){window.__ptimg=r.url;return r.w+"x"+r.h}return "none"}).catch(e=>"ERR "+e.message+" "+(e.stack||"").slice(0,300)),gview:(d=1)=>{window.__pause=true;setMode("garage");fly=null;const p=garagePos(),t=GT();camera.position.copy(t).lerp(p,d);controls.target.copy(t);camera.fov=24;camera.updateProjectionMatrix();camera.lookAt(t);frame(1/30);return "g"},tickN:(n,dt=1/30)=>{for(let i=0;i<n;i++)frame(dt);return n},sfx:SFX,tick:dt=>{stepRace(dt);cars.forEach(placeCar);stepCamera(dt);SFX.update(dt)}};
 
   /* ---------- 4K 寫實照（光線追蹤） ---------- */
-  {const b=document.getElementById("ptshot");if(b)b.onclick=async()=>{if(b.disabled)return;b.disabled=true;let cancel=false;
+  {const b=document.getElementById("ptshot");if(b&&LITE)b.hidden=true;if(b)b.onclick=async()=>{if(b.disabled)return;b.disabled=true;let cancel=false;
       const ov=document.createElement("div");ov.className="ptov";ov.innerHTML='<div><b>4K 寫實照</b><p class="m">準備中…</p><progress max="1" value="0"></progress><br><small>光線追蹤會一張一張累積光影，電腦越強越快；算的時候畫面會暫停。</small><br><button>取消</button></div>';
       stage.append(ov);ov.querySelector("button").onclick=()=>{cancel=true};window.__pause=true;
       try{const {pathTracePhoto}=await import("./photo.js");
@@ -1552,7 +1552,8 @@ function init3d(){
     log("賽車工程師",`4K 截圖已存好（${W4}×${H4}）。`,"done")};
 }
 
-try{init3d()}catch(e){
+if(NO3D){stage.classList.add("nogl");stage.insertAdjacentHTML("beforeend",'<p class="note nogl-msg">這台裝置剛剛載入 3D 時記憶體不夠、當掉重開了，所以先不顯示 3D。<a href="?lite=1">改用省資源模式再試一次</a></p>')}
+else try{init3d()}catch(e){
   console.error(e);stage.classList.add("nogl");
   stage.insertAdjacentHTML("beforeend",'<p class="note nogl-msg">這台裝置沒辦法顯示 3D 畫面（'+esc(e.message)+'）。技師狀態請看下方名單。</p>');
 }
