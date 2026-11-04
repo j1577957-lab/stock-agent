@@ -4,6 +4,7 @@
   python -m agent.main                 自動依現在時間決定要做什麼
   python -m agent.main tw_intraday     強制執行某個模式（tw_pre / tw_intraday / tw_post / us_pre / us_intraday / us_post）
                                        tw_scan / us_scan：只更新價格，不呼叫 AI、不通知
+                                       tw_picks：只補「值得研究清單」需要的財報資料，不通知（第一次使用時手動跑）
   加上 --dry-run   不呼叫 Claude（不花錢），用模擬結果測試整個流程與通知
   加上 --demo-data 不抓真實股價，用假資料測試（給開發測試用）
 """
@@ -113,6 +114,22 @@ def scan(market: str, cfg: dict, *, intraday: bool, demo: bool) -> list[dict]:
     return snaps
 
 
+def build_picks(cfg: dict, stamp: str) -> str:
+    """盤前「值得研究」清單。出錯時只回傳說明，不影響原本的盤前報告。"""
+    if not (cfg.get("picks") or {}).get("enabled"):
+        return ""
+    from agent import picks
+    try:
+        result = picks.run(cfg)
+    except Exception as e:
+        print(f"  ! 值得研究清單失敗：{e}")
+        return f"⚠️ 今天的值得研究清單產生失敗：{str(e)[:80]}"
+    slim = [{k: r.get(k) for k in ("symbol", "name", "total", "fundamental", "technical", "chips", "price")}
+            for r in result["all"]]
+    notify.save_picks({"time": stamp, "meta": result["meta"], "top": result["picks"], "all": slim})
+    return result["report"]
+
+
 def run(mode: str, dry: bool, demo: bool) -> str | None:
     """執行一次，回傳給指揮站通訊紀錄的一句摘要。"""
     cfg = load_config()
@@ -129,6 +146,10 @@ def run(mode: str, dry: bool, demo: bool) -> str | None:
         print("（模擬模式：不呼叫 Claude）")
 
     print(f"== {mkt_name} {phase} @ {stamp}（台灣時間）==")
+    if mode == "tw_picks":  # 只補財報快取，不抓報價、不通知
+        from agent import picks
+        info = picks.run(cfg, seed=True)["meta"]
+        return f"值得研究清單資料補齊 {info['seed_have']}/{info['universe']} 檔"
     snaps = scan(market, cfg, intraday=(phase == "intraday"), demo=demo)
     notify.save_scan(market, mode, stamp, snaps)
     state = notify.load_state()
@@ -224,6 +245,10 @@ def run(mode: str, dry: bool, demo: bool) -> str | None:
             if not s.get("error"):
                 s["籌碼與基本面"] = finmind.summary(finmind.stock_id(s["symbol"]))
     text = llm.brief(phase, market, slim, extra, cfg, dry)
+    if mode == "tw_pre" and not demo:  # 分數由程式算出，不經過 AI 改寫
+        picks_text = build_picks(cfg, stamp)
+        if picks_text:
+            text += "\n\n" + picks_text
     title = f"{'🌅' if phase == 'pre' else '🌙'} {mkt_name}{'盤前' if phase == 'pre' else '盤後'}報告 {stamp}"
     notify.save_report({"time": stamp, "market": market, "phase": phase, "title": title,
                         "text": text, "dry_run": dry})

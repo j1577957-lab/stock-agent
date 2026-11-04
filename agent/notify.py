@@ -105,6 +105,10 @@ def save_report(rep: dict) -> None:
     _save("reports.json", items[:60])
 
 
+def save_picks(obj: dict) -> None:
+    _save("picks.json", obj)
+
+
 def load_state() -> dict:
     return _load("state.json", {})
 

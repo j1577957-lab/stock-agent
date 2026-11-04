@@ -50,6 +50,21 @@ screen:
   max_rsi: 75               # RSI 超過這個數字代表過熱，不追
   volume_ratio: 1.5         # 量能是平常的幾倍才算「放量」
 
+# ---------- 盤前「值得研究」清單（三面評分，不用 AI）----------
+picks:
+  enabled: true
+  universe_top: 100         # 成交額前幾名納入評分（再加上觀察清單裡的個股）
+  top_n: 10                 # 報告列出前幾名
+  min_fundamental: 50       # 基本面低於幾分就不列入
+  weights:                  # 三面比重（%）
+    fundamental: 50
+    technical: 25
+    chips: 25
+  daily_budget: 420         # 每天盤前最多用幾次 FinMind（免費版每小時 600 次，要留給其他功能）
+  seed_budget: 500          # 手動執行 tw_picks 補財報資料時最多用幾次
+  financial_cache_days: 14  # 財報幾天重抓一次
+  revenue_cache_days: 7     # 月營收幾天重抓一次
+
 # ---------- AI 設定 ----------
 ai:
   analyst_model: "claude-sonnet-5-5"   # 分析 agent 用的模型
