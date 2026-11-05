@@ -56,6 +56,16 @@ picks:
   universe_top: 100         # 成交額前幾名納入評分（再加上觀察清單裡的個股）
   top_n: 10                 # 報告列出前幾名
   min_fundamental: 50       # 基本面低於幾分就不列入
+  tech_quota: 7             # 前幾名裡保留幾檔給科技股（其餘不分產業取高分；科技股不夠時由其他股票補上）
+  tech_candidates: 25       # 候選股裡先保留幾檔給科技股
+  industry_cache_days: 30   # 產業分類幾天重抓一次
+  tech_industries:          # 哪些產業算科技股（FinMind 的產業別名稱）
+    - 半導體業
+    - 電腦及週邊設備業
+    - 光電業
+    - 電子零組件業
+    - 其他電子業
+    - 其他電子類
   weights:                  # 三面比重（%）
     fundamental: 50
     technical: 25
