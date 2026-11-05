@@ -1,6 +1,227 @@
 {
- "updated": "2026-11-05 18:07",
+ "updated": "2026-11-05 18:39",
  "tw": [
+  {
+   "title": "台股連6黑、外資單月賣超9,421億！法人示警融資斷頭賣壓：還不急著進場",
+   "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1GNTREWXQ2Q0pCQ3Q2Ny1nS3VsWE5SN2dRTlhXOFYzTGlCanowRDNIdWNDUFdUM0xnQnUyU21kcGFIMlhJWkkxaG0xN2dZN1I2UFRWWElR?oc=5",
+   "source": "Business Insider Taiwan",
+   "time": "2026-11-05T10:34:00+00:00",
+   "label": "利空",
+   "score": -3,
+   "hits": [
+    "賣超",
+    "示警",
+    "賣壓"
+   ]
+  },
+  {
+   "title": "台股下挫，融資加倍買進正2！台積電、台指期強撐，大盤再跌逾一成就追繳",
+   "url": "https://news.google.com/rss/articles/CBMiggNBVV95cUxOZUVOWW5mbXVodEUzV3dweHdxV2xEdU1FTnhGeXBVTXlsVnNtR1o2c2ZEbFJRTUh1VlBtaHRQZ0l5QmllX2hlOVJ5TmowUkNIUVFtbUtNWmp6d0xhZTZ6c285SmNBWHA4NUI0Xzcza3VnaE14TG1hY1gwU0RCSk5BVVRjOHlZdDhxemd1YVpPb3cxSkk2aElUSG1xU0J3R2Y3T29xZlZyMS1fTGVBd1kxc0F2UEhoVDFLTUFpUlFobWxZYzI3VzB4Q2VUUWtqOXN3VkZGTFZlMTBnNEVmSUhGQ1FsUHVzU3lVZzhtc3BGay1WZnduYmwyaFRzNzZiVnVTZHNoaUlsaHlxZDR6RWZ0OUhpNjlDeGxBaHZoLTdvOUNrNUFoUDRxWGJ4dXRFWm1ocTVBX0dWQTF1aV9LZkp6emtDejZBYW1zdTJtamp4TU56RjYtVE5vbXVfckVwNk9KdGpWek1PWTlwWW9WN09YbFdxN3VVYXRHSzhhdHpYazV3UQ?oc=5",
+   "source": "Yahoo股市",
+   "time": "2026-11-05T10:27:23+00:00",
+   "label": "偏空",
+   "score": -1,
+   "hits": [
+    "跌逾"
+   ]
+  },
+  {
+   "title": "AI需求強勁+併購效益加持 貿聯10月營收118億元首度破百億創高",
+   "url": "https://news.cnyes.com/news/id/6648380",
+   "source": "鉅亨網",
+   "time": "2026-11-05T10:25:48+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "台股連日重挫金管會提2數據強調風險可控、緊盯股市波動| 股市要聞| 股市",
+   "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE0zdWw5c3c2ZHRDSVctaTdyc3V1S3BydXVwNUhvRjhlYmJNMEdMeDZkbDlsS2RCei1ycmJNNXE0b0RoVUFhVEdNeFZuakpDeTZa?oc=5",
+   "source": "UDN",
+   "time": "2026-11-05T10:24:21+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "重挫"
+   ]
+  },
+  {
+   "title": "營收速報  - 立萬利(3054)10月營收4,126萬元年增率高達516.8％",
+   "url": "https://news.cnyes.com/news/id/6648588",
+   "source": "鉅亨網",
+   "time": "2026-11-05T10:20:26+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "年增"
+   ]
+  },
+  {
+   "title": "營收速報  - 技嘉(2376)10月營收670.36億元年增率高達136.72％",
+   "url": "https://news.cnyes.com/news/id/6648587",
+   "source": "鉅亨網",
+   "time": "2026-11-05T10:20:25+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "年增"
+   ]
+  },
+  {
+   "title": "營收速報  - 鴻華先進-創(2258)10月營收16.45億元年增率高達1346.14％",
+   "url": "https://news.cnyes.com/news/id/6648586",
+   "source": "鉅亨網",
+   "time": "2026-11-05T10:20:24+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "年增"
+   ]
+  },
+  {
+   "title": "台股一個月慘跌8千點 10月和前10月外資賣超創最慘單月和同期紀錄",
+   "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBkOG1kSXJDS1RzRmt6aGJ2ZW0wUXBqaXZ2am1QX2ZpbW9mbjltY2VDaG1meHZURUhpd0hkUzFLVmVxZkZGRW5Yc21mek1ObUN10gFWQVVfeXFMTlh5ZWw2Wk93OWRVdy05Q1RXT3RHNUFQVDkyWXVKQTM2THRMLUdHYTV5RzBQZ0xncVhnU0FYQ2hIQmRiTzVOSVIycTNOaDZLQm5DYnlCZlE?oc=5",
+   "source": "UDN",
+   "time": "2026-11-05T10:18:34+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "賣超",
+    "外資賣"
+   ]
+  },
+  {
+   "title": "台股殺千點還沒跌完？富邦投顧總座：融資斷頭賣壓將至、4萬點成關鍵| 股市要聞| 股市",
+   "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1nQ3paamNnTld2U0FjY1Q1anJJLWk4ZTdFTHVtNUREV0RnenB6cUR3VXRaalVqaVg0N1N4VzV4T09NbTczbmIzc0VUWVNvNjdl?oc=5",
+   "source": "UDN",
+   "time": "2026-11-05T10:18:19+00:00",
+   "label": "偏空",
+   "score": -1,
+   "hits": [
+    "賣壓"
+   ]
+  },
+  {
+   "title": "台股重挫1374點摜破42K！外資連6賣提款6144億 永豐投顧：尚未見止穩訊號",
+   "url": "https://news.google.com/rss/articles/CBMikwNBVV95cUxNalhyV2pGRVppUVlCdDdIdW5Ba1JUbnpTQV8xbndhUjNBUUVLRFUwdDlFb1M1RkpJbVlCSktXREtVMWlVRXM4MDNpajBCR0o2ZFVVZkJvdkVoN0M5N2NzNjRUODZscXRUZ0F4SWFYcXRaYVJ3ODB4QU9PV093Uk1vQjVvXzg3RkJwbUVrNUtZWkhGMjBVc193VDQ4eUhNYXVSNWh6d1JXTV9pRnEzVDVfdDRqREtyMTVPbjZQNDlUTUduMlpHbGJBOFY2OHhLM0QwekRUdU13blpkWmlZNWhCZVVIRlhBTFVQVFlIZThsREw3Z1M3OWFkMkY1MTJyYk1LWkV6TDZKR0xLVFRYZ0tJLTR6WGs4SmloZlBvVVpvNmNwcHVIOHdwc1JZX1BiVDUtdnAzTzFIOEZISWFrMkhfTVlqdDNHd29SVW9SckF1UHpEMFVXVUNrS3dhUS10N0V2UkptbVVoY0Izc2dUNHZiMjdFUWZSbUM5ZHJCeE9wLWxBWHRYWW9PYlM4UzFHSnVWSE9v?oc=5",
+   "source": "Yahoo新聞",
+   "time": "2026-11-05T10:16:56+00:00",
+   "label": "利空",
+   "score": -3,
+   "hits": [
+    "重挫",
+    "提款"
+   ]
+  },
+  {
+   "title": "融資斷頭潮全面引爆！全市場站上月線比例驟降至歷史冰點，暴風雨後何時迎來報復性反彈？",
+   "url": "https://news.cnyes.com/news/id/6648403",
+   "source": "鉅亨網",
+   "time": "2026-11-05T10:15:45+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "站上",
+    "反彈"
+   ]
+  },
+  {
+   "title": "台股會跌破4萬點？台積電、聯發科...杜金龍持股拉到75％，逆勢加碼這3檔，進場價曝光：連太太都出手了",
+   "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNWS1BUmlSMm9tX3NNdUpiTGlGMFVidGJ4SFR2cDBVblRZVmE0V0c5YUxFNVJmOTlIQUVmQUhiaG9zZVl5bWdMNm5XR19DSWpYV0FzTGoxT01YRGZfSHAtTVQ1cG5jNzgyTjhCa1FBOVdhRWZtWVRqTE5hWU9waHg3Mw?oc=5",
+   "source": "今周刊",
+   "time": "2026-11-05T10:14:00+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": [
+    "加碼",
+    "跌破"
+   ]
+  },
+  {
+   "title": "台股再跌千點救市措施備戰？ 金管會曝啟動「限空令」門檻",
+   "url": "https://news.google.com/rss/articles/CBMi8wJBVV95cUxNSHN2Z1hDeVE5UkZ2anNVOXNOQk9VUXVHT0RvbFZnQV94M1hfelgzTWItalE4MVF4Vmo5SkV3bXQ5eDN0Z3dfZWdubTV2aGJCWmpYOWdJSWQ2MF9ySERJUWVPSUtVYmt3b1RFYXVZdHpiRG16ZjdraG9NVWN0TjlfTVkwQ0hZaDBFNVRMMk11eFM5RE5kMGVnZmY5Z0FEckI1WXRpcUtCTzN6VlE1SG5SWUVLd3cyOVZPSEJ6Z3lRcDRENUpZUEs5b3dtc2dZWGwwQUhYbWQycklkbEF1Wmp0TUtLMXNUYWdyMV9RVnJDY0I1Q3lRbEowTmxYUTc2NHNIU1JWdEFMWjBMSkk0ZUg5SlMxMVNTTU9ORWdIN0J6eVNfbUJ0TnktSUxMZW1oTUo3VjRJOEN5OFFQb3NEcFJxZkNVU1pRRmo2UnVpSXFNN294eWc3Mm13V2FqNjJVMl8xS3hvckVndVlLeHVJdzl4czNOaw?oc=5",
+   "source": "Yahoo股市",
+   "time": "2026-11-05T10:13:00+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "末段趕底!!弱中透強、買被錯殺、買價值、買績優",
+   "url": "https://news.cnyes.com/news/id/6648401",
+   "source": "鉅亨網",
+   "time": "2026-11-05T10:12:37+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "台股擂台／「股市軒昂」張嘉軒：大盤融資減肥才有利反彈 儒鴻多頭表態明顯",
+   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5PRGt0NDBZcGtndnF6ZjlWYTFuNG1wS3ZmcFhjM1JHVWVoQThLQ1MtMjNIem9NTGd5dlh3dUhUNFFPaHhSd0dkenZoZmdQeGh5bG8tSlczSG94am52?oc=5",
+   "source": "經濟日報",
+   "time": "2026-11-05T10:11:05+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "反彈",
+    "多頭"
+   ]
+  },
+  {
+   "title": "台股無差別大屠殺！看懂「AI 盯盤」即時轉弱警報，精準躲過健策、台玻跌停板",
+   "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5oWDZrU0MwV2ZsdE5icUVDV2h4YVJyYmZCSzZwcmo4d2phcHVJb21PYUJESVhFcnVhNExqalhMaFB2XzhrSTg4VktqOS0wTDU4MHJzQWZYY2N3X2loU2ZwYVlJLXFoUVNoMS12YWZIcGVNckxTdjFNM2hHNFBIQQ?oc=5",
+   "source": "CMoney投資網誌",
+   "time": "2026-11-05T10:11:00+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "跌停"
+   ]
+  },
+  {
+   "title": "明天有救了？台指期夜盤止跌反彈 重返4萬2大關",
+   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5nLThTM2FnU1Bpc3k0RGNwTE92Y1pRaDNaLWpfOWlNNzY4UGFEak5KaTltNWlqMkhNNXRzS0w4dnBOVDVMSnMxZWtucVplU3F2TWZoay05eXB6X1liSUtB0gFkQVVfeXFMTVZhVzdMUThmSmZnZjJNNGcxQ3Z5NkpDUC1DRE1rYTVqbm5OSzM2VFAwNTVRWlRHWkx1OXFzeHRaNTdKam1wbG1QLWRQYlo2bXExOXY3ZXJQU3FlYVA2UnV6cWdaUQ?oc=5",
+   "source": "自由財經",
+   "time": "2026-11-05T10:10:48+00:00",
+   "label": "利多",
+   "score": 3,
+   "hits": [
+    "反彈",
+    "止跌"
+   ]
+  },
+  {
+   "title": "千金股成台股重災區 16檔殺跌停！法人：本益比恐修正至合理區間才會止跌",
+   "url": "https://news.google.com/rss/articles/CBMiygNBVV95cUxQdnlzMmxzNV85V2JrUWViOGxkRm1rb2VCTUVsUW1aeW1leTYwaGRsRXN2UWdtY0FqZW9ENWZCUWpLR2tlWE1qbkVwWl8xdmtXeEI4aGx2dHJVUzRUQWhsS2NkX3ZNSGowVklGSnNuR25LeHpjMTNYOFBNbnFkSm9sWE1JdW80ekMxd0pGcGtrTDRIVHFHNHVBeUVSUHp2REFRemxaVHJCeTJyRWZzM3RaeHh2bFpKZTEwSTJVaE9kTFBjMk9RaW5qOU5nVWh5aFJuRTlQYTBaN200b3M2VmRuejdXb1E1VkU4ckVtR21NU2VfckVoU0FMYjAzdExTRk1HcUViMG9mbWwxUEwxM2ZsTEdlV0FiMmxLdDZUdGRoa2swT3Itc01RQ1NmekQ5RnVrZnJDVGwyLUNhUldjTHFhRHN6QlV5QTNlVWNSY0FSb2dEbVVfMlJmNGJpemNmWDhCb3ItN1VMakh0WGhwOUhsQmJoNi1vYjVpMFJldzhuYzl2cTBSZEtRMnVZZnROWU9kSUJlSUlVSV9MbDdScGFnLUsyeXlFNHpLMGRhM3prNE9qcW44T20zMXZtMU81ck40OFJfbGFGY1NOUQ?oc=5",
+   "source": "Yahoo股市",
+   "time": "2026-11-05T10:06:37+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": [
+    "止跌",
+    "跌停"
+   ]
+  },
+  {
+   "title": "《FX 戰士久留美》魔咒！動畫每集首播，台股就要跌？",
+   "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPaEZjSkRtUE5BWGUwUEZQZUp0Qy1aclo5UUpFRER5eEs2MWdsMWxESXN1TUVPMGJhTUZVaWM3OVlLQkxlbmFQalVweUNkMmFkbk9tWlZDaXNNN1l3dFZ4a3V6dE9WMmUwa3lra3E2c3JWM1JkV1lSYkVVRENFaGhySUUzaXhUTFItQ0FkcC1tZi1ubElseFFKRA?oc=5",
+   "source": "動區動趨",
+   "time": "2026-11-05T10:04:20+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "台股連日重挫金管會提2數據強調風險可控、緊盯股市波動| 產經",
+   "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBDZmxKRkxMUkotSGI0bV95Q0tBeURFMUdDVGlfRlg3b3d1YlpXR3RqZDBPeGMzb2V2dnJaU1hlZG5KbWFlM25VdlRPQjUtY1hIMVhXRnQ2MDZDZjZsRGc?oc=5",
+   "source": "中央社 CNA",
+   "time": "2026-11-05T10:04:00+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "重挫"
+   ]
+  },
   {
    "title": "外資再砍千億元台股連六挫何時止跌？專家2大觀盤重點- 上市櫃",
    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1hRzlfQm1mVXhyRFlvTlhDaHY1bHlDQWVtZkRUMXVFa2IwS296S0hpelduM0JjeERlUy1VUWdPVkxpd0NpeGthcDhvOUZWMmJZZkp1c1dBRERUNGpvUkRvekVsQVRvQlNYMHc?oc=5",
@@ -13,6 +234,15 @@
    ]
   },
   {
+   "title": "台股6天跌掉近5500點 證交所喊話回歸企業基本面",
+   "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBST2N5NmdTTEZKZGpkOVAzaFRqdXZsRW14Y09OSFpTbVpRYnVDYWtxU2RlV0N6RE5tZ1VIbEl1YkxCLWtPZGEwY2JoZDZVZU1qYUVsdmM2TQ?oc=5",
+   "source": "Rti 中央廣播電臺",
+   "time": "2026-11-05T10:03:08+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
    "title": "台股慘跌8000點賠到懷疑人生？專家安慰「隔壁棚重挫逾4成」：痛苦是比較出來的| 張庭維 | 新聞",
    "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBISVF3RVM3U09GUVFhdWtuQ2ZsbktLZW9SU1o2VFJzMXNuNXczeTNVdzlNSnBrWkd4cExKM1hvb2dnUDFhSTYyRlkwdi0zUQ?oc=5",
    "source": "風傳媒",
@@ -21,6 +251,17 @@
    "score": -2,
    "hits": [
     "重挫"
+   ]
+  },
+  {
+   "title": "台股1週狂跌3600點！證交所喊話「基本面仍穩健」 示警投資人1風險",
+   "url": "https://news.google.com/rss/articles/CBMi_wJBVV95cUxOcFNhSE9iT0lrN0NzYkhVZHVvZUFVN1otZllNZ3lwUTZ5UGJDTTIwMmpOREsyYi1TeEl0dDQ5NmdFWlVUMDh1aE5KZ1dxZ2xsM3dUR0JLSTNNbU9Td3daVUY5TWlRVGZEQURlVGFsZXc3TDBEZURvQUNqOGNrTzhpSlVtOXowdzA5eFRDdUZxdTlUYlJsb19sX2tDQk93RWFTeENnUGFaR09hU3k4VE1feFBhamIybmVENkVEY3p5bVNIRWtab3hFSmJjcF9FSXZycHhFNl9aOUNFRzc5RWJoMTljbW9zbFIwZkFZeVpDR0RXU0t4SlEtWktZY0dPQ2IxMUNlRkU1U09rNExXaGd1MWZhUGVFSTl5VUhJUWFZbmJRS3dUWUZTZFQycUNrUnhwX190X3NJSzhQa3dQWXNCN3BsU2E2UHJvS01wdHZKM2lpMk1TQmpybFZNWjRCWDBPbTBmbVhqNDBlcGFaWGo3MUd3M0JoRjhmUEttM0EyYw?oc=5",
+   "source": "Yahoo新聞",
+   "time": "2026-11-05T10:00:19+00:00",
+   "label": "偏空",
+   "score": -1,
+   "hits": [
+    "示警"
    ]
   },
   {
@@ -134,6 +375,17 @@
    ]
   },
   {
+   "title": "台股短短1個月大跌8000點 證交所信心喊話：仍有韌性",
+   "url": "https://news.google.com/rss/articles/CBMi3wJBVV95cUxONXB6SFdfZDFxZ3c5cG1NQjVwWE5acHUweVd6NXV6VXZKRHRPV1ZSalB4cWVTcmZwVHRVajllUjZxSEJncUhMSi1uUVB1TGU4NE5Td3ozN3FVLUNHWFdxemI2RmdqVnFDNWtzdG1UMHR2NDBqcFcxM2JGOHB5dTgzNDEwTUV3SXZMS1dIU2ROV2xWOEZMUTczdjFKRldnVDZUY3NkeVA3UmpTMW1FSE83SUxGODhqX2liREtxUUt4aEFHNTdrRFJxUFBaYkJNUU1MRTk0NkJidWRJUEFxTTV2ZzdoaXZLS04xNjZBUVpUS3lNV3ZXZVZVUGxaMF9pZkxSNDVhMjlKcl90UlJ0Z0VFZHFBZ2pYb3lNT05zSFBWVEFJS2JMUGZiaEhBdVViUDM2NUdrQjVNUzhKMXpiOUVybnRkUUVUSXJQNXA0UGVaSnZXWWhEMUNqWml4YUZaZWM?oc=5",
+   "source": "Yahoo股市",
+   "time": "2026-11-05T09:36:59+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "大跌"
+   ]
+  },
+  {
    "title": "台股近一月狂瀉逾8,000點、外資提款破兆！ 證交所喊話：相比各國股市仍抗跌| 財經",
    "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFByZGtFUkR1WjAzanRoNFVBYXBXTTVKWVNjdjh3cVgzdGZKZ0t5d3ZBU0hIRVAzaTg2ZERldTlXRm1PRUhvN05EQVNoQmxPbDFDOHhJR3VrNHNuY00?oc=5",
    "source": "Newtalk新聞",
@@ -142,6 +394,18 @@
    "score": -1,
    "hits": [
     "提款"
+   ]
+  },
+  {
+   "title": "台股連日下跌，自10月6日的歷史高點，短短1個月回檔逾8000點。但證交所強調，台股相對於國際股市仍展現韌性，呼籲投資人回歸基本面理性判斷。 新聞請看》https://reurl.cc/qalbYD",
+   "url": "https://news.google.com/rss/articles/CBMiywZBVV95cUxPc3RPbEZzSWFadlNoLXdCU1NHN3V5emUwYlBmdThnLUdyTVpVdnlUSlZfV3NvV0tXcUFTSDQxNzFicHFVOUx1b2w1NG5JTzJUTTVGOXZ4Z09OSEZJcUtkZURCOTc4Q2xFTjY3M1dnZlJfTUlwVU56WHJ4bTNQNHFlVDdmRGJxUWtxbGNWakt1UFZnSmZmNThMNmdoLUNNWXlFdEo2QVQwazJIcGFiNVBtTVZzeks4TUsxZzdkeHFQaTVaTVd0dTRWbktHdk42RE5kV1R5YzRRY3NFU285VVJiOExPWTZhWGh2cVZZVnZacjVWT2JvWThMOUFCWjZkN1ZpN21DMGdkSjlkSXp0ZlNHZ2tMT0Y2dFR5TG5heUhHcGhkSnhJM2tXQ3RpQ0xjNXg3cDE4Vjh3ZTAwYVRjeXdIcnJKdC1MLXoyNDdwbEtYOUlvRmUxTTZfTTNLTV9xbUNfa1JOX0tmVFA3NlZVT1EwUjBSay1DVWZBVFVteE5WdWotbnVoUVZHR2RBTm1Nc2dqc293SG1oZW43OUVia2Q0bno3NFM3azFraDg5Ynl5ejR1MWJVQjdRSVdzVnlVX3NlTktVZE1nVGx4RVRBU19ObjZubW1US3Q5b0dhTlFpOGg1TncwS0FlUDJOWjBKY2F4Z0xRRTZvb3dIZVB6SjB4NzM5aUhwUDctbGUweVJtSFFhTTFHNXViOGU0by1tYlRNcGxGa294dWJDR2hKVUxpaUJ1V2FrVkt0YlFxZjBFQ3VQY2tKcW00Uk5WaVV4X0s3MERKMnRfeVVDc0huRzh5aFZWSFlUc2RST2cyZ2xoRU1VRVF1TGdoSkxFZ1V5YndOMDFPT19pM3BzdGJENjBFdHRYbmpOb092NGdTOC02Q3EteXF0V2hfNUkzSE5zcnBXWjNYUXZZYjVaRW83SU1Vdy1ocUlGV3phRXpIdmJTWldxNzBHcndOcVlmTDMxUmJLaDRQTzB0T0pyOFplVDJoVnZJQ0dDclZieW9XTF91M2RfX0VQaWpzTExSUnJGZmlkZDY0cVd6QWdvdzNXbXNfR2JuUVQ4M1hsUGJDT3JoRHBJUVpUWFhmSDhEbVhHVHJ4RlNJekR2U2cyY1E?oc=5",
+   "source": "Facebook",
+   "time": "2026-11-05T09:35:02+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "下跌",
+    "回檔"
    ]
   },
   {
@@ -165,6 +429,15 @@
    "hits": [
     "失守"
    ]
+  },
+  {
+   "title": "外資大賣台股！進場救市？金管會回應了",
+   "url": "https://news.google.com/rss/articles/CBMilgJBVV95cUxNTVd2MVZzdE9oRTBKV1FpV1hFMUdfRzkxbnNoQXVqa0pKZ3V5ZUlmY1hPbjBsaDhWNU9xQmhSQjVmX1lCODBpN0YzRUx6VFpQTjFvNlhISldyczA0WmJ5RFcwcF9MN3QzeTBFNzNXOVA4OUsteHBRQldWMG5hV3A1eDVrVWsyVnlrSmE0U2xHSUNqOFh3YUNKeUZTdDc5R3F0RU5QSmFha0dmUGRrVmRlVFBTODZZUlk1cFNmdGRIVlJSa2RJVzh4V1lyb3RuMWpNY1BodDRhSDg1bURuYjZUSHZkSzczaFZ4SDh2bFNyZzF0QnItU0RLSWdGazhaMXJna0pIek5SR3RpVU9IUWlCUG1lVjBLZw?oc=5",
+   "source": "Yahoo新聞",
+   "time": "2026-11-05T09:28:00+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
   },
   {
    "title": "台股1個月狂殺逾8300點！網苦笑：正在大湖公園卡位的不是洋流是「他們」",
@@ -602,273 +875,79 @@
     "暴跌",
     "跌逾"
    ]
+  }
+ ],
+ "us": [
+  {
+   "title": "貨櫃運價季增46%馬士基三度上修全年財測、運量仍持平",
+   "url": "https://news.cnyes.com/news/id/6648601",
+   "source": "鉅亨網",
+   "time": "2026-11-05T10:30:10+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "上修"
+   ]
   },
   {
-   "title": "鴻海10月營收1.3兆元創史上單月新高 Q4 AI相關需求持續成長",
-   "url": "https://news.cnyes.com/news/id/6648093",
+   "title": "AI資料中心擴建拉警報！德州擬收緊許可，OpenAI承諾電網吃緊時降載",
+   "url": "https://news.cnyes.com/news/id/6648600",
    "source": "鉅亨網",
-   "time": "2026-11-05T09:00:53+00:00",
+   "time": "2026-11-05T10:30:10+00:00",
    "label": "中性",
    "score": 0,
    "hits": []
   },
   {
-   "title": "精測(6510)前三季EPS達42.2元！HPC營收占比突破六成，2027年成長續拚近五成",
-   "url": "https://news.cnyes.com/news/id/6648120",
+   "title": "OpenAI調整資料中心選址政策不再要求公職人員簽保密協議",
+   "url": "https://news.cnyes.com/news/id/6648599",
    "source": "鉅亨網",
-   "time": "2026-11-05T09:00:04+00:00",
+   "time": "2026-11-05T10:30:09+00:00",
    "label": "中性",
    "score": 0,
    "hits": []
   },
   {
-   "title": "永擎(7711)第三季毛利率衝上21.08%！B300、GB300接棒，Vera Rubin成2027年成長關鍵",
-   "url": "https://news.cnyes.com/news/id/6648119",
-   "source": "鉅亨網",
-   "time": "2026-11-05T09:00:03+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "台股今再大跌1374點！高點回跌迄今近17% 證交所信心喊話",
-   "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5fYXZ0RGZIdGQtZVNGUzYwOE00Sjg5ZjU2aERQVnYwcWIzUmVBeFhIdGE5Uktaal9WdWs5N1ZOTHRCNlhnS1hJWWJ6LWt0aGhTaXhfZ1RHU29QOHpjaS1OTEdmWk1XVmg0dmN2OGdPYw?oc=5",
-   "source": "知新聞",
-   "time": "2026-11-05T09:00:00+00:00",
+   "title": "藍潮狂勝!美股大分裂 費半獨憔悴重挫逾3%",
+   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE95enNmckZTWDB2NDRsZnlnZS1fTTM1Z0ZNU2RwODE2ZXJodFNrcWtzYlp3UWNWS001NGRON1haVHBnUjBVMWZWQ3lkNU5YeVlVN0hOWE4wYUlVNnI5?oc=5",
+   "source": "非凡新聞台",
+   "time": "2026-11-05T10:14:14+00:00",
    "label": "利空",
    "score": -2,
    "hits": [
-    "大跌"
-   ]
-  },
-  {
-   "title": "台股還要殺個 500~600 億元！富邦投顧陳永俊估第四季上沖下洗",
-   "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1YUnhUbWhUZXF1TWlsOEgybUFPb1kyUEh1bHN5TExJcXpoR0ZMaTlQbW04Z2VNc2p4ejVMZHg1RDhRX3NmNmRMVGZPVmlNQ3lCWkNpNGR3aFJ0VWlOTFE?oc=5",
-   "source": "TechNews 科技新報",
-   "time": "2026-11-05T08:59:13+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "漢康攜手高醫簽署MOU 深化癌症新藥臨床研究合作",
-   "url": "https://news.cnyes.com/news/id/6647974",
-   "source": "鉅亨網",
-   "time": "2026-11-05T08:58:38+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "日月光豪砸1237億元擴AI與HPC封測產能 三大方案累計近3兆元",
-   "url": "https://news.cnyes.com/news/id/6647917",
-   "source": "鉅亨網",
-   "time": "2026-11-05T08:58:00+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "投信不敵沉重賣壓！外資狠砍「這檔」1.3萬張 30萬股東開始懷疑人生",
-   "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9FT0Y4OTJRRy1ZdDQxWU91d0l5R3IxXzRhY3Zfa1NWRVN5RWd0R1ZvMVhXekszSnlPVUk2aEZXck93eFA4QjJGTjIyNA?oc=5",
-   "source": "三立新聞網SETN.com",
-   "time": "2026-11-05T08:54:49+00:00",
-   "label": "偏空",
-   "score": -1,
-   "hits": [
-    "賣壓"
-   ]
-  },
-  {
-   "title": "外資千億賣單砸場！台股摜破42K寫第13大跌點電子滿盤綠金融揪航空撐住一片天｜Yahoo財經掃描",
-   "url": "https://news.google.com/rss/articles/CBMiswRBVV95cUxNLVJFclZad29CenJEOHBOS2Q1VXU1c3VKN3lWZmN4T2ZyX0ZWLS1CWXFyZjBUamo0QWt3OF9HOWNob2V5MEdWcXEtOEJWdFdVTXZrQXlCbVB3Zk1MR0hCV3Z5NndyQURmTDJQb180X0U0TUFwNGl4d0p2SDV3NkI5R0FnQmdWWlZjY09vVzVGMWhtQVZRYjVYSlRkYmJMbjdSRXd3LUJ1YUhOVGp6X0RFQndmNmV1Nlh3ZFJlTGFPZVdLRVVTQzl1cDhYT3V1U0dsX3pvNVVSOEhtelU5M1U5ZnFPWFUwTmFIeFVRYlo2RVdheVpRSlUtRUVSazN5RzZqbWUxSVh4YnFlVFA3bG9jRzBPYktvd3ZTTGx2MGZCZnM2WUlfeWc0QlROTjdlWG5JSDRaSHRlQjl1MzZNSXZUQXZiMHd2VkZVM3VNZFpKV0Fqa1BkM0llUWRGNHJOeWJKTFhRamlWR182U0JEaDl5U0pvbWNCMDhhc2lxaVc1VURaY2stRVJmdU9iS1RmTmJ3Xy1SaDNiSWdxZkNXYWxlalVaNWdmX2xvYzBhZW9GRnpWZm9QNjNlVzF4Mnd2UEZESTZfcEdyLWFZV1o3aGF0ck5EeGM2OXpSaVducEZTUkpPQXk2MmpCaVl4Vmo2bDhBOWprNksyNk0xUnVHZngzeW1TQU0tS2RESWZhQW1TdTJmbXlhb2ZvSE1EeWF3Y1NrMm0yM2tYdC1aUjVGLTBwdGZnRQ?oc=5",
-   "source": "Yahoo股市",
-   "time": "2026-11-05T08:54:34+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "大跌"
-   ]
-  },
-  {
-   "title": "大立光10月營收58.46億元創今年新高 估本月出貨動能下滑",
-   "url": "https://news.cnyes.com/news/id/6648114",
-   "source": "鉅亨網",
-   "time": "2026-11-05T08:54:10+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "【1104台股盤前】加權長黑破半年線、櫃買暴跌失守年線！外資提款破千億宣洩恐慌，急跌抄底鎖定地板股【禾伸堂】、【志聖】、【信邦】｜豐雲學堂2026 年 11 月",
-   "url": "https://news.google.com/rss/articles/CBMizAVBVV95cUxPRE5XMEV6Z29NbFVObm1GbWdFbThLeGNyWTFCMk9wOGlzb1lpR195SWFpbXBtd1Q3SnNTTkNFcTdnYzdXeTBza2xyTTYwTVByNURkWTZUZDhBblprY2NPWks5dEU1eVgzanBiNXdSekc4OXhpZ2RUMkRSR3dOMmFxRGVkV0FGSTQzV0wtT1hUQmJtXzlRQUlua3Z2OWxUa3NCYXZWSXIwLTJSclU4MzNVbTA0bWNfTUgzTjdmQ1BQRFBJZnVuNC1sdExxeElBdkRET1dtV2haQmdGNmZ6bWJCamhtaGdtWmpOTWcyYVkyeGdRU0dBck5IeWtFbmpPbHRpSWYtQV9rSExaU1RkbnRyX0lrZUdsOFVfUE5mcS13RldkTTBVTUI3eUV5YnREajdBLUo3dlZVQ0oxQlozZERTRzAzZURxMk1XcEZRVUwyTTBXTjVBbjdoU2ZtNW5jLVdHNnJxOE8wSTZuVExTQ0dlTnNwQmNtWU9DamswZkxlekRhQ0ZWRlNzQW9ObnFYVmZZVmdzOGZxX1EyMHJkMVdrTlZLU0NLV2d5dHRsUHl1SzBJc3BhdmlPdEJ5TjhSVXFCaE1BY2lkdUQ4U2NZZjlySlI3Xzc3RE1tNTlXLW5WT3ZNSzZYS0hNRzFfVDY5eGM3ZU5HbFMwMFZwYUFGa3poTTdNWjJWNWhGbjFwcWRkeTNEQTl5TGN5V2ZPcVVGOWZkS0ZRSld2STZWYlJydFBtYXdiNVFZV0JicGVyd0l6UjhZMjJDVmRpbmt4eGp4X0x0a1dYWEhSTVpBZ1d0UG1Dek1iUkZ1czl6bC13OHJscERDQjZENUI4YUs3U1FVWjdQNjJ1STZTVkV0Y2JTeFBvTHJCWWVIQWdVWjNCc2JXQXZGcEZfTEF0QmRTSWxhRGo0Y3FIeFhEVElRdkp5a1ZnbHAwYW5zLWowQjAzNA?oc=5",
-   "source": "永豐金證券",
-   "time": "2026-11-05T08:52:32+00:00",
-   "label": "利空",
-   "score": -6,
-   "hits": [
-    "暴跌",
-    "失守",
-    "提款",
-    "恐慌"
-   ]
-  },
-  {
-   "title": "慧友歐洲機器人與半導體新單接力放量 總座看明年本業有望轉盈",
-   "url": "https://news.cnyes.com/news/id/6648094",
-   "source": "鉅亨網",
-   "time": "2026-11-05T08:51:58+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "台股重挫1374點收41575點 萬元股王信驊跌停一張蒸發140萬元",
-   "url": "https://news.google.com/rss/articles/CBMi1gJBVV95cUxOUmQ5M3hNLWg5bGRFd3B6LTYycjFHVllVcEc5dFl6ak9NUDdoX3kxQ2RGU2FQa2kxM0cwRzA5YWlyUGlfY0I4T24tVWNDeDhiVzFsckI0dXpZY1E0YS1VRktkcnJ5QlhFNHVmT0pMNXFkWUVzc2JZSHNmMmkzM2VueXBfS3N2TUsyNndPc3FQWFctZDlLOWZTa0dxbFJQNzBsNFBIbHlzXzJ2Y1pHeUtZYkh2aUNpYWt1Nm51R3JhLTc4R3hYRGJhbkxPZXQwU0psMXZjck1NSXNONUJEUEJhQzlYTTh3bmtjNDNXUmZZNWpkREdfdTk2Q2c4TlhONFAyVW4zam9vM0RXRmk5OXA1UjNmMF9mSl93UWFSdFlGQjR0aUVqeDVHVkhQZ3FJZFNscE5hNGw3WkdlQy15NThMRkpFZWtHUmY2RUpBdmVTd2stU0ZUdHc?oc=5",
-   "source": "Yahoo新聞",
-   "time": "2026-11-05T08:50:00+00:00",
-   "label": "利空",
-   "score": -6,
-   "hits": [
-    "跌停",
-    "蒸發",
     "重挫"
    ]
   },
   {
-   "title": "美選後AI前景存疑 富邦投顧總座示警下周融資斷頭潮 恐回防4萬點關卡",
-   "url": "https://news.cnyes.com/news/id/6648091",
+   "title": "明天有救了？台指期夜盤止跌反彈 重返4萬2大關",
+   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5nLThTM2FnU1Bpc3k0RGNwTE92Y1pRaDNaLWpfOWlNNzY4UGFEak5KaTltNWlqMkhNNXRzS0w4dnBOVDVMSnMxZWtucVplU3F2TWZoay05eXB6X1liSUtB0gFkQVVfeXFMTVZhVzdMUThmSmZnZjJNNGcxQ3Z5NkpDUC1DRE1rYTVqbm5OSzM2VFAwNTVRWlRHWkx1OXFzeHRaNTdKam1wbG1QLWRQYlo2bXExOXY3ZXJQU3FlYVA2UnV6cWdaUQ?oc=5",
+   "source": "自由財經",
+   "time": "2026-11-05T10:10:48+00:00",
+   "label": "利多",
+   "score": 3,
+   "hits": [
+    "反彈",
+    "止跌"
+   ]
+  },
+  {
+   "title": "把錢花在刀口上！科技巨頭重塑AI戰線：Google推自願離職、蘋果砍員工token額度",
+   "url": "https://news.cnyes.com/news/id/6647328",
    "source": "鉅亨網",
-   "time": "2026-11-05T08:46:58+00:00",
-   "label": "偏空",
-   "score": -1,
-   "hits": [
-    "示警"
-   ]
-  },
-  {
-   "title": "台股一個月暴跌逾8000點 證交所籲投資人應回歸基本面理性判斷",
-   "url": "https://news.google.com/rss/articles/CBMihgNBVV95cUxPZ21pdzhhWmJkVm5IM18wUzBOQmJJemtsUXR1WGFvaURCYTlYdVd0SXNrZUpuZ2RLNHE5U203a0h3WDZKMlMzdlRGQlNCWWlyOEJqcFZ4ZjVWV1J5djFvN2lKUG1CdTUtMjBMU0FUQWFlN1p3cl8xbF9HZkUzbjJRVzFfREE3SnJwblpVTXF6dExCLVVOMjJ6ZWhHTWJFSlA3WnRfX0xLTWxHWDMxQmw4cTVsN1l3bGlsaGQ4Ukp1V1A2RGF3czgza2EtR1QzOXU5WHd6OEdfOGhiOWtoSm9Ma0ZwWjBZeEY0TmZneWl2d1NzQVFuTUdXOVBiNnBjdklHZmVXZ0RoMThHOVphWHVRcUNtNGJ1VHN2WVNuVHViMTJrQnptcy1PaVNKZ1NvdEdJakZ0UnJBOGtmd0FiNGVxRHpQQkxTY1ZDRW9CT3lSOWFlcXdHX09rMk9xbFRIOUwzS215WFpNWWZERWszMF82WUNITGczNGlScVp4NzZyOWdEREQyVEE?oc=5",
-   "source": "Yahoo新聞",
-   "time": "2026-11-05T08:46:28+00:00",
-   "label": "利空",
-   "score": -3,
-   "hits": [
-    "暴跌",
-    "跌逾"
-   ]
-  },
-  {
-   "title": "台股一個月暴跌逾8000點 證交所籲投資人回歸基本面理性判斷",
-   "url": "https://news.google.com/rss/articles/CBMihgNBVV95cUxPZ21pdzhhWmJkVm5IM18wUzBOQmJJemtsUXR1WGFvaURCYTlYdVd0SXNrZUpuZ2RLNHE5U203a0h3WDZKMlMzdlRGQlNCWWlyOEJqcFZ4ZjVWV1J5djFvN2lKUG1CdTUtMjBMU0FUQWFlN1p3cl8xbF9HZkUzbjJRVzFfREE3SnJwblpVTXF6dExCLVVOMjJ6ZWhHTWJFSlA3WnRfX0xLTWxHWDMxQmw4cTVsN1l3bGlsaGQ4Ukp1V1A2RGF3czgza2EtR1QzOXU5WHd6OEdfOGhiOWtoSm9Ma0ZwWjBZeEY0TmZneWl2d1NzQVFuTUdXOVBiNnBjdklHZmVXZ0RoMThHOVphWHVRcUNtNGJ1VHN2WVNuVHViMTJrQnptcy1PaVNKZ1NvdEdJakZ0UnJBOGtmd0FiNGVxRHpQQkxTY1ZDRW9CT3lSOWFlcXdHX09rMk9xbFRIOUwzS215WFpNWWZERWszMF82WUNITGczNGlScVp4NzZyOWdEREQyVEE?oc=5",
-   "source": "Yahoo新聞",
-   "time": "2026-11-05T08:46:28+00:00",
-   "label": "利空",
-   "score": -3,
-   "hits": [
-    "暴跌",
-    "跌逾"
-   ]
-  },
-  {
-   "title": "台塑新智能現增130億元拚擴產 台塑四寶砸123億元投資",
-   "url": "https://news.google.com/rss/articles/CBMi4AJBVV95cUxQeVItVjVEYnFPYy1DcFpHS1lIdzFuVnpUenNPWUQ5VDh2UnlXZ1ZBT25FZkVRQjlzMXgtaWMzb1gxM3RHSXhjY09uRW9XMV9NU3hMM2RCNDU4U3hDRmg5dExmY29mVzMyZk9NVGViYk1iVVVaZG9ST1hmUUhZbkl4c1lhNjQ4V2l5dFRTMXBZRUhkVURQVzhaWUFsVDM2MUhBUmdqRUppOUNMNVdJSkMwLUFvZnBFR1M4NXF0Mzk4QXRSMWpBUjhwbzNONktid0pidUZqOGlJT181X0tRX2pwWW4zdkcwMjE5bGFMdHJLQ3ktYThsUFNHTzd3MVhYWjNybGRrcWxoODI0eVBGbFdELS1ZcmQtS2dLS1NWdkVnRDk0N2dZQUxHYlJwVjdCWFpZVGdDTjdsYmFHeHp5emJHODJLazJOQ05uWEhrcG5sRzVmakJ6eElvOS1fYlVEVG9y?oc=5",
-   "source": "Yahoo股市",
-   "time": "2026-11-05T08:44:59+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "擴產"
-   ]
-  },
-  {
-   "title": "台灣璞玉指數成為近期市場震盪環境下的抗跌選項",
-   "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5JZDFyYjk2YldTREpnMk9ZczVkOVp4SThDVmlwSGhobnktbGpDSmp5d3laTGpLUkZXRXNWenAwaGdzSURia3A5X2l2bEVsekxK0gFWQVVfeXFMTUxfTW9KWnZjS0FoUGoyLVhIU0I2dWluMm9ackNjRzlUcmpKV29hN1R0MXJBRlJNY1FCTkNNS3hpUXQxbkx5Nm93MmVwemdMaWtSQktwZ3c?oc=5",
-   "source": "UDN",
-   "time": "2026-11-05T08:41:43+00:00",
+   "time": "2026-11-05T10:10:03+00:00",
    "label": "中性",
    "score": 0,
    "hits": []
   },
   {
-   "title": "台股血流成河往哪躲？這「定存股」逆勢飆上新高 分析師揭3大必買原因： 優質避險標的",
-   "url": "https://news.google.com/rss/articles/CBMisgNBVV95cUxPRDZsbDVONnFnVzR5QUd6MWdBWEZGWFB2OUZvUkt4Z3RsYWM5dFh3NXR2ZG9id0pIUHdwalVIV2Y2X1V2UFg4RjR5WHh2eXN2U09pRzhZcDdBWnlXMFQzc1d6VXJlamdwT2J6TjQ2THo2RDFPM3NxQlFIdGR3ZU00TTZaU3Q1b19jTlhGanVfeFd1bFotbzZ4UUhqUElHaDVIVnlBd3k2ZE1iTFB2YnZjVW9fakJZaHVacVAwS0hORklXZWxLdUhVeHAzdzVIZ29pb2xsVXNta2lNZzJCblFlQll5Rm1yalA4Q0ZZMDh1Y2R3UUVzT2RkNlFTckhuX3IzNXhlY3N5ZHJkcFdPZm9xT2lLQ0pVejhJdGhxTmwwTEpodUUyS19VMXBpTEd2WnBEUDlJYVZKNkk1ZHdkaXVRS2h1REVzT2tHSS1MNTNXeEtCSTE0THpIWXlIZS1rdUdUUnA5T3k2dnRZMTB0REFadUd6aTlBVmRBanpadVZFVU01Q0dBLUhLZG1YUFFfdTEwYTIzQTJHNnluYVE4MExmdEhIZDBiTjNCTWg5N01ORGc3dw?oc=5",
-   "source": "Yahoo股市",
-   "time": "2026-11-05T08:40:00+00:00",
+   "title": "民主黨大勝！道瓊狂飆近1570點 台指期夜盤漲201點",
+   "url": "https://news.google.com/rss/articles/CBMiywJBVV95cUxPTjllekhqQXdXY2ZndXMxSmNQS0FKRnBuS2RwdTdQSk8taGxzX2tKamdwQ3hac29VbHVQcUxHcFNiTkdvTHdOR3FIbTVFcTEwcXdCaHN5Vzl4X3pXbnZSdEdtWWZweFFmckJHMElvVm5VY0FXRmt6dTVreE9DczloY3E4bVVDcGo3WHNqMUR1NEsyUy1LTTNhSm9rVDdYYUIwVDRGQUc1N3FacWZMNkZka2E2ODN1ZWREcnltdnF3bWphdnV1Q2owX0VZZXFOYmprLU0xTU5jOWNqR1Vvendjdkd6ZDc2ZWFpN2pTVWgzeEhxc01qdUM4aEMxS3hwQ2FVV3RXelB4VXpGRGh3Y2VLM1h4T3VKMVJqMGpEc1ROQmxOVXRHcjE1bnFjQmZ3Qk1kd29EOVBKUFdpVm02SXhONDBITWNndnhvMlJN?oc=5",
+   "source": "Facebook",
+   "time": "2026-11-05T10:07:15+00:00",
    "label": "中性",
    "score": 0,
    "hits": []
   },
-  {
-   "title": "暴跌1374點別慌證交所端台股獲利3.4兆元強心針抗跌- 上市櫃",
-   "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBMMFNLdXFhdjVCVkpxSk5Jbkoxc21nQkw5eVJDcXYya20zVF9POXdWYUhoS09Hd0FlUTV1Zmx5MHpoT1dKS3lzZkFWWFd4b0hUUm1yNk05bWsyZ0htN2lWcDhkdXRvNHRPUnc?oc=5",
-   "source": "旺得富理財網",
-   "time": "2026-11-05T08:38:52+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "暴跌"
-   ]
-  },
-  {
-   "title": "台股1個月暴跌逾8000點　證交所籲回歸基本面理性判斷",
-   "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE1HekNFcEJKeXQzZk13S0EyZWdsRTZuM1pyUkVUVGJZbjVvMVhOSk1nQ1V0X1RCSkZEZkFJNWRnamhuUHh3dE00V0pVWENTQWdYaUhBMTNkT1hYeXdnUTlRazB5RXhZbUlybzZ0YzJaVjZ1d1pRQ04wdmhPRjbSAV9BVV95cUxOa3A0TFBjNE1Yc0xta0l1S0pad1NvS053YlR3TlhEQmJXM1VSUEpFZ3hHOUxNQldpYTdsLWRFOUNneFBiMmQ3akJMVFFKNlBXUmswMVZGV2RmdEw0MFVWOA?oc=5",
-   "source": "經濟日報",
-   "time": "2026-11-05T08:37:42+00:00",
-   "label": "利空",
-   "score": -3,
-   "hits": [
-    "暴跌",
-    "跌逾"
-   ]
-  },
-  {
-   "title": "台股開低走低！財經作家砸50萬進場「只買2檔股」：照著計畫走",
-   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9hWFZtVnZIMGR6a056SHoyY05yaHZUT0t5WWZkUlQwYUU0TjBCdHFPRmZYVDBPSmhLQ24zazRieFJ1QlNCLUV3Z2hYeklTejladlE?oc=5",
-   "source": "ETtoday財經雲",
-   "time": "2026-11-05T08:35:00+00:00",
-   "label": "偏空",
-   "score": -1,
-   "hits": [
-    "走低"
-   ]
-  },
-  {
-   "title": "台股血流成河！9.5萬人臉綠了 投信帶頭砍「這檔」1.9萬張慘跌停",
-   "url": "https://news.google.com/rss/articles/CBMiswJBVV95cUxQZHlEb0t2MWI1S1ZJRFRfQV84R1JWZEtVbW4tYVNNY091Z2hObjE2djJtLXhOQ1FUVVBya042UTFkTWRVQ2o0LXRWMUFiTDNoV2t0TXNjeC1nLWpwRVpWRUdtTkVGdUpJNUxTMlYwYlRFV3JuZ090UUVYV3Q5OGQ2cTZrQWcxcnFha3I1aGFVdXBXa0hFRThvOVhIYzZSWmc2N1lLaGxJWjdNMUtXY1RWeVZjRkhqOGZWSVM2RDBwcVV3STNlMmxCaXdodEhWd0tfZUxrWjFLRWF6aDdpTGJoc21LVDNiSUJoVV91aTZwejA0TWZvZ2hkU2M4UzRPYjZHWmlDZ0VjYWk3cTlXZHpmUnhfVnJ6SXljNWxCendGcTRaSXJBUU1zOTc2cmtkajNPTExR?oc=5",
-   "source": "Yahoo新聞",
-   "time": "2026-11-05T08:34:00+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "跌停"
-   ]
-  },
-  {
-   "title": "民主黨大勝美股先崩後拉回、金銀齊揚 市場押注「誰也動不了誰」",
-   "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1zVmdHVWN5UHRBSWdMZEhpSVRFT1Y3SzFDS2xKM2VRYXBMZFN2OUFSd2toNHpiT01kRUVCOGlrdkhoU2YyR29welo0anlwQXNIX2VBay0yOHE?oc=5",
-   "source": "CMoney",
-   "time": "2026-11-05T08:32:04+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "齊揚"
-   ]
-  },
-  {
-   "title": "外資連6日狂砍逾6,100億、台股暴跌1,374點失守42,000點！",
-   "url": "https://news.google.com/rss/articles/CBMixwJBVV95cUxPNm9ocVJmYktiSDdJMmtxS3YxeDQtU2QtT3MwUlpYX0VkdXFsQWphTDdMTDZCOE91S00tRDlocllUV1NlQmk2WGpCcWl5bU43ajR1X3NBbDYtc240c1lXWWswWFZCcXlyVGFaN0FsdUd3Q3VSWE1KQUdJY05BY0RHZTBfMVRzMzNzbTlld2pUOGhDcEtvQVF2YnpjY0xIVk9uSU5OYXVMODl0aHpqRWl5cTFLUE41bFFnbUhfcHVLY2ZpQ1UyMUhmbjdzRmRmMHNtVTF5Skw1MWI4ek12bDJZQVZDeUpSVTlwTGxEbXlDVjZBMUU3VUs0WWNqOGRRSHJjM09kUkNFbEg5MDY5cTVtVDZJMmNpYkxEODVZc1ZiV1FXcm5CYklNMmxGcDhycEIzR0RER1lQSDl1VlBMdzZqa1hJMkY2ejg?oc=5",
-   "source": "台灣好新聞",
-   "time": "2026-11-05T08:31:51+00:00",
-   "label": "利空",
-   "score": -4,
-   "hits": [
-    "暴跌",
-    "失守"
-   ]
-  }
- ],
- "us": [
   {
    "title": "【美股盤前】Airbnb財報今晚登場，科技股能否撐盤？（2026.11.05）",
    "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNT2g5TmcxOU1DWjdZcFUxclpHdnVQamd1Z3JwUFRTSlh2ZU1VQkNuVXNUTDVNZlc2cUhfVldVeWllZXhxaE9PSF9QRENOZG9HbDRteXVicTRPMDBOc016MFB3Vy1mSF9jRVgzNWhpRWZaOF9DX1BhOU9iYlFzMzlRaFJRcTlSdDQzbkRWMkpn?oc=5",
@@ -1612,75 +1691,6 @@
    "label": "中性",
    "score": 0,
    "hits": []
-  },
-  {
-   "title": "《美股法說》AI帶動企業設備升級 CDW上修財測",
-   "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOQUlSSmR5QXY2aGxGSnVNaXU0RmN0S0tHdU9pQ2lSdGtiSFhJYjdHOTE2eGRCRjZQcWlmbE9UMEtxb1gxRTNvaUJVM3lINlBJN2tfNU9fc2UyQWNmUHVkYktRYUkzSV8xVnhITVZLcjZ6M1drbFVrTkN6QnZYWXdLLTBfRm5wMkc0dWFUcVdqTmNTUQ?oc=5",
-   "source": "台視全球資訊網",
-   "time": "2026-11-05T05:50:53+00:00",
-   "label": "利多",
-   "score": 2,
-   "hits": [
-    "上修"
-   ]
-  },
-  {
-   "title": "《美股法說》摩托羅拉系統Q3報喜 在手訂單創高",
-   "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNUFk4MlBGbm9tTEVKUm41TEh3Vkt3SW1zS0tmbkRjVjFUQW9kN0h3blNBSE9LazFkZ01NU09zWGswMEUyWHNFRHl6VF93NHRsbHIwa3VGRGVmUXBXa2tFU1htUXBaVXVON0lMZzM1cEQ3OGlCMnBqRVNqRzhrS2hMQkdaMTEyTEVib0xEa1VqOWpmZw?oc=5",
-   "source": "台視全球資訊網",
-   "time": "2026-11-05T05:50:53+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "OpenAI：準備好明年上市 目前營收過半來自企業客戶",
-   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE92MDZxY2J3QXVxaW1pNHpvSzJxR1MzM0Y4Zl9PcHk1TURvWTY2TjdTSGpJSG1TTjNSZWRIa082RHhJNjI5aUplQkQ4eWRFbXc?oc=5",
-   "source": "鉅亨網",
-   "time": "2026-11-05T05:50:07+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "今晨國際頭條／民主黨大勝美股漲近1570點 共和黨內部裂痕加劇",
-   "url": "https://news.google.com/rss/articles/CBMinANBVV95cUxOcWVJTWZkcEtnemFGZFRQZThMa2dwSkl5TFo1aDc4cUc4ZXJpM0ZQV0FBM0xYV2dLQWhKaldzTzNVWUJzOTR2aW1aWkp1TFpnUkJHa0FIZlhKTUN4Q0c3RFlHLU8zLXY0YVc3X2E5My1iNnRWUzhNUWxRNTdNcnl3SkxLVzJla2FuRDdZTHBfYkl4MlV1YjV4MWNjTm5QZWwtN2E3TXlSM0pzU3h3RUZCcERncXV4dWJoa0tSZXpjMldJMFI5OVFkUzk1NFRhbUZaWUlxdXBkOW5zTDkxNGtiTV9Ya1l5Wm85TngtdmRHVV9ZSHBLWkg1dHFrZ29fY2lFeDNoYWJqWmN2ZVhIakxuSG1BVURobTBYR2dtTl9uWlQyaC1BNGtCMjV5ZWNuSDNXbFlyWmxiWlFBZzl4a2lFOFZqTkV3eG4yOF80QV95cUxrVi1sZ3VoUTl6cGdLNkgzTzhLV0NJbDVtUTN0TTRLNThDT0wwbG0zcFg2MS1oaHVQallCX0lDcXY3c0pxU1RtdGhNeXZ6YkhXdjZS?oc=5",
-   "source": "Facebook",
-   "time": "2026-11-05T05:49:47+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "交到壞朋友！費半重挫拖累台股 「2檔」全村的希望",
-   "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE4zbTZQYTB6alROUUV1ZEV5OGxCNGJKa3N0RVI3S1JxbllSczc0ZEcwQWZpNVBTYlJFeDdKUHlKblFWYXhxcGtzZVJLVQ?oc=5",
-   "source": "三立新聞網SETN.com",
-   "time": "2026-11-05T05:48:45+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "重挫"
-   ]
-  },
-  {
-   "title": "美國期中選舉短評 中國信託證券投顧：歷史經驗美股後市相對正向",
-   "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBEVTZSMDRYMHIwTkdNeGNaY1JkZy15bTE5YnF5YWVNRjNjT1F6OXB4ZnpzanBuWExwTnNBblpPbmktVmZlTkt5T1MzV3pOVUhs0gFWQVVfeXFMT05EWjFOYVY2V0NtbVpUc1hUcFpwenBBWHdjZkNnRkVfb3pDUEN3NG90dmswVzh5S2V2NlZGNk85U2tIU3oyeUhHUVBmX0htM254WGdEVlE?oc=5",
-   "source": "UDN",
-   "time": "2026-11-05T05:41:16+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "費半重挫拖累台股！「2檔」全村的希望",
-   "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBmcVYwdVUzS1pDcmpubnJ1Ni1sNjJBbTZvQ00tUm5QQUEzQW5Kcm9aN0tyX29qcVVOOTVCckFuVnFFQWdEZzhTYWFFbmM2eklDQThYbDBfNjdrZVN4b3fSAWJBVV95cUxQOTViREZFQk8xa2F2R0RadTFZNFRyd09YS0ZQT0Fsby1rZHNMY2JaMXBEUzBrZ3dOV2VsRnVhMGNIWUNTNklqQjc2SG9zVEZzQ3JRNGVqYXQya0t5dklqNFM0QQ?oc=5",
-   "source": "鏡週刊Mirror Media",
-   "time": "2026-11-05T05:40:00+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "重挫"
-   ]
   }
  ],
  "holdings": {
