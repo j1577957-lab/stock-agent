@@ -1,5 +1,5 @@
 {
- "time": "2026-11-05 04:02",
+ "time": "2026-11-05 08:00",
  "meta": {
   "scope": "成交額前 100 名＋觀察清單",
   "weights": {
@@ -7,12 +7,12 @@
    "technical": 25,
    "chips": 25
   },
-  "universe": 104,
-  "screened": 73,
+  "universe": 103,
+  "screened": 102,
   "scored": 40,
-  "unscored": 31,
+  "unscored": 1,
   "data_date": "2026-11-04",
-  "budget_left": 0,
+  "budget_left": 26,
   "limited": false
  },
  "top": [
@@ -23,14 +23,14 @@
    "fundamental": 91,
    "technical": 90,
    "chips": 100,
-   "price": 267.5,
+   "price": 268.0,
    "date": "2026-11-04",
    "support": 254.0,
    "resistance": 270.5,
-   "rsi": 61,
-   "ma20": 258.55,
-   "ma60": 242.52,
-   "boll_upper": 281.81,
+   "rsi": 62,
+   "ma20": 258.57,
+   "ma60": 242.53,
+   "boll_upper": 281.88,
    "patterns": [],
    "quarter": "2026-06-30",
    "revenue_month": "2026/09",
@@ -68,14 +68,14 @@
    "fundamental": 77,
    "technical": 60,
    "chips": 90,
-   "price": 1255.0,
+   "price": 1250.0,
    "date": "2026-11-04",
    "support": 1165.0,
    "resistance": 1300.0,
-   "rsi": 57,
-   "ma20": 1194.0,
-   "ma60": 1280.5,
-   "boll_upper": 1251.27,
+   "rsi": 56,
+   "ma20": 1193.75,
+   "ma60": 1280.42,
+   "boll_upper": 1249.93,
    "patterns": [],
    "quarter": "2026-06-30",
    "revenue_month": "2026/09",
@@ -118,14 +118,14 @@
    "fundamental": 57,
    "technical": 85,
    "chips": 80,
-   "price": 66.4,
+   "price": 66.7,
    "date": "2026-11-04",
    "support": 65.0,
    "resistance": 73.6,
-   "rsi": 56,
-   "ma20": 64.95,
-   "ma60": 60.6,
-   "boll_upper": 69.59,
+   "rsi": 57,
+   "ma20": 64.96,
+   "ma60": 60.61,
+   "boll_upper": 69.62,
    "patterns": [],
    "quarter": "2026-06-30",
    "revenue_month": "2026/09",
@@ -159,20 +159,68 @@
    ]
   },
   {
+   "symbol": "2412.TW",
+   "name": "中華電",
+   "total": 69.5,
+   "fundamental": 69,
+   "technical": 70,
+   "chips": 70,
+   "price": 161.5,
+   "date": "2026-11-04",
+   "support": 143.0,
+   "resistance": null,
+   "rsi": 81,
+   "ma20": 153.88,
+   "ma60": 144.38,
+   "boll_upper": 164.58,
+   "patterns": [],
+   "quarter": "2026-06-30",
+   "revenue_month": "2026/09",
+   "roe": 10.8,
+   "roa": 7.2,
+   "eps_ttm": 5.1,
+   "gross_margin": 37.5,
+   "debt_ratio": 31.0,
+   "revenue_yoy_3m": 16.7,
+   "per": 31.73,
+   "pbr": 3.42,
+   "dividend_yield": 3.22,
+   "institutional": {
+    "外資": 14586,
+    "投信": 5349,
+    "自營商": 1715
+   },
+   "margin_change": 1278,
+   "good": [
+    "ROE 10.8%",
+    "ROA 7.2%",
+    "負債比 31% 低",
+    "單季 EPS 1.38 高於去年同期 1.31",
+    "外資 5 日買超 14,586 張",
+    "投信 5 日買超 5,349 張",
+    "站上月線",
+    "站上季線"
+   ],
+   "bad": [
+    "融資 5 日增 228%，散戶追價",
+    "RSI 81 過熱"
+   ]
+  },
+  {
    "symbol": "3533.TW",
    "name": "嘉澤",
-   "total": 65.0,
+   "total": 67.5,
    "fundamental": 70,
-   "technical": 35,
+   "technical": 45,
    "chips": 85,
-   "price": 1775.0,
+   "price": 1820.0,
    "date": "2026-11-04",
    "support": 1770.0,
    "resistance": 2025.0,
-   "rsi": 47,
-   "ma20": 1845.0,
-   "ma60": 1746.33,
-   "boll_upper": 1962.2,
+   "rsi": 51,
+   "ma20": 1847.25,
+   "ma60": 1747.08,
+   "boll_upper": 1960.46,
    "patterns": [],
    "quarter": "2026-06-30",
    "revenue_month": "2026/09",
@@ -203,6 +251,100 @@
    "bad": [
     "毛利率年減 5.5 個百分點",
     "在月線之下"
+   ]
+  },
+  {
+   "symbol": "3406.TW",
+   "name": "玉晶光",
+   "total": 64.2,
+   "fundamental": 76,
+   "technical": 35,
+   "chips": 70,
+   "price": 939.0,
+   "date": "2026-11-04",
+   "support": 906.0,
+   "resistance": 1090.0,
+   "rsi": 42,
+   "ma20": 1099.0,
+   "ma60": 936.37,
+   "boll_upper": 1282.95,
+   "patterns": [],
+   "quarter": "2026-06-30",
+   "revenue_month": "2026/09",
+   "roe": 17.1,
+   "roa": 9.9,
+   "eps_ttm": 36.96,
+   "gross_margin": 33.2,
+   "debt_ratio": 39.4,
+   "revenue_yoy_3m": 0.9,
+   "per": 25.41,
+   "pbr": 3.91,
+   "dividend_yield": 1.81,
+   "institutional": {
+    "外資": 1100,
+    "投信": 199,
+    "自營商": 39
+   },
+   "margin_change": -639,
+   "good": [
+    "ROE 17.1% 高",
+    "ROA 9.9%",
+    "負債比 39% 低",
+    "毛利率年增 4.1 個百分點",
+    "外資 5 日買超 1,100 張",
+    "投信連買 3 天",
+    "站上季線"
+   ],
+   "bad": [
+    "在月線之下"
+   ]
+  },
+  {
+   "symbol": "3034.TW",
+   "name": "聯詠",
+   "total": 64.0,
+   "fundamental": 88,
+   "technical": 25,
+   "chips": 55,
+   "price": 533.0,
+   "date": "2026-11-04",
+   "support": 525.0,
+   "resistance": 553.0,
+   "rsi": 39,
+   "ma20": 565.5,
+   "ma60": 548.7,
+   "boll_upper": 614.07,
+   "patterns": [],
+   "quarter": "2026-09-30",
+   "revenue_month": "2026/09",
+   "roe": 28.6,
+   "roa": 19.2,
+   "eps_ttm": 32.65,
+   "gross_margin": 40.9,
+   "debt_ratio": 33.4,
+   "revenue_yoy_3m": 26.0,
+   "per": 16.41,
+   "pbr": 4.34,
+   "dividend_yield": 4.32,
+   "institutional": {
+    "外資": -1191,
+    "投信": 1648,
+    "自營商": -56
+   },
+   "margin_change": -230,
+   "good": [
+    "ROE 28.6% 高",
+    "ROA 19.2%",
+    "負債比 33% 低",
+    "毛利率年增 4.6 個百分點",
+    "投信 5 日買超 1,648 張",
+    "投信連買 5 天",
+    "量增 1.7 倍"
+   ],
+   "bad": [
+    "外資 5 日賣超 1,191 張",
+    "在月線之下",
+    "在季線之下"
    ]
   },
   {
@@ -245,7 +387,7 @@
     "毛利率年增 9.9 個百分點",
     "外資 5 日買超 39 張",
     "投信 5 日買超 355 張",
-    "量增 2.5 倍"
+    "量增 2.7 倍"
    ],
    "bad": [
     "本益比 47 倍偏高",
@@ -255,49 +397,49 @@
    ]
   },
   {
-   "symbol": "3406.TW",
-   "name": "玉晶光",
-   "total": 60.5,
-   "fundamental": 76,
-   "technical": 20,
-   "chips": 70,
-   "price": 935.0,
+   "symbol": "5465.TWO",
+   "name": "富驊",
+   "total": 61.8,
+   "fundamental": 71,
+   "technical": 45,
+   "chips": 60,
+   "price": 36.0,
    "date": "2026-11-04",
-   "support": 906.0,
-   "resistance": 1090.0,
-   "rsi": 42,
-   "ma20": 1098.8,
-   "ma60": 936.3,
-   "boll_upper": 1283.49,
+   "support": 32.2,
+   "resistance": 36.95,
+   "rsi": 53,
+   "ma20": 36.76,
+   "ma60": 29.6,
+   "boll_upper": 42.09,
    "patterns": [],
    "quarter": "2026-06-30",
    "revenue_month": "2026/09",
-   "roe": 17.1,
-   "roa": 9.9,
-   "eps_ttm": 36.96,
-   "gross_margin": 33.2,
-   "debt_ratio": 39.4,
-   "revenue_yoy_3m": 0.9,
-   "per": 25.41,
-   "pbr": 3.91,
-   "dividend_yield": 1.81,
+   "roe": 10.4,
+   "roa": 4.8,
+   "eps_ttm": 1.6,
+   "gross_margin": 19.2,
+   "debt_ratio": 36.5,
+   "revenue_yoy_3m": -2.5,
+   "per": 22.5,
+   "pbr": 2.15,
+   "dividend_yield": 3.33,
    "institutional": {
-    "外資": 1100,
-    "投信": 199,
-    "自營商": 39
+    "外資": 672,
+    "投信": 0,
+    "自營商": 53
    },
-   "margin_change": -639,
+   "margin_change": -213,
    "good": [
-    "ROE 17.1% 高",
-    "ROA 9.9%",
-    "負債比 39% 低",
-    "毛利率年增 4.1 個百分點",
-    "外資 5 日買超 1,100 張",
-    "投信連買 3 天"
+    "ROE 10.4%",
+    "負債比 36% 低",
+    "毛利率年增 8.6 個百分點",
+    "營益率年增 4.9 個百分點",
+    "外資 5 日買超 672 張",
+    "融資 5 日減 8%",
+    "站上季線"
    ],
    "bad": [
-    "在月線之下",
-    "在季線之下"
+    "在月線之下"
    ]
   },
   {
@@ -307,14 +449,14 @@
    "fundamental": 82,
    "technical": 35,
    "chips": 40,
-   "price": 97.9,
+   "price": 97.6,
    "date": "2026-11-04",
    "support": 68.6,
-   "resistance": 129.0,
+   "resistance": 97.9,
    "rsi": 47,
-   "ma20": 107.34,
-   "ma60": 89.0,
-   "boll_upper": 122.55,
+   "ma20": 107.32,
+   "ma60": 88.99,
+   "boll_upper": 122.58,
    "patterns": [],
    "quarter": "2026-06-30",
    "revenue_month": "2026/09",
@@ -345,154 +487,6 @@
     "投信 5 日賣超 4,033 張",
     "在月線之下"
    ]
-  },
-  {
-   "symbol": "2891.TW",
-   "name": "中信金",
-   "total": 59.0,
-   "fundamental": 58,
-   "technical": 75,
-   "chips": 45,
-   "price": 72.8,
-   "date": "2026-11-04",
-   "support": 69.7,
-   "resistance": 73.6,
-   "rsi": 52,
-   "ma20": 72.78,
-   "ma60": 68.94,
-   "boll_upper": 77.87,
-   "patterns": [
-    "雙重底"
-   ],
-   "quarter": "2026-06-30",
-   "revenue_month": "2026/09",
-   "roe": 13.8,
-   "roa": 0.9,
-   "eps_ttm": 4.26,
-   "gross_margin": null,
-   "debt_ratio": 92.8,
-   "revenue_yoy_3m": -1.2,
-   "per": 17.51,
-   "pbr": 2.09,
-   "dividend_yield": 3.42,
-   "institutional": {
-    "外資": -8501,
-    "投信": 34623,
-    "自營商": 13207
-   },
-   "margin_change": 176,
-   "good": [
-    "ROE 13.8%",
-    "單季 EPS 0.78 高於去年同期 0.76",
-    "投信 5 日買超 34,623 張",
-    "投信連買 4 天",
-    "站上月線",
-    "站上季線"
-   ],
-   "bad": [
-    "外資 5 日賣超 8,501 張"
-   ]
-  },
-  {
-   "symbol": "3653.TW",
-   "name": "健策",
-   "total": 58.5,
-   "fundamental": 77,
-   "technical": 50,
-   "chips": 30,
-   "price": 6495.0,
-   "date": "2026-11-04",
-   "support": 5710.0,
-   "resistance": 7330.0,
-   "rsi": 53,
-   "ma20": 6572.75,
-   "ma60": 5948.08,
-   "boll_upper": 7367.97,
-   "patterns": [],
-   "quarter": "2026-06-30",
-   "revenue_month": "2026/09",
-   "roe": 33.4,
-   "roa": 21.7,
-   "eps_ttm": 44.65,
-   "gross_margin": 46.8,
-   "debt_ratio": 28.7,
-   "revenue_yoy_3m": 87.3,
-   "per": 145.57,
-   "pbr": 40.14,
-   "dividend_yield": 0.34,
-   "institutional": {
-    "外資": -1755,
-    "投信": 580,
-    "自營商": 79
-   },
-   "margin_change": 558,
-   "good": [
-    "ROE 33.4% 高",
-    "ROA 21.7%",
-    "負債比 29% 低",
-    "毛利率年增 5.3 個百分點",
-    "投信 5 日買超 580 張",
-    "投信連買 5 天",
-    "站上季線",
-    "量增 2.2 倍"
-   ],
-   "bad": [
-    "本益比 146 倍偏高",
-    "股價淨值比 40.1 倍偏高",
-    "外資 5 日賣超 1,755 張",
-    "融資 5 日增 20%，散戶追價",
-    "在月線之下"
-   ]
-  },
-  {
-   "symbol": "6672.TW",
-   "name": "騰輝電子-KY",
-   "total": 58.0,
-   "fundamental": 71,
-   "technical": 50,
-   "chips": 40,
-   "price": 523.0,
-   "date": "2026-11-04",
-   "support": 285.0,
-   "resistance": 605.0,
-   "rsi": 54,
-   "ma20": 553.58,
-   "ma60": 383.36,
-   "boll_upper": 632.23,
-   "patterns": [],
-   "quarter": "2026-06-30",
-   "revenue_month": "2026/09",
-   "roe": 13.6,
-   "roa": 9.3,
-   "eps_ttm": 7.25,
-   "gross_margin": 36.0,
-   "debt_ratio": 29.4,
-   "revenue_yoy_3m": 141.4,
-   "per": 79.91,
-   "pbr": 8.99,
-   "dividend_yield": 0.63,
-   "institutional": {
-    "外資": -2770,
-    "投信": 1218,
-    "自營商": 167
-   },
-   "margin_change": 616,
-   "good": [
-    "ROE 13.6%",
-    "ROA 9.3%",
-    "負債比 29% 低",
-    "毛利率年增 5.9 個百分點",
-    "投信 5 日買超 1,218 張",
-    "投信連買 3 天",
-    "站上季線",
-    "量增 3.5 倍"
-   ],
-   "bad": [
-    "本益比 80 倍偏高",
-    "股價淨值比 9.0 倍偏高",
-    "外資 5 日賣超 2,770 張",
-    "在月線之下"
-   ]
   }
  ],
  "all": [
@@ -503,7 +497,7 @@
    "fundamental": 91,
    "technical": 90,
    "chips": 100,
-   "price": 267.5
+   "price": 268.0
   },
   {
    "symbol": "6446.TW",
@@ -512,7 +506,7 @@
    "fundamental": 77,
    "technical": 60,
    "chips": 90,
-   "price": 1255.0
+   "price": 1250.0
   },
   {
    "symbol": "1802.TW",
@@ -521,16 +515,43 @@
    "fundamental": 57,
    "technical": 85,
    "chips": 80,
-   "price": 66.4
+   "price": 66.7
+  },
+  {
+   "symbol": "2412.TW",
+   "name": "中華電",
+   "total": 69.5,
+   "fundamental": 69,
+   "technical": 70,
+   "chips": 70,
+   "price": 161.5
   },
   {
    "symbol": "3533.TW",
    "name": "嘉澤",
-   "total": 65.0,
+   "total": 67.5,
    "fundamental": 70,
-   "technical": 35,
+   "technical": 45,
    "chips": 85,
-   "price": 1775.0
+   "price": 1820.0
+  },
+  {
+   "symbol": "3406.TW",
+   "name": "玉晶光",
+   "total": 64.2,
+   "fundamental": 76,
+   "technical": 35,
+   "chips": 70,
+   "price": 939.0
+  },
+  {
+   "symbol": "3034.TW",
+   "name": "聯詠",
+   "total": 64.0,
+   "fundamental": 88,
+   "technical": 25,
+   "chips": 55,
+   "price": 533.0
   },
   {
    "symbol": "2059.TW",
@@ -542,13 +563,13 @@
    "price": 8600.0
   },
   {
-   "symbol": "3406.TW",
-   "name": "玉晶光",
-   "total": 60.5,
-   "fundamental": 76,
-   "technical": 20,
-   "chips": 70,
-   "price": 935.0
+   "symbol": "5465.TWO",
+   "name": "富驊",
+   "total": 61.8,
+   "fundamental": 71,
+   "technical": 45,
+   "chips": 60,
+   "price": 36.0
   },
   {
    "symbol": "6505.TW",
@@ -557,16 +578,16 @@
    "fundamental": 82,
    "technical": 35,
    "chips": 40,
-   "price": 97.9
+   "price": 97.6
   },
   {
-   "symbol": "2891.TW",
-   "name": "中信金",
-   "total": 59.0,
-   "fundamental": 58,
-   "technical": 75,
-   "chips": 45,
-   "price": 72.8
+   "symbol": "3324.TWO",
+   "name": "雙鴻",
+   "total": 59.2,
+   "fundamental": 76,
+   "technical": 15,
+   "chips": 70,
+   "price": 1300.0
   },
   {
    "symbol": "3653.TW",
@@ -575,7 +596,16 @@
    "fundamental": 77,
    "technical": 50,
    "chips": 30,
-   "price": 6495.0
+   "price": 6450.0
+  },
+  {
+   "symbol": "1815.TWO",
+   "name": "富喬",
+   "total": 58.2,
+   "fundamental": 79,
+   "technical": 50,
+   "chips": 25,
+   "price": 135.0
   },
   {
    "symbol": "6672.TW",
@@ -584,7 +614,7 @@
    "fundamental": 71,
    "technical": 50,
    "chips": 40,
-   "price": 523.0
+   "price": 529.0
   },
   {
    "symbol": "1303.TW",
@@ -593,7 +623,7 @@
    "fundamental": 71,
    "technical": 35,
    "chips": 55,
-   "price": 275.0
+   "price": 276.5
   },
   {
    "symbol": "6278.TW",
@@ -602,7 +632,7 @@
    "fundamental": 76,
    "technical": 35,
    "chips": 45,
-   "price": 219.5
+   "price": 219.0
   },
   {
    "symbol": "2330.TW",
@@ -611,34 +641,16 @@
    "fundamental": 83,
    "technical": 15,
    "chips": 50,
-   "price": 2270.0
+   "price": 2260.0
   },
   {
-   "symbol": "6415.TW",
-   "name": "矽力*-KY",
-   "total": 57.5,
-   "fundamental": 60,
-   "technical": 40,
-   "chips": 70,
-   "price": 454.5
-  },
-  {
-   "symbol": "2468.TW",
-   "name": "華經",
-   "total": 56.8,
-   "fundamental": 51,
-   "technical": 65,
-   "chips": 60,
-   "price": 60.8
-  },
-  {
-   "symbol": "2883.TW",
-   "name": "凱基金",
-   "total": 56.5,
-   "fundamental": 88,
-   "technical": 10,
-   "chips": 40,
-   "price": 34.7
+   "symbol": "6442.TW",
+   "name": "光聖",
+   "total": 57.0,
+   "fundamental": 79,
+   "technical": 15,
+   "chips": 55,
+   "price": 1130.0
   },
   {
    "symbol": "2368.TW",
@@ -647,16 +659,16 @@
    "fundamental": 80,
    "technical": 10,
    "chips": 55,
-   "price": 963.0
+   "price": 964.0
   },
   {
-   "symbol": "6442.TW",
-   "name": "光聖",
-   "total": 55.8,
-   "fundamental": 79,
-   "technical": 10,
+   "symbol": "4979.TWO",
+   "name": "華星光",
+   "total": 55.5,
+   "fundamental": 81,
+   "technical": 5,
    "chips": 55,
-   "price": 1130.0
+   "price": 376.0
   },
   {
    "symbol": "6805.TW",
@@ -665,7 +677,7 @@
    "fundamental": 78,
    "technical": 15,
    "chips": 50,
-   "price": 2075.0
+   "price": 2080.0
   },
   {
    "symbol": "3026.TW",
@@ -674,7 +686,16 @@
    "fundamental": 77,
    "technical": 10,
    "chips": 55,
-   "price": 583.0
+   "price": 586.0
+  },
+  {
+   "symbol": "3529.TWO",
+   "name": "力旺",
+   "total": 54.8,
+   "fundamental": 77,
+   "technical": 5,
+   "chips": 60,
+   "price": 2160.0
   },
   {
    "symbol": "8996.TW",
@@ -683,16 +704,7 @@
    "fundamental": 67,
    "technical": 30,
    "chips": 55,
-   "price": 1425.0
-  },
-  {
-   "symbol": "2465.TW",
-   "name": "麗臺",
-   "total": 54.5,
-   "fundamental": 74,
-   "technical": 60,
-   "chips": 10,
-   "price": 125.0
+   "price": 1430.0
   },
   {
    "symbol": "3167.TW",
@@ -701,7 +713,25 @@
    "fundamental": 71,
    "technical": 30,
    "chips": 45,
-   "price": 862.0
+   "price": 863.0
+  },
+  {
+   "symbol": "1560.TW",
+   "name": "中砂",
+   "total": 53.0,
+   "fundamental": 81,
+   "technical": 15,
+   "chips": 35,
+   "price": 788.0
+  },
+  {
+   "symbol": "8046.TW",
+   "name": "南電",
+   "total": 53.0,
+   "fundamental": 71,
+   "technical": 15,
+   "chips": 55,
+   "price": 1080.0
   },
   {
    "symbol": "2337.TW",
@@ -713,49 +743,67 @@
    "price": 87.2
   },
   {
+   "symbol": "3006.TW",
+   "name": "晶豪科",
+   "total": 52.8,
+   "fundamental": 93,
+   "technical": 5,
+   "chips": 20,
+   "price": 231.5
+  },
+  {
+   "symbol": "8042.TWO",
+   "name": "金山電",
+   "total": 52.5,
+   "fundamental": 70,
+   "technical": 50,
+   "chips": 20,
+   "price": 133.0
+  },
+  {
+   "symbol": "3264.TWO",
+   "name": "欣銓",
+   "total": 52.5,
+   "fundamental": 90,
+   "technical": 10,
+   "chips": 20,
+   "price": 197.0
+  },
+  {
+   "symbol": "6187.TWO",
+   "name": "萬潤",
+   "total": 51.8,
+   "fundamental": 81,
+   "technical": 10,
+   "chips": 35,
+   "price": 1065.0
+  },
+  {
    "symbol": "3443.TW",
    "name": "創意",
    "total": 51.8,
    "fundamental": 66,
    "technical": 30,
    "chips": 45,
-   "price": 7125.0
+   "price": 7115.0
   },
   {
-   "symbol": "8046.TW",
-   "name": "南電",
-   "total": 51.8,
-   "fundamental": 71,
-   "technical": 10,
-   "chips": 55,
-   "price": 1080.0
-  },
-  {
-   "symbol": "3006.TW",
-   "name": "晶豪科",
-   "total": 51.5,
+   "symbol": "2344.TW",
+   "name": "華邦電",
+   "total": 50.2,
    "fundamental": 93,
-   "technical": 0,
-   "chips": 20,
-   "price": 230.5
+   "technical": 5,
+   "chips": 10,
+   "price": 141.5
   },
   {
-   "symbol": "3189.TW",
-   "name": "景碩",
-   "total": 49.8,
-   "fundamental": 72,
-   "technical": 10,
+   "symbol": "2455.TW",
+   "name": "全新",
+   "total": 49.5,
+   "fundamental": 69,
+   "technical": 15,
    "chips": 45,
-   "price": 819.0
-  },
-  {
-   "symbol": "3017.TW",
-   "name": "奇鋐",
-   "total": 49.8,
-   "fundamental": 77,
-   "technical": 0,
-   "chips": 45,
-   "price": 2840.0
+   "price": 384.0
   },
   {
    "symbol": "3037.TW",
@@ -764,7 +812,7 @@
    "fundamental": 74,
    "technical": 15,
    "chips": 35,
-   "price": 884.0
+   "price": 888.0
   },
   {
    "symbol": "2408.TW",
@@ -773,16 +821,7 @@
    "fundamental": 93,
    "technical": 0,
    "chips": 10,
-   "price": 394.5
-  },
-  {
-   "symbol": "2344.TW",
-   "name": "華邦電",
-   "total": 49.0,
-   "fundamental": 93,
-   "technical": 0,
-   "chips": 10,
-   "price": 141.0
+   "price": 399.5
   },
   {
    "symbol": "2303.TW",
@@ -791,16 +830,7 @@
    "fundamental": 92,
    "technical": 10,
    "chips": 0,
-   "price": 106.0
-  },
-  {
-   "symbol": "2455.TW",
-   "name": "全新",
-   "total": 48.2,
-   "fundamental": 69,
-   "technical": 10,
-   "chips": 45,
-   "price": 382.0
+   "price": 105.5
   },
   {
    "symbol": "3711.TW",
@@ -809,52 +839,16 @@
    "fundamental": 72,
    "technical": 15,
    "chips": 30,
-   "price": 628.0
-  },
-  {
-   "symbol": "2449.TW",
-   "name": "京元電子",
-   "total": 47.0,
-   "fundamental": 74,
-   "technical": 10,
-   "chips": 30,
-   "price": 249.5
-  },
-  {
-   "symbol": "3665.TW",
-   "name": "貿聯-KY",
-   "total": 46.0,
-   "fundamental": 72,
-   "technical": 10,
-   "chips": 30,
-   "price": 1560.0
-  },
-  {
-   "symbol": "6531.TW",
-   "name": "愛普*",
-   "total": 43.5,
-   "fundamental": 77,
-   "technical": 0,
-   "chips": 20,
-   "price": 718.0
-  },
-  {
-   "symbol": "2308.TW",
-   "name": "台達電",
-   "total": 43.0,
-   "fundamental": 76,
-   "technical": 5,
-   "chips": 15,
-   "price": 1225.0
+   "price": 627.0
   },
   {
    "symbol": "8021.TW",
    "name": "尖點",
-   "total": 40.5,
+   "total": 41.8,
    "fundamental": 71,
-   "technical": 10,
+   "technical": 15,
    "chips": 10,
-   "price": 374.5
+   "price": 378.0
   }
  ]
 }
