@@ -48,6 +48,20 @@ def log(msg: str) -> None:
     LOG_LINES.append(msg)
 
 
+def decode_page(r) -> str:
+    """把網頁內容轉成文字。網站沒標明編碼時，先試 UTF-8、再試 Big5（cp950），
+    最後才用猜的。（只靠猜的話偶爾會猜成俄文編碼，ETF 名稱變成亂碼，例如 11/05 04:33 的 00404A。）"""
+    declared = (r.encoding or "").lower()
+    if declared and declared != "iso-8859-1":
+        return r.text
+    for enc in ("utf-8", "cp950"):
+        try:
+            return r.content.decode(enc)
+        except UnicodeDecodeError:
+            pass
+    return r.content.decode(r.apparent_encoding or "utf-8", errors="replace")
+
+
 def text_of(fragment: str) -> str:
     t = re.sub(r"<[^>]+>", " ", fragment)
     return re.sub(r"\s+", " ", html.unescape(t)).strip()
@@ -63,9 +77,7 @@ def fetch(code: str) -> dict | None:
     if r.status_code != 200:
         log(f"  ✗ {code} 網站回應 {r.status_code}")
         return None
-    if not r.encoding or r.encoding.lower() == "iso-8859-1":
-        r.encoding = r.apparent_encoding or "utf-8"
-    page = r.text
+    page = decode_page(r)
 
     title = re.search(r"<title>(.*?)</title>", page, re.S)
     name = text_of(title.group(1)).split("-")[0].strip() if title else code
