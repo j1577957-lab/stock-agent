@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-06 02:08",
+ "updated": "2026-11-06 02:38",
  "tw": [
   {
    "title": "外資殺紅眼！一週狂賣台股1733億元 它慘遭倒貨近11萬張居冠",
@@ -216,6 +216,15 @@
    "hits": [
     "重挫"
    ]
+  },
+  {
+   "title": "台股再崩千點！證交所喊話：台股展現穩健韌性",
+   "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE8xdF9HZG5sMFpCT01MajVqaFUxNlBPWjlpNGtiNDl6a3RpRjB5eERQMmtqVFFtZDQyak5aS3BHWlliMGdOcnlaTFhOMUYzMjkyOHdXSmxwYw?oc=5",
+   "source": "東森新聞",
+   "time": "2026-11-05T15:05:00+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
   },
   {
    "title": "科技股崩了！費半大暴跌 台指期夜盤紅翻黑",
@@ -821,20 +830,248 @@
    "hits": [
     "年增"
    ]
-  },
-  {
-   "title": "營收速報  - 宇瞻(8271)10月營收30.76億元年增率高達147.65％",
-   "url": "https://news.cnyes.com/news/id/6648771",
-   "source": "鉅亨網",
-   "time": "2026-11-05T11:20:51+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "年增"
-   ]
   }
  ],
  "us": [
+  {
+   "title": "美股自由落體集體血洗！台指期崩2600點 專家們喊Too crazy：要請假了",
+   "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1JX0dkSkRLQzV4X2VBcEVFY1RMNFBvbVVTeTBtVWxpNFRpaHNlaWxscGNmNS13dzZyU3I4ZXlsT0Y4a0doN3MtUEJyaw?oc=5",
+   "source": "三立新聞網SETN.com",
+   "time": "2026-11-05T18:34:49+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "蘋果逾一年來首度發債！擬籌70億美元 支應庫藏股、股利與資本支出",
+   "url": "https://news.cnyes.com/news/id/6649030",
+   "source": "鉅亨網",
+   "time": "2026-11-05T18:30:02+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "盤中速報 - 奇異(GE-US)大跌5.1%，報312.64美元",
+   "url": "https://news.cnyes.com/news/id/6649249",
+   "source": "鉅亨網",
+   "time": "2026-11-05T18:23:37+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "大跌"
+   ]
+  },
+  {
+   "title": "盤中速報 - 防特網(FTNT-US)大跌5%，報122.92美元",
+   "url": "https://news.cnyes.com/news/id/6649248",
+   "source": "鉅亨網",
+   "time": "2026-11-05T18:22:38+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "大跌"
+   ]
+  },
+  {
+   "title": "《強勢美股特報》APP,MSI,VRSK,CAH等10檔",
+   "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOLUFMR0hpUkpuN1RJcndja1MxTTdRc1dSR2tSR3FnLUwzUmZTUXBpVXBMRUZVZXFvT0xaNWRaempERUdvalhWbGVXREdVbHVwRmY3bzlJS0FzWmlwSVNXQlI0dmE5YVdybmFESkY0WjM1cWFPLWtnR2ZadG4wZmVQelJpZ3VzS3ZRM0dhNC1oMktBdw?oc=5",
+   "source": "台視全球資訊網",
+   "time": "2026-11-05T18:19:24+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "強勢"
+   ]
+  },
+  {
+   "title": "美股重挫引爆避險潮，歐元兌日圓逼近跌破177關卡",
+   "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5GaWtrVC1KamRmR3FWalYzZm5NVk5oRG84SUdWVURSNGhUOVpMMTN1RGM0aHd4MHUxVFg0Y1pQOW1ZdHFlaXBfMkhia2JxWERkdFprZUVTY3piOVF5SGFqZzdVejQxSHE0SThZTFNJanV3X1NkQzRWUHV3?oc=5",
+   "source": "BigGo 財經",
+   "time": "2026-11-05T18:17:00+00:00",
+   "label": "利空",
+   "score": -3,
+   "hits": [
+    "重挫",
+    "跌破"
+   ]
+  },
+  {
+   "title": "盤中速報 - 貝萊德(BLK-US)大跌5.01%，報1163.09美元",
+   "url": "https://news.cnyes.com/news/id/6649247",
+   "source": "鉅亨網",
+   "time": "2026-11-05T18:16:32+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "大跌"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：新聞集團(NWS-US)EPS預估上修至1.38元，預估目標價為39.00元",
+   "url": "https://news.cnyes.com/news/id/6649246",
+   "source": "鉅亨網",
+   "time": "2026-11-05T18:15:51+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "上修"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：Applovin Corp - Class A(APP-US)EPS預估上修至16.04元，預估目標價為450.00元",
+   "url": "https://news.cnyes.com/news/id/6649245",
+   "source": "鉅亨網",
+   "time": "2026-11-05T18:15:49+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "上修"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：美卡多(MELI-US)EPS預估下修至37.3元，預估目標價為2,250.00元",
+   "url": "https://news.cnyes.com/news/id/6649244",
+   "source": "鉅亨網",
+   "time": "2026-11-05T18:15:47+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "下修"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：馬拉松石油(MPC-US)EPS預估上修至67.83元，預估目標價為472.00元",
+   "url": "https://news.cnyes.com/news/id/6649243",
+   "source": "鉅亨網",
+   "time": "2026-11-05T18:15:45+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "上修"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：森科能源公司(SU-US)EPS預估上修至9.17元，預估目標價為82.04元",
+   "url": "https://news.cnyes.com/news/id/6649242",
+   "source": "鉅亨網",
+   "time": "2026-11-05T18:15:44+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "上修"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：Permian Resources Corp - Class A(PR-US)EPS預估下修至2.35元，預估目標價為29.00元",
+   "url": "https://news.cnyes.com/news/id/6649241",
+   "source": "鉅亨網",
+   "time": "2026-11-05T18:15:42+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "下修"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：Unum集團(UNM-US)EPS預估下修至8.51元，預估目標價為98.00元",
+   "url": "https://news.cnyes.com/news/id/6649240",
+   "source": "鉅亨網",
+   "time": "2026-11-05T18:15:39+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "下修"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：富達全國資訊服務FIS-US的目標價調降至35元，幅度約5.41%",
+   "url": "https://news.cnyes.com/news/id/6649239",
+   "source": "鉅亨網",
+   "time": "2026-11-05T18:15:38+00:00",
+   "label": "偏空",
+   "score": -1,
+   "hits": [
+    "調降"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：Figma, Inc. Class AFIG-US的目標價調降至28元，幅度約6.67%",
+   "url": "https://news.cnyes.com/news/id/6649238",
+   "source": "鉅亨網",
+   "time": "2026-11-05T18:15:36+00:00",
+   "label": "偏空",
+   "score": -1,
+   "hits": [
+    "調降"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：新聞集團(NWSA-US)EPS預估上修至1.38元，預估目標價為37.00元",
+   "url": "https://news.cnyes.com/news/id/6649237",
+   "source": "鉅亨網",
+   "time": "2026-11-05T18:15:36+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "上修"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：加拿大自然資源公司(CNQ-US)EPS預估上修至4.69元，預估目標價為52.83元",
+   "url": "https://news.cnyes.com/news/id/6649236",
+   "source": "鉅亨網",
+   "time": "2026-11-05T18:15:34+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "上修"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：Viavi Solutions Inc(VIAV-US)EPS預估上修至2.02元，預估目標價為58.00元",
+   "url": "https://news.cnyes.com/news/id/6649235",
+   "source": "鉅亨網",
+   "time": "2026-11-05T18:15:31+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "上修"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：Westlake Corporation(WLK-US)EPS預估下修至1.62元，預估目標價為75.50元",
+   "url": "https://news.cnyes.com/news/id/6649234",
+   "source": "鉅亨網",
+   "time": "2026-11-05T18:15:27+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "下修"
+   ]
+  },
+  {
+   "title": "盤中速報 - 道瓊指數大跌3.01%，報51749.48點",
+   "url": "https://news.cnyes.com/news/id/6649233",
+   "source": "鉅亨網",
+   "time": "2026-11-05T18:10:05+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "大跌"
+   ]
+  },
+  {
+   "title": "AI 狂潮反噬華爾街：超級巨頭砍回購、砸兆元蓋機房，美股科技股慘遭「政策修理」",
+   "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOdE1YVTNfNGdUNk5HUjZ5TU9EcEd5czhUYlJTMXg2dmtlVUUxWGdhbFhRZ2hMbmtQX2NaMEtqM2JTaExwcnBGRFBzZ1NaWTFjWXNGUnVyMXBnVjk2XzJPZ0IzRExfTnQyQ3RHaWYyek1tVWVCN1RKbEFGeFpYX09iSjNiWnlGSjJFX2tQRGpR?oc=5",
+   "source": "CMoney投資網誌",
+   "time": "2026-11-05T18:00:50+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "回購"
+   ]
+  },
   {
    "title": "科技股殺完換比特幣？跌破7.6萬美元 探七周低點",
    "url": "https://news.cnyes.com/news/id/6649206",
@@ -1464,231 +1701,6 @@
     "重挫",
     "跌逾",
     "賣壓"
-   ]
-  },
-  {
-   "title": "$標普500指數ETF-SPDR (SPY.US)$ 在這裏平倉了看跌期權， 轉頭殺入看漲期權",
-   "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQX2d5NEtxX2RMMUppb3lkT29yZEpORnVIWktWQU1Idm8yMnhDZ2l4UUNxNjVCaWZHTjVsMnRpb3dHNmM0SnEtc2d1aEJwR0t5QXZwNzVLRHhBWC1WemFYdWZTNWRkZWtyalRPSUgtUmtYNE5lRTc3S1hoRzNGSEVsZ05nWk9rZWNDSEkzYXAyd1NYSHBLakx5TWkzZw?oc=5",
-   "source": "Moomoo",
-   "time": "2026-11-05T15:29:01+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "選後行情變臉！那指盤中跌入修正區間 台積電ADR挫近7.6%",
-   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBrZVR5b1BlamUxUEdtT0FSNGswWU5XN1k0X3l0QWJyYUFKOFVUUkRYYTg2ZWwxZlNMRjdTM19NNHFhTXJhMmhqb3BCc1hFTTg?oc=5",
-   "source": "鉅亨網",
-   "time": "2026-11-05T15:28:18+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "資料中心前景引發擔憂 那斯達克重挫晶片股暴跌",
-   "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBXd3hORHZuZU9iQm5ubmNGUUdKWTBYOGxlNi15cV82SkhjZnMxcl9pU3FqTTJRNVd4WnFOQmk3WVBmd1VzbzFlZFBoZm5zTl9PQXFYZ0hMeFRQd1BzeThEVHdvRHdidw?oc=5",
-   "source": "民視財經網",
-   "time": "2026-11-05T15:27:45+00:00",
-   "label": "利空",
-   "score": -4,
-   "hits": [
-    "重挫",
-    "暴跌"
-   ]
-  },
-  {
-   "title": "美股開盤費半跌幅擴大！台積電ADR重挫 台指期夜盤下衝千點",
-   "url": "https://news.google.com/rss/articles/CBMi6gJBVV95cUxQSV9lSm9BY2NFR1lPNDFkSGlwTHhFS3dacUpGd0hhRDFZQUZzVHNUWXM4UzdNUVRScHpFRk13UTBHeTZONXRZT0tJTURBcTBKeTNvbXA3eGwyWm15SU1FR21QS3FLcU1DWmNINnFaZmNSWjE2TFpSMlZsZmU3YUdNbWlnaDBtTVRMLW01VVJYZHVmbkZBUkswelhoOGpGZ1otekwwYWx6WHI1QWxMZF9RaUxLOUdrQW9ad2J4anRvd2hPN3FDLWM0OHdudDVFak9mMF84UEFmVWRKMmdIMExMdUZsYlZwVTYxR3NQMkV5WGlhc1RHVDY0c3ZENm9MMDhCS3VCTHItb2kwRkcwYjVqVURLQXlBdkFTc0xnQlNld2xQd2NpZlZzc0NFelQ4aTNhdFdCSnQ5amdLbkh3TVVfZHdLZ2FnSUVIWlRKQURpeXhjUXV1UW1qMVJCS3V5bkNhUjVCQnVUNTJUQQ?oc=5",
-   "source": "Yahoo新聞",
-   "time": "2026-11-05T15:27:16+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "重挫"
-   ]
-  },
-  {
-   "title": "納斯達克指數跌超4% 費城半導體指數跌9%",
-   "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBVTUhicHhsVUdvZ2VFdUhLbTJ6STh2alpld09HbkxOTDJaRE1LT3ZSUGdlalp5N1ZrMHFIQzd3aTNLcXd5amdqTkxxZ1Y3anQ0RHBOVzdEN2t2V3lMU0hEU2FCRkNfR3BtdEE?oc=5",
-   "source": "TradingView",
-   "time": "2026-11-05T15:26:07+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "美股晶片股盤中跳水，高通重摔13%、Arm跌逾一成",
-   "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9lbV9PMFVsZ1M1NU42SkROOUExWWFHeTVwOXRwcFRlQmxSNzJCWE9SZ3NLMkEtU0l6dEo5c19haTg2a3ZFRk1NU2xveTg2c1h0NHBFRG90UkNacmdYVVZwZzZkajlZWUt5V0dWbVNhWHM3ajltQzdrOUVn?oc=5",
-   "source": "BigGo 財經",
-   "time": "2026-11-05T15:25:00+00:00",
-   "label": "利空",
-   "score": -3,
-   "hits": [
-    "跳水",
-    "跌逾"
-   ]
-  },
-  {
-   "title": "美股異動｜“藍色浪潮”利好消費和零售股，沃爾瑪升近2%",
-   "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFA0N1JjS3FGSEpOQ29WbmNGbWs0MHNSdzBzeUZwMVZPMVFOcFZja24ybHJ2U0Y0WE5rNVRnOURGTEtpanZjXzdjTkl1b0JzTEFuNF9QMElUNmlJdk5sdk5CVEhKcDRuSjU0cEE?oc=5",
-   "source": "TradingView",
-   "time": "2026-11-05T15:23:49+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "美股放大鏡 Forecastock - 掌握美股動態，精準投資指南",
-   "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOanRVU0dUOGpKQzNwSk5GSE9qczQ0em14SzlJZ3J5Z29wNUVUYTNleW1ldy1FdE9nUWJVMDFXVWZkTFp3N2hzNHpwWHlEWFFGMkg3bk5hdF9VbjZaTE12cEpmV1lRM0U3eWU5SkQzRDJURlVDSVhMWGpWaWUyQllnNHV2SVNkV2l5WVZvT3hhZXJjOVRO?oc=5",
-   "source": "美股放大鏡",
-   "time": "2026-11-05T15:22:48+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "SPDR標普500 ETF今日為何下跌？ 作者 Investing.com",
-   "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9TWDJjV3dkTTNCOUcwazFLVWgtUElYVG5mQ2F3MGNBRVdwbWtSaDM4WklMU3ZzbHVBZUxFSVVFYS1KOTBCSkxlNXFMU2l0bWJaNFhYV3BBdFFSWDRIM1VXeTNIZUlPNGNBSENCb3BFQjlEa3dsMFh3?oc=5",
-   "source": "Investing.com 香港 - 股市報價& 財經新聞",
-   "time": "2026-11-05T15:22:21+00:00",
-   "label": "偏空",
-   "score": -1,
-   "hits": [
-    "下跌"
-   ]
-  },
-  {
-   "title": "盤中速報 - 道瓊指數大跌1%，報52823.1點",
-   "url": "https://news.cnyes.com/news/id/6649132",
-   "source": "鉅亨網",
-   "time": "2026-11-05T15:21:41+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "大跌"
-   ]
-  },
-  {
-   "title": "材料-KY 個股籌碼數據、美股費半走勢與亞股表現11/5",
-   "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5qSUVTZUpZLXgwdlVfRzVnRFVCVno5QmZaNDlZTllabF9tMkJTQXNhZERqcnFadklLZ09VSlA2Rkg1ak5yRWNJX2RDd2JCTk5DVXZCTld4blE?oc=5",
-   "source": "CMoney",
-   "time": "2026-11-05T15:20:26+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "美股存儲板塊跌勢進一步擴大：閃迪跌超17% 美光跌逾12%",
-   "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9aNEVBMjNoelFLWnZNUkhsb05iN2piTXR5VHpJOGdfOFg4Z0FDdlpMaUFmZnZ3X2k3eng4NU8yM1YxY2UxWEdtdjNweWptTzZoQ2tqX0JXMGVzWmhUdDAtSjh1SWwtN3BPUXc?oc=5",
-   "source": "TradingView",
-   "time": "2026-11-05T15:19:17+00:00",
-   "label": "偏空",
-   "score": -1,
-   "hits": [
-    "跌逾"
-   ]
-  },
-  {
-   "title": "隨著投資者重新評估人工智能領域的支出熱潮，納斯達克指數或將迎來回調",
-   "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9jQnJmUElJVzBqSnQ2My1iMHoxR0hkSUo4X3BnS2tVdzJTUkZkU3ZxZ2JONUp4ZjhnR3RhbjgwTGQ0eHZWSy1uQ0R4MDNRNmFOZmlkMmlrY05PQy1XaFA4RVIxNGZjMExIN3VTcDRDQjN3ZFQ1MFE4?oc=5",
-   "source": "TradingView",
-   "time": "2026-11-05T15:16:59+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "比特幣跌破 7.8 萬美元、以太坊下探 $2300！美股盤中全黑、科技與加密概念股齊挫",
-   "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE55YzZodVBiQ2FnaUxhNTBPQTlENENxTDk0Ti12ZVZnd1B2OGRqbUN2Sl9fRG1Wa2JIUTFTd0NqWUE2OGhsNDlpLVZJMjZPTjdvaW02S2w3S2hhaERld0Y4YS1udWstSzRJUjZUbjMzZmpfUmp5SFpiNi0tZ1c?oc=5",
-   "source": "動區動趨",
-   "time": "2026-11-05T15:16:42+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "跌破",
-    "齊挫"
-   ]
-  },
-  {
-   "title": "快訊／台股明天慘了？台指期夜盤狂殺1400點　費半重挫7%",
-   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9QS29va1hXZlJ1U2xoMUhpV1RNaV90WkRGYUNVT01BMFlWTWJOek5YNWtjeWN2T0pFa21TQWNLVk04NWJGWHE4SlV6alJYTVBhQ2fSAVBBVV95cUxQcndibG0waUs3UzdKMVFqTGVoOGs4b0lvcmVFMUxFdlhQZkM0NmFrS1dTQ2tJMTlRVGxEeGF1SEJsS21NTUlEQjBPQ2Y5QnRSOQ?oc=5",
-   "source": "ETtoday財經雲",
-   "time": "2026-11-05T15:16:00+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "重挫"
-   ]
-  },
-  {
-   "title": "美股異動｜豐田汽車升超10%創接近8個月新高，上調全年營業利潤預期",
-   "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9ESF9CdHVfSkZ2N0htYlhUSFhEd2ptaWZ6VnF2YlprMW9DUXdxSXRIaVdUbmdNMVBGLVVHWmxLSVlUUEpIV0VfUFNVTl80QnlvTGhYRHBEa2xjYzZwOWZtcWpqQnJWMWFJQUE?oc=5",
-   "source": "TradingView",
-   "time": "2026-11-05T15:15:23+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "盤中速報 - Cadence設計系統(CDNS-US)大跌5.13%，報312.63美元",
-   "url": "https://news.cnyes.com/news/id/6649125",
-   "source": "鉅亨網",
-   "time": "2026-11-05T15:12:52+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "大跌"
-   ]
-  },
-  {
-   "title": "盤中速報 - 甲骨文(ORCL-US)大跌5.09%，報117.43美元",
-   "url": "https://news.cnyes.com/news/id/6649124",
-   "source": "鉅亨網",
-   "time": "2026-11-05T15:12:50+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "大跌"
-   ]
-  },
-  {
-   "title": "盤中速報 - 輝達(NVDA-US)大跌5.11%，報189.9美元",
-   "url": "https://news.cnyes.com/news/id/6649123",
-   "source": "鉅亨網",
-   "time": "2026-11-05T15:10:16+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "大跌"
-   ]
-  },
-  {
-   "title": "美股早盤／「藍色海嘯」掀AI大逃殺潮 費半崩7%",
-   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBIenNwMlZVeVNaSDM4elNveW5LaGJKa0FJaFhGTjdSWlhUUDY1N0kzZm9BNVJvOWdMUDJpdTh3Zy14OHZWY1VDMWp4RV9QVVFRUGFyZGNlbkU2R2ln0gFiQVVfeXFMUGI1eXlTZE1ibEZNSVAxVFJacWlWc0J6Z1M5RU5aUEhwTkdJZEllcHhQTF9Gc3pqTklQUkxCTWdodTl6bm85T1FnS09pUi12eG5HQTlBT1J0RnRDaEYtd2RoaEE?oc=5",
-   "source": "經濟日報",
-   "time": "2026-11-05T15:09:55+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "美國期中選舉後市場回歸平靜　美股開盤走勢不一",
-   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBjdG9xWmF0dGNFN18tanhxSHdxQ24yTmN2WGpnclJQUDd1TmdDcmhuY1NaSjJ3b1h4TkdvYnk4Wi1LUF9UQmtwTkt2LWhfSzNhTXpMUjljZzMzMTBi0gFiQVVfeXFMT3QyRzJ3LWpLM2wxVXdWYndUWVlFckdVRlpQT1Btd1JVNTJGWDZsejRQQ0FPWTZreFlubXQ3SkRoYkZFd1NCZVk3ZG9nR3I3cjh4dXktdUV4TDRxYUMxcnljS1E?oc=5",
-   "source": "經濟日報",
-   "time": "2026-11-05T15:07:22+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "盤中速報 - 德州儀器(TXN-US)大跌5.09%，報295.65美元",
-   "url": "https://news.cnyes.com/news/id/6649121",
-   "source": "鉅亨網",
-   "time": "2026-11-05T15:06:25+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "大跌"
    ]
   }
  ],
