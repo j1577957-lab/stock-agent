@@ -223,6 +223,75 @@ class Ranking(unittest.TestCase):
         self.assertEqual([p["prelim"] for p in picks.select_candidates(prelims, 2)], [90, 70])
 
 
+class TechPriority(unittest.TestCase):
+    CFG = {"picks": {"min_fundamental": 50, "top_n": 10, "tech_quota": 7}}
+
+    @staticmethod
+    def rows(n_tech, n_other):
+        tech = [{"id": f"t{i}", "is_tech": True, "fundamental": 60, "total": 60 - i} for i in range(n_tech)]
+        other = [{"id": f"o{i}", "is_tech": False, "fundamental": 60, "total": 90 - i} for i in range(n_other)]
+        return tech + other
+
+    def test_keeps_seven_tech_even_if_others_score_higher(self):
+        top = picks.rank(self.rows(9, 9), self.CFG)
+        self.assertEqual(len(top), 10)
+        self.assertEqual(sum(r["is_tech"] for r in top), 7)
+        self.assertEqual([r["id"] for r in top[:3]], ["o0", "o1", "o2"])  # 依總分排序
+
+    def test_other_slots_are_open_to_high_scoring_tech(self):
+        rows = self.rows(9, 0) + [{"id": "o0", "is_tech": False, "fundamental": 60, "total": 1}]
+        top = picks.rank(rows, self.CFG)
+        self.assertEqual(sum(r["is_tech"] for r in top), 9)
+
+    def test_fills_with_others_when_tech_is_short(self):
+        top = picks.rank(self.rows(2, 12), self.CFG)
+        self.assertEqual(len(top), 10)
+        self.assertEqual(sum(r["is_tech"] for r in top), 2)
+
+    def test_low_fundamental_tech_is_not_forced_in(self):
+        rows = self.rows(0, 3) + [{"id": "t", "is_tech": True, "fundamental": 49, "total": 99}]
+        self.assertNotIn("t", [r["id"] for r in picks.rank(rows, self.CFG)])
+
+    def test_candidates_reserve_tech_slots(self):
+        prelims = [{"prelim": 90 - i, "is_tech": False} for i in range(5)] + [{"prelim": 10 + i, "is_tech": True} for i in range(3)]
+        chosen = picks.select_candidates(prelims, 4, tech_n=2)
+        self.assertEqual(len(chosen), 4)
+        self.assertEqual(sum(p["is_tech"] for p in chosen), 2)
+        self.assertEqual(chosen[0]["prelim"], 90)
+
+    def test_classify_uses_detailed_industry_only(self):
+        cache = {"industry": {"data": {"2412": ["通信網路業", "電子工業"], "3533": ["電子工業", "電子零組件業"], "2603": ["航運業"]}}}
+        tech = ["半導體業", "電子零組件業"]
+        self.assertEqual(picks.classify("2412.TW", cache, tech), ("通信網路業", False))
+        self.assertEqual(picks.classify("3533.TW", cache, tech), ("電子零組件業", True))
+        self.assertEqual(picks.classify("2603.TW", cache, tech), ("航運業", False))
+        self.assertEqual(picks.classify("9999.TW", cache, tech), (None, False))
+
+    def test_refresh_keeps_old_data_when_download_fails(self):
+        self.addCleanup(setattr, picks.finmind, "get", picks.finmind.get)
+        picks.finmind.get = lambda *a, **k: []
+        old = {"fetched": "2020-01-01", "data": {"2330": ["半導體業"]}}
+        cache = {"industry": old}
+        picks.refresh_industries(cache, picks.Budget(5), {}, picks.date(2026, 11, 5))
+        self.assertIs(cache["industry"], old)
+
+    def test_refresh_skips_etf_and_merges_categories(self):
+        self.addCleanup(setattr, picks.finmind, "get", picks.finmind.get)
+        picks.finmind.get = lambda *a, **k: [{"stock_id": "2412", "industry_category": "通信網路業"},
+                                             {"stock_id": "2412", "industry_category": "電子工業"},
+                                             {"stock_id": "0050", "industry_category": "ETF"}]
+        cache = {}
+        picks.refresh_industries(cache, picks.Budget(5), {}, picks.date(2026, 11, 5))
+        self.assertEqual(cache["industry"]["data"], {"2412": ["通信網路業", "電子工業"]})
+
+    def test_report_states_tech_count_and_failure(self):
+        meta = {"scope": "測試", "weights": CFG["picks"]["weights"], "universe": 1, "screened": 1, "scored": 1,
+                "unscored": 0, "data_date": "-", "tech_quota": 7, "tech_ok": True}
+        self.assertIn("今天榜上有 0 檔科技股", picks.format_report([], meta))
+        meta["tech_ok"] = False
+        self.assertIn("抓不到產業分類", picks.format_report([], meta))
+
+
 class BudgetLimit(unittest.TestCase):
     def setUp(self):
         self.addCleanup(setattr, picks.finmind, "get", picks.finmind.get)
