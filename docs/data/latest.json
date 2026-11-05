@@ -1,7 +1,7 @@
 {
  "us": {
-  "mode": "us_post",
-  "time": "2026-11-05 05:16",
+  "mode": "us_pre",
+  "time": "2026-11-05 21:01",
   "stocks": [
    {
     "symbol": "QQQM",
@@ -11,7 +11,7 @@
     "price": 284.92,
     "change_pct": 0.95,
     "date": "2026-11-04",
-    "is_today": true,
+    "is_today": false,
     "ma5": 285.3,
     "ma10": 289.56,
     "ma20": 295.42,
@@ -21,9 +21,9 @@
     "k": 23.0,
     "d": 29.0,
     "macd_hist": -1.639,
-    "vol_ratio": 1.5,
+    "vol_ratio": 1.51,
     "high20_prev": 312.17,
-    "vwap": 286.15,
+    "vwap": null,
     "score": 1,
     "reasons": [
      "量能放大 1.5 倍"
@@ -54,7 +54,7 @@
     "price": 349.51,
     "change_pct": 5.31,
     "date": "2026-11-04",
-    "is_today": true,
+    "is_today": false,
     "ma5": 342.65,
     "ma10": 344.41,
     "ma20": 342.91,
@@ -64,12 +64,12 @@
     "k": 55.0,
     "d": 53.0,
     "macd_hist": -0.847,
-    "vol_ratio": 2.04,
+    "vol_ratio": 2.05,
     "high20_prev": 351.73,
-    "vwap": 352.14,
+    "vwap": null,
     "score": 2,
     "reasons": [
-     "量能放大 2.0 倍",
+     "量能放大 2.1 倍",
      "KD 低檔黃金交叉（K=55）"
     ],
     "blockers": [],
@@ -95,7 +95,7 @@
     "price": 200.13,
     "change_pct": -3.17,
     "date": "2026-11-04",
-    "is_today": true,
+    "is_today": false,
     "ma5": 205.44,
     "ma10": 209.97,
     "ma20": 216.12,
@@ -105,9 +105,9 @@
     "k": 17.0,
     "d": 23.0,
     "macd_hist": -1.81,
-    "vol_ratio": 1.47,
+    "vol_ratio": 1.48,
     "high20_prev": 239.08,
-    "vwap": 202.99,
+    "vwap": null,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -136,7 +136,7 @@
     "price": 223.27,
     "change_pct": -4.43,
     "date": "2026-11-04",
-    "is_today": true,
+    "is_today": false,
     "ma5": 247.14,
     "ma10": 259.41,
     "ma20": 284.12,
@@ -146,9 +146,9 @@
     "k": 22.0,
     "d": 30.0,
     "macd_hist": -6.509,
-    "vol_ratio": 1.94,
+    "vol_ratio": 1.95,
     "high20_prev": 388.14,
-    "vwap": 220.42,
+    "vwap": null,
     "score": 1,
     "reasons": [
      "量能放大 1.9 倍"
@@ -179,7 +179,7 @@
     "price": 311.49,
     "change_pct": -0.32,
     "date": "2026-11-04",
-    "is_today": true,
+    "is_today": false,
     "ma5": 307.96,
     "ma10": 302.08,
     "ma20": 291.86,
@@ -189,9 +189,9 @@
     "k": 84.0,
     "d": 81.0,
     "macd_hist": 1.938,
-    "vol_ratio": 1.25,
+    "vol_ratio": 1.29,
     "high20_prev": 316.75,
-    "vwap": 310.88,
+    "vwap": null,
     "score": 1,
     "reasons": [
      "短線多頭排列（價 > 5日線 > 10日線）"
@@ -219,7 +219,7 @@
     "price": 135.92,
     "change_pct": -3.81,
     "date": "2026-11-04",
-    "is_today": true,
+    "is_today": false,
     "ma5": 138.44,
     "ma10": 142.52,
     "ma20": 148.51,
@@ -231,7 +231,7 @@
     "macd_hist": -1.743,
     "vol_ratio": 1.34,
     "high20_prev": 171.31,
-    "vwap": 135.84,
+    "vwap": null,
     "score": 0,
     "reasons": [],
     "blockers": [
