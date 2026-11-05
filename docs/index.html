@@ -191,7 +191,7 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 .ntabs button{font-size:12px;padding:4px 9px}
 .ntabs button.on{background:var(--amber);color:#0d0e12;border-color:var(--amber)}
 .mood{font-family:var(--pixel);font-size:12px;color:var(--mute);margin:0 0 6px}
-.nlist{max-height:228px;overflow-y:auto}
+.nlist{max-height:320px;overflow-y:auto}
 .nw{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start;font-size:13.5px;padding:6px 0;border-bottom:2px dotted var(--line)}
 .nw:last-child{border-bottom:0}
 .nw a{color:var(--ink);text-decoration:none;overflow-wrap:anywhere}
@@ -200,6 +200,41 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 .nt.bull{color:var(--red)} .nt.bear{color:var(--ok)}
 .nt.strong.bull{background:var(--red);color:#0d0e12;border-color:var(--red)}
 .nt.strong.bear{background:var(--ok);color:#0d0e12;border-color:var(--ok)}
+/* CREW 狀態：疊在維修區畫面上，只在維修區視角顯示 */
+.crew{position:absolute;left:8px;top:42px;width:196px;max-height:calc(100% - 92px);display:flex;flex-direction:column;background:rgba(13,14,18,.86);border:2px solid var(--line);z-index:3}
+.stage[data-mode]:not([data-mode=garage]) .crew{display:none}
+.crew-h{display:flex;justify-content:space-between;gap:8px;width:100%;padding:4px 8px;border:0;box-shadow:none;background:none;color:var(--amber);font-size:12px;text-align:left}
+.crew-h:active{transform:none}
+.crew-h #count{color:var(--mute)}
+.crew-h i{font-style:normal;color:var(--mute)}
+.crew-b{overflow-y:auto;min-height:0;padding:0 8px 4px;border-top:1px solid var(--line)}
+.crew .mech{grid-template-columns:10px minmax(0,1fr) auto;gap:6px;font-size:12px;padding:3px 0;line-height:1.35}
+.crew .sw{width:10px;height:10px}
+.crew .mech .role,.crew .mech br{display:none}
+.crew .st{font-size:11px}
+.crew .dt{font-size:12px;padding-top:6px;gap:6px}
+.crew .dt h3{font-size:13px}
+.crew .dt dt{font-size:11px}
+.crew .dt .hist{font-size:11px;max-height:90px}
+@media (max-width:600px){.crew{left:auto;right:8px;top:36px;width:150px;max-height:calc(100% - 72px)}}
+/* 推薦標的 */
+.pk-note{font-size:12px;color:var(--mute);margin:0 0 6px}
+.pk-note.warn{color:var(--amber)}
+.pk-list{max-height:340px;overflow:auto}
+.pk .num{color:var(--mute);font-family:var(--pixel);font-size:12px}
+.pk th,.pk td{padding-left:4px;padding-right:4px}
+.pk td:first-child,.pk th:first-child{padding-right:0}
+.pk td:nth-child(2),.pk th:nth-child(2){text-align:left}
+.pk thead th{position:sticky;top:0;background:var(--panel);z-index:1}
+.pk tr.pk-r{cursor:pointer}
+.pk tr.pk-r:hover{background:var(--panel2)}
+.pk tr.pk-r:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
+.pk tr.pk-r td{border-bottom:2px dotted var(--line)}
+.pk .tot{color:var(--amber);font-family:var(--pixel)}
+.pk .tech{font-family:var(--pixel);font-size:10.5px;color:#0d0e12;background:var(--amber);padding:0 3px;margin-left:4px;vertical-align:1px}
+.pk td.pk-d{white-space:normal;text-align:left;font-size:12.5px;line-height:1.6;color:var(--mute);background:var(--panel2);padding:6px 8px}
+.pk-d p{margin:0 0 3px;overflow-wrap:anywhere}
+.pk-d b{font-weight:400;color:var(--ink)}
 .assetload{position:absolute;left:50%;top:44px;transform:translateX(-50%);background:rgba(13,14,18,.82);color:#f2c230;font-size:12px;padding:3px 10px;border:1px solid #f2c230;z-index:5;pointer-events:none}
 .ptov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(8,9,12,.55);z-index:30;color:#e9ecef;font-size:14px}.ptov div{background:#15161a;border:2px solid #f2c230;padding:14px 18px;max-width:320px;text-align:center;line-height:1.6}.ptov progress{width:100%;margin:8px 0}.ptov button{margin-top:6px}
 </style>
@@ -214,6 +249,13 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 
   <div class="stage px" id="stage">
     <canvas id="cv" aria-label="3D 鈴鹿賽道與 BOX 07 維修區：可切換視角、看賽車比賽"></canvas>
+    <div class="crew" id="crew">
+      <button class="crew-h" id="crewTog" aria-expanded="true" aria-controls="crewBody"><span>CREW 狀態 <i id="crewArrow">▾</i></span><span id="count"></span></button>
+      <div class="crew-b" id="crewBody">
+        <div id="roster"></div>
+        <div id="detail" class="dt" hidden></div>
+      </div>
+    </div>
   </div>
   <div class="strip px" id="strip" aria-live="polite"></div>
 
@@ -228,9 +270,8 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
       </div>
     </div>
     <div class="card px">
-      <p class="label"><span>CREW 狀態</span><span id="count"></span></p>
-      <div id="roster"></div>
-      <div id="detail" class="dt" hidden></div>
+      <p class="label"><span>TEAM RADIO ・ 通訊紀錄</span><span>CH 1</span></p>
+      <div class="radio" id="radio" aria-live="polite"></div>
     </div>
   </div>
 
@@ -245,8 +286,9 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
       <div class="nlist" id="nlist"><p class="note">還沒有新聞，爬蟲技師每小時會出勤一次。</p></div>
     </div>
     <div class="card px">
-      <p class="label"><span>TEAM RADIO ・ 通訊紀錄</span><span>CH 1</span></p>
-      <div class="radio" id="radio" aria-live="polite"></div>
+      <p class="label"><span>PICKS ・ 推薦標的</span><span id="pkTime">--</span></p>
+      <p class="pk-note" id="pkNote"></p>
+      <div class="pk-list" id="pkList"><p class="note">等下一次台股盤前報告後就會出現。</p></div>
     </div>
   </div>
   <div class="card px">
@@ -321,7 +363,7 @@ crew.forEach(m=>{
   const short=m.id==="eng"?"工程師":m.name.replace("技師","");
   b.innerHTML=`<span class="nm"><span class="lg"></span><span class="sm"></span></span><span class="tk"></span>`;b.querySelector(".lg").textContent=m.name;b.querySelector(".sm").textContent=short;
   if(m.id==="eng")b.style.transform="translate(-50%,0)";
-  b.onclick=()=>showDetail(m.id);
+  b.onclick=()=>{setCrew(true);showDetail(m.id)};
   stage.append(b);
 });
 const dogBtn=document.createElement("button");dogBtn.className="dog";dogBtn.setAttribute("aria-label","車庫狗 Box");
@@ -380,6 +422,17 @@ function render(){
   renderStrip();
   if(still){crew.forEach(m=>{[m.px,m.py]=goal(m)});draw()}
 }
+
+/* ---------- CREW 狀態收合：手機預設收起，記住這台裝置的選擇 ---------- */
+function setCrew(open,save){
+  document.getElementById("crewBody").hidden=!open;
+  document.getElementById("crewArrow").textContent=open?"▾":"▸";
+  document.getElementById("crewTog").setAttribute("aria-expanded",open);
+  if(save){try{localStorage.setItem("pg_crew",open?"1":"0")}catch(e){}}
+}
+(()=>{let v=null;try{v=localStorage.getItem("pg_crew")}catch(e){}
+  setCrew(v?v==="1":!matchMedia("(max-width:600px)").matches)})();
+document.getElementById("crewTog").onclick=()=>setCrew(document.getElementById("crewBody").hidden,true);
 
 /* ---------- 技師卡：點名牌或名單看單一技師 ---------- */
 let openId=null,radioAll=[];
@@ -614,6 +667,47 @@ async function pullStocks(){
 }
 document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{stkMkt=b.dataset.m;renderStocks()});
 pullStocks();setInterval(pullStocks,60000);
+
+/* ---------- 推薦標的：讀 data/picks.json（每天台股盤前更新），點一列看理由 ---------- */
+let pkData=null,pkOpen=null;
+function pkDetail(r){
+  const val=(k,v,u="")=>v==null?"":`<span>${k} <b>${esc(v)}${u}</b></span>`;
+  const nums=[val("本益比",r.per),val("股價淨值比",r.pbr),val("殖利率",r.dividend_yield,"%"),val("ROE",r.roe,"%"),val("毛利率",r.gross_margin,"%"),val("近 3 月營收年增",r.revenue_yoy_3m,"%")].filter(Boolean).join("　");
+  const sr=[val("支撐",r.support),val("壓力",r.resistance),val("RSI",r.rsi)].filter(Boolean).join("　");
+  const pat=(r.patterns||[]).map(p=>typeof p==="string"?p:(p.name||"")).filter(Boolean);
+  return (r.good&&r.good.length?`<p><b>優點：</b>${esc(r.good.join("、"))}</p>`:"")+
+    (r.bad&&r.bad.length?`<p><b>風險：</b>${esc(r.bad.join("、"))}</p>`:"")+
+    (pat.length?`<p><b>型態：</b>${esc(pat.join("、"))}</p>`:"")+
+    (nums?`<p>${nums}</p>`:"")+(sr?`<p>${sr}</p>`:"")+
+    `<p>收盤價日期 ${esc(r.date||"-")}・財報 ${esc(r.quarter||"-")}・營收 ${esc(r.revenue_month||"-")}</p>`;
+}
+function renderPicks(){
+  const box=document.getElementById("pkList"),note=document.getElementById("pkNote"),d=pkData;
+  if(!d||!d.top){note.textContent="";box.innerHTML='<p class="note">等下一次台股盤前報告後就會出現。</p>';document.getElementById("pkTime").textContent="--";return}
+  const m=d.meta||{},warn=[];
+  if(String(m.scope||"").startsWith("⚠️"))warn.push(m.scope);
+  if(m.limited)warn.push("⚠️ FinMind 額度用完，部分股票缺資料");
+  if(m.tech_quota&&!m.tech_ok)warn.push("⚠️ 抓不到產業分類，今天直接依總分排名");
+  document.getElementById("pkTime").textContent=String(d.time||"").slice(5);
+  note.className="pk-note"+(warn.length?" warn":"");
+  note.textContent=warn.length?warn.join("；"):"依規則評分的研究清單，不是買賣建議。點一列看理由。";
+  if(!d.top.length){box.innerHTML='<p class="note">今天沒有股票達到基本面門檻。</p>';return}
+  box.innerHTML='<table class="stk pk"><thead><tr><th>#</th><th>股票</th><th>價格</th><th>總分</th><th title="基本面／技術面／籌碼面">基／技／籌</th></tr></thead><tbody>'+
+    d.top.map((r,i)=>{const op=pkOpen===r.symbol,sc=[r.fundamental,r.technical,r.chips==null?"—":r.chips].map(esc).join("／");
+      return `<tr class="pk-r" tabindex="0" role="button" aria-expanded="${op}" data-s="${esc(r.symbol)}"><td class="num">${i+1}</td>
+        <td>${esc(r.name)}${r.is_tech?'<span class="tech">科技</span>':""}<br><span class="sym">${esc(r.symbol.replace(/\.TWO?$/,""))}${r.sector?"・"+esc(r.sector):""}</span></td>
+        <td>${esc(r.price)}</td><td class="tot">${esc(r.total)}</td><td class="sym">${sc}</td></tr>`+
+        (op?`<tr><td colspan="5" class="pk-d">${pkDetail(r)}</td></tr>`:"")}).join("")+'</tbody></table>';
+  box.querySelectorAll(".pk-r").forEach(tr=>{
+    const tog=()=>{const s=tr.dataset.s;pkOpen=pkOpen===s?null:s;renderPicks();const n=box.querySelector(`.pk-r[data-s="${CSS.escape(s)}"]`);if(n)n.focus({preventScroll:true})};
+    tr.onclick=tog;tr.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();tog()}};
+  });
+}
+async function pullPicks(){
+  try{const r=await fetch("data/picks.json?t="+Date.now());pkData=r.ok?await r.json():null}catch(e){pkData=null}
+  renderPicks();
+}
+pullPicks();setInterval(pullPicks,5*60*1000);
 
 /* ---------- 目前持股：代號、現價、新聞公開；股數與成本存在 Cloudflare，要通關密碼 ---------- */
 let pfPriv=null;
