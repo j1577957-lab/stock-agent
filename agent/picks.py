@@ -133,6 +133,31 @@ def build_universe(cfg: dict, cache: dict) -> tuple[list[dict], str]:
     return list(stocks.values()), note
 
 
+# ---------- 產業分類 ----------
+def refresh_industries(cache: dict, budget: Budget, pcfg: dict, today: date) -> None:
+    """FinMind 的公司基本資料一次就有全市場的產業別，每月更新一次即可。抓不到時沿用舊資料。"""
+    if not _stale(cache.get("industry"), today, pcfg.get("industry_cache_days", 30)) or not budget.can():
+        return
+    rows = budget.get("TaiwanStockInfo", None, days=20000)
+    out: dict[str, list[str]] = {}
+    for r in rows:
+        code, cat = str(r.get("stock_id", "")), r.get("industry_category")
+        if is_common_stock(code) and cat and cat not in out.get(code, []):
+            out.setdefault(code, []).append(cat)
+    if out:
+        cache["industry"] = {"fetched": today.isoformat(), "data": out}
+
+
+def classify(symbol: str, cache: dict, tech_industries: list[str]) -> tuple[str | None, bool]:
+    """回傳 (顯示用的產業, 是否算科技股)。「電子工業」是大分類，中華電也在內，所以不用它判斷。"""
+    cats = ((cache.get("industry") or {}).get("data") or {}).get(symbol.split(".")[0], [])
+    for c in cats:
+        if c in tech_industries:
+            return c, True
+    named = [c for c in cats if c != "電子工業"]
+    return (named or cats or [None])[0], False
+
+
 # ---------- 基本面 ----------
 def _by_date(rows: list[dict]) -> dict[str, dict[str, float]]:
     out: dict[str, dict[str, float]] = {}
@@ -626,10 +651,14 @@ def prelim_stock(stock: dict, cache: dict, cfg: dict, fetch_daily) -> dict | Non
             "prelim": total_score(fund["score"], tech["score"], None, cfg)}
 
 
-def select_candidates(prelims: list[dict], n: int) -> list[dict]:
-    """初步分數最高的前 n 檔才查本益比和籌碼；財報資料不足的不列入。"""
-    ok = [p for p in prelims if p["prelim"] is not None]
-    return sorted(ok, key=lambda p: p["prelim"], reverse=True)[:n]
+def select_candidates(prelims: list[dict], n: int, tech_n: int = 0) -> list[dict]:
+    """初步分數最高的前 n 檔才查本益比和籌碼；財報資料不足的不列入。
+    tech_n 個名額先留給科技股，這樣最後的科技股名額才選得出來。"""
+    ok = sorted((p for p in prelims if p["prelim"] is not None), key=lambda p: p["prelim"], reverse=True)
+    tech = [p for p in ok if p.get("is_tech")][:tech_n]
+    chosen = {id(p) for p in tech}
+    rest = [p for p in ok if id(p) not in chosen][:max(n - len(tech), 0)]
+    return sorted(tech + rest, key=lambda p: p["prelim"], reverse=True)
 
 
 def analyze_stock(p: dict, budget: Budget, cfg: dict) -> dict:
@@ -648,7 +677,8 @@ def analyze_stock(p: dict, budget: Budget, cfg: dict) -> dict:
         margin = budget.get("TaiwanStockMarginPurchaseShortSale", sid, days=14)
     chips = compute_chips(inst, margin)
     chip = score_chips(chips, tech["avg_vol_lots"])
-    return {"symbol": symbol, "name": stock["name"], "total": total_score(fund["score"], tech["score"], chip["score"], cfg),
+    return {"symbol": symbol, "name": stock["name"], "sector": p.get("sector"), "is_tech": bool(p.get("is_tech")),
+            "total": total_score(fund["score"], tech["score"], chip["score"], cfg),
             "fundamental": fund["score"], "technical": tech["score"], "chips": chip["score"],
             "price": tech["price"], "date": tech["date"], "support": tech["support"], "resistance": tech["resistance"],
             "rsi": tech["rsi"], "ma20": tech["ma20"], "ma60": tech["ma60"], "boll_upper": tech["boll_upper"],
@@ -667,10 +697,15 @@ def _round(x, nd=1):
 
 
 def rank(results: list[dict], cfg: dict) -> list[dict]:
-    """依總分排序，基本面沒過門檻的不列入（基本面為主的設定）。"""
+    """基本面沒過門檻的不列入。先選分數最高的科技股（tech_quota 檔），
+    其餘名額不分產業取高分；科技股不夠時由其他高分股補上。最後依總分排序。"""
     p = cfg["picks"]
     ok = [r for r in results if r["total"] is not None and r["fundamental"] >= p["min_fundamental"]]
-    return sorted(ok, key=lambda r: r["total"], reverse=True)[:p["top_n"]]
+    ok.sort(key=lambda r: r["total"], reverse=True)
+    tech = [r for r in ok if r.get("is_tech")][:p.get("tech_quota", 0)]
+    chosen = {id(r) for r in tech}
+    rest = [r for r in ok if id(r) not in chosen][:max(p["top_n"] - len(tech), 0)]
+    return sorted(tech + rest, key=lambda r: r["total"], reverse=True)
 
 
 def format_report(top: list[dict], meta: dict) -> str:
@@ -678,6 +713,12 @@ def format_report(top: list[dict], meta: dict) -> str:
              f"評分比重：基本面 {meta['weights']['fundamental']}%、技術面 {meta['weights']['technical']}%、籌碼面 {meta['weights']['chips']}%",
              f"先用財報與技術面從 {meta['screened']} 檔篩出候選，其中 {meta['scored']} 檔完成三面評分；"
              f"{meta['unscored']} 檔資料不足未列入。股價為 {meta['data_date']} 收盤。"]
+    if meta.get("tech_quota"):
+        if meta.get("tech_ok"):
+            n_tech = sum(1 for r in top if r.get("is_tech"))
+            lines.append(f"科技股（硬體與半導體）優先保留 {meta['tech_quota']} 個名額，其餘不分產業取高分；今天榜上有 {n_tech} 檔科技股。")
+        else:
+            lines.append("⚠️ 今天抓不到產業分類，所以沒有優先選科技股，直接依總分排名。")
     if meta["unscored"] > meta["universe"] / 4:
         lines.append("⚠️ 財報資料還在分批補齊，今天排名只涵蓋部分股票。")
     if meta.get("limited"):
@@ -687,7 +728,7 @@ def format_report(top: list[dict], meta: dict) -> str:
     for i, r in enumerate(top, 1):
         chip = "—" if r["chips"] is None else r["chips"]
         lines += ["",
-                  f"{i}. {r['name']}（{r['symbol'].split('.')[0]}）{r['price']}｜總分 {r['total']}",
+                  f"{i}. {r['name']}（{r['symbol'].split('.')[0]}）{'・' + r['sector'] + ' ' if r.get('sector') else ''}{r['price']}｜總分 {r['total']}",
                   f"   基本 {r['fundamental']}／技術 {r['technical']}／籌碼 {chip}"]
         if r["good"]:
             lines.append("   ✅ " + "、".join(r["good"][:5]))
@@ -713,6 +754,7 @@ def run(cfg: dict, *, fetch_daily=None, stocks: list[dict] | None = None, seed: 
     print(f"  選股範圍 {len(universe)} 檔，FinMind 額度 {budget.left} 次")
     # 每檔候選股每天要查 3 次（本益比、法人、融資），補資料模式不查所以不保留
     reserve = 0 if seed else 3 * min(pcfg["candidate_n"], len(universe))
+    refresh_industries(cache, budget, pcfg, today)
     refresh_fundamentals(universe, cache, budget, cfg, today, reserve=reserve)
     save_cache(cache)  # 先存，後面出錯也不會白抓
 
@@ -721,6 +763,7 @@ def run(cfg: dict, *, fetch_daily=None, stocks: list[dict] | None = None, seed: 
         print(f"  補快取完成：{have}/{len(universe)} 檔有財報資料，剩餘額度 {budget.left}")
         return {"report": "", "picks": [], "meta": {"seed_have": have, "universe": len(universe), "limited": budget.limited}}
 
+    tech_industries = pcfg.get("tech_industries", [])
     prelims = []
     for s in universe:
         try:
@@ -729,9 +772,10 @@ def run(cfg: dict, *, fetch_daily=None, stocks: list[dict] | None = None, seed: 
             print(f"  ! {s['name']} 初步評分失敗：{e}")
             p = None
         if p is not None:
+            p["sector"], p["is_tech"] = classify(p["symbol"], cache, tech_industries)
             prelims.append(p)
-    candidates = select_candidates(prelims, pcfg["candidate_n"])
-    print(f"  初步評分 {len(prelims)} 檔，{len(candidates)} 檔進入候選")
+    candidates = select_candidates(prelims, pcfg["candidate_n"], pcfg.get("tech_candidates", 0))
+    print(f"  初步評分 {len(prelims)} 檔，{len(candidates)} 檔進入候選（科技股 {sum(1 for p in candidates if p['is_tech'])} 檔）")
 
     results = []
     for p in candidates:
@@ -744,7 +788,8 @@ def run(cfg: dict, *, fetch_daily=None, stocks: list[dict] | None = None, seed: 
     n_prelim_ok = sum(1 for p in prelims if p["prelim"] is not None)
     meta = {"scope": scope, "weights": pcfg["weights"], "universe": len(universe), "screened": n_prelim_ok,
             "scored": len(ranked_ok), "unscored": len(universe) - n_prelim_ok,
-            "data_date": dates[-1] if dates else "-", "budget_left": budget.left, "limited": budget.limited}
+            "data_date": dates[-1] if dates else "-", "budget_left": budget.left, "limited": budget.limited,
+            "tech_quota": pcfg.get("tech_quota", 0), "tech_ok": bool((cache.get("industry") or {}).get("data"))}
     top = rank(results, cfg)
     print(f"  評分完成：{len(ranked_ok)} 檔有總分，{meta['unscored']} 檔資料不足，FinMind 剩餘額度 {budget.left}")
     return {"report": format_report(top, meta), "picks": top, "all": sorted(ranked_ok, key=lambda r: r["total"], reverse=True),
