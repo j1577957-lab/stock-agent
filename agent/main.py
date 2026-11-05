@@ -124,7 +124,7 @@ def build_picks(cfg: dict, stamp: str) -> str:
     except Exception as e:
         print(f"  ! 值得研究清單失敗：{e}")
         return f"⚠️ 今天的值得研究清單產生失敗：{str(e)[:80]}"
-    slim = [{k: r.get(k) for k in ("symbol", "name", "total", "fundamental", "technical", "chips", "price")}
+    slim = [{k: r.get(k) for k in ("symbol", "name", "sector", "is_tech", "total", "fundamental", "technical", "chips", "price")}
             for r in result["all"]]
     notify.save_picks({"time": stamp, "meta": result["meta"], "top": result["picks"], "all": slim})
     return result["report"]
