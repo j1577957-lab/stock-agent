@@ -74,6 +74,7 @@
   <div class="tabs" id="newsTabs">
     <button class="tab on" data-m="tw">台股</button>
     <button class="tab" data-m="us">美股</button>
+    <button class="tab" data-m="geo">地緣政治</button>
     <span style="flex:1"></span>
     <button class="tab on" data-f="all">全部</button>
     <button class="tab" data-f="bull">利多</button>
@@ -169,7 +170,7 @@ function renderNews(){
     const c = BULL.includes(n.label) ? "bull" : BEAR.includes(n.label) ? "bear" : "";
     return `<li><span class="tag ${c} ${Math.abs(n.score) >= 3 ? "strong" : ""}">${esc(n.label)}</span>
       <div><a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.title)}</a>
-      <div class="meta">${esc(n.source)} · ${ago(n.time)}${n.hits?.length ? " · 關鍵字：" + esc(n.hits.join("、")) : ""}</div></div></li>`;
+      <div class="meta">${n.topic ? "〔" + esc(n.topic) + "〕" : ""}${esc(n.source)} · ${ago(n.time)}${n.hits?.length ? " · 關鍵字：" + esc(n.hits.join("、")) : ""}</div></div></li>`;
   }).join("");
 }
 document.querySelectorAll("#newsTabs .tab").forEach(b => b.onclick = () => {

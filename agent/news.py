@@ -45,6 +45,15 @@ def sources(days: int = 1) -> dict:
             ("google", google_news("道瓊 OR 那斯達克 OR 標普500", days)),
             ("cnyes", "https://api.cnyes.com/media/api/v1/newslist/category/wd_stock?limit=30"),
         ],
+        # 地緣政治：每個搜尋都標上「主題」，網頁上會顯示
+        "geo": [
+            ("google", google_news("地緣政治", days), "綜合"),
+            ("google", google_news("台海 OR 共軍 OR 解放軍 OR 兩岸 軍演", days), "台海"),
+            ("google", google_news("美中 OR 出口管制 OR 晶片禁令 OR 稀土 OR 實體清單", days), "美中科技"),
+            ("google", google_news("中東 OR 以色列 OR 伊朗 OR 荷莫茲 OR 紅海", days), "中東"),
+            ("google", google_news("俄烏 OR 烏克蘭 OR 俄羅斯 戰爭 OR 停火", days), "俄烏"),
+            ("google", google_news("北韓 OR 南海 OR 日中 關係", days), "東亞"),
+        ],
     }
 
 
@@ -57,6 +66,7 @@ BULLISH = {
     "買超": 1, "加碼": 1, "回補": 1, "資金湧入": 2, "外資買": 1,
     "優於預期": 2, "超乎預期": 2, "財報亮眼": 2, "營收創": 2, "獲利成長": 2, "年增": 1, "上修": 2,
     "調升": 1, "看好": 1, "樂觀": 1, "利多": 2, "接單": 1, "訂單滿": 2, "擴產": 1,
+    "停火": 2, "休戰": 2, "和談": 1, "和平協議": 2, "達成協議": 2, "緩和": 1, "豁免": 1, "解禁": 1, "暫停關稅": 2, "放寬": 1,
     "降息": 2, "寬鬆": 1, "軟著陸": 1, "通膨降溫": 2, "回購": 1, "配息": 1, "填息": 1,
 }
 BEARISH = {
@@ -67,6 +77,8 @@ BEARISH = {
     "示警": 1, "悲觀": 1, "利空": 2, "砍單": 2, "衰退": 2, "裁員": 1,
     "升息": 2, "緊縮": 1, "通膨升溫": 2, "關稅": 1, "制裁": 1, "禁令": 1, "停工": 1, "違約": 2,
     "恐慌": 1, "賣壓": 1, "拋售": 2, "地緣": 1, "戰爭": 1,
+    "開火": 2, "空襲": 2, "轟炸": 2, "飛彈": 1, "軍演": 1, "封鎖": 2, "動武": 2, "侵略": 2, "攻擊": 1,
+    "油價飆": 3, "油價大漲": 3, "承壓": 1, "報復": 1, "出口管制": 1, "實體清單": 1, "斷交": 1, "對峙": 1, "升溫": 1, "緊張": 1,
 }
 # 這些詞出現時，代表上面的詞被「否定」了（例如「漲勢不再」），那個方向不算分
 # 標題有這些字的通常是討論區發文，不是新聞，略過
@@ -148,10 +160,12 @@ def crawl(market: str, old: list[dict], sources: list | None = None, keep: int =
     seen = {norm(n["title"]): n for n in old
             if datetime.fromisoformat(n["time"]) >= cutoff and not is_noise(n["title"])}
     new = 0
-    for kind, url in (sources or SOURCES[market]):
+    for src_ in (sources or SOURCES[market]):
+        kind, url = src_[0], src_[1]
+        topic = src_[2] if len(src_) > 2 else None
         try:
             items = FETCHERS[kind](url)
-            print(f"  ✓ {kind} 抓到 {len(items)} 則")
+            print(f"  ✓ {kind}{'（' + topic + '）' if topic else ''} 抓到 {len(items)} 則")
         except Exception as e:
             print(f"  ✗ {kind} 失敗：{e}")
             continue
@@ -159,7 +173,7 @@ def crawl(market: str, old: list[dict], sources: list | None = None, keep: int =
             key = norm(it["title"])
             if not key or key in seen or it["time"] < cutoff or is_noise(it["title"]):
                 continue
-            seen[key] = {**it, "time": it["time"].isoformat(), **classify(it["title"])}
+            seen[key] = {**it, "time": it["time"].isoformat(), **classify(it["title"]), **({"topic": topic} if topic else {})}
             new += 1
     items = sorted(seen.values(), key=lambda n: n["time"], reverse=True)[:keep]
     old_keys = {norm(n["title"]) for n in old}
@@ -177,7 +191,7 @@ def main() -> str:
     data = {"updated": now.strftime("%Y-%m-%d %H:%M")}
     parts = []
     src = sources(days=2 if weekend else 1)  # 週日一次整理週末兩天的新聞
-    for market, name in (("tw", "台股"), ("us", "美股")):
+    for market, name in (("tw", "台股"), ("us", "美股"), ("geo", "地緣政治")):
         print(f"== {name} ==")
         items, new = crawl(market, old.get(market, []), sources=src[market])
         data[market] = items
@@ -228,6 +242,9 @@ SAMPLES = [
     "台積電法說會今登場 市場聚焦先進製程",
     "利空出盡 台股反彈",
     "通膨降溫 美股四大指數齊揚",
+    "以色列空襲伊朗 油價飆漲",
+    "俄烏同意停火 歐股走揚",
+    "共軍台海周邊軍演 台股承壓",
 ]
 
 SUNDAY_HOUR = 20  # 週日只在台灣時間這個整點之後掃一次（整理週末新聞）

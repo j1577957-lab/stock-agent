@@ -279,7 +279,7 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
     <div class="card px">
       <p class="label"><span>NEWS ・ 利多利空</span><span id="newsTime">--</span></p>
       <div class="ntabs" id="ntabs">
-        <button class="on" data-m="tw">台股</button><button data-m="us">美股</button>
+        <button class="on" data-m="tw">台股</button><button data-m="us">美股</button><button data-m="geo">地緣</button>
         <button class="on" data-f="all">多＋空</button><button data-f="bull">利多</button><button data-f="bear">利空</button>
       </div>
       <p class="mood" id="mood"></p>
@@ -850,7 +850,7 @@ function renderNews(){
   if(!list.length){box.innerHTML=`<p class="note">${all.length?"目前沒有這類消息。":"還沒有新聞，爬蟲技師每小時會出勤一次。"}</p>`;return}
   box.innerHTML=list.map(n=>{const c=BULL.includes(n.label)?"bull":"bear";
     return `<div class="nw"><span class="nt ${c} ${Math.abs(n.score)>=3?"strong":""}">${esc(n.label)}</span>
-      <div><a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.title)}</a><br><span class="role">${esc(n.source)} ・ ${ago(n.time)}</span></div></div>`}).join("");
+      <div><a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.title)}</a><br><span class="role">${n.topic?"〔"+esc(n.topic)+"〕":""}${esc(n.source)} ・ ${ago(n.time)}</span></div></div>`}).join("");
 }
 document.querySelectorAll("#ntabs button").forEach(b=>b.onclick=()=>{if(b.dataset.m)nMkt=b.dataset.m;else nFil=b.dataset.f;renderNews()});
 async function pullNews(){try{const r=await fetch("data/news.json?t="+Date.now());if(r.ok){news=await r.json();renderNews()}}catch(e){}}
