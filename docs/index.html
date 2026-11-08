@@ -100,6 +100,12 @@ h1 span{color:var(--amber)}
 .flag{display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px;box-shadow:inset -2px -2px 0 #0006}
 .flag.g{background:var(--ok)} .flag.y{background:var(--amber)} .flag.n{background:#4a4f5c} .flag.r{background:var(--red)}
 .strip .alert{color:var(--red)}
+.strip{align-items:center}
+.strip-in{display:flex;flex-wrap:wrap;gap:6px 16px;flex:1 1 auto;min-width:0}
+.watchbtn{margin-left:auto;background:var(--amber);color:#0d0e12;text-decoration:none;font-size:15px;padding:6px 14px;box-shadow:3px 3px 0 #000;white-space:nowrap}
+.watchbtn:hover{background:#ffd84d}
+.watchbtn:active{transform:translate(3px,3px);box-shadow:none}
+.watchbtn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 .sound{font-size:12px;padding:3px 8px;box-shadow:none}
 .mech{cursor:pointer}
 .mech:hover{background:var(--panel2)}
@@ -257,7 +263,7 @@ button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
       </div>
     </div>
   </div>
-  <div class="strip px" id="strip" aria-live="polite"></div>
+  <div class="strip px"><div class="strip-in" id="strip" aria-live="polite"></div><a class="watchbtn" href="watch.html">📈 看盤系統 ›</a></div>
 
   <div class="grid">
     <div class="card px">
