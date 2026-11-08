@@ -415,6 +415,114 @@ async function stockAgentNeeded(now = new Date()) {
   }
 }
 
+/* ---------- 看盤：即時報價與 K 線 ----------
+   台股報價用證交所「基本市況報導」（約 5 秒延遲，含五檔）；美股報價、K 線、分時用 Yahoo。
+   都是公開行情，不含私人資料。每次最多 40 檔，美股最多 20 檔（免費方案每次最多 50 個子請求）。 */
+const UA = { "User-Agent": "Mozilla/5.0 (pit-garage)" };
+const TW_INDEX = {
+  TAIEX: { ex: "tse_t00.tw", name: "加權指數", yahoo: "^TWII" },
+  TPEX: { ex: "otc_o00.tw", name: "櫃買指數", yahoo: "^TWOII" },
+};
+const num = (v) => { const n = parseFloat(v); return Number.isFinite(n) ? n : null; };
+function parseSym(raw) {
+  const s = String(raw || "").trim().toUpperCase();
+  if (TW_INDEX[s]) return { key: s, kind: "twidx" };
+  const m = s.match(/^(\d{4,6}[A-Z]?)(?:\.(TW|TWO))?$/);
+  if (m) return { key: s, kind: "tw", code: m[1], mkt: m[2] || null };
+  if (/^\^?[A-Z][A-Z0-9.\-]{0,9}$/.test(s)) return { key: s, kind: "us" };
+  return null;
+}
+function levels(prices, sizes) {
+  const p = String(prices || "").split("_"), q = String(sizes || "").split("_");
+  return p.map((x, i) => ({ p: num(x), q: num(q[i]) })).filter((x) => x.p);
+}
+async function twQuotes(items) {
+  const ex = [];
+  for (const it of items) {
+    if (it.kind === "twidx") ex.push(TW_INDEX[it.key].ex);
+    else {
+      if (it.mkt !== "TWO") ex.push(`tse_${it.code.toLowerCase()}.tw`);
+      if (it.mkt !== "TW") ex.push(`otc_${it.code.toLowerCase()}.tw`);
+    }
+  }
+  if (!ex.length) return {};
+  const url = "https://mis.twse.com.tw/stock/api/getStockInfo.jsp?json=1&delay=0&ex_ch=" + encodeURIComponent(ex.join("|"));
+  const r = await fetch(url, { headers: { ...UA, Referer: "https://mis.twse.com.tw/stock/index.jsp" }, cf: { cacheTtl: 3 } });
+  const d = await r.json();
+  const byCh = {};
+  for (const x of d.msgArray || []) if (x.c) byCh[`${x.ex}_${String(x.c).toLowerCase()}.tw`] = x;
+  const out = {};
+  for (const it of items) {
+    let x, symbol;
+    if (it.kind === "twidx") { x = byCh[TW_INDEX[it.key].ex]; symbol = it.key; }
+    else {
+      x = byCh[`tse_${it.code.toLowerCase()}.tw`]; symbol = it.code + ".TW";
+      if (!x || it.mkt === "TWO") { x = byCh[`otc_${it.code.toLowerCase()}.tw`]; symbol = it.code + ".TWO"; }
+    }
+    if (!x) continue;
+    const bids = levels(x.b, x.g), asks = levels(x.a, x.f), last = num(x.z);
+    out[it.key] = {
+      symbol, market: "tw", name: it.kind === "twidx" ? TW_INDEX[it.key].name : x.n,
+      price: last ?? bids[0]?.p ?? asks[0]?.p ?? num(x.y), traded: last != null,
+      prev: num(x.y), open: num(x.o), high: num(x.h), low: num(x.l), vol: num(x.v),
+      date: x.d ? `${x.d.slice(0, 4)}-${x.d.slice(4, 6)}-${x.d.slice(6, 8)}` : null, time: x.t || null,
+      limit_up: num(x.u), limit_down: num(x.w), bids, asks,
+    };
+  }
+  return out;
+}
+async function yahooChart(symbol, range, interval, ttl) {
+  const u = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=${range}&interval=${interval}`;
+  const r = await fetch(u, { headers: UA, cf: { cacheTtl: ttl } });
+  if (!r.ok) return null;
+  const d = await r.json().catch(() => null);
+  return d?.chart?.result?.[0] || null;
+}
+function quoteFromYahoo(res, key, market) {
+  const m = res.meta || {}, q = res.indicators?.quote?.[0] || {};
+  const tz = m.exchangeTimezoneName || "America/New_York";
+  const when = m.regularMarketTime ? new Date(m.regularMarketTime * 1000) : null;
+  const part = (o) => when ? when.toLocaleString("en-CA", { timeZone: tz, hour12: false, ...o }) : null;
+  return {
+    symbol: m.symbol || key, market, name: m.shortName || m.longName || key,
+    price: m.regularMarketPrice ?? null, traded: true, prev: m.chartPreviousClose ?? m.previousClose ?? null,
+    open: (q.open || []).find((v) => v != null) ?? null, high: m.regularMarketDayHigh ?? null,
+    low: m.regularMarketDayLow ?? null, vol: m.regularMarketVolume ?? null, currency: m.currency,
+    date: part({ year: "numeric", month: "2-digit", day: "2-digit" }),
+    time: part({ hour: "2-digit", minute: "2-digit", second: "2-digit" }), bids: [], asks: [],
+  };
+}
+const yahooSymbol = (it, suffix) =>
+  it.kind === "twidx" ? TW_INDEX[it.key].yahoo : it.kind === "tw" ? it.code + "." + (it.mkt || suffix) : it.key;
+async function quotes(symbols) {
+  const items = [...new Set((Array.isArray(symbols) ? symbols : []).slice(0, 40))].map(parseSym).filter(Boolean);
+  const tw = items.filter((x) => x.kind !== "us"), us = items.filter((x) => x.kind === "us").slice(0, 20);
+  let twOut = {};
+  try { twOut = await twQuotes(tw); } catch (e) { console.log("證交所報價失敗：" + e.message); }
+  const missing = tw.filter((x) => !twOut[x.key]).slice(0, 10);           // 證交所抓不到的改用 Yahoo
+  const usOut = await Promise.all([...us, ...missing].map(async (it) => {
+    let res = await yahooChart(yahooSymbol(it, "TW"), "1d", "5m", 5);
+    if (!res && it.kind === "tw" && !it.mkt) res = await yahooChart(yahooSymbol(it, "TWO"), "1d", "5m", 5);
+    return res ? [it.key, quoteFromYahoo(res, it.key, it.kind === "us" ? "us" : "tw")] : null;
+  }));
+  return { at: Date.now(), quotes: { ...twOut, ...Object.fromEntries(usOut.filter(Boolean)) } };
+}
+const CHART_RANGE = { "1d": ["2y", 600], "1wk": ["10y", 3600], "1m": ["1d", 20] };
+async function chartData(raw, interval) {
+  const it = parseSym(raw);
+  if (!it || !CHART_RANGE[interval]) throw new Error("代號或週期不正確");
+  const [range, ttl] = CHART_RANGE[interval];
+  let res = await yahooChart(yahooSymbol(it, "TW"), range, interval, ttl);
+  if (!res && it.kind === "tw" && !it.mkt) res = await yahooChart(yahooSymbol(it, "TWO"), range, interval, ttl);
+  if (!res?.timestamp) throw new Error("查不到這個代號的走勢");
+  const q = res.indicators.quote[0], out = { t: [], o: [], h: [], l: [], c: [], v: [] };
+  res.timestamp.forEach((t, i) => {
+    if (q.close[i] == null || q.open[i] == null) return;
+    out.t.push(t); out.o.push(q.open[i]); out.h.push(q.high[i]); out.l.push(q.low[i]); out.c.push(q.close[i]); out.v.push(q.volume[i] || 0);
+  });
+  return { symbol: res.meta.symbol, gmtoffset: res.meta.gmtoffset || 0, prev: res.meta.chartPreviousClose ?? null, interval, ...out };
+}
+
 /* 爬蟲技師週末規則（和 agent/news.py 一樣）：週六不掃；週日只在台灣 20:00 掃一次（21:00 再叫一次當備援，
    GitHub 那邊會判斷已經掃過就略過） */
 function newsCrawlerNeeded(now = new Date()) {
@@ -446,7 +554,7 @@ export default {
       // 打開後台網址就能自我檢查：只顯示「有沒有設定」，不會顯示任何密鑰內容
       const has = (k) => (env[k] ? "✅ 已設定" : "❌ 沒有");
       return json({
-        ok: true, msg: "Pit Garage 後台運作中", version: "2026-11-01",
+        ok: true, msg: "Pit Garage 後台運作中", version: "2026-11-08",
         密鑰檢查: {
           ANTHROPIC_API_KEY: has("ANTHROPIC_API_KEY"), PASSCODE: has("PASSCODE"), FINMIND_TOKEN: has("FINMIND_TOKEN"),
           GITHUB_TOKEN: has("GITHUB_TOKEN"), CF_API_TOKEN: has("CF_API_TOKEN"), CF_ACCOUNT_ID: has("CF_ACCOUNT_ID"),
@@ -462,6 +570,16 @@ export default {
     const { task, crew = "eng", passcode, action = "task" } = input || {};
 
     if (!env.PASSCODE || passcode !== env.PASSCODE) return json({ error: "通關密碼錯誤" }, 401, origin);
+
+    // 看盤：即時報價、K 線（公開行情，一樣要通關密碼，避免被亂刷用光免費額度）
+    if (action === "quote") {
+      try { return json(await quotes(input.symbols), 200, origin); }
+      catch (e) { return json({ error: "讀取報價失敗：" + e.message }, 502, origin); }
+    }
+    if (action === "chart") {
+      try { return json(await chartData(input.symbol, input.interval || "1d"), 200, origin); }
+      catch (e) { return json({ error: e.message }, 502, origin); }
+    }
 
     // Cloudflare 用量（不含私人資料，但一樣要通關密碼，避免被亂刷）
     if (action === "claude_cost") {
