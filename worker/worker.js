@@ -445,13 +445,13 @@ async function twQuotes(items) {
       if (it.mkt !== "TW") ex.push(`otc_${it.code.toLowerCase()}.tw`);
     }
   }
-  if (!ex.length) return {};
+  if (!ex.length) return { out: {}, names: {}, mkts: {} };
   const url = "https://mis.twse.com.tw/stock/api/getStockInfo.jsp?json=1&delay=0&ex_ch=" + encodeURIComponent(ex.join("|"));
   const r = await fetch(url, { headers: { ...UA, Referer: "https://mis.twse.com.tw/stock/index.jsp" }, cf: { cacheTtl: 3 } });
   const d = await r.json();
   const byCh = {};
   for (const x of d.msgArray || []) if (x.c) byCh[`${x.ex}_${String(x.c).toLowerCase()}.tw`] = x;
-  const out = {};
+  const out = {}, names = {}, mkts = {};
   for (const it of items) {
     let x, symbol;
     if (it.kind === "twidx") { x = byCh[TW_INDEX[it.key].ex]; symbol = it.key; }
@@ -460,6 +460,9 @@ async function twQuotes(items) {
       if (!x || it.mkt === "TWO") { x = byCh[`otc_${it.code.toLowerCase()}.tw`]; symbol = it.code + ".TWO"; }
     }
     if (!x) continue;
+    names[it.key] = it.kind === "twidx" ? TW_INDEX[it.key].name : x.n;
+    if (it.kind === "tw") mkts[it.key] = x.ex === "otc" ? "TWO" : "TW";
+    if (isWeekend(x.d)) continue;   // 週末證交所會跑系統測試、丟出假成交，改用 Yahoo 的上個交易日收盤
     const bids = levels(x.b, x.g), asks = levels(x.a, x.f), last = num(x.z);
     out[it.key] = {
       symbol, market: "tw", name: it.kind === "twidx" ? TW_INDEX[it.key].name : x.n,
@@ -469,8 +472,13 @@ async function twQuotes(items) {
       limit_up: num(x.u), limit_down: num(x.w), bids, asks,
     };
   }
-  return out;
+  return { out, names, mkts };
 }
+const isWeekend = (d) => {
+  if (!/^\d{8}$/.test(d || "")) return false;
+  const wd = new Date(Date.UTC(+d.slice(0, 4), +d.slice(4, 6) - 1, +d.slice(6, 8))).getUTCDay();
+  return wd === 0 || wd === 6;
+};
 async function yahooChart(symbol, range, interval, ttl) {
   const u = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=${range}&interval=${interval}`;
   const r = await fetch(u, { headers: UA, cf: { cacheTtl: ttl } });
@@ -487,30 +495,72 @@ function quoteFromYahoo(res, key, market) {
     symbol: m.symbol || key, market, name: m.shortName || m.longName || key,
     price: m.regularMarketPrice ?? null, traded: true, prev: m.chartPreviousClose ?? m.previousClose ?? null,
     open: (q.open || []).find((v) => v != null) ?? null, high: m.regularMarketDayHigh ?? null,
-    low: m.regularMarketDayLow ?? null, vol: m.regularMarketVolume ?? null, currency: m.currency,
+    low: m.regularMarketDayLow ?? null, currency: m.currency,
+    vol: m.regularMarketVolume == null ? null : market === "tw" ? Math.round(m.regularMarketVolume / 1000) : m.regularMarketVolume,  // 台股換算成張
     date: part({ year: "numeric", month: "2-digit", day: "2-digit" }),
     time: part({ hour: "2-digit", minute: "2-digit", second: "2-digit" }), bids: [], asks: [],
   };
 }
 const yahooSymbol = (it, suffix) =>
   it.kind === "twidx" ? TW_INDEX[it.key].yahoo : it.kind === "tw" ? it.code + "." + (it.mkt || suffix) : it.key;
-async function quotes(symbols) {
+/* 櫃買指數 Yahoo 沒有資料，改用 FinMind 的每日收盤（沒有分時） */
+async function tpexDaily(env, days) {
+  const start = new Date(Date.now() - days * 864e5).toISOString().slice(0, 10);
+  return (await fmGet(env, { dataset: "TaiwanStockPrice", data_id: "TPEx", start_date: start })).filter((r) => r.close > 0);
+}
+function tpexQuote(rows) {
+  const a = rows[rows.length - 1], b = rows[rows.length - 2];
+  if (!a) return null;
+  return {
+    symbol: "TPEX", market: "tw", name: TW_INDEX.TPEX.name, price: a.close, traded: true, prev: b ? b.close : null,
+    open: a.open, high: a.max, low: a.min, vol: null, date: a.date, time: "13:30:00", bids: [], asks: [],
+  };
+}
+function tpexChart(rows, interval) {
+  const out = { t: [], o: [], h: [], l: [], c: [], v: [] };
+  let wk = null;
+  for (const r of rows) {
+    const t = Date.UTC(+r.date.slice(0, 4), +r.date.slice(5, 7) - 1, +r.date.slice(8, 10)) / 1000 - 28800;
+    const k = Math.floor(((t + 28800) / 86400 + 3) / 7);   // 以週一開始分週
+    if (interval === "1wk" && k === wk) {
+      const n = out.t.length - 1;
+      out.h[n] = Math.max(out.h[n], r.max); out.l[n] = Math.min(out.l[n], r.min); out.c[n] = r.close; out.v[n] += r.Trading_Volume || 0;
+      continue;
+    }
+    wk = k; out.t.push(t); out.o.push(r.open); out.h.push(r.max); out.l.push(r.min); out.c.push(r.close); out.v.push(r.Trading_Volume || 0);
+  }
+  return { symbol: "TPEX", gmtoffset: 28800, prev: null, interval, ...out };
+}
+async function quotes(symbols, env) {
   const items = [...new Set((Array.isArray(symbols) ? symbols : []).slice(0, 40))].map(parseSym).filter(Boolean);
   const tw = items.filter((x) => x.kind !== "us"), us = items.filter((x) => x.kind === "us").slice(0, 20);
-  let twOut = {};
-  try { twOut = await twQuotes(tw); } catch (e) { console.log("證交所報價失敗：" + e.message); }
-  const missing = tw.filter((x) => !twOut[x.key]).slice(0, 10);           // 證交所抓不到的改用 Yahoo
+  let twOut = {}, names = {}, mkts = {};
+  try { ({ out: twOut, names, mkts } = await twQuotes(tw)); } catch (e) { console.log("證交所報價失敗：" + e.message); }
+  // 證交所抓不到（或週末測試資料）的改用 Yahoo；名額控制在免費方案每次 50 個子請求以內
+  const missing = tw.filter((x) => !twOut[x.key] && x.key !== "TPEX").slice(0, Math.max(0, 22 - us.length));
   const usOut = await Promise.all([...us, ...missing].map(async (it) => {
-    let res = await yahooChart(yahooSymbol(it, "TW"), "1d", "5m", 5);
-    if (!res && it.kind === "tw" && !it.mkt) res = await yahooChart(yahooSymbol(it, "TWO"), "1d", "5m", 5);
-    return res ? [it.key, quoteFromYahoo(res, it.key, it.kind === "us" ? "us" : "tw")] : null;
+    const known = it.mkt || mkts[it.key];
+    let res = await yahooChart(yahooSymbol(it, known || "TW"), "1d", "5m", 5);
+    if (!res && it.kind === "tw" && !known) res = await yahooChart(yahooSymbol(it, "TWO"), "1d", "5m", 5);
+    if (!res) return null;
+    const q = quoteFromYahoo(res, it.key, it.kind === "us" ? "us" : "tw");
+    const nm = names[it.key] || (it.kind === "twidx" ? TW_INDEX[it.key].name : null);
+    return [it.key, nm ? { ...q, name: nm } : q];
   }));
-  return { at: Date.now(), quotes: { ...twOut, ...Object.fromEntries(usOut.filter(Boolean)) } };
+  const res = { ...twOut, ...Object.fromEntries(usOut.filter(Boolean)) };
+  if (tw.some((x) => x.key === "TPEX") && !res.TPEX && env) {
+    try { const q = tpexQuote(await tpexDaily(env, 20)); if (q) res.TPEX = q; } catch (e) { console.log("FinMind 櫃買指數失敗：" + e.message); }
+  }
+  return { at: Date.now(), quotes: res };
 }
 const CHART_RANGE = { "1d": ["2y", 600], "1wk": ["10y", 3600], "1m": ["1d", 20] };
-async function chartData(raw, interval) {
+async function chartData(raw, interval, env) {
   const it = parseSym(raw);
   if (!it || !CHART_RANGE[interval]) throw new Error("代號或週期不正確");
+  if (it.key === "TPEX") {
+    if (interval === "1m") throw new Error("櫃買指數沒有分時資料，請看日K或週K");
+    return tpexChart(await tpexDaily(env || {}, interval === "1wk" ? 3660 : 732), interval);
+  }
   const [range, ttl] = CHART_RANGE[interval];
   let res = await yahooChart(yahooSymbol(it, "TW"), range, interval, ttl);
   if (!res && it.kind === "tw" && !it.mkt) res = await yahooChart(yahooSymbol(it, "TWO"), range, interval, ttl);
@@ -554,7 +604,7 @@ export default {
       // 打開後台網址就能自我檢查：只顯示「有沒有設定」，不會顯示任何密鑰內容
       const has = (k) => (env[k] ? "✅ 已設定" : "❌ 沒有");
       return json({
-        ok: true, msg: "Pit Garage 後台運作中", version: "2026-11-08",
+        ok: true, msg: "Pit Garage 後台運作中", version: "2026-11-08b",
         密鑰檢查: {
           ANTHROPIC_API_KEY: has("ANTHROPIC_API_KEY"), PASSCODE: has("PASSCODE"), FINMIND_TOKEN: has("FINMIND_TOKEN"),
           GITHUB_TOKEN: has("GITHUB_TOKEN"), CF_API_TOKEN: has("CF_API_TOKEN"), CF_ACCOUNT_ID: has("CF_ACCOUNT_ID"),
@@ -573,11 +623,11 @@ export default {
 
     // 看盤：即時報價、K 線（公開行情，一樣要通關密碼，避免被亂刷用光免費額度）
     if (action === "quote") {
-      try { return json(await quotes(input.symbols), 200, origin); }
+      try { return json(await quotes(input.symbols, env), 200, origin); }
       catch (e) { return json({ error: "讀取報價失敗：" + e.message }, 502, origin); }
     }
     if (action === "chart") {
-      try { return json(await chartData(input.symbol, input.interval || "1d"), 200, origin); }
+      try { return json(await chartData(input.symbol, input.interval || "1d", env), 200, origin); }
       catch (e) { return json({ error: e.message }, 502, origin); }
     }
 
