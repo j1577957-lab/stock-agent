@@ -3,7 +3,7 @@
     "eng": "idle",
     "cal": "idle",
     "mail": "idle",
-    "stock": "error",
+    "stock": "busy",
     "shop": "off",
     "crawl": "idle"
   },
@@ -612,12 +612,14 @@
   "meta": {
     "stock": {
       "last_done": "2026-11-09T21:01:56+08:00",
-      "last_msg": "⚠️ us_pre 執行失敗：HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read ti"
+      "last_msg": "⚠️ us_pre 執行失敗：HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read ti",
+      "since": "2026-11-09T21:15:48+08:00",
+      "task": "美股盤前報告"
     },
     "crawl": {
       "last_done": "2026-11-09T21:08:04+08:00",
       "last_msg": "新聞掃描：台股新增 15 則（近 30 則 多14／空6），美股新增 49 則（近 30 則 多11／空9），地緣政治新增 18 則（近 30 則 多3／空8），持股：元大台灣50 多3／空3、富邦科技 多0／空3、元大台灣50正2 多2／空3、群益臺灣加權正2 多5／空1、國泰費城半導體 多3／空1"
     }
   },
-  "updated": "2026-11-09T21:08:04+08:00"
+  "updated": "2026-11-09T21:15:48+08:00"
 }
