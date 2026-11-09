@@ -1,7 +1,7 @@
 {
  "us": {
-  "mode": "us_post",
-  "time": "2026-11-07 05:16",
+  "mode": "us_pre",
+  "time": "2026-11-09 21:01",
   "stocks": [
    {
     "symbol": "QQQM",
@@ -11,7 +11,7 @@
     "price": 270.22,
     "change_pct": 1.26,
     "date": "2026-11-06",
-    "is_today": true,
+    "is_today": false,
     "ma5": 276.94,
     "ma10": 285.25,
     "ma20": 291.41,
@@ -21,9 +21,9 @@
     "k": 14.0,
     "d": 21.0,
     "macd_hist": -2.717,
-    "vol_ratio": 1.61,
+    "vol_ratio": 1.62,
     "high20_prev": 309.95,
-    "vwap": 271.24,
+    "vwap": null,
     "score": 1,
     "reasons": [
      "量能放大 1.6 倍"
@@ -54,7 +54,7 @@
     "price": 342.37,
     "change_pct": -0.52,
     "date": "2026-11-06",
-    "is_today": true,
+    "is_today": false,
     "ma5": 341.25,
     "ma10": 343.47,
     "ma20": 343.38,
@@ -64,9 +64,9 @@
     "k": 57.0,
     "d": 56.0,
     "macd_hist": -0.768,
-    "vol_ratio": 0.88,
+    "vol_ratio": 0.92,
     "high20_prev": 355.38,
-    "vwap": 343.49,
+    "vwap": null,
     "score": 1,
     "reasons": [
      "KD 低檔黃金交叉（K=57）"
@@ -96,7 +96,7 @@
     "price": 186.64,
     "change_pct": 2.78,
     "date": "2026-11-06",
-    "is_today": true,
+    "is_today": false,
     "ma5": 195.42,
     "ma10": 204.47,
     "ma20": 211.55,
@@ -106,9 +106,9 @@
     "k": 12.0,
     "d": 17.0,
     "macd_hist": -3.197,
-    "vol_ratio": 1.58,
+    "vol_ratio": 1.59,
     "high20_prev": 233.92,
-    "vwap": 188.61,
+    "vwap": null,
     "score": 1,
     "reasons": [
      "量能放大 1.6 倍"
@@ -139,7 +139,7 @@
     "price": 190.71,
     "change_pct": 6.26,
     "date": "2026-11-06",
-    "is_today": true,
+    "is_today": false,
     "ma5": 211.35,
     "ma10": 244.93,
     "ma20": 268.16,
@@ -149,9 +149,9 @@
     "k": 14.0,
     "d": 21.0,
     "macd_hist": -9.541,
-    "vol_ratio": 1.42,
+    "vol_ratio": 1.43,
     "high20_prev": 349.95,
-    "vwap": 187.59,
+    "vwap": null,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -180,7 +180,7 @@
     "price": 277.36,
     "change_pct": -0.28,
     "date": "2026-11-06",
-    "is_today": true,
+    "is_today": false,
     "ma5": 296.3,
     "ma10": 301.21,
     "ma20": 291.04,
@@ -192,7 +192,7 @@
     "macd_hist": -1.968,
     "vol_ratio": 1.14,
     "high20_prev": 317.2,
-    "vwap": 276.98,
+    "vwap": null,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -220,7 +220,7 @@
     "price": 134.27,
     "change_pct": 8.62,
     "date": "2026-11-06",
-    "is_today": true,
+    "is_today": false,
     "ma5": 134.3,
     "ma10": 139.08,
     "ma20": 145.24,
@@ -230,9 +230,9 @@
     "k": 25.0,
     "d": 20.0,
     "macd_hist": -2.02,
-    "vol_ratio": 1.05,
+    "vol_ratio": 1.06,
     "high20_prev": 167.07,
-    "vwap": 131.48,
+    "vwap": null,
     "score": 1,
     "reasons": [
      "KD 低檔黃金交叉（K=25）"
