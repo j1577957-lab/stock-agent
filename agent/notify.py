@@ -21,9 +21,13 @@ def telegram(text: str) -> None:
         print("  (未設定 Telegram，略過)")
         return
     for i in range(0, len(text), 3900):  # Telegram 單則上限 4096 字
-        r = requests.post(f"https://api.telegram.org/bot{token}/sendMessage",
-                          data={"chat_id": chat, "text": text[i:i + 3900], "parse_mode": "HTML",
-                                "disable_web_page_preview": "true"}, timeout=20)
+        try:  # 連線逾時不能讓整次執行失敗（報告已存好，失敗會被重跑、產生重複報告）
+            r = requests.post(f"https://api.telegram.org/bot{token}/sendMessage",
+                              data={"chat_id": chat, "text": text[i:i + 3900], "parse_mode": "HTML",
+                                    "disable_web_page_preview": "true"}, timeout=20)
+        except requests.RequestException as e:
+            print(f"  ! Telegram 連線失敗：{e}")
+            continue
         if not r.ok:
             print(f"  ! Telegram 失敗：{r.text[:200]}")
 
