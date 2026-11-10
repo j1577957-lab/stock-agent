@@ -3,7 +3,7 @@
     "eng": "idle",
     "cal": "idle",
     "mail": "idle",
-    "stock": "error",
+    "stock": "busy",
     "shop": "off",
     "crawl": "idle"
   },
@@ -612,12 +612,14 @@
   "meta": {
     "stock": {
       "last_done": "2026-11-10T22:16:07+08:00",
-      "last_msg": "⚠️ us_pre 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
+      "last_msg": "⚠️ us_pre 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '",
+      "since": "2026-11-10T22:18:51+08:00",
+      "task": "美股盤前報告"
     },
     "crawl": {
       "last_done": "2026-11-10T22:08:06+08:00",
       "last_msg": "新聞掃描：台股新增 23 則（近 30 則 多8／空3），美股新增 11 則（近 30 則 多2／空8），地緣政治新增 20 則（近 30 則 多2／空14），持股：元大台灣50 多2／空5、富邦科技 多2／空1、元大台灣50正2 多2／空1、群益臺灣加權正2 多8／空1、國泰費城半導體 多3／空1"
     }
   },
-  "updated": "2026-11-10T22:16:07+08:00"
+  "updated": "2026-11-10T22:18:51+08:00"
 }
