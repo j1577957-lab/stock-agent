@@ -252,8 +252,8 @@
   ]
  },
  "tw": {
-  "mode": "tw_post",
-  "time": "2026-11-09 13:45",
+  "mode": "tw_pre",
+  "time": "2026-11-10 08:00",
   "stocks": [
    {
     "symbol": "5465.TWO",
@@ -263,7 +263,7 @@
     "price": 35.1,
     "change_pct": 7.83,
     "date": "2026-11-09",
-    "is_today": true,
+    "is_today": false,
     "ma5": 34.77,
     "ma10": 36.06,
     "ma20": 36.91,
@@ -273,9 +273,9 @@
     "k": 28.0,
     "d": 25.0,
     "macd_hist": -0.894,
-    "vol_ratio": 0.45,
+    "vol_ratio": 0.46,
     "high20_prev": 45.35,
-    "vwap": 35.18,
+    "vwap": null,
     "score": 1,
     "reasons": [
      "KD 低檔黃金交叉（K=28）"
@@ -305,7 +305,7 @@
     "price": 7.32,
     "change_pct": 6.86,
     "date": "2026-11-09",
-    "is_today": true,
+    "is_today": false,
     "ma5": 7.48,
     "ma10": 8.15,
     "ma20": 8.79,
@@ -315,9 +315,9 @@
     "k": 15.0,
     "d": 13.0,
     "macd_hist": -0.21,
-    "vol_ratio": 1.0,
+    "vol_ratio": 1.02,
     "high20_prev": 10.2,
-    "vwap": 7.3,
+    "vwap": null,
     "score": 1,
     "reasons": [
      "KD 低檔黃金交叉（K=15）"
@@ -348,7 +348,7 @@
     "price": 63.5,
     "change_pct": 9.86,
     "date": "2026-11-09",
-    "is_today": true,
+    "is_today": false,
     "ma5": 63.16,
     "ma10": 63.46,
     "ma20": 64.56,
@@ -360,7 +360,7 @@
     "macd_hist": -0.704,
     "vol_ratio": 0.45,
     "high20_prev": 73.6,
-    "vwap": 62.71,
+    "vwap": null,
     "score": 1,
     "reasons": [
      "KD 低檔黃金交叉（K=40）"
@@ -387,25 +387,25 @@
     "name": "友達",
     "holding": false,
     "ma20_cross": null,
-    "price": 28.4,
-    "change_pct": 6.97,
+    "price": 28.2,
+    "change_pct": 6.21,
     "date": "2026-11-09",
-    "is_today": true,
-    "ma5": 28.02,
-    "ma10": 30.45,
-    "ma20": 33.09,
-    "ma60": 31.17,
-    "above_ma20_pct": -14.2,
+    "is_today": false,
+    "ma5": 27.98,
+    "ma10": 30.43,
+    "ma20": 33.08,
+    "ma60": 31.16,
+    "above_ma20_pct": -14.8,
     "rsi": 39.0,
-    "k": 19.0,
+    "k": 18.0,
     "d": 16.0,
-    "macd_hist": -1.016,
-    "vol_ratio": 0.75,
+    "macd_hist": -1.029,
+    "vol_ratio": 0.78,
     "high20_prev": 37.8,
-    "vwap": 28.33,
+    "vwap": null,
     "score": 1,
     "reasons": [
-     "KD 低檔黃金交叉（K=19）"
+     "KD 低檔黃金交叉（K=18）"
     ],
     "blockers": [
      "股價在月線之下",
@@ -422,7 +422,7 @@
      29.1,
      27.25,
      26.55,
-     28.4
+     28.2
     ]
    },
    {
@@ -430,24 +430,25 @@
     "name": "聯電",
     "holding": false,
     "ma20_cross": null,
-    "price": 97.1,
-    "change_pct": 5.54,
+    "price": 96.7,
+    "change_pct": 5.11,
     "date": "2026-11-09",
-    "is_today": true,
-    "ma5": 99.2,
-    "ma10": 108.35,
-    "ma20": 120.83,
+    "is_today": false,
+    "ma5": 99.12,
+    "ma10": 108.31,
+    "ma20": 120.8,
     "ma60": 132.08,
-    "above_ma20_pct": -19.6,
-    "rsi": 28.0,
+    "above_ma20_pct": -20.0,
+    "rsi": 27.0,
     "k": 13.0,
     "d": 11.0,
-    "macd_hist": -2.994,
-    "vol_ratio": 1.5,
+    "macd_hist": -3.02,
+    "vol_ratio": 1.53,
     "high20_prev": 149.5,
-    "vwap": 97.22,
-    "score": 1,
+    "vwap": null,
+    "score": 2,
     "reasons": [
+     "量能放大 1.5 倍",
      "KD 低檔黃金交叉（K=13）"
     ],
     "blockers": [
@@ -465,7 +466,7 @@
      105.5,
      98.4,
      92.0,
-     97.1
+     96.7
     ]
    },
    {
@@ -476,7 +477,7 @@
     "price": 75.9,
     "change_pct": 10.0,
     "date": "2026-11-09",
-    "is_today": true,
+    "is_today": false,
     "ma5": 77.54,
     "ma10": 88.32,
     "ma20": 99.76,
@@ -488,7 +489,7 @@
     "macd_hist": -3.471,
     "vol_ratio": 0.47,
     "high20_prev": 133.0,
-    "vwap": 74.38,
+    "vwap": null,
     "score": 1,
     "reasons": [
      "KD 低檔黃金交叉（K=12）"
@@ -519,7 +520,7 @@
     "price": 119.5,
     "change_pct": 9.63,
     "date": "2026-11-09",
-    "is_today": true,
+    "is_today": false,
     "ma5": 119.8,
     "ma10": 132.55,
     "ma20": 145.47,
@@ -529,9 +530,9 @@
     "k": 17.0,
     "d": 14.0,
     "macd_hist": -3.151,
-    "vol_ratio": 0.57,
+    "vol_ratio": 0.56,
     "high20_prev": 191.5,
-    "vwap": 117.66,
+    "vwap": null,
     "score": 1,
     "reasons": [
      "KD 低檔黃金交叉（K=17）"
@@ -559,22 +560,22 @@
     "name": "京元電子",
     "holding": false,
     "ma20_cross": null,
-    "price": 210.0,
-    "change_pct": 1.94,
+    "price": 209.5,
+    "change_pct": 1.7,
     "date": "2026-11-09",
-    "is_today": true,
-    "ma5": 229.3,
-    "ma10": 247.9,
-    "ma20": 262.68,
-    "ma60": 267.69,
-    "above_ma20_pct": -20.1,
+    "is_today": false,
+    "ma5": 229.2,
+    "ma10": 247.85,
+    "ma20": 262.65,
+    "ma60": 267.68,
+    "above_ma20_pct": -20.2,
     "rsi": 30.0,
     "k": 13.0,
     "d": 20.0,
-    "macd_hist": -6.966,
-    "vol_ratio": 1.77,
+    "macd_hist": -6.998,
+    "vol_ratio": 1.83,
     "high20_prev": 310.0,
-    "vwap": 211.95,
+    "vwap": null,
     "score": 1,
     "reasons": [
      "量能放大 1.8 倍"
@@ -594,7 +595,7 @@
      248.5,
      228.5,
      206.0,
-     210.0
+     209.5
     ]
    },
    {
@@ -602,22 +603,22 @@
     "name": "凱美",
     "holding": false,
     "ma20_cross": null,
-    "price": 94.3,
-    "change_pct": 8.77,
+    "price": 94.5,
+    "change_pct": 9.0,
     "date": "2026-11-09",
-    "is_today": true,
-    "ma5": 95.78,
-    "ma10": 104.89,
+    "is_today": false,
+    "ma5": 95.82,
+    "ma10": 104.91,
     "ma20": 114.2,
     "ma60": 120.61,
-    "above_ma20_pct": -17.4,
+    "above_ma20_pct": -17.3,
     "rsi": 35.0,
     "k": 15.0,
     "d": 13.0,
-    "macd_hist": -2.864,
-    "vol_ratio": 0.32,
+    "macd_hist": -2.851,
+    "vol_ratio": 0.33,
     "high20_prev": 141.5,
-    "vwap": 94.14,
+    "vwap": null,
     "score": 1,
     "reasons": [
      "KD 低檔黃金交叉（K=15）"
@@ -637,7 +638,7 @@
      103.0,
      93.9,
      86.7,
-     94.3
+     94.5
     ]
    },
    {
@@ -645,22 +646,22 @@
     "name": "群益臺灣加權正2",
     "holding": true,
     "ma20_cross": null,
-    "price": 9.41,
-    "change_pct": 9.93,
+    "price": 9.39,
+    "change_pct": 9.7,
     "date": "2026-11-09",
-    "is_today": true,
+    "is_today": false,
     "ma5": 9.58,
-    "ma10": 10.62,
-    "ma20": 11.51,
+    "ma10": 10.61,
+    "ma20": 11.5,
     "ma60": 11.98,
-    "above_ma20_pct": -18.2,
+    "above_ma20_pct": -18.4,
     "rsi": 31.0,
     "k": 20.0,
     "d": 16.0,
-    "macd_hist": -0.332,
-    "vol_ratio": 1.17,
+    "macd_hist": -0.333,
+    "vol_ratio": 1.2,
     "high20_prev": 13.66,
-    "vwap": 9.37,
+    "vwap": null,
     "score": 1,
     "reasons": [
      "KD 低檔黃金交叉（K=20）"
@@ -680,7 +681,7 @@
      10.14,
      9.5,
      8.56,
-     9.41
+     9.39
     ]
    },
    {
@@ -688,22 +689,22 @@
     "name": "元大台灣50",
     "holding": true,
     "ma20_cross": null,
-    "price": 97.4,
-    "change_pct": 5.3,
+    "price": 97.45,
+    "change_pct": 5.35,
     "date": "2026-11-09",
-    "is_today": true,
-    "ma5": 97.5,
-    "ma10": 101.9,
+    "is_today": false,
+    "ma5": 97.51,
+    "ma10": 101.91,
     "ma20": 105.73,
     "ma60": 107.72,
-    "above_ma20_pct": -7.9,
+    "above_ma20_pct": -7.8,
     "rsi": 34.0,
     "k": 26.0,
     "d": 20.0,
-    "macd_hist": -1.409,
-    "vol_ratio": 1.47,
+    "macd_hist": -1.406,
+    "vol_ratio": 1.4,
     "high20_prev": 115.55,
-    "vwap": 97.08,
+    "vwap": null,
     "score": 1,
     "reasons": [
      "KD 低檔黃金交叉（K=26）"
@@ -723,7 +724,7 @@
      99.85,
      97.15,
      92.5,
-     97.4
+     97.45
     ]
    },
    {
@@ -734,7 +735,7 @@
     "price": 56.25,
     "change_pct": 5.83,
     "date": "2026-11-09",
-    "is_today": true,
+    "is_today": false,
     "ma5": 56.23,
     "ma10": 58.93,
     "ma20": 61.25,
@@ -746,7 +747,7 @@
     "macd_hist": -0.85,
     "vol_ratio": 1.2,
     "high20_prev": 67.4,
-    "vwap": 56.16,
+    "vwap": null,
     "score": 1,
     "reasons": [
      "KD 低檔黃金交叉（K=25）"
@@ -774,10 +775,10 @@
     "name": "元大台灣50正2",
     "holding": true,
     "ma20_cross": null,
-    "price": 28.92,
-    "change_pct": 9.96,
+    "price": 28.9,
+    "change_pct": 9.89,
     "date": "2026-11-09",
-    "is_today": true,
+    "is_today": false,
     "ma5": 29.35,
     "ma10": 32.31,
     "ma20": 34.88,
@@ -786,13 +787,13 @@
     "rsi": 31.0,
     "k": 22.0,
     "d": 16.0,
-    "macd_hist": -0.948,
-    "vol_ratio": 1.83,
+    "macd_hist": -0.949,
+    "vol_ratio": 1.86,
     "high20_prev": 41.31,
-    "vwap": 28.88,
+    "vwap": null,
     "score": 2,
     "reasons": [
-     "量能放大 1.8 倍",
+     "量能放大 1.9 倍",
      "KD 低檔黃金交叉（K=22）"
     ],
     "blockers": [
@@ -810,7 +811,7 @@
      30.85,
      29.21,
      26.3,
-     28.92
+     28.9
     ]
    },
    {
@@ -821,7 +822,7 @@
     "price": 68.5,
     "change_pct": 0.81,
     "date": "2026-11-09",
-    "is_today": true,
+    "is_today": false,
     "ma5": 72.39,
     "ma10": 76.74,
     "ma20": 80.3,
@@ -831,12 +832,12 @@
     "k": 12.0,
     "d": 16.0,
     "macd_hist": -1.5,
-    "vol_ratio": 1.79,
+    "vol_ratio": 1.74,
     "high20_prev": 92.45,
-    "vwap": 68.42,
+    "vwap": null,
     "score": 1,
     "reasons": [
-     "量能放大 1.8 倍"
+     "量能放大 1.7 倍"
     ],
     "blockers": [
      "股價在月線之下",
