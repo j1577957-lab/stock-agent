@@ -3,7 +3,7 @@
     "eng": "idle",
     "cal": "idle",
     "mail": "idle",
-    "stock": "idle",
+    "stock": "busy",
     "shop": "off",
     "crawl": "idle"
   },
@@ -612,12 +612,14 @@
   "meta": {
     "stock": {
       "last_done": "2026-11-10T05:16:28+08:00",
-      "last_msg": "美股盤後報告已送出（Telegram／Email／儀表板）"
+      "last_msg": "美股盤後報告已送出（Telegram／Email／儀表板）",
+      "since": "2026-11-10T08:00:34+08:00",
+      "task": "台股盤前報告"
     },
     "crawl": {
       "last_done": "2026-11-10T07:18:25+08:00",
       "last_msg": "主動ETF：25 檔，被加碼 52 檔股票（台積電×5、日月光投控×5、台光電×5、緯創×4、欣興×4）"
     }
   },
-  "updated": "2026-11-10T07:18:25+08:00"
+  "updated": "2026-11-10T08:00:34+08:00"
 }
