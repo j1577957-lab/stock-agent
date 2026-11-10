@@ -1,6 +1,224 @@
 {
- "updated": "2026-11-10 19:07",
+ "updated": "2026-11-10 20:07",
  "tw": [
+  {
+   "title": "奇鋐前三季賺逾七個股本 明年ASIC營收貢獻將超越GPU",
+   "url": "https://news.cnyes.com/news/id/6656704",
+   "source": "鉅亨網",
+   "time": "2026-11-10T12:07:37+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "台股連2日飆漲千點、外資仍大賣341億元 連23賣倒貨台積電",
+   "url": "https://news.cnyes.com/news/id/6656700",
+   "source": "鉅亨網",
+   "time": "2026-11-10T12:03:05+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "飆漲"
+   ]
+  },
+  {
+   "title": "元太策略投資美國Soofa 拓展社區資訊傳播及數位家外廣告市場",
+   "url": "https://news.cnyes.com/news/id/6656696",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:55:55+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "〈禾伸堂法說〉AI營收比重續攀高明年MLCC擴產4成 未來兩年展望樂觀",
+   "url": "https://news.cnyes.com/news/id/6656693",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:48:25+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "樂觀",
+    "擴產"
+   ]
+  },
+  {
+   "title": "需求強勁 臻鼎-KY第三季淨利超過上半年總和 1-9月EPS7.66元",
+   "url": "https://news.cnyes.com/news/id/6656694",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:45:37+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "〈祥碩法說〉第二家ASIC客戶小量出貨 鎖定IPC、IoT等高毛利應用",
+   "url": "https://news.cnyes.com/news/id/6656687",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:30:27+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "〈祥碩法說〉主機板市況估落底 明年下半年新平台放量毛利率拚回升",
+   "url": "https://news.cnyes.com/news/id/6656308",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:23:41+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "營收速報  - 潤泰新(9945)10月營收42.50億元年增率高達47.74％",
+   "url": "https://news.cnyes.com/news/id/6656686",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:20:45+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "年增"
+   ]
+  },
+  {
+   "title": "營收速報  - 智捷(8176)10月營收2,697萬元年增率高達214.06％",
+   "url": "https://news.cnyes.com/news/id/6656685",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:20:39+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "年增"
+   ]
+  },
+  {
+   "title": "營收速報  - 南茂(8150)10月營收28.51億元年增率高達30.91％",
+   "url": "https://news.cnyes.com/news/id/6656684",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:20:39+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "年增"
+   ]
+  },
+  {
+   "title": "營收速報  - 至上(8112)10月營收537.55億元年增率高達204.31％",
+   "url": "https://news.cnyes.com/news/id/6656683",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:20:38+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "年增"
+   ]
+  },
+  {
+   "title": "營收速報  - 華東(8110)10月營收8.62億元年增率高達33.07％",
+   "url": "https://news.cnyes.com/news/id/6656682",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:20:37+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "年增"
+   ]
+  },
+  {
+   "title": "營收速報  - 常珵(8097)10月營收2,106萬元年增率高達163.63％",
+   "url": "https://news.cnyes.com/news/id/6656681",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:20:36+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "年增"
+   ]
+  },
+  {
+   "title": "營收速報  - 廣積(8050)10月營收8.34億元年增率高達125.03％",
+   "url": "https://news.cnyes.com/news/id/6656680",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:20:35+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "年增"
+   ]
+  },
+  {
+   "title": "營收速報  - 亞泰金屬(6727)10月營收1.93億元年增率高達102.28％",
+   "url": "https://news.cnyes.com/news/id/6656679",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:20:33+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "年增"
+   ]
+  },
+  {
+   "title": "營收速報  - 辣椒(4946)10月營收5,394萬元年增率高達115.82％",
+   "url": "https://news.cnyes.com/news/id/6656678",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:20:30+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "年增"
+   ]
+  },
+  {
+   "title": "營收速報  - 榮運(2607)10月營收23.53億元年增率高達75.99％",
+   "url": "https://news.cnyes.com/news/id/6656677",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:20:26+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "年增"
+   ]
+  },
+  {
+   "title": "營收速報  - 國揚(2505)10月營收5.77億元年增率高達110081.11％",
+   "url": "https://news.cnyes.com/news/id/6656676",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:20:25+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "年增"
+   ]
+  },
+  {
+   "title": "營收速報  - 宏旭-KY(2243)10月營收3.65億元年增率高達263.85％",
+   "url": "https://news.cnyes.com/news/id/6656675",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:20:23+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "年增"
+   ]
+  },
+  {
+   "title": "綠色科技與智慧創新展登陸加勒比海 台露夥伴商展匯聚27家頂尖台企",
+   "url": "https://news.cnyes.com/news/id/6656400",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:13:12+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "半導體需求強 千附前三季營收、獲利雙創同期新高EPS達4.18元",
+   "url": "https://news.cnyes.com/news/id/6656399",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:09:53+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
   {
    "title": "統一傳洽購怡和餐飲瞄準亞洲千家速食門市",
    "url": "https://news.cnyes.com/news/id/6656394",
@@ -625,25 +843,39 @@
    "hits": [
     "升溫"
    ]
-  },
+  }
+ ],
+ "us": [
   {
-   "title": "連3天噴出大漲5298點！將進入擴底、趁反彈汰弱留強",
-   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBVTWlSalcyZ0FUQ0ZNT1lkUnZjeFZweTRFRm5XbHBhWjdNNDdIMzRkZ3BBejFaaWw1UW51dHpjTS1ER2VXQzlrUUVVS3dFZUU?oc=5",
+   "title": "國際油價跌破90美元！川普喊伊朗戰爭「很快結束」",
+   "url": "https://news.cnyes.com/news/id/6656402",
    "source": "鉅亨網",
-   "time": "2026-11-10T09:35:28+00:00",
-   "label": "利多",
-   "score": 5,
+   "time": "2026-11-10T12:01:11+00:00",
+   "label": "中性",
+   "score": 0,
    "hits": [
-    "大漲",
-    "噴出",
-    "反彈"
+    "很快結束",
+    "跌破",
+    "戰爭"
    ]
   },
   {
-   "title": "台股3天反彈逾5千點！V轉還是第2隻腳？分析師揭反彈能撐多久- 上市櫃",
-   "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE8zejlnWE9oenpuWGVqWG1xTXdhSlYtSmJ3SEt6ZDhQS3VQUU1UdGlZQ2gxbTNDSjYyN01XTXBBekpQaE9xYzVLUS1DM01mRDBTV0NvbUhUeGR5UjBnMVJUZmJxbTJTeTFiTnc?oc=5",
-   "source": "旺得富理財網",
-   "time": "2026-11-10T09:35:23+00:00",
+   "title": "聯準會理事華勒支持12月升息 不排除擴大升息幅度",
+   "url": "https://news.cnyes.com/news/id/6656321",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:50:04+00:00",
+   "label": "偏空",
+   "score": -1,
+   "hits": [
+    "大升",
+    "升息"
+   ]
+  },
+  {
+   "title": "大摩最想買誰？輝達居首 兩檔記憶體股反彈更有戲",
+   "url": "https://news.cnyes.com/news/id/6655908",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:42:34+00:00",
    "label": "偏多",
    "score": 1,
    "hits": [
@@ -651,214 +883,43 @@
    ]
   },
   {
-   "title": "滙豐投信參與台灣週看好AI供應鏈優勢支撐台股長線動能| 產業",
-   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE8yc19VYXkteVh2dGRTT0FmZER4RG8wdFlSOXZSZDl4SEd5eEY0aWlneG1nNEZ6YzdpTHpyRldndGkwV2VpR0gtajJST2ZaTENQOWtXU1RqREQxQ3Q1?oc=5",
-   "source": "太報 TaiSounds",
-   "time": "2026-11-10T09:32:30+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "看好"
-   ]
-  },
-  {
-   "title": "台股震盪不改AI長線趨勢！「這檔」半導體ETF受益權單位激增15％",
-   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5CMzRtaTAyVXFMUjJRWTF5M0piN3UzQndiUHF4NkhidmhZNWY1djRiSmhESlNUcEQxaDZGaTFNZ25mOHEySjNqVjFWVjdUMjZFLVowemRkYXNxN09HTE1N?oc=5",
-   "source": "工商時報",
-   "time": "2026-11-10T09:32:00+00:00",
+   "title": "黃仁勳婚外情風波擴大！外媒指涉75億美元晶片輸中",
+   "url": "https://news.cnyes.com/news/id/6656689",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:41:06+00:00",
    "label": "中性",
    "score": 0,
    "hits": []
   },
   {
-   "title": "〈英業達法說〉AI需求沒有改變 明年GPU及ASIC營收及出貨量皆高雙位數年增",
-   "url": "https://news.cnyes.com/news/id/6655945",
+   "title": "《彭博》：黃仁勳外遇揭輝達「接班懸崖」 700000%報酬神話面臨治理考驗",
+   "url": "https://news.cnyes.com/news/id/6655911",
    "source": "鉅亨網",
-   "time": "2026-11-10T09:31:26+00:00",
-   "label": "偏多",
-   "score": 1,
+   "time": "2026-11-10T11:40:05+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "俄羅斯外長：美俄柴油協議上路 全球能源價格正在下跌",
+   "url": "https://news.cnyes.com/news/id/6655964",
+   "source": "鉅亨網",
+   "time": "2026-11-10T11:39:15+00:00",
+   "label": "偏空",
+   "score": -1,
    "hits": [
-    "年增"
+    "下跌"
    ]
   },
   {
-   "title": "台股續攻一度收復4萬3 股王翻紅11千金漲停",
-   "url": "https://news.google.com/rss/articles/CBMiowJBVV95cUxQY2NKdzQ1VXNUMjNyVFlBT01oT1dHazZYMFFHZkU3SUIxbjFGNWF2NWRycWhJSU9FLWxFajhScjVsMDFPRXYxOF9JdWZxVGZwVTVVWnNSc1FJYUpNbnRNVXg2MzBaZXBVZzBjSUszVHNxdS1GTTdvS1RyQl9uYTJueGtTcF82c0xDcUtRY0MyMnlyZFJ4VFRTUTJzNGt3VmU5eENBMXFMaExsN0NjaExxa1ZNb19zbTdlbGJGZ3VhQ3dhODROdWxTRGNYVk83MWcyWG5BRlJfX1NNcF9GY1o2SU15cXdvUDdxbF9wS0E4X21NX0NzV3l2NUVTajdaczlDaDNfX0sxVWVTSlMycGI1UGdGTU5TeHlYc2F6MUVKZzc0SFE?oc=5",
-   "source": "Yahoo股市",
-   "time": "2026-11-10T09:24:09+00:00",
-   "label": "利多",
-   "score": 2,
-   "hits": [
-    "漲停"
-   ]
-  },
-  {
-   "title": "營收速報  - 嘉里大榮(2608)10月營收18.72億元年增率高達51.05％",
-   "url": "https://news.cnyes.com/news/id/6655943",
+   "title": "週纖達、猛健樂入列！美FDA要求所有GLP-1藥物加註「罕見視力受損」警示",
+   "url": "https://news.cnyes.com/news/id/6655910",
    "source": "鉅亨網",
-   "time": "2026-11-10T09:21:37+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "年增"
-   ]
+   "time": "2026-11-10T11:10:03+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
   },
-  {
-   "title": "營收速報  - 潤弘(2597)10月營收33.85億元年增率高達30.52％",
-   "url": "https://news.cnyes.com/news/id/6655942",
-   "source": "鉅亨網",
-   "time": "2026-11-10T09:21:35+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "年增"
-   ]
-  },
-  {
-   "title": "營收速報  - 興富發(2542)10月營收52.77億元年增率高達31.68％",
-   "url": "https://news.cnyes.com/news/id/6655941",
-   "source": "鉅亨網",
-   "time": "2026-11-10T09:21:34+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "年增"
-   ]
-  },
-  {
-   "title": "營收速報  - 達欣工(2535)10月營收23.31億元年增率高達64.23％",
-   "url": "https://news.cnyes.com/news/id/6655940",
-   "source": "鉅亨網",
-   "time": "2026-11-10T09:21:33+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "年增"
-   ]
-  },
-  {
-   "title": "營收速報  - 冠西電(2466)10月營收5,758萬元年增率高達54.17％",
-   "url": "https://news.cnyes.com/news/id/6655939",
-   "source": "鉅亨網",
-   "time": "2026-11-10T09:21:31+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "年增"
-   ]
-  },
-  {
-   "title": "營收速報  - 盟立(2464)10月營收11.05億元年增率高達96％",
-   "url": "https://news.cnyes.com/news/id/6655938",
-   "source": "鉅亨網",
-   "time": "2026-11-10T09:21:30+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "年增"
-   ]
-  },
-  {
-   "title": "營收速報  - 新美齊(2442)10月營收15.69億元年增率高達6975.21％",
-   "url": "https://news.cnyes.com/news/id/6655937",
-   "source": "鉅亨網",
-   "time": "2026-11-10T09:21:29+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "年增"
-   ]
-  },
-  {
-   "title": "營收速報  - 承啟(2425)10月營收23.15億元年增率高達423.83％",
-   "url": "https://news.cnyes.com/news/id/6655936",
-   "source": "鉅亨網",
-   "time": "2026-11-10T09:21:28+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "年增"
-   ]
-  },
-  {
-   "title": "營收速報  - 凌陽(2401)10月營收5.97億元年增率高達25.35％",
-   "url": "https://news.cnyes.com/news/id/6655935",
-   "source": "鉅亨網",
-   "time": "2026-11-10T09:21:27+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "年增"
-   ]
-  },
-  {
-   "title": "營收速報  - 映泰(2399)10月營收2.01億元年增率高達150.95％",
-   "url": "https://news.cnyes.com/news/id/6655934",
-   "source": "鉅亨網",
-   "time": "2026-11-10T09:21:25+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "年增"
-   ]
-  },
-  {
-   "title": "營收速報  - 國巨(2327)10月營收175.97億元年增率高達55.01％",
-   "url": "https://news.cnyes.com/news/id/6655933",
-   "source": "鉅亨網",
-   "time": "2026-11-10T09:21:24+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "年增"
-   ]
-  },
-  {
-   "title": "營收速報  - 中環(2323)10月營收8.43億元年增率高達32.39％",
-   "url": "https://news.cnyes.com/news/id/6655932",
-   "source": "鉅亨網",
-   "time": "2026-11-10T09:21:24+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "年增"
-   ]
-  },
-  {
-   "title": "營收速報  - 台船(2208)10月營收15.97億元年增率高達47.74％",
-   "url": "https://news.cnyes.com/news/id/6655931",
-   "source": "鉅亨網",
-   "time": "2026-11-10T09:21:21+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "年增"
-   ]
-  },
-  {
-   "title": "營收速報  - 潤隆(1808)10月營收9.96億元年增率高達41625.78％",
-   "url": "https://news.cnyes.com/news/id/6655930",
-   "source": "鉅亨網",
-   "time": "2026-11-10T09:21:19+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "年增"
-   ]
-  },
-  {
-   "title": "營收速報  - 易威(1799)10月營收6,772萬元年增率高達128.16％",
-   "url": "https://news.cnyes.com/news/id/6655929",
-   "source": "鉅亨網",
-   "time": "2026-11-10T09:21:18+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "年增"
-   ]
-  }
- ],
- "us": [
   {
    "title": "黃仁勳陷爭議，台灣受訪民眾表態支持：盼他度過難關",
    "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9oTXJGVEswNzEwZGtxbnFKRUJZQmJjRndMdWRBSDNnQVFLcmRJczFtNFBnV2NqOGhoQWNRWGVnaVBzYkExSjB5Nl8zeFh3dnM?oc=5",
@@ -1570,77 +1631,6 @@
    "url": "https://news.cnyes.com/news/id/6655334",
    "source": "鉅亨網",
    "time": "2026-11-10T06:10:04+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "【即時新聞】美股強勁反彈帶動AI權值股走強，台達電今日盤中強勢觸及漲停！",
-   "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPcjd6NzlWUHpGa3pqYXVKODFIQ1pUVmJndFd1VkxOQkVldDQyaVRTV3BZU1ZpZUJNekJzVEFxN3hIeGIwWkRXQ2lIcFhMakdwaTVpcVpmUnk3Mk9PX0Nwa2d3cXRMVEI2ZlNKd1QyX193R2NIbFFwSDl1dV9ZeHpnYlAzcGJsZy1IOGZzR3ZpZW0?oc=5",
-   "source": "CMoney投資網誌",
-   "time": "2026-11-10T06:06:39+00:00",
-   "label": "利多",
-   "score": 4,
-   "hits": [
-    "漲停",
-    "反彈",
-    "強勢"
-   ]
-  },
-  {
-   "title": "美股全面反攻，輝達獨自哭泣！半導體族群回血 專家看1現象：晶片界班長在教室罰站",
-   "url": "https://news.google.com/rss/articles/CBMi8gNBVV95cUxNQXl6Nzgxdjg4Q3NYLUR0eFRKTXN3NzEwb1pPS0l2d2xwV2plOFVxRW9YLWdybVVaWG9aTnNoRnVDSXNFSWJtbDFBaXFveVBEWnFqdk1FVXNCWDZfV3BjSzNaWU5OeGFSbS1VblMxN1RvZ3dDWjVaV3VHV0N1SkJqLUEyX3MzUFpkWVYtVEFWbEZvTEdOTUdnbXlVTXJSSXY0aXhSWGhpZi1jVm55ZWlFbzNsNENxSFF1OE5SWUo2b2wwdkhUWDY1b2FsYjZyS0xGQ0lnSHdoSHN1OGFoZERNVV92b254Qk1KYkxidkVSTmNVRTJuOEROaWlfS1psS2FUZlZ3a0FmejhMcFE0eDZRSGN2Nk5odzZlak0wWUx6dEVyTE5NcjZTWmF3c0FBWDJodTM2cGt0RzBoa0dQclJ5MXRQLUVjRUV4YmJPeTdqbXFPWHBleEFUdGZUbFA0OU9WanByTzNOQnJUeTR4ZFhYMTZ0aFc0NFNDYk5MLU1QU0xub2JkR2Q0dW0teXQ5QU1WeFdzaUstN2hJak1Zd2VSLVdjOGlRY2NRdTd3cXhwUy1yeVE5LWxuYVdPZ2k2ZlIzX2pmR3ZDSTd0TWs0ZnpCUnJ4X1FMek1MZkdBWnI4d0xTUnY4YVFwNUE1aFctUEl2S2c?oc=5",
-   "source": "Yahoo新聞",
-   "time": "2026-11-10T05:57:09+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "AI晶片股回神！韓日領軍反彈、台股祭限空令終結連七跌 市場緊盯CPI",
-   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5uSm9WV0tkMGVPNVo4OEt4eThyWFBYME9kbTl5LVpTUldLNWxrS1Q1YnMtVlQwZnNMTFlaaEVOUVhVQzEwRmZPS29yWjhDRVU?oc=5",
-   "source": "鉅亨網",
-   "time": "2026-11-10T05:53:08+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "反彈"
-   ]
-  },
-  {
-   "title": "$46億代幣化美股背後的“壟斷者”：91% 的資產竟託管在同一家公司？",
-   "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQZlQxajFkcmdiSGFwS3Fyd0x2NHNqb19oN2pSTUFBTXlmZ1VZcTQ3X0ZUOHc4cmFGRGx6VWhhbTBqT0lXWWhNR2pmLXVteVJjdnFKTTg0RWZsM3JHVG90M2lYeGhRZ2RIVWlqZGJoUDhURTViZHdXa01VZ2h5N1kzUXU2elFFZw?oc=5",
-   "source": "PANews",
-   "time": "2026-11-10T05:52:45+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "傑富瑞：標普500第三季度盈利大幅超預期，AI仍爲主要驅動力",
-   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBlSFljZ2tJZi13M3JFeE1ETFJUNkhpUklhN0p6UFhQbnRRbkZFY1hoUVRTcTdXVTFZR3ZKTDdVZl9sczkwRzJCdWdGa0tKWkxKWmMwSjBhOVpTSzNz?oc=5",
-   "source": "Moomoo",
-   "time": "2026-11-10T05:50:54+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "【美股盤後】四大指數強彈！費半飆近7%、道瓊大漲1104點",
-   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1ydmNXS1dqYzB5Q3hFLWNUN3pmTk10dGpuQzZsNmE3ZXh1MWF1UC1nVTJvbXVFejdsRmtsRUJSc3ExR1NVMkg4N01FMnRJdnBTcXAtalFpTHVaaGgtcU5z?oc=5",
-   "source": "非凡新聞台",
-   "time": "2026-11-10T05:45:48+00:00",
-   "label": "利多",
-   "score": 2,
-   "hits": [
-    "大漲"
-   ]
-  },
-  {
-   "title": "《美股法說》Take-Two財報優預期 GTA 6受矚",
-   "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQSVNnaTZKbHZ4S3ZfS3NoNnFDZGN0MGZ4ZnZnTngtWmZhUDlTbmY4YUplalp3TTcybmJVSm56ZnpfY0E1OFNpYWdsYWhZZ0NrSW1zLU5KMFZsSnFJSTR3clVVNGVSMFdqdEJPQTlVZlp5aGNVVFNGdkJTSVlJNnN6dnJNdzlnd2pPZ3VSZC1lSjY1dw?oc=5",
-   "source": "台視全球資訊網",
-   "time": "2026-11-10T05:35:24+00:00",
    "label": "中性",
    "score": 0,
    "hits": []
