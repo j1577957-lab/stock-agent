@@ -1,7 +1,7 @@
 {
  "us": {
-  "mode": "us_intraday",
-  "time": "2026-11-11 05:01",
+  "mode": "us_post",
+  "time": "2026-11-11 05:16",
   "stocks": [
    {
     "symbol": "QQQM",
@@ -21,13 +21,12 @@
     "k": 28.0,
     "d": 24.0,
     "macd_hist": -1.6,
-    "vol_ratio": 0.72,
+    "vol_ratio": 0.74,
     "high20_prev": 306.4,
     "vwap": 276.85,
-    "score": 2,
+    "score": 1,
     "reasons": [
-     "KD 低檔黃金交叉（K=28）",
-     "盤中站上均價線"
+     "KD 低檔黃金交叉（K=28）"
     ],
     "blockers": [
      "股價在月線之下",
@@ -65,13 +64,12 @@
     "k": 70.0,
     "d": 63.0,
     "macd_hist": -0.067,
-    "vol_ratio": 0.54,
+    "vol_ratio": 0.56,
     "high20_prev": 355.38,
     "vwap": 348.44,
-    "score": 2,
+    "score": 1,
     "reasons": [
-     "短線多頭排列（價 > 5日線 > 10日線）",
-     "盤中站上均價線"
+     "短線多頭排列（價 > 5日線 > 10日線）"
     ],
     "blockers": [],
     "candidate": false,
@@ -93,26 +91,25 @@
     "name": "NVIDIA",
     "holding": false,
     "ma20_cross": null,
-    "price": 168.8,
-    "change_pct": -5.53,
+    "price": 168.89,
+    "change_pct": -5.47,
     "date": "2026-11-10",
     "is_today": true,
-    "ma5": 183.17,
-    "ma10": 195.83,
+    "ma5": 183.19,
+    "ma10": 195.84,
     "ma20": 206.18,
     "ma60": 217.77,
     "above_ma20_pct": -18.1,
     "rsi": 24.0,
     "k": 11.0,
     "d": 14.0,
-    "macd_hist": -4.284,
-    "vol_ratio": 3.03,
+    "macd_hist": -4.278,
+    "vol_ratio": 3.06,
     "high20_prev": 228.64,
     "vwap": 168.7,
-    "score": 2,
+    "score": 1,
     "reasons": [
-     "量能放大 3.0 倍",
-     "盤中站上均價線"
+     "量能放大 3.1 倍"
     ],
     "blockers": [
      "股價在月線之下",
@@ -129,7 +126,7 @@
      181.6,
      186.64,
      178.67,
-     168.8
+     168.89
     ]
    },
    {
@@ -150,13 +147,12 @@
     "k": 24.0,
     "d": 22.0,
     "macd_hist": -5.49,
-    "vol_ratio": 0.85,
+    "vol_ratio": 0.86,
     "high20_prev": 326.85,
     "vwap": 215.65,
-    "score": 2,
+    "score": 1,
     "reasons": [
-     "KD 低檔黃金交叉（K=24）",
-     "盤中站上均價線"
+     "KD 低檔黃金交叉（K=24）"
     ],
     "blockers": [
      "股價在月線之下",
@@ -194,13 +190,11 @@
     "k": 52.0,
     "d": 55.0,
     "macd_hist": -1.225,
-    "vol_ratio": 0.6,
+    "vol_ratio": 0.65,
     "high20_prev": 317.2,
     "vwap": 296.89,
-    "score": 1,
-    "reasons": [
-     "盤中站上均價線"
-    ],
+    "score": 0,
+    "reasons": [],
     "blockers": [],
     "candidate": false,
     "recent_closes": [
@@ -237,10 +231,9 @@
     "vol_ratio": 0.72,
     "high20_prev": 166.18,
     "vwap": 141.69,
-    "score": 2,
+    "score": 1,
     "reasons": [
-     "KD 低檔黃金交叉（K=59）",
-     "盤中站上均價線"
+     "KD 低檔黃金交叉（K=59）"
     ],
     "blockers": [
      "股價在月線之下",
