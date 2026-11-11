@@ -1,7 +1,7 @@
 {
  "us": {
   "mode": "us_post",
-  "time": "2026-11-12 05:46",
+  "time": "2026-11-12 06:01",
   "stocks": [
    {
     "symbol": "QQQM",
@@ -23,7 +23,7 @@
     "macd_hist": -0.778,
     "vol_ratio": 0.65,
     "high20_prev": 304.9,
-    "vwap": 285.01,
+    "vwap": 284.5,
     "score": 1,
     "reasons": [
      "KD 低檔黃金交叉（K=45）"
@@ -64,9 +64,9 @@
     "k": 80.0,
     "d": 68.0,
     "macd_hist": 0.477,
-    "vol_ratio": 0.66,
+    "vol_ratio": 0.69,
     "high20_prev": 355.38,
-    "vwap": 354.27,
+    "vwap": 354.22,
     "score": 3,
     "reasons": [
      "MACD 柱翻正",
@@ -106,12 +106,12 @@
     "k": 13.0,
     "d": 14.0,
     "macd_hist": -4.088,
-    "vol_ratio": 1.73,
+    "vol_ratio": 1.75,
     "high20_prev": 226.0,
-    "vwap": 175.45,
+    "vwap": 175.09,
     "score": 1,
     "reasons": [
-     "量能放大 1.7 倍"
+     "量能放大 1.8 倍"
     ],
     "blockers": [
      "股價在月線之下",
@@ -192,7 +192,7 @@
     "k": 62.0,
     "d": 57.0,
     "macd_hist": -0.304,
-    "vol_ratio": 0.82,
+    "vol_ratio": 0.83,
     "high20_prev": 317.2,
     "vwap": 309.82,
     "score": 1,
@@ -232,7 +232,7 @@
     "k": 66.0,
     "d": 47.0,
     "macd_hist": -0.139,
-    "vol_ratio": 0.99,
+    "vol_ratio": 1.0,
     "high20_prev": 166.18,
     "vwap": 142.03,
     "score": 0,
