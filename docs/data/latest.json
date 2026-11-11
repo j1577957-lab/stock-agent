@@ -1,7 +1,7 @@
 {
  "us": {
-  "mode": "us_intraday",
-  "time": "2026-11-12 05:01",
+  "mode": "us_post",
+  "time": "2026-11-12 05:16",
   "stocks": [
    {
     "symbol": "QQQM",
@@ -64,15 +64,14 @@
     "k": 80.0,
     "d": 68.0,
     "macd_hist": 0.477,
-    "vol_ratio": 0.64,
+    "vol_ratio": 0.66,
     "high20_prev": 355.38,
     "vwap": 354.22,
-    "score": 4,
+    "score": 3,
     "reasons": [
      "MACD 柱翻正",
      "短線多頭排列（價 > 5日線 > 10日線）",
-     "突破前 20 日高點",
-     "盤中站上均價線"
+     "突破前 20 日高點"
     ],
     "blockers": [],
     "candidate": true,
@@ -107,7 +106,7 @@
     "k": 13.0,
     "d": 14.0,
     "macd_hist": -4.088,
-    "vol_ratio": 1.68,
+    "vol_ratio": 1.73,
     "high20_prev": 226.0,
     "vwap": 175.09,
     "score": 1,
@@ -150,7 +149,7 @@
     "k": 34.0,
     "d": 26.0,
     "macd_hist": -2.855,
-    "vol_ratio": 0.78,
+    "vol_ratio": 0.79,
     "high20_prev": 319.75,
     "vwap": 231.8,
     "score": 1,
@@ -193,7 +192,7 @@
     "k": 62.0,
     "d": 57.0,
     "macd_hist": -0.304,
-    "vol_ratio": 0.71,
+    "vol_ratio": 0.82,
     "high20_prev": 317.2,
     "vwap": 309.82,
     "score": 1,
@@ -233,7 +232,7 @@
     "k": 66.0,
     "d": 47.0,
     "macd_hist": -0.139,
-    "vol_ratio": 0.98,
+    "vol_ratio": 0.99,
     "high20_prev": 166.18,
     "vwap": 142.03,
     "score": 0,
