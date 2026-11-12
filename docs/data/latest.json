@@ -259,7 +259,7 @@
  },
  "tw": {
   "mode": "tw_post",
-  "time": "2026-11-12 14:00",
+  "time": "2026-11-12 14:15",
   "stocks": [
    {
     "symbol": "5465.TWO",
@@ -826,7 +826,7 @@
     "macd_hist": -0.475,
     "vol_ratio": 1.2,
     "high20_prev": 87.9,
-    "vwap": 75.56,
+    "vwap": 75.39,
     "score": 1,
     "reasons": [
      "KD 低檔黃金交叉（K=44）"
