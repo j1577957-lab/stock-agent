@@ -1,7 +1,7 @@
 {
  "us": {
   "mode": "us_post",
-  "time": "2026-11-13 05:46",
+  "time": "2026-11-13 06:01",
   "stocks": [
    {
     "symbol": "QQQM",
@@ -62,7 +62,7 @@
     "k": 82.0,
     "d": 73.0,
     "macd_hist": 0.719,
-    "vol_ratio": 0.63,
+    "vol_ratio": 0.64,
     "high20_prev": 355.91,
     "vwap": 356.92,
     "score": 2,
@@ -103,12 +103,12 @@
     "k": 18.0,
     "d": 15.0,
     "macd_hist": -4.162,
-    "vol_ratio": 4.43,
+    "vol_ratio": 4.47,
     "high20_prev": 222.19,
     "vwap": 164.43,
     "score": 2,
     "reasons": [
-     "量能放大 4.4 倍",
+     "量能放大 4.5 倍",
      "KD 低檔黃金交叉（K=18）"
     ],
     "blockers": [
