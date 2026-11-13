@@ -3,17 +3,11 @@
     "eng": "idle",
     "cal": "idle",
     "mail": "idle",
-    "stock": "busy",
+    "stock": "error",
     "shop": "off",
     "crawl": "idle"
   },
   "radio": [
-    {
-      "id": 817,
-      "who": "策略技師",
-      "tech": "stock",
-      "msg": "11/12 14:16｜⚠️ tw_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
-    },
     {
       "id": 818,
       "who": "策略技師",
@@ -607,19 +601,23 @@
       "who": "策略技師",
       "tech": "stock",
       "msg": "11/13 13:46｜⚠️ tw_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
+    },
+    {
+      "id": 917,
+      "who": "策略技師",
+      "tech": "stock",
+      "msg": "11/13 14:01｜⚠️ tw_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
     }
   ],
   "meta": {
     "stock": {
-      "last_done": "2026-11-13T13:46:38+08:00",
-      "last_msg": "⚠️ tw_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '",
-      "since": "2026-11-13T14:00:32+08:00",
-      "task": "台股盤後報告"
+      "last_done": "2026-11-13T14:01:33+08:00",
+      "last_msg": "⚠️ tw_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
     },
     "crawl": {
       "last_done": "2026-11-13T13:08:01+08:00",
       "last_msg": "新聞掃描：台股新增 29 則（近 30 則 多14／空9），美股新增 9 則（近 30 則 多5／空3），地緣政治新增 14 則（近 30 則 多5／空6），持股：元大台灣50 多1／空0、富邦科技 多1／空0、元大台灣50正2 多0／空0、群益臺灣加權正2 多3／空3、國泰費城半導體 多3／空4"
     }
   },
-  "updated": "2026-11-13T14:00:32+08:00"
+  "updated": "2026-11-13T14:01:33+08:00"
 }
