@@ -261,7 +261,7 @@
  },
  "tw": {
   "mode": "tw_post",
-  "time": "2026-11-13 14:30",
+  "time": "2026-11-13 14:45",
   "stocks": [
    {
     "symbol": "5465.TWO",
@@ -283,7 +283,7 @@
     "macd_hist": -0.985,
     "vol_ratio": 0.33,
     "high20_prev": 45.35,
-    "vwap": 32.02,
+    "vwap": 31.99,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -365,7 +365,7 @@
     "macd_hist": 1.99,
     "vol_ratio": 2.69,
     "high20_prev": 84.3,
-    "vwap": 84.3,
+    "vwap": 84.4,
     "score": 4,
     "reasons": [
      "量能放大 2.7 倍",
@@ -410,7 +410,7 @@
     "macd_hist": -0.277,
     "vol_ratio": 1.37,
     "high20_prev": 37.8,
-    "vwap": 29.84,
+    "vwap": 29.79,
     "score": 1,
     "reasons": [
      "短線多頭排列（價 > 5日線 > 10日線）"
@@ -453,7 +453,7 @@
     "macd_hist": -0.383,
     "vol_ratio": 0.72,
     "high20_prev": 137.0,
-    "vwap": 103.37,
+    "vwap": 103.2,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -494,7 +494,7 @@
     "macd_hist": -0.469,
     "vol_ratio": 0.71,
     "high20_prev": 115.0,
-    "vwap": 83.92,
+    "vwap": 83.82,
     "score": 1,
     "reasons": [
      "短線多頭排列（價 > 5日線 > 10日線）"
@@ -537,7 +537,7 @@
     "macd_hist": 0.172,
     "vol_ratio": 0.75,
     "high20_prev": 165.0,
-    "vwap": 126.77,
+    "vwap": 126.71,
     "score": 2,
     "reasons": [
      "MACD 柱翻正",
@@ -581,7 +581,7 @@
     "macd_hist": -3.908,
     "vol_ratio": 1.26,
     "high20_prev": 284.5,
-    "vwap": 220.33,
+    "vwap": 220.0,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -622,7 +622,7 @@
     "macd_hist": -0.72,
     "vol_ratio": 0.55,
     "high20_prev": 141.5,
-    "vwap": 99.54,
+    "vwap": 99.41,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -706,7 +706,7 @@
     "macd_hist": 0.01,
     "vol_ratio": 0.61,
     "high20_prev": 110.15,
-    "vwap": 103.47,
+    "vwap": 103.45,
     "score": 2,
     "reasons": [
      "MACD 柱翻正",
@@ -750,7 +750,7 @@
     "macd_hist": -0.005,
     "vol_ratio": 0.97,
     "high20_prev": 63.95,
-    "vwap": 59.66,
+    "vwap": 59.65,
     "score": 1,
     "reasons": [
      "短線多頭排列（價 > 5日線 > 10日線）"
@@ -793,7 +793,7 @@
     "macd_hist": -0.076,
     "vol_ratio": 1.03,
     "high20_prev": 37.88,
-    "vwap": 32.57,
+    "vwap": 32.56,
     "score": 1,
     "reasons": [
      "短線多頭排列（價 > 5日線 > 10日線）"
@@ -834,9 +834,9 @@
     "k": 58.0,
     "d": 39.0,
     "macd_hist": -0.136,
-    "vol_ratio": 0.65,
+    "vol_ratio": 0.66,
     "high20_prev": 84.1,
-    "vwap": 76.91,
+    "vwap": 76.89,
     "score": 0,
     "reasons": [],
     "blockers": [
