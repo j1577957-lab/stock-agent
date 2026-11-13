@@ -1,6 +1,375 @@
 {
- "updated": "2026-11-13 08:07",
+ "updated": "2026-11-13 09:07",
  "tw": [
+  {
+   "title": "台股早盤漲逾1100點 台積電漲45元",
+   "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNV2ZqY1d3TE94b010cEIxMk5GeWtkQVV5NFJfQmFBdmJoWTRiM2x4NmpiMnJmV19RMHFtcXRKVEo2OVhJOGtzV3g1TXZnR2diODVyc25nbkJidFRrdmREeW9FbEQyVnVxYjRDUFpNR3VIQXRON2c2elAxOE9CUl9ZZGJHajg0SGZmTjdCemk5cDFsRjcwY09YeEdmNy1WaFJZVFlzdS1GQkU3bV9jM1BYUjJlYTBRS1VnbXd5Y1BGY2o1UXhmcUVWWGNtRGhGQ01BWS13bzhtTnE3ODUzWmdQeGNsLXdvVm0za2VNQQ?oc=5",
+   "source": "Yahoo新聞",
+   "time": "2026-11-13T01:06:38+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "漲逾"
+   ]
+  },
+  {
+   "title": "盤中速報 - 櫃買市場加權指數上漲13.45點至349.18點，漲幅4.01%",
+   "url": "https://news.cnyes.com/news/id/6661328",
+   "source": "鉅亨網",
+   "time": "2026-11-13T01:06:16+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "上漲"
+   ]
+  },
+  {
+   "title": "盤中速報 - 集中市場加權指數上漲1162.27點至44254.14點，漲幅2.7%",
+   "url": "https://news.cnyes.com/news/id/6661326",
+   "source": "鉅亨網",
+   "time": "2026-11-13T01:06:03+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "上漲"
+   ]
+  },
+  {
+   "title": "盤中速報 - 櫃買市場加權指數上漲13.28點至349.01點，漲幅3.96%",
+   "url": "https://news.cnyes.com/news/id/6661322",
+   "source": "鉅亨網",
+   "time": "2026-11-13T01:05:56+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "上漲"
+   ]
+  },
+  {
+   "title": "黃仁勳下台利空出盡台股上漲千點聯發科成大贏家噴漲停- 財經",
+   "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9YWEVhRUpRb0JKTTl4QkVTWU9ZQUZacS1FQlVTZWkzTjBwYnhRbm1NR2pxdHZOdWhZV3IybFA2S1hqM2dYRVZUOGJfcnRfRzFkY0RfTkJXZ3pTRVN4anpYZDNXZWtnNUlKZ0U5VmlB?oc=5",
+   "source": "中時新聞網",
+   "time": "2026-11-13T01:01:49+00:00",
+   "label": "利多",
+   "score": 5,
+   "hits": [
+    "漲停",
+    "上漲",
+    "利空出盡"
+   ]
+  },
+  {
+   "title": "台股快訊》不甩黃仁勳請辭消息！開盤上漲逾900點 | 下班經濟學 | 財經",
+   "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5xallhcHk2X0dyVW9QY0VuQ2tCXzE4aXNib3plYUtmQmRZbXRSTzZLVGVjZGpSeHBFRC02Z3pSWEZ4VjBqVWtaQ0Rma2pXdw?oc=5",
+   "source": "風傳媒",
+   "time": "2026-11-13T01:01:00+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "上漲",
+    "漲逾"
+   ]
+  },
+  {
+   "title": "盤中速報 - 櫃買市場加權指數上漲10.25點至345.98點，漲幅3.05%",
+   "url": "https://news.cnyes.com/news/id/6661295",
+   "source": "鉅亨網",
+   "time": "2026-11-13T01:00:52+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "上漲"
+   ]
+  },
+  {
+   "title": "盤中速報 - 集中市場加權指數上漲923.83點至44015.7點，漲幅2.14%",
+   "url": "https://news.cnyes.com/news/id/6661292",
+   "source": "鉅亨網",
+   "time": "2026-11-13T01:00:31+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "上漲"
+   ]
+  },
+  {
+   "title": "黃仁勳確定下台！輝達盤前暴跌11% 台股瑟瑟發抖",
+   "url": "https://news.google.com/rss/articles/CBMivAJBVV95cUxORmRWZ09uTzBWSFlLVFRrQTJXVm9CcTJ0b3pRaTdZSVRLd2pMSWJNNGtZc2xXWEJIdnFmMWJIYkN2MmtrcWZTSE1NV3VzU0xtVXdUZ2E3RVQ4WUtYWWV1Y0JLSkRqb0pudXJGcDJSY1JtXzI1ak5JN2s5dFJ6dDZEUXVleGRGdDZQMDVXOTl2Qk5rRGt2WkU0WTZDTzB2ZERUbExIZ3lGUnY0ODlVT1QwdXhoc2puSl9pXzF1MUhVUDRBeFZxZXZRbi10ckNMaTNqaHctcjR5VUFNS3VHOWx4cjlHRER4RV80c0RhNHkxazg0ZHUwWU8xVFZFNUt3Uk9KQVJTSGdWQnl3WVdzOUhkY3FnVy1maTRheWRWTmJlNkljcW5TQmRmYTlmaEJGa2tiTEJORlNjNG1mYml5?oc=5",
+   "source": "Yahoo新聞",
+   "time": "2026-11-13T00:51:13+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "暴跌"
+   ]
+  },
+  {
+   "title": "【股市焦點】台達電10月營收創高仍有隱憂！新光證券：外資目標價在這區間",
+   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE42M2Zld2s4VzNZWUJZOTVhR3FjOFdwVmRmQktXaGhtUmRNT0Ixb3NmM1RUVVdQTEdCd3NpVTAwODgzNTV3V05faEx6N08xTUE?oc=5",
+   "source": "鉅亨網",
+   "time": "2026-11-13T00:50:03+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "營收創"
+   ]
+  },
+  {
+   "title": "和碩伺服器業務將爆發 今年前三季每股賺3.74元(經濟日報，無內文)",
+   "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1hMXREdDNNVjRuaWtoRDNtWFpsR0cxRzJmT1E2UFV6NVlKNnhWcE9NRFZsQXR3WlhERkVIeUlzZUEwWVNiOHRXWEpQNm5kYzJHVFB4clBlQUE?oc=5",
+   "source": "CMoney",
+   "time": "2026-11-13T00:47:04+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "黃仁勳下台 台鏈短期恐受衝擊(經濟日報，無內文)",
+   "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBtYnpONUE4Y2N6RXB6QXpSVDNPZ3Zvck9KQ2dRZW1xWUU5R1BuVkxodmJzR09abGhXRnBYU1RjU2NsZXBYbVJQV0RBNGdvTXN5UFNOSzN1Rlg?oc=5",
+   "source": "CMoney",
+   "time": "2026-11-13T00:46:15+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "黃仁勳離任震盪 超微博通逆勢大漲(經濟日報，無內文)",
+   "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBPXzl3SFdEQUVkcHFCeU5NY0xzVDZuZnB4WGpDc19CUkNwcnVpTHVLRHd3azg5UjRiWnIzWTZ3WFZ3NDQ4Xzh1RGZDMXZSR2VUalR4NW1ZWFI?oc=5",
+   "source": "CMoney",
+   "time": "2026-11-13T00:46:11+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "大漲"
+   ]
+  },
+  {
+   "title": "11月13日盤前／黃仁勳請辭 CEO 國安基金護盤撐腰 台股區間震盪",
+   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1fYnhZRXhhUGczTmNxUU0zY3hMamNFU2xyQ25xQzM3Qmc5bFZVQVFIbU1OdlNjeUNJNXl4azJFWUhDeEpyOGtVZkFQa2R0Xzc3ZDg0Smd4YTlhQdIBX0FVX3lxTFBmdVlZYzhWQkVKN1BKS2NkSy10cmNNaWZ1MTd6VjI3TU5qb2dleFZFdkFES2JUelZIOHprZm5vSm4wSmJwUVROaTVKeUxiZl9weGxPWWZJRDFpQW1Ta3kw?oc=5",
+   "source": "經濟日報",
+   "time": "2026-11-13T00:42:18+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "00418A ：從台股前300 大挖掘下一批成長股，不配息加上主動選股，能創造更高的長期報酬嗎?-股人阿勳",
+   "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQZmpfWVR1cXBQTHBLNlhyX2puTTBQNEI4OTc1UGlySWZBRFNtRDlQanFqT2hhWUVTNldCSDYxVWUtaktRajJzY3Y2cWJNcmViSzNUZ2JOTE1sbkxjbC1KSGtCWGtBc1dTT0VZVFRmeG9TYTl4ZXUwLWJ1MjRiZzVpYmstRlhDZw?oc=5",
+   "source": "CMoney投資網誌",
+   "time": "2026-11-13T00:38:25+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "配息"
+   ]
+  },
+  {
+   "title": "「黃天鵝」衝擊台股？ 公股投顧：台廠供應鏈短期承壓、長線AI需求仍有撐",
+   "url": "https://news.google.com/rss/articles/CBMinwNBVV95cUxQeE1KZVdYZVRqX1RQLThKQ1h0UWFBLW01TEdCNWJobTlZUjI5OWZyTV9VLUxrRzZZTUZvTkhFNmR1b2dyM0tCYjNKS1N2emdUTFlWcUMzMHZ6akoxNDlwdWRXMDEwXzNwMzZmMWkxUXNuMHhxZkdZaW1ycTdtbmZVT2hEX01vNHpKSlJsUG5TZGc4TElsOWRtcFpZUElTZFUxS2Jac05waHRoM1ZTX21rcTF4M3dGMDFZTzFxZFdZY29VYmtYcUFHc0hOV2drUDNJclFydWtRU0IwVkxSYWFhdjRyRjR6NGxHQU44RWpJSE11clRITzduYm1CQlJVVXpIaDA5VDNrQWNBMWcxRjNUYVAyMlBVY1huc05xNkIyZExlUFQxcHV6anRUSEtXS29jTFJfaTRrd0JjYlh4Yy0tWlpyVmNhb2Y2WWl6emlCcHR6eEJCYURMZWg0SWIzSDNXUHF6X1NnTkphMVN4azdHVF9qTHNNRlBDRlBGR2ZWMTMtRzEyRjFDdTllampyM3E2WGl5dm9COGlRdHZMRnJr?oc=5",
+   "source": "Yahoo新聞",
+   "time": "2026-11-13T00:33:45+00:00",
+   "label": "偏空",
+   "score": -1,
+   "hits": [
+    "承壓"
+   ]
+  },
+  {
+   "title": "黃仁勳去職台指期夜盤未見頹勢法人：台股可望回穩| 證券",
+   "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBOc3gwOWdvVk1sVWlRQjNvZDYxaUVteUc1ejBrUTNfNi1zc3c0V2M2VUVXRWpKZTVnLXVuUlY5dWRFTmpydUsxYklreG5JYTR4UXI1RTNkVzJUM2dteVE?oc=5",
+   "source": "中央社 CNA",
+   "time": "2026-11-13T00:33:00+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "千點大怒神行情再現 台股 ETF 高息穩健、主動靈活 逢低布局正逢時",
+   "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1QNXczZzl5LUpnNS1yVGR6Z0V5VDhPR3M2bFRLMHVEUHlLcnJSeWFHUFBEWGQxeTRQM1d1S3ljR2ZqdzNxaGFPX1pfa0xpdW1HVXRr0gFYQVVfeXFMT3k1YUY1Y3U0cWg5WUdiWVVnNllaN19SMG1PWS1LYm1PV2ZiQTNwOTlJUzBhUUtRTFl0a25ZRVdTMjk2NHNhNjB2OE1sRVdBTlZBczlxZDh0cw?oc=5",
+   "source": "UDN",
+   "time": "2026-11-13T00:32:26+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "目標價喊9850元！這「ASIC大廠」不畏台股狂殺千點、逆勢飆26％ 定穎暴漲45％法人看160元",
+   "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBGVTNqU0VYSlYwSXl0c3FWbHVwWE10aTBGSHktcXA2ZUd0RHJQQTFCVXExTmhKZ3VCWi1wV3dCMHduRmR0c2pjaWpmYw?oc=5",
+   "source": "FTNN 新聞網",
+   "time": "2026-11-13T00:30:00+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "11/13 台股盤前｜AI換帥，交付能跟上嗎？",
+   "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE8xS0pVT09NWXhFcVI5S1dZUHNzOWJKZVprVDdJQlFfR0lvRkJLeUNhVFlYbzljOTFxRnViRUxKS0pMdlc5cW1Deg?oc=5",
+   "source": "鉅亨號",
+   "time": "2026-11-13T00:29:29+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "【創意、世芯、聯發科=下一站萬金股？】台積電320億神操作！點亮ASIC三大天王獲利爆發行情！",
+   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1JSGhGZFhoaXJuMlk0clZ2SGd2U2JTNDlPQ3ZsdGRuaG15T3prUHpfVEd0dzl2ODBRbHV4dHZGU2xPU245WlBZTnFNSFY5SGM?oc=5",
+   "source": "鉅亨網",
+   "time": "2026-11-13T00:25:04+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "台股單日重挫逾千點，資金轉進哪些財報績優股？-葉博金融研究院",
+   "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQbVJ3RU9JUlBkTkpoakZwZHVwaHJFckR0V3JwX3dzWTJyV0FtVUlfUFZacFFLME9GaFZwSDN2NFJ2Vk5xdkhPNmdEU0l0bG01ZFBCeWVOSUN0MVRLMTN6V0dLdWpPa2FQR1R5YzVuRk1Ma1JaS3B3OGl4UXdIRGd3VA?oc=5",
+   "source": "CMoney投資網誌",
+   "time": "2026-11-13T00:19:03+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "重挫"
+   ]
+  },
+  {
+   "title": "「黃仁勳溢價」將逐步消退 法人評估對台股供應鏈影響",
+   "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5wdUNYSHNIaUdpaHZjdkV1UkNSMWJXelhGVlFsM2lvMVUzZVNMMGg5dmlMc0N0Z2dOaGR6SkF6Uzg4R3RKU3RpQnZqbFl4Q1dL0gFWQVVfeXFMT0xXcFZjUTB5ZWM3NEdOMThCRTdCdjNIRFI3SlBjeTBDcUk1VDNmSWVnYVFGSDVYbVd2bFl5R3dsWmcxa0JaYThqaGNIMk03TGJlbXp4bUE?oc=5",
+   "source": "UDN",
+   "time": "2026-11-13T00:17:45+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：川湖(2059-TW)EPS預估下修至336.97元，預估目標價為14250元",
+   "url": "https://news.cnyes.com/news/id/6661234",
+   "source": "鉅亨網",
+   "time": "2026-11-13T00:10:50+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "下修"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：緯創(3231-TW)EPS預估上修至18.24元，預估目標價為289.5元",
+   "url": "https://news.cnyes.com/news/id/6661233",
+   "source": "鉅亨網",
+   "time": "2026-11-13T00:10:49+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "上修"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：仁寶(2324-TW)EPS預估下修至2.15元，預估目標價為40元",
+   "url": "https://news.cnyes.com/news/id/6661232",
+   "source": "鉅亨網",
+   "time": "2026-11-13T00:10:47+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "下修"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：京元電子(2449-TW)EPS預估下修至8.06元，預估目標價為320元",
+   "url": "https://news.cnyes.com/news/id/6661231",
+   "source": "鉅亨網",
+   "time": "2026-11-13T00:10:46+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "下修"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：來億-KY(6890-TW)EPS預估下修至10.81元，預估目標價為175元",
+   "url": "https://news.cnyes.com/news/id/6661230",
+   "source": "鉅亨網",
+   "time": "2026-11-13T00:10:45+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "下修"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：華碩(2357-TW)EPS預估上修至78.03元，預估目標價為1100元",
+   "url": "https://news.cnyes.com/news/id/6661229",
+   "source": "鉅亨網",
+   "time": "2026-11-13T00:10:43+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "上修"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：鴻海(2317-TW)EPS預估上修至19.4元，預估目標價為358元",
+   "url": "https://news.cnyes.com/news/id/6661228",
+   "source": "鉅亨網",
+   "time": "2026-11-13T00:10:41+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "上修"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：元太(8069-TW)EPS預估下修至11.04元，預估目標價為200元",
+   "url": "https://news.cnyes.com/news/id/6661227",
+   "source": "鉅亨網",
+   "time": "2026-11-13T00:10:40+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "下修"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：智邦(2345-TW)EPS預估下修至85.18元，預估目標價為3150元",
+   "url": "https://news.cnyes.com/news/id/6661226",
+   "source": "鉅亨網",
+   "time": "2026-11-13T00:10:38+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "下修"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：川湖(2059-TW)目標價調降至14250元，幅度約5%",
+   "url": "https://news.cnyes.com/news/id/6661225",
+   "source": "鉅亨網",
+   "time": "2026-11-13T00:10:28+00:00",
+   "label": "偏空",
+   "score": -1,
+   "hits": [
+    "調降"
+   ]
+  },
+  {
+   "title": "00413A 聚焦四大 AI 關鍵 看好台股反彈續航",
+   "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9qLWtZUjk3VmVTb0FyeC1peFJCMUEtR1VBbVNmQ0ZhZENfUVdka2hmM3dJZC1TNHd4THpiV0RLTFMwS1JKNlJpY3RuZS1fbmF1TXdj0gFYQVVfeXFMUHFmbkpFN3Q0MHlrYVpDa1JPbUZtQ1IyeWJvM3lBcDB2TnQzUkVJQnhnSTNlOHJIZGRuQlY4NnN6TWhhRlQyZl94M1hNQ1hvM05Kc0xvdWplcA?oc=5",
+   "source": "UDN",
+   "time": "2026-11-13T00:09:10+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "反彈",
+    "看好"
+   ]
+  },
+  {
+   "title": "AI教父黃仁勳閃辭！　台股恐受衝擊 | 財經 | CTWANT",
+   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBGLTJqY2p5Q1VkQWRqaWpVOTYzMjJ5azBiLTJPdzBGYlFhYVA2Zlg1VURaMDZmZDNUUEhVX3lXVlQ2aDdOUXdpMTloTjRvU2fSAVRBVV95cUxPRGJobXVBRHVJSUYtYS1aSGl4Y2JTQlpRLU11ZlQ5R0h2UlVWR3FCcGxhZk1XdWxvcXF2RHRhel9qMWFLbWpkZ05KMXVna3daUFBUNVQ?oc=5",
+   "source": "CTWANT",
+   "time": "2026-11-13T00:03:32+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
   {
    "title": "晟德受惠子公司豐華生技ODM訂單挹注 Q3轉盈EPS 0.02元",
    "url": "https://news.cnyes.com/news/id/6660950",
@@ -9,6 +378,28 @@
    "label": "中性",
    "score": 0,
    "hits": []
+  },
+  {
+   "title": "【台股11/13日盤前分析】",
+   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5EaUhkUVFuVnJSeTlQdHlyU2ZBVDVkNDNsSjdsSVpyMkY3djRPcU54M3NVQzhFRFBLZUdIaHl0Y3ZMQjBDUVhLS0hkSlhidzJxTXc?oc=5",
+   "source": "蕃新聞",
+   "time": "2026-11-13T00:00:00+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "台股爆量重挫1,165點失守44,000點，三大法人卻逆勢買超51億元！",
+   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBuUUMzZ0hvd0JMSkNVQjhzNWhZYnowNlB1NGNZMHFIRjg0TUVrTDFiRk45OTRzUTdMWG9TOFk3ZVh1MVQxbnU2Y1A0eVQ4elpaRHc?oc=5",
+   "source": "蕃新聞",
+   "time": "2026-11-13T00:00:00+00:00",
+   "label": "利空",
+   "score": -3,
+   "hits": [
+    "買超",
+    "重挫",
+    "失守"
+   ]
   },
   {
    "title": "營收速報 - 2026年11月13日台股中小型公司10月營收一覽（新增822家）",
@@ -436,158 +827,35 @@
    "hits": [
     "接單"
    ]
-  },
+  }
+ ],
+ "us": [
   {
-   "title": "《強勢美股特報》MP,ATI,PR,DAR等7檔",
-   "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5Hc0VTNGM5XzFvT2daRmxLR1d6T0RScEZYZXptNUR0UkJmMWkydHR6U1Bab1RxYnBLZVRJNlY3VHJkZ2NfYUVVOHc4MXRaVTZkMEVJR19fenQ?oc=5",
-   "source": "CMoney",
-   "time": "2026-11-12T19:19:51+00:00",
-   "label": "偏多",
-   "score": 1,
+   "title": "AI晶片擴產推升設備需求應材估明年市場增逾30%、2028年系統產出翻倍",
+   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9RRjFnOUt4TFRsall3UU5aSV9ucTFyT1JYdEZfYUE2TzhCUG9BZ0gzbUk3OUFUN1M4MEI0bDA1b1hTVkpCbmRfaHFOWHVITjA?oc=5",
+   "source": "鉅亨網",
+   "time": "2026-11-13T01:00:16+00:00",
+   "label": "利多",
+   "score": 2,
    "hits": [
-    "強勢"
+    "翻倍",
+    "擴產"
    ]
   },
   {
-   "title": "台股5萬點恐要等到明年 AI 教父下台 法人喊短線壓力大",
-   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFAydHJ3bW1rRnZBWDZMRGJJaERBS2ZXZTZFc0xMOGN5ZkVHdUZheVVreG82d1BjaXpQZUh2ODIzeEltQkJqbXRPaGttQ0pLb0lhdFd4ZzNueDF1UdIBX0FVX3lxTFBVQUp0dVpPclZ2VlBZWTMxNE1nMll6MV9YR19JOWNWVkxaNWtVblhKNTFicHUtbVQ4VUNhTU9NSG0zaXRad1JvZDdpRmIxOXBkSVd4cUdYekhyM0lTT2dF?oc=5",
-   "source": "經濟日報",
-   "time": "2026-11-12T19:15:20+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "张升民做五中全会宣讲报告 央视推迟一天播报(图)",
-   "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9Xekl1cFprZkhocldzQUxXYXVGSW1DZUx4eFYwN3dLQnB5LXlkNWxKaFlWRnBkNDNva3JkNm9zdmxpVDVMWWZzMGdXWklVQkw3aHBqQ2xRTzg?oc=5",
-   "source": "CMoney",
-   "time": "2026-11-12T19:14:26+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "韋僑(6417) 毛利率連三季守 34%！2027 年 IC 漲價如何轉嫁？",
-   "url": "https://news.cnyes.com/news/id/6661100",
+   "title": "紐約州啟動1GW大型儲能招標朝2030年6GW目標推進",
+   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBmMEUwVk1zeW5GeVVNWUtfUjc4ZVktcW03TTJkQ3JBNGlXYU92V0xLeWkwbHZpaGlxM2s0U0gyOVhUS1FlR3dOVW0yaVJ3Y2c?oc=5",
    "source": "鉅亨網",
-   "time": "2026-11-12T19:00:39+00:00",
+   "time": "2026-11-13T01:00:16+00:00",
    "label": "中性",
    "score": 0,
    "hits": []
   },
   {
-   "title": "韋僑(6417) 醫療應用占營收升至 33%！吸血海綿客戶全數改用 RFID，搶進同業市場",
-   "url": "https://news.cnyes.com/news/id/6661099",
+   "title": "AI雲端業者Nscale前三季初估虧損16.9億美元Anthropic增購Monarch算力",
+   "url": "https://news.cnyes.com/news/id/6661289",
    "source": "鉅亨網",
-   "time": "2026-11-12T19:00:38+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "韋僑(6417) 無電池藍牙標籤已放量！靠門市讀取器供電，2027 年服飾客戶續增出貨",
-   "url": "https://news.cnyes.com/news/id/6661098",
-   "source": "鉅亨網",
-   "time": "2026-11-12T19:00:38+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "鴻海(2317) 營業利益首破千億！毛利率減 0.33 個百分點，營業利益率升至 3.83%",
-   "url": "https://news.cnyes.com/news/id/6661097",
-   "source": "鉅亨網",
-   "time": "2026-11-12T19:00:38+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "鴻海(2317) EBITDA 達 3,692 億仍現資金缺口！自由現金流流出 2,874 億，存貨與應收款占用資金",
-   "url": "https://news.cnyes.com/news/id/6661096",
-   "source": "鉅亨網",
-   "time": "2026-11-12T19:00:37+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "鴻海(2317) 四類產品展望齊上調！10 月營收 1.31 兆，2026 年第 4 季僅電腦終端季減",
-   "url": "https://news.cnyes.com/news/id/6661095",
-   "source": "鉅亨網",
-   "time": "2026-11-12T19:00:37+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "鴻海(2317) 2027 年 AI 機櫃估高雙位數成長！九大 CSP 資本支出拚 1.5 兆美元，供給仍是限制",
-   "url": "https://news.cnyes.com/news/id/6661094",
-   "source": "鉅亨網",
-   "time": "2026-11-12T19:00:37+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "金像電(2368) 7 月起營收連守 93 億元以上！前 10 月 831 億超越去年全年",
-   "url": "https://news.cnyes.com/news/id/6661092",
-   "source": "鉅亨網",
-   "time": "2026-11-12T19:00:36+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "富裔(6264) 273.8 億元案量九成一等 2029 年後！最大案國王雙子星交屋排到 2030 年",
-   "url": "https://news.cnyes.com/news/id/6661090",
-   "source": "鉅亨網",
-   "time": "2026-11-12T19:00:36+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "半年淨損超過去年全年！富裔(6264) 營業費用達毛利三點六倍",
-   "url": "https://news.cnyes.com/news/id/6661089",
-   "source": "鉅亨網",
-   "time": "2026-11-12T19:00:35+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "富裔(6264) 巨蛋總銷 13 億元僅認列 8,495 萬元！九成三仍待逐戶交屋",
-   "url": "https://news.cnyes.com/news/id/6661088",
-   "source": "鉅亨網",
-   "time": "2026-11-12T19:00:35+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "海砂屋都更案將開賣！富裔(6264) 大湖每坪 114.3 萬元，低於內湖預售均價 119.2 萬元",
-   "url": "https://news.cnyes.com/news/id/6661086",
-   "source": "鉅亨網",
-   "time": "2026-11-12T19:00:35+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "金像電(2368) 法人估 EPS 最高 83.62 元！老客戶 AI 伺服器新產品 2027 年陸續量產",
-   "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5LUzNVWURkcXpFMks5aVVjbTJtWjVOTnJkaFN1LUxsOUFDVmQwczgzWU5NUnZnMEItenRodC1NNzVXc296d0s2YjcyQQ?oc=5",
-   "source": "鉅亨網",
-   "time": "2026-11-12T19:00:25+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "權益增加卻仍虧損！富裔(6264) 負債比降 1.81 個百分點來自會計政策變更",
-   "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE55YklyRElwTG8ta2puWk0wWDY1anB3QzF1dk9nUjQ0WFdjSTByZElCeVRtSm1TSGxJd0ZKUFFUek1wczhjRGdwSjFjYw?oc=5",
-   "source": "鉅亨網",
-   "time": "2026-11-12T19:00:25+00:00",
+   "time": "2026-11-13T01:00:16+00:00",
    "label": "利空",
    "score": -2,
    "hits": [
@@ -595,205 +863,330 @@
    ]
   },
   {
-   "title": "金像電(2368) 漲價轉嫁原物料成本！第 3 季毛利率 38.7%，AI 伺服器占營收過半",
-   "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBza2NkNTBaTXdrSnV0ZUN6MnJPRl9UdEZfcVRlR21aMzFFclcyVTZrSkNoa0RpM0xqSVR6aVpQMGNOY2ROMWdxaUFUNA?oc=5",
+   "title": "埃克森美孚核准125億美元天然氣開發案蓋亞那Longtail預計2030年投產",
+   "url": "https://news.cnyes.com/news/id/6661287",
    "source": "鉅亨網",
-   "time": "2026-11-12T19:00:25+00:00",
+   "time": "2026-11-13T01:00:15+00:00",
    "label": "中性",
    "score": 0,
    "hits": []
   },
   {
-   "title": "為他瘋狂台股洗三溫暖- 日報",
-   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBXRy1oVUYwRmhMbl8zVmV6YTBBWVpwaFRQS2JWRm5pMGZJWDluSTQ2T21CS2xQN3p0Mm8yWUdJWFFPdS1wR0NNZzByX1ZBcXZQVml6RVNUTGJNcmt6RmZj?oc=5",
-   "source": "工商時報",
-   "time": "2026-11-12T19:00:00+00:00",
+   "title": "Fortinet防火牆庫存優勢減弱企業服務啟用延後、成長展望降至13%",
+   "url": "https://news.cnyes.com/news/id/6661286",
+   "source": "鉅亨網",
+   "time": "2026-11-13T01:00:15+00:00",
    "label": "中性",
    "score": 0,
    "hits": []
   },
   {
-   "title": "MSCI連三升台股添反彈助力- 日報",
-   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5FZDJEbmNuRFNoY3Zua2hPZmFEZXByVXpyQ1FKWHNtdDQwZ29FT2JURFFyVjhLYXFwZTJlZ0JwQzQtLUZJYmRqOHBFamdJc2xISEtOdFQwT3E1QU5qbUg4?oc=5",
-   "source": "工商時報",
-   "time": "2026-11-12T19:00:00+00:00",
-   "label": "偏多",
-   "score": 1,
+   "title": "AI網路設備與資安需求強勁思科上修全年營收財測至748億至758億美元",
+   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE52QXZudUtFaVBldmVHam1OZlEwakgxcUdyVTU1WjBTeTB3dFh2ZHpSLWxmUFdxV0JnNk1PNmRXUDNZYTlvUnphZk11eWxJX00?oc=5",
+   "source": "鉅亨網",
+   "time": "2026-11-13T01:00:14+00:00",
+   "label": "利多",
+   "score": 2,
    "hits": [
-    "反彈"
+    "上修"
    ]
   },
   {
-   "title": "2機構示警台股三風險- 日報",
-   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBPRUNveUlZUC1ma193UndQa1hxbFpWQ0ZNOGRTRnNtQXpWU21ERVFWY2JOMy1fbjl3SU1sbzV3WUhSdW9iQV9QRzF3X3VMWmpmVTc2LTktUnBnX2x3OEEw?oc=5",
-   "source": "工商時報",
-   "time": "2026-11-12T19:00:00+00:00",
+   "title": "聯準會戴莉傾向再升息債息走高爭取時間、通膨壓力擴及服務業",
+   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5Gb3lZcnVSaW1KLVAzczM4YzI1Zl9lc0xEbW1YTWozOVAyZHlNLUJ1YzJwRV9kZ0FzZVFHN2k4OUFqSFdVeUtIcFdBN1p5SlU?oc=5",
+   "source": "鉅亨網",
+   "time": "2026-11-13T01:00:14+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "升息"
+   ]
+  },
+  {
+   "title": "電動工具廠Stanley Black & Decker擬小幅漲價明年毛利率目標34%至35%",
+   "url": "https://news.cnyes.com/news/id/6661283",
+   "source": "鉅亨網",
+   "time": "2026-11-13T01:00:14+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "New Era資料中心改採模組化開發一期建置成本估低於傳統一半",
+   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBlRFRyMm9iUmZtbmx0dEd6TW0yUDNCX3lOMzVKWGZwZWhMT0NPZnpyQmtwTDRsWk1JQW9FMkR1TWNIeWVrczJXUkk1bzRSUFE?oc=5",
+   "source": "鉅亨網",
+   "time": "2026-11-13T01:00:13+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "SpaceX與電動車大廠特斯拉合併談判傳進展最快12月宣布",
+   "url": "https://news.cnyes.com/news/id/6661282",
+   "source": "鉅亨網",
+   "time": "2026-11-13T01:00:13+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "俄軍攻擊波及油籽加工廠烏克蘭Kernel全面暫停榨油生產",
+   "url": "https://news.cnyes.com/news/id/6661280",
+   "source": "鉅亨網",
+   "time": "2026-11-13T01:00:13+00:00",
    "label": "偏空",
    "score": -1,
    "hits": [
-    "示警"
+    "攻擊"
    ]
   },
   {
-   "title": "27檔台股ETF 年化配息逾10％",
-   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1acktSMWtZdEFURlk0NW5ra1drUlJFU3lrX1N5c1BFLUcyV2gwWGsxVnlOZzRzSDNmU0MwV3ktRFE2ZW5OLVNoeDlhbklkMkNIWk5KMS15X0hlSm56SmVV?oc=5",
-   "source": "工商時報",
-   "time": "2026-11-12T19:00:00+00:00",
+   "title": "AI晶片需求帶動Cerebras上修財測全年營收估9.4億至9.6億美元",
+   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFAySWRqRE9TQURGbVdWTjc3dXJMR2Y5OFRMZ1FYUTZnYUhmLXVROVVQaUZjT1FVaEdrbWpLOGF3bHlVblg1ZThCbE0yVUx4Rnc?oc=5",
+   "source": "鉅亨網",
+   "time": "2026-11-13T01:00:12+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "上修"
+   ]
+  },
+  {
+   "title": "輝達AI晶片財報前瞻市場估第三季營收1093億美元、Rubin成長受關注",
+   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE41R096ODJfVWFJTkV5Z29xRDNUTE16aWJ3OXZnV1RtU0tzRGtQT0JkSXh2LURrQU5oSEJOaGhBblBjcjRiV1psbE1hdjdpeUE?oc=5",
+   "source": "鉅亨網",
+   "time": "2026-11-13T01:00:12+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "ATI擴產航太與核能材料鎳粉產能翻倍、鋯海綿增加20%",
+   "url": "https://news.cnyes.com/news/id/6661277",
+   "source": "鉅亨網",
+   "time": "2026-11-13T01:00:11+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "翻倍",
+    "擴產"
+   ]
+  },
+  {
+   "title": "黃仁勳辭職仍難畫句點 《經濟學人》點名還有人該丟官",
+   "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9LOXQ4dUdoQmQ3Yk5QQllfRzEzSlp0aV9jTThuNFFsM1FEdTU5b0hqYjhvYUE0WEx2dU1tOHRJcDlfSjZzRlhSNGp6aw?oc=5",
+   "source": "鉅亨網",
+   "time": "2026-11-13T00:58:31+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "華人面孔惹禍？牛彈琴：黃仁勳黯然辭職釋放的三大信號",
+   "url": "https://news.cnyes.com/news/id/6661245",
+   "source": "鉅亨網",
+   "time": "2026-11-13T00:51:58+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "【美股盤後】黃仁勳閃辭！美股四大指數收黑 美超微捲中國走私風波、重摔逾11%",
+   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1WRVhuYUkwVkR4V04xeVdlVlM3cXdLLWthNWlmU1VrM1FWZk9xYUtQZlNkeHNRRWhISzdwUDByYnBIa2RzdmFJRElsemZCSUdtVTdQSGJ4cjBhMGV2ZDhrVw?oc=5",
+   "source": "非凡新聞台",
+   "time": "2026-11-13T00:51:06+00:00",
+   "label": "偏空",
+   "score": -1,
+   "hits": [
+    "收黑"
+   ]
+  },
+  {
+   "title": "【即時新聞】輝達(NVDA)震撼彈加劇洗盤！資金轉戰這2檔，當心聯準會升息痛擊美股",
+   "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQZHgzQ1ZoMkJEZnN3ZGV4RVhOcTZXY2g5MHZwWGItTUtBdEl4VmNadDBqM2VONTBxaDZhbmZ4VndyX1puSXNFMkt3c2E5LXBpMXJoczBGNFJKdjdsSUlma1hOdWdZRklvZjF2ZEJzelpodmtCa1RvcDBTcC1kb2VfZW1KRm53Qy1PVGdzR1dtNk0?oc=5",
+   "source": "CMoney投資網誌",
+   "time": "2026-11-13T00:51:03+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "升息"
+   ]
+  },
+  {
+   "title": "黃仁勳離職將失逾1億美元股權 但真正傷身家的是輝達股價",
+   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9tc09wQXplQjNyWFUza0hsTzlvYmp6N0VMX3o2Tld4NGM2NUlKVUZYdnAzZHpUUl9sX0FwNWVITHlyMXk3VUt6SEwzcmlDbzg?oc=5",
+   "source": "鉅亨網",
+   "time": "2026-11-13T00:42:21+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "1500人移民隊伍即將北上 川普：墨西哥不攔移民關稅就加倍！",
+   "url": "https://news.cnyes.com/news/id/6661243",
+   "source": "鉅亨網",
+   "time": "2026-11-13T00:40:03+00:00",
+   "label": "偏空",
+   "score": -1,
+   "hits": [
+    "關稅"
+   ]
+  },
+  {
+   "title": "《美股期指》08:30，小道瓊期漲144點，小Nasdaq100期漲165.75點",
+   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOSU05aXRKaWpQcnZ2aWFlSGRPeF9NQWNyNTBFN0VRQnRqZDAzTW9hQjBmV3lCajFHd3gxSzNzSFp3UFdiU0g1QXlDV3d0VzRQR3BqTWcxa1VONWxHRnFzUHJmejktTEN4dk5XUDN5LUJ1V2ZDZFhVc0VEY2luWUE1YjNXU1AwR1Bt?oc=5",
+   "source": "富聯網",
+   "time": "2026-11-13T00:34:00+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "中芯國際第三季淨利倍增、產能利用率達97% 中國半導體國產化需求持續增加",
+   "url": "https://news.cnyes.com/news/id/6661255",
+   "source": "鉅亨網",
+   "time": "2026-11-13T00:31:31+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "三星傳收購美國散熱廠Modine 看上北美產能與AI資料中心供應鏈",
+   "url": "https://news.cnyes.com/news/id/6661254",
+   "source": "鉅亨網",
+   "time": "2026-11-13T00:31:28+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "華爾街拿電鋸大砍輝達目標價 這家銀行從465美元砍至186美元",
+   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1HLVhPd0JYVER4b3gxbUJGRmxnVDVPRVZLSXBjRDBvcFNkSFM3R21WRnlOakkzZ3hCMDhNNkFrcVN2Q1k0T0VCX1M2cW5XZmc?oc=5",
+   "source": "鉅亨網",
+   "time": "2026-11-13T00:30:11+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "美股：Cerebras上修全年財測＋拿下微軟雲端合作，週四盤後一度飆近18%",
+   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPdUpiZTU0YzJCZ3JnLVhDVW1XbGgxOFVuNmgza3ppdDVrUzRtV3d1MExwR3hnVmhBWTZwb19NZk1LVGtxNTQ2NkhpMFhvalBtanlNNmFIWmtLdVA1MGJWcWRJOU42UEVWcWZuRTJiMmZFcE9fcjcwQ2dwclVBODhvNnNfVy1WN0Fi?oc=5",
+   "source": "富聯網",
+   "time": "2026-11-13T00:30:00+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "上修"
+   ]
+  },
+  {
+   "title": "美股盤後：美股指數期貨週四盤後齊揚，Candel申藥時程延後股價崩挫近四成",
+   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPV3RNcTVNZzhJWmRCNmNBenl1dFZqR21RbWYzVTJ4NmpWemt1Ums0cXQ1aEg2eEEyczFCaDVGcHpkQVlpcVMzd2RNWW0yR2t3cElCMFVzcFhHOEtudC01WHJBeFF5QjhfRFdpRzFxWFNLeWRRUy00RTR2Y1FWNFdtRm1oWFQ2Sm1n?oc=5",
+   "source": "富聯網",
+   "time": "2026-11-13T00:26:00+00:00",
    "label": "偏多",
    "score": 1,
    "hits": [
-    "配息"
+    "齊揚"
    ]
   },
   {
-   "title": "大怒神行情台股ETF買點到- 日報",
-   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE81UkRuWU9PMUI4LXVBeDRMM0tQbGtkZTl3OUMyVUJLYlAyZjkyLTBpQ003NjFtN04wdFY2TXdyaUppdERPNUJGcFl6M3lvTXJfMTdIeUhKLUthOXVFbFNv?oc=5",
-   "source": "工商時報",
-   "time": "2026-11-12T19:00:00+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "華南金、第一金獲利寫新高 第一銀賺贏華南銀 為何母金控反而輸了？",
-   "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9yVENDcWNZakljT2ZGZ0NsZlBZb1FhcWNMNXNTNjJqUGQ4cEpvQVk1RmgtWW53WkxqQ2diN0FZQ09kem13bGpCVlhMZkRRV0JlMkZkNnIwNVY?oc=5",
-   "source": "CMoney",
-   "time": "2026-11-12T18:42:56+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "台灣大(3045) 持有精誠 61% 股權！12 億淨利貢獻為擬制值",
-   "url": "https://news.cnyes.com/news/id/6661079",
-   "source": "鉅亨網",
-   "time": "2026-11-12T18:30:13+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "資料中心營收年增 140%！台灣大(3045) 前 3 季資本支出為何減 25%？",
-   "url": "https://news.cnyes.com/news/id/6661078",
-   "source": "鉅亨網",
-   "time": "2026-11-12T18:30:13+00:00",
+   "title": "美股：黃仁勳辭職衝擊，四大指數震盪收黑、費半跌0.54%，超微與博通逆勢大漲",
+   "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPVnVvX3o3cVc0OElZRUNvcC1sUW1RTHNKTFhSRjl0TzhZSlZ6Y2RwVXA3cGM5VkhSeU9aSm1PbVAyRWNZT2d6WHpFQ2Fwc0tHQ2hQbHZIOXJPa3dKNUNMRHZuVDhITW5YOXBUQUU0cEJKMDI1SjVWOXdZLXFTUF9wV1drTHRJVldsUGpNT2pjVQ?oc=5",
+   "source": "富聯網",
+   "time": "2026-11-13T00:23:00+00:00",
    "label": "偏多",
    "score": 1,
    "hits": [
-    "年增"
+    "大漲",
+    "收黑"
    ]
   },
   {
-   "title": "5G 滲透近 46%！台灣大(3045) 月費提高、後付用戶退租率降至 0.48%",
-   "url": "https://news.cnyes.com/news/id/6661077",
+   "title": "美股：下修財測+資本支出升至270億美元，Nebius重挫16.84%淪那指100最大輸家",
+   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOR2F1SHlOY3J4cHdQM1psaHFZRFhWNEF2ODMzZUFfWENpY2tZa0J2VlFUZE5NSEtjcEhaaTRvM2kzdVRhVndUdHNldmNVbWVubHlpWHFYZ25seDU5a3EwVm04REsyX0gyU1JQZWpEQ0NwWlJlSC1ReDlmLTQ3NEk1VERuMWkzRVdM?oc=5",
+   "source": "富聯網",
+   "time": "2026-11-13T00:23:00+00:00",
+   "label": "利空",
+   "score": -4,
+   "hits": [
+    "重挫",
+    "下修"
+   ]
+  },
+  {
+   "title": "美股：輝達換帥引爆AI晶片版圖洗牌，超微、博通逆勢飆漲近6%成費半最大贏家",
+   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOMk1CZ3FaM2I2TklRa0RPWWNEZHltTE41MEplbEJ3VDZZS2NYTU9FQVFwQVFwWkNkS2N2MnppamE2cEN6b3pZNFAyREZwaTZ0NWwwY0xaOU1oMDZ1Z1k2UENYb19RYjhXWWdod1BmaXBhbkFjbVdjdHJYMTIwTmxGSUk2MlZGYkZE?oc=5",
+   "source": "富聯網",
+   "time": "2026-11-13T00:21:00+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "飆漲"
+   ]
+  },
+  {
+   "title": "黃仁勳離開誰接班？《輝達之道》作者點名「安謀執行長」與「CUDA之父」兩大人選",
+   "url": "https://news.cnyes.com/news/id/6661192",
    "source": "鉅亨網",
-   "time": "2026-11-12T18:30:13+00:00",
+   "time": "2026-11-13T00:20:04+00:00",
    "label": "中性",
    "score": 0,
    "hits": []
   },
   {
-   "title": "momo 為主的零售事業占台灣大(3045) 營收 52%！營業利益為何僅占 12%？",
-   "url": "https://news.cnyes.com/news/id/6661076",
-   "source": "鉅亨網",
-   "time": "2026-11-12T18:30:12+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "力致(3483) 毛利率跌破 13%！液冷尚未放量，本業虧損為何擴大？",
-   "url": "https://news.cnyes.com/news/id/6661075",
-   "source": "鉅亨網",
-   "time": "2026-11-12T18:30:12+00:00",
+   "title": "美股：美超微捲入美司法部調查疑雲，涉對中晶片出口管制，週四股價重挫11.3%",
+   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQaU1tR1ptXy1fY09pTzUxR0g3WnNGOHh2NVlxcjlud24xZFdfUFlSdVpITEdtNzEzVml3LTNLWnphUkRtbkNadUNpZnE5UUlFb1EtdGtzVXQ1bEJRYk9IcFcydjhSR2FnVEpnek8tREsxUTVOeWdtZGRQY1hreGp5c2hlckc1Z0tO?oc=5",
+   "source": "富聯網",
+   "time": "2026-11-13T00:18:00+00:00",
    "label": "利空",
    "score": -3,
    "hits": [
-    "跌破",
-    "虧損"
+    "重挫",
+    "出口管制"
    ]
   },
   {
-   "title": "力致(3483) 連 6 個月營收年減！10 月降至 5.08 億，液冷下一階段的水冷板仍在打樣",
-   "url": "https://news.cnyes.com/news/id/6661074",
-   "source": "鉅亨網",
-   "time": "2026-11-12T18:30:12+00:00",
+   "title": "黃仁勳辭職美股全收黑！輝達跌4.3% 台積電ADR黑",
+   "url": "https://news.google.com/rss/articles/CBMiqgJBVV95cUxQajBzc2NDZ0dya3B2MXNLeVdtNllGanJOLU5QcDNQdjg3eVJJVklvS3dpNDJZaUp0NWlNLXNkOHg1LTd5bVMyVjVlWm8ySTM5RzQ4a3VVeDlsWkR0eG5wclh0cVVuaDNtb3BnVnAzZGV0UzkzVzJIVkV0SFl0Um5vNWU0b2NNakY4X1pFWE1yMWRZLWJ6RVpnZVhueE9qX1N0NjVQQnZDTWUwNU1YSzdSbkNFeDR6elNrMUYzTG9WOWx6X3Bqb0MzdmRyQUUzTnQza3paWldBV1FwRURCUmxRVGhScV9nLUJFMWtUc3JlYldRMmZyRGFHd0E4WXNabkdibms0Q1RqY3NPYU4yeWlLQnQ5MjRZa2tFaTQ5dkxvcC1BdGJwcDBWdllB?oc=5",
+   "source": "Yahoo新聞",
+   "time": "2026-11-13T00:15:36+00:00",
    "label": "偏空",
    "score": -1,
    "hits": [
-    "年減"
+    "收黑"
    ]
   },
   {
-   "title": "力致(3483) 2.5 MW 冷卻液分配裝置入列 NVIDIA 白名單！800 VDC 版本送樣後，出貨還要等什麼？",
-   "url": "https://news.cnyes.com/news/id/6661073",
-   "source": "鉅亨網",
-   "time": "2026-11-12T18:30:11+00:00",
+   "title": "《美股》收盤速報：黃仁勳去職美股臉綠- 國際",
+   "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE45d3d6aWhhdnl3UnFtT3g0R1oyRDdOOXQ5RWM1ZktJNFpWMDc0dkVYR2dYSlhCaDNIODZ5MG1ZOGJ5MVZZRWVmbG5QMjh0MjBRU1loYkJGSWUxN0hBT0J5SDhUVGc0TFdDbnc?oc=5",
+   "source": "旺得富理財網",
+   "time": "2026-11-13T00:14:24+00:00",
    "label": "中性",
    "score": 0,
    "hits": []
   },
   {
-   "title": "韋僑(6417) 日本米澤設廠先租舊廠！醫療客戶為何要求海外基地，2028 年第 2 季量產？",
-   "url": "https://news.cnyes.com/news/id/6661072",
-   "source": "鉅亨網",
-   "time": "2026-11-12T18:30:11+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "就市論勢／封測、ODM、PCB產業能見度高| 股市要聞| 股市",
-   "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9DUlZXcGtOZVNMOGRuczdBX3QzdkZONjhqMy1YcVMzenRpZHpDRU5lTW1vTGNMemcybnZDcmRDckRIYU55bVo0NTlpOHJNMFd6?oc=5",
-   "source": "UDN",
-   "time": "2026-11-12T18:07:39+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "中華資安(7765) 前 3 季營收創新高！商品銷售成長 83%，為何本業獲利跟不上？",
-   "url": "https://news.cnyes.com/news/id/6661054",
-   "source": "鉅亨網",
-   "time": "2026-11-12T17:30:06+00:00",
+   "title": "美股：AI晶片設備需求強勁，應材季度營收年增53%創高，股價盤後漲逾1%",
+   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNNUVGOG5NUVVYdFJwNy14YlVuQ3pMemdnSXJ2NkxBVUh6UlRPcnlyMS13WVVxcWFhSUp1bU5VU01ZTWItVmh1bW9TdVVVWVcwWGVkMGlnWW5CbEpLbzhyZWRLVnViOF9jZUl0TnlxQThYdms5SHRTLU5YZ00tNTVOV1dvUnZZRWxN?oc=5",
+   "source": "富聯網",
+   "time": "2026-11-13T00:14:00+00:00",
    "label": "利多",
-   "score": 4,
+   "score": 2,
    "hits": [
-    "創新高",
-    "營收創"
-   ]
-  },
-  {
-   "title": "中華資安(7765) 2027 年一半訂閱型收入年底前已簽定！SOC 續約率逾九成、兩個月簽進數個上億元長約，營收起點有支撐",
-   "url": "https://news.cnyes.com/news/id/6661053",
-   "source": "鉅亨網",
-   "time": "2026-11-12T17:30:06+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "中華資安(7765) 10 月營收年增 32%！第 4 季還有 4 到 5 億元專案待驗收，全年雙位數成長靠什麼？",
-   "url": "https://news.cnyes.com/news/id/6661052",
-   "source": "鉅亨網",
-   "time": "2026-11-12T17:30:06+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
+    "漲逾",
     "年增"
    ]
   },
   {
-   "title": "中華資安(7765) 上網資安客戶達 126 萬戶！營收僅增 7% 並非降價，方案選擇拉開增幅",
-   "url": "https://news.cnyes.com/news/id/6661051",
+   "title": "從AI晶片到火箭：馬斯克會延攬黃仁勳嗎？預測市場押注仍低",
+   "url": "https://news.cnyes.com/news/id/6661190",
    "source": "鉅亨網",
-   "time": "2026-11-12T17:30:05+00:00",
+   "time": "2026-11-13T00:10:09+00:00",
    "label": "中性",
    "score": 0,
    "hits": []
-  }
- ],
- "us": [
+  },
   {
    "title": "黃仁勳風暴燒向川習會？分析師：中國明年恐連海外AI算力都難租",
    "url": "https://news.cnyes.com/news/id/6661067",
@@ -808,6 +1201,15 @@
    "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9ZVko0WnRjRUJjQXhIdVJQRHBBZmktNzFyMDQteWsxRnVoWGsyZEp1Z0YycVZJTlJkVTVXR1JDSkxfbWRuYjd2S3hyeDNWSlE?oc=5",
    "source": "鉅亨網",
    "time": "2026-11-13T00:00:34+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "基金：富邦投信旗下各基金11/12淨值漲跌一覽表",
+   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOX0dYU2tjQ3dNakQyN1JuVUlWN1RKWnJBdjNUZG4zR2J5ZnNYY1gtRUh0MVRSQXdYeUZ3NU1WX3QwMkxIOUVGSEpUcmotWXBWWWlDemZDYmFza2RTdWVVU2dmZFkwbk9sTFc3bC1peWthdWVGVGtIMkhTNUJkX1pFT25yXzhEdE51?oc=5",
+   "source": "富聯網",
+   "time": "2026-11-12T23:57:00+00:00",
    "label": "中性",
    "score": 0,
    "hits": []
@@ -862,6 +1264,17 @@
    "score": -2,
    "hits": [
     "重挫"
+   ]
+  },
+  {
+   "title": "《自營商買超38-7》道瓊反(226)、AI優息(749)、工業30(26)",
+   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNVjljQm8ySXVQYjMwVHY5ZDZGTEptUDRxdWFYVzY4NGJubkxGUWJWQl9XejVGclJ0OE1fX2dlV3JlNEhtOHF3bG13Z1JjWHRmUDdWNGJBQW9UN2F1eUt5NzNHNnNQUVpFR1AwRnRZajhxTjFQWjRMVnhZcWhFdE4yM21HMGVrU0Jf?oc=5",
+   "source": "富聯網",
+   "time": "2026-11-12T23:32:00+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "買超"
    ]
   },
   {
@@ -969,6 +1382,15 @@
    "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPYktoZVBwbjAyaFZ0dVMxNDA5Z1Y4YTRJVmVfWmlablZXZ3FISlpTRzdFaTVocGozOGhrSnB0cXlxcTVJbGc3SVRTY21Lcm1jdjVDRnA4UTVSLTRaV0lJdGE1dkRYZ196d001cTVfX190N09xMERka2NUaEFWc3E3OEZoclVvV2NWT0NrbWl5VjhMQQ?oc=5",
    "source": "MoneyDJ",
    "time": "2026-11-12T23:09:00+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "黃仁勳離職，輝達內部心情「五味雜陳」",
+   "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE03dEFkemZuYlkyS1JjQjVGZERLVlFVWXc2T0NCUUFvTUpkWm5sMlVscG9qemJHZ2Rld1hFeVJnVHpLTEFvaDljaw?oc=5",
+   "source": "鉅亨號",
+   "time": "2026-11-12T23:07:09+00:00",
    "label": "中性",
    "score": 0,
    "hits": []
@@ -1154,6 +1576,15 @@
    ]
   },
   {
+   "title": "【美股收市】黃仁勳辭職後被揭第3段婚外情英偉達挫逾4%、Nebius瀉16.8% AMD升5.9% 道指跌189點",
+   "url": "https://news.google.com/rss/articles/CBMi-ANBVV95cUxNTWZ3OHc5dzZ6Qy1hM1MyUGh2M1pfVEctbFVEQjc0ckU4M0xVMUdIblJpdGJBV0UyQk55ZnhFdzRlU19jY05nUDNmYVdfWlRvNXdnaU1QS3ZwcVY5dTZMb1o5MnJGRGFRcUZuNnptbk80X3o4SUFCelNxYTlXendpa2VFWXA3S0pib2ZFblVtR2NvaHNWWHpqd3RuQVhaeVNwRHZNbmp6WGJJdFFNMnZ5RVhnaVVhcC1ZeVV0UF9Tb3M0UVpDQktDU0o2Z0h4RHRKUklQRTFmSFFXMHZtLVJ4V2t5ZTY1ZXpRVzkzSUJpdHBMc3Y2bW1iVzRYdElXeGdIWFdtTUh3eVU5XzMtUWgzYVY4OUplMXFJQ2V2TmNaVUdJcEpPeXFYWW1zZVVYZVdEeGdrMlR3OFhLNFJKLUExajIwX1ZPelJrVDA1U0dGOGFUeW1OMlJ6ZFNLLXUzdVRRaFVoSC1Lcnc3eUp0aGdnV1g4QlNITThDVGpGSmZDSEJfMzhwd3hub2lPLTl0X3RZNGZNQjBweFk0aVdPTkliTnpMLTFWS2xjbzBUSmxLSGZZMFBaSEE2OEREYTJHRjFOUTg4SnFZNzRXelJ6WkhVZW9JZlRkdmxBY3JHZzFkMmtWVEVSVkhZb0xxZUQ4cjVuTVkwaHEzRkk?oc=5",
+   "source": "香港經濟日報HKET",
+   "time": "2026-11-12T22:36:08+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
    "title": "美股｜黃仁勳請辭撼動市場！4大指數齊黑 輝達再挫4.3％ 美超微慘崩逾11％",
    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBfeG9qbGRFVWJMaVpObXVUaThvNkpOU2dxeWk5WWdCSkdmUURSelFxcDNxZ0lMaDl6WEphcWFNZDNhb3AwUk9kTS13MjR3UVR5MWhONW1EMEFaV01lWE9B?oc=5",
    "source": "工商時報",
@@ -1209,415 +1640,143 @@
    "label": "中性",
    "score": 0,
    "hits": []
-  },
-  {
-   "title": "輝達市值蒸發6兆！美股全收黑　台指期夜盤逆勢漲548點",
-   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFAwTWdFa0hpdjNZS3gzVzJhd1lCRm9xLXphc0Y0LV9hbXNuQ0xsdXpWUHVuc2hWOTFEVUloeEtIc2FWLVljTUZ2UUVOelJtandTZ2fSAVBBVV95cUxQN0ZBdEt1UzdjUG1TQ0FBOFJBOVNiS0VzOWxhNlItRjQwckthTTVOZWRyYjM5cjVPUGVjZk94STlocHEya2EwUDNMSGNROS1sNQ?oc=5",
-   "source": "ETtoday財經雲",
-   "time": "2026-11-12T22:21:00+00:00",
-   "label": "利空",
-   "score": -3,
-   "hits": [
-    "蒸發",
-    "收黑"
-   ]
-  },
-  {
-   "title": "馬斯克手腳這麼快？網傳Terafab急徵CEO「立即上任」條件為黃仁勳量身打造",
-   "url": "https://news.cnyes.com/news/id/6661126",
-   "source": "鉅亨網",
-   "time": "2026-11-12T22:20:05+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "輝達下挫抵銷能源股漲勢美股收低| 全球財經| 全球",
-   "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBFSUtmQlJlZk9MUlAwVkhwRjR2YVdOU3ExLVRPMUZFc2ZMR3VuUUtJbnVFeHliOTQ1eVBLcThfNm1RdVMwWU4xdWIxbmhROHBy?oc=5",
-   "source": "UDN",
-   "time": "2026-11-12T22:18:01+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "黃仁勳閃辭震撼華爾街！輝達逢低買盤湧入仍收黑 美股四大指數齊跌",
-   "url": "https://news.google.com/rss/articles/CBMiugNBVV95cUxNeC1EZnR1b0ZEdzF5bXgxMFREdGFZQ1FBd0hHVXFaNmZJWnBMOUVtV3pjbWRhZTgxTjlIQW9UOU9oeGtzQVRhUmw1aWh0MjFYbmdNbkFCbWVqTTBzZWZfY0lLNGU4YnFvVWNhZl9rLVlaRGhieUFweTNiUGV0MVhPVm9fbk5Fa1QxOWxxNXlkbUFWdWtXbzFReDllUEhIMFJNc2l3UlZzVUtUY0gyN3VqOW42TkIyWEd1eVJTb2tWbDFCMTZtMl92bENiRjhrdjJXc3A2ZzN0a0ZweHNIVnJla25WbUM3T1ZYbi15VDBlX3hUNk5EVE9Ua1FrZnFGNUx6Z3FsTXdNMmdQUUtZZ0FTRUNpZ3JzcDlqQ05FMmQ4UVFQYWp5NEZhWVlSazN2Mzk2enAzNE9SZVpLR2E5T3NEQmNPc2FnakVHenpaVU9QNUNTTlE5SDU4THF3aUlhRk94RUl6TkUtc09tNTFMdHp5Z1hDSFVEeFpPYWlCRHl5cFY4Ty1KM0ZsZmkxM0wxazVLRURrOUk3QzlMZlJTRkpEVHFqZXhkbTNwclYxOW9yR1FHbHNQWjk1bkhB?oc=5",
-   "source": "Yahoo股市",
-   "time": "2026-11-12T22:17:29+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "收黑",
-    "齊跌"
-   ]
-  },
-  {
-   "title": "鉅亨速報 - Factset 最新調查：Genmab - ADR(GMAB-US)EPS預估下修至1.24元，預估目標價為65.78元",
-   "url": "https://news.cnyes.com/news/id/6661165",
-   "source": "鉅亨網",
-   "time": "2026-11-12T22:15:40+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "下修"
-   ]
-  },
-  {
-   "title": "鉅亨速報 - Factset 最新調查：TIM SA - ADR(TIMB-US)EPS預估下修至1.68元，預估目標價為20.51元",
-   "url": "https://news.cnyes.com/news/id/6661164",
-   "source": "鉅亨網",
-   "time": "2026-11-12T22:15:37+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "下修"
-   ]
-  },
-  {
-   "title": "鉅亨速報 - Factset 最新調查：Nebius Group N.V. Class A(NBIS-US)EPS預估上修至-1.8元，預估目標價為275.00元",
-   "url": "https://news.cnyes.com/news/id/6661163",
-   "source": "鉅亨網",
-   "time": "2026-11-12T22:15:32+00:00",
-   "label": "利多",
-   "score": 2,
-   "hits": [
-    "上修"
-   ]
-  },
-  {
-   "title": "鉅亨速報 - Factset 最新調查：Bancolombia S.A. - ADR(CIB-US)EPS預估下修至11.32元，預估目標價為105.00元",
-   "url": "https://news.cnyes.com/news/id/6661162",
-   "source": "鉅亨網",
-   "time": "2026-11-12T22:15:30+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "下修"
-   ]
-  },
-  {
-   "title": "鉅亨速報 - Factset 最新調查：Twist Bioscience Corp(TWST-US)EPS預估下修至-1.39元，預估目標價為170.00元",
-   "url": "https://news.cnyes.com/news/id/6661161",
-   "source": "鉅亨網",
-   "time": "2026-11-12T22:15:25+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "下修"
-   ]
-  },
-  {
-   "title": "黃仁勳辭職輝達下挫逾4％！美股4大指數收黑 道瓊跌189點",
-   "url": "https://news.google.com/rss/articles/CBMi2AJBVV95cUxOVjNob3JLYW1HRTJPNno2SXZ4ZE84VWs0WTBJUG9YbU1fM2EycVBoNUQ3aWdnSmlNTTVEMnUxbVFDZ0ZuN0tsRy1PUVJlODZBYVRVWlRCeWdDYmQxbWRHSFN0M3RiSG02Zi1Ga0c4ZDZ4anJvY3MzSWZxaUdTUHpMRzcxa1FNaV9ZemktaXVPM0FfUmFubmdaN0hYM0xqbVhHdy00SVQ4Q0xqX2xla3ZBX0gtN3Y1dHA0ejh1VnFmdkQ1SS1FWUY5QzVWaTkxN1A4MEtxSVQ0ekg4TVM4cVFXRkUyamJIOUdsVE95SG9GQlBybmhQaXFVaE9pMDBsQUpjcEtNdjlyY3dGNm0wSmRzOFBaZXRCbW5pRUZuMzJJQktySjRGU3hvYnlnN2FJWGR5QTNrdlVaVGMtRXg4b2Zfd3FQV1Vlbk5zTGs2a3JwRGZmeXNVbkgyWg?oc=5",
-   "source": "Yahoo新聞",
-   "time": "2026-11-12T22:06:00+00:00",
-   "label": "偏空",
-   "score": -1,
-   "hits": [
-    "收黑"
-   ]
-  },
-  {
-   "title": "〈美股盤後〉黃仁勳閃辭後 輝達市值一夕蒸發超1800億美元 四大指數全黑",
-   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1rZ2lFd1dHczhGMG15and4OTlzRjdaQVJWU3EyMThpWlgwMXV4R0pNcXdobWJXa3BmTEg5NC1FUDNWa0FpZ0ZQS3JuLXlDUlk?oc=5",
-   "source": "鉅亨網",
-   "time": "2026-11-12T22:03:45+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "蒸發"
-   ]
-  },
-  {
-   "title": "營收暴增近25％仍難掩虧損！WidePoint Q3 GAAP 每股虧損 $0.02，盤後股價跌 4.2％",
-   "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5aaFdESDN5WDFneW53dnVUdHZ4dTBqcEw4VWdHOGpUeXhGU3JhWENETlZzUWZMcUg0WExzdDVuRmtpbmU0TjBFdWNybER1UDNaY1FjclhaTHZSZ3VILWJZYXV3V3RhQnc?oc=5",
-   "source": "CMoney",
-   "time": "2026-11-12T22:02:14+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "虧損"
-   ]
-  },
-  {
-   "title": "黃仁勳卸任震撼市場！美股指數全面收黑　輝達股價跌逾4%",
-   "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE9aMGd1TDBzd29XQUN0ZThwVDlKMmJlOHdKM3NvcTVPUFJEUTUzY0NtR2NNN1RxWDZCUTF4ckRqbzhHSDc3M0p0TS1lVjLSAVJBVV95cUxQMnNFZ2NIa1JzYVozZTUybFdJRGVZNDROV182anZNR1FJejhfcThaSUZ0cER3djZtV0hIM3RXZVZfcXdWcWhSbEc5VGIzNjk4WEhn?oc=5",
-   "source": "NOWnews今日新聞",
-   "time": "2026-11-12T22:00:52+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "收黑",
-    "跌逾"
-   ]
-  },
-  {
-   "title": "AI狂潮估值失控？從Anthropic天價IPO到醫療、生技虧損擴大 華爾街開始踩煞車",
-   "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE44V1BqVFdtd3JMWnk4b1lOVGZ4NzUyUFo5SDY4WGtJWTVhZzVUVlFHOHVNTVd0aVE0UnJadWdRaktYaEQ2NGlPdHJ3SUdqdXNmZEQxdUlqX196VjJjSm1aRXdySHdrcTg?oc=5",
-   "source": "CMoney",
-   "time": "2026-11-12T22:00:44+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "虧損"
-   ]
-  },
-  {
-   "title": "美股｜Cerebras上季核心收入報捷 調高全年預測",
-   "url": "https://news.google.com/rss/articles/CBMiqwJBVV95cUxOV3JPZXRiRGVYcE5UcWhPTTJTNEoyamtXUy1oNlk3cWhXNldaMERVNWFZU2RNVmFBS0FQYVFCLWdNWHl5SXVhemd0bG9GTnplM251c3VsTHVlVlRWeEYtUEhsdGFXbnlVeTVNTmpIR01yNW5ab1lSUElqajgtV2toS2kxNnhGNzJialdNUGloNDVnWUw4cGU3X2NhYlMwby1HV3ZvZjk2aWNjRFhVTlAwMUpremp1Q0wycDJqYXh2X2FHLUs4ZWdUalphODQ4MFRXZkFWdTJfUGNERjBNbmd5T1pPRXQ3SE0yZllwZGlnU3A2QkFaWDdmMUM5Vm8wNW9rYUNDUmh4YVg4RFRQNHB1ejJzYV9WakdKakdMaFJJQnBkN1pVNXdSekh0MA?oc=5",
-   "source": "Yahoo 財經",
-   "time": "2026-11-12T22:00:31+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "AI 核心企業震盪、美聯準會放鷹：全球「AI 金融體系風險」正悄然成形",
-   "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE91cUc1S2xuQmwwLXVyY0ItLUwtOXJyc19zRnhhZVUzX19xYjUyZ2ZZd042V2xnS0QzMUJOMlRfM2ItUy1kWE4wNmVEenI3YzR6YVJ2LWNWWklrb08yZVRXMml3RlFSc00?oc=5",
-   "source": "CMoney",
-   "time": "2026-11-12T22:00:30+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "黃仁勳辭任執行長，美股收黑、道瓊跌189點；油價走高成壓力",
-   "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9meFBxMXJ3T0x5dFhjNk9yZmhId1RkbXc5dXNHa25qUGMtSmg4UVB1amlxQ1JXRUVYMzN5NzlDSmNpZlBlX1NfdlhYd1IwUnJRVzhsdGRRcE81SHZxOVhWZkc4NjhYazFqaE1aZF9JYzhvV1pGQjlnbVlB?oc=5",
-   "source": "BigGo 財經",
-   "time": "2026-11-12T21:55:00+00:00",
-   "label": "偏空",
-   "score": -1,
-   "hits": [
-    "收黑"
-   ]
-  },
-  {
-   "title": "輝達下挫抵銷能源股漲勢　美股收低",
-   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBHeDZ6Q2tsVWw5aG5wZHQxX0t6MG9SaHp4MHNtVE5mVUtPTVpsc0RoVE9FZEp1cUtCU3R1aGZEUEtFbENfRFRmRTk1WFlUN2Q3M1AxcVhsRURzZDczZEk00gFkQVVfeXFMTUs5cmR0YWVFdTg0M282TEVFbm44NmhMb3pyTjdmcV9IaFRGQU1OR1F6aVZlVjNJZlFFSXo0YmdQLUFiNl9Eb2NhVlRKYzY3S0xaX0FuWmdDd2t2S25WSS1lNzFhOQ?oc=5",
-   "source": "自由財經",
-   "time": "2026-11-12T21:54:03+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "黃仁勳離場 AI算力週期面臨重定價？市場焦點轉向融資與資本支出",
-   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE52NlB6NnpFNm5IblhHbWxzQXY1QmgxbHJfX0hnRmU5ZWhGRy1hSktTZWVMR2VzX1ZxQ2dvWWZSVVFJTnh3TmkwUkVHYkloX00?oc=5",
-   "source": "鉅亨網",
-   "time": "2026-11-12T21:53:21+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "VirTra季報爆冷門：每股盈餘轉正至$0.19、營收飆43％ 並連拿美軍與邊境單",
-   "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1JWGh5Y1VlcDRkb3BqaC1CT1V0YmF0V0taTENMT0RmREp1Vi1DcWFBMkVRM1piUW9nbG1Tdk1VdjVvdk40UXJVWlB0cHk5bEZzOGtEUHZSTWlwMGJsd0l0cEVOYnFNczg?oc=5",
-   "source": "CMoney",
-   "time": "2026-11-12T21:47:45+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "NVIDIA高層震盪引爆賣壓 美股收低：晶片暴跌蓋過能源連四漲",
-   "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNai02R0Nyd2RnNm1GSmJzTEJ3LTcwMWNQaDhFSWRFSzA2UE8zeDh2TXpCRUhGR3lXdFdYUGdKYWFzNTJQZGJoUmlXc0c1S05LQXB6TU9CMFRuMm8tVWYxTDNON09ycHVYeFlOaWpXWDJ2NVlSSUdZS3YydTZxelljb09uMkV0M2lYTDBjYWhn?oc=5",
-   "source": "CMoney投資網誌",
-   "time": "2026-11-12T21:47:12+00:00",
-   "label": "利空",
-   "score": -3,
-   "hits": [
-    "暴跌",
-    "賣壓"
-   ]
-  },
-  {
-   "title": "美股收盤》黃仁勳辭職！輝達下挫逾4％ 台積電ADR跌近2％",
-   "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBfUnRlUW1BMlJxMWpzVmFfS1dPZE8zV2JvMmhpeFRMWTFJMUJocm1nNU55akpRSTdqQVJtbjlCNWtlY1ZSeG5XaDJwbGtmUy1lWlU4c2EzWHE?oc=5",
-   "source": "自由時報",
-   "time": "2026-11-12T21:45:04+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "黃仁勳突辭輝達執行長震撼市場 美股劇烈震盪終場收跌",
-   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9xVk1UWVNFbHRpS1FlLWpNRjJ2dkg0N1QxLWFwUHJXR0VtOW00MkxUdE5qb2VKMG9YZy1hVmtpUVQwWll6ZDlZZEpmVy1RejZBdjN6UERkNW9FcVlYNUoxZw?oc=5",
-   "source": "民視新聞網",
-   "time": "2026-11-12T21:42:16+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "黃仁勳辭任執行長，輝達股價急挫；道瓊反落下跌189點",
-   "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9tWXR2NDlmdVpMeVV4bW14Q0xXMTRSczJnTVE2a19Lb1A3aUVUenBoS0pSNXVrMllNbG9QSlYzczZEa3ZXb2tmY0c3Wk9iNldLZWd5TUxzUTJfUnZ6ODc3UDlzeEZSQlpKMEtXQ1ZDeFEyR1lyTlZrcFhB?oc=5",
-   "source": "BigGo 財經",
-   "time": "2026-11-12T21:35:00+00:00",
-   "label": "偏空",
-   "score": -1,
-   "hits": [
-    "下跌"
-   ]
-  },
-  {
-   "title": "黃仁勳離場、輝達目標價遭集體下修！AI算力週期迎劇烈重定價？",
-   "url": "https://news.cnyes.com/news/id/6661140",
-   "source": "鉅亨網",
-   "time": "2026-11-12T21:30:29+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "下修"
-   ]
-  },
-  {
-   "title": "後黃仁勳時代來了！財務長克雷斯暫代輝達執行長 接班布局牽動AI產業",
-   "url": "https://news.cnyes.com/news/id/6661044",
-   "source": "鉅亨網",
-   "time": "2026-11-12T21:30:18+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "受英偉達CEO離職拖累，美股走低；收益率上升，能源股上漲",
-   "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBvLTZ2M0hKQWxJVm1ZclBTam9IU2FJS255bjdiamJwajJHZVZQZ182UU5TQjhWYjRhLXhSRkdIMEo4ZU9GSUd1alo2ZFVwZFRwQXVTLVAxVjBNcERUbGF0dkxjWU41bXA3SkFmeFpHTnltdGZmV3JZ?oc=5",
-   "source": "TradingView",
-   "time": "2026-11-12T21:27:34+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": [
-    "上漲",
-    "走低"
-   ]
-  },
-  {
-   "title": "〈紐約匯市〉美元升至19個月新高 市場焦點轉向利率預期",
-   "url": "https://news.cnyes.com/news/id/6660713",
-   "source": "鉅亨網",
-   "time": "2026-11-12T21:20:11+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "《CNBC》揭小三黃樂與輝達對手「華為雲」商業關聯！牽出深圳資料中心",
-   "url": "https://news.cnyes.com/news/id/6661127",
-   "source": "鉅亨網",
-   "time": "2026-11-12T21:20:08+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "輝達重挫拖累美股三大指數收黑 能源股走揚難挽跌勢 | 民視新聞網",
-   "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1WMFE3SFFNb1g2Uk00YlR2bmJuT2Eza0ZrSHF5VFlULU8zUUlzOTB3aGppVlJZY1dnZFJNdzRXbEhvMDcyT2dDNzBuc3ZRWVF1TWV1cE9n?oc=5",
-   "source": "LINE TODAY",
-   "time": "2026-11-12T21:11:07+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "走揚",
-    "重挫",
-    "收黑"
-   ]
-  },
-  {
-   "title": "輝達重挫拖累美股三大指數收黑 能源股走揚難挽跌勢",
-   "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9RTVRIb0pLcldRaE1wS3ZVcmF0TlZqWGczSzFoTVRxbXEtd1Bwb2VPR0pGQWg0MXF4aWxwOWpQU1RHc3hFYjJpUkdZVDR2ZUNWMl80X0NCVjZULUgtWXNDa09TanpOUQ?oc=5",
-   "source": "民視財經網",
-   "time": "2026-11-12T21:07:12+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "走揚",
-    "重挫",
-    "收黑"
-   ]
-  },
-  {
-   "title": "美股收盘加密概念股、Neocloud普跌，Bitdeer Group跌超12%",
-   "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBnUzZ2Yk5fMGdXMDJuNDhqY0p2cHJ3cnVDaGQxaXVSYk5XZTAtcUtOVjVRV1NqY3IweW9fVW9kakFfclhLQk9QZlJSS3Axc3owaWVISU1NanM4aTRJWmFMOXBpY1lTUQ?oc=5",
-   "source": "TradingView",
-   "time": "2026-11-12T21:01:00+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "美股｜英偉達行政總裁接任人選 預測市場看高一線Ian Buck",
-   "url": "https://news.google.com/rss/articles/CBMi3AJBVV95cUxOS1dnQUllY3B2YS1udl9PaElJOUp4RDU5WXJMREVnbkg4WGpQTmJ1Y0xlSjBFUXN1UnFkdlB6WWxKUURQdE4taGk3RHQ4SWRqOGxxUndwTUt6N0xFNUZfQWJjc1RvUnd0WXVhYm9LUWRINVNabFo4UzlfQm5UVi1mSUg5OHljSm9jQnc5dlJxOTU2ME94THd0LTRaVlRKWElJMmZrUktvMVVOZmJTRXRoSklVMEs1MmtfRThaOUF6QkttZ2lLLURJV0xKdkdtS1lOT3hkWElvcHk2b252dHVRcFhTMGE0VmhpeDQxaGdjVHJuRTl5SmZ5SUZxOEFyQTl1ZkN3TlBmWWN2MW44MEtDdVZ4dl82WFBBc1BkTTAtYlg5S01qMGEtZHJnc2dWSkROc1c4WFZoWkRNanZkc1pXMDJ5eWR1QzZBTGlGWkUyLVMwdUFKb2xmeXFJN1k?oc=5",
-   "source": "Yahoo 財經",
-   "time": "2026-11-12T21:00:31+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "AI 熱潮退燒、權力人物換位 華爾街高喊「逢低買進」：下一波 AI 美股黑馬在哪？",
-   "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQNjhoV1BQeTd4V19oVmZfUm00QWNuTzAzTkhyaE13SGVoUzhZajZJQ2tDVE1nNDBXU3BXSk5PcVQxUkptSDFVOTh2QW51c0oxR2FBSmxOcy1VMlNXNmtyNGQtU3pkZXpvZUJMWnJHR2kwS2kwYUZSa05NSU51eHQ1eDk1Ump1NGhyT3BGT244M0JQQ0l0c2diXzlMbGdSc3gwLUV5VE1Bb1NzSmQzSzB2d2J2MmZPVmtDQ0k0NmEyQ2NoWEFjWEtmenJ4NHo0RDg?oc=5",
-   "source": "CMoney投資網誌",
-   "time": "2026-11-12T21:00:25+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "【04:59 即時新聞】DaVita(DVA) 重挫逾5％／短線失守月季線 多頭動能明顯轉弱",
-   "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1rNW81bjBYbEFxR2xYN2YxYnhPV2ZfOGRLdEVfaGlweDdoTjRrbVJ6VnlsOUlKTzF5Sml1dDF1aFplOVB6NlFJVU1fY3k4OThlNnlfSUFGNmQ5VTlBYzlNWXg5d2Zmdjg?oc=5",
-   "source": "CMoney",
-   "time": "2026-11-12T20:59:00+00:00",
-   "label": "利空",
-   "score": -3,
-   "hits": [
-    "多頭",
-    "重挫",
-    "失守"
-   ]
-  },
-  {
-   "title": "【04:55 即時新聞】Newmont(NEM) 跌逾5％／短線技術指標自高檔轉弱壓回",
-   "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5VaXBhYUtOYV9nVFdHMzhiY3psN3hFMnhOTWNPcDVidXp1S3JaaldNZmZuNVRyd3h1Z2pSakM3VE53Vkp6TTF6cE0zMFFlQ1pQYkFienNwRjBnXy1tYVFyNzFsc2pPR0U?oc=5",
-   "source": "CMoney",
-   "time": "2026-11-12T20:55:58+00:00",
-   "label": "偏空",
-   "score": -1,
-   "hits": [
-    "跌逾"
-   ]
-  },
-  {
-   "title": "黃仁勳辭輝達執行長　科技界憂創新領導力流失",
-   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFB5UEdTYVZmSnN5TDgtRDVFdFliQ0J0TnRXR0YtWUVpQ08zUktMY3JJVkxGMV9hMm5MSFRpd1hVeHBldDQtMlZqWVlVZUtLRUFyQy1hWDBsMVB4WTlY0gFiQVVfeXFMT3Z4N2UzTkNkaWlYQU01MWJnYThqQ3dqYTZ0cGh4aWxuVW5EeEdjVDhSSUVXc2h6ZmF2cEJjZzk0QVBzTms0Z2stLXZweXdSajFxSDF1QWZ6N1FtY08xN0RBeUE?oc=5",
-   "source": "經濟日報",
-   "time": "2026-11-12T20:54:43+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "【04:41 即時新聞】KANZHUN(BZ) 重挫25％／技術面轉弱、KD與MACD同步修正引關注",
-   "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBMTGo5VlVlU1dkbEY2Vld3NzgyRl9ESlpzYnV5UDNIMXVzcGg2ZmtGMEJFNnZuT2xiYlJ3bzFnUE9CYmlKdnN2UlRVeVNJZV8tejBIZTFSbVpLTm9BUFpwYUxXTFNCRzg?oc=5",
-   "source": "CMoney",
-   "time": "2026-11-12T20:41:02+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "重挫"
-   ]
-  },
-  {
-   "title": "新加坡出手了！黃仁勳「小三」黃樂遭禁再入境",
-   "url": "https://news.cnyes.com/news/id/6655909",
-   "source": "鉅亨網",
-   "time": "2026-11-12T20:40:03+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
   }
  ],
  "geo": [
+  {
+   "title": "俄烏戰爭｜普京感謝美方促成俄烏接觸 請美特使向特朗普轉達謝意",
+   "url": "https://news.google.com/rss/articles/CBMitwNBVV95cUxPOU44ek11eGczcXZpb3VEVFA5bGlBOHZXM1BEcWtXUlZIYmhPVUVwaFZKVGE2RWRGT2ZPRDV2RGU2ZjBYVEdvQWV6dk1aLVZWMm9VQmR4YnMxSTZTRmtRSU8zSkdrUWFmMTFuT29hM2c3S19vdzJBbERpUVB4R0dad2s3bkFQbGVQa0VTT2t4Zjh5akVScVdYYzhCeXJTQ25LZVB0ckE5d2Z6cHpBbEdNZGV5UHQ2STNJQU5GLW91aU9mSTl1aG4zVE5lWnFtLTlkRkU2ZktTa3pzM2MzejEyT3pBeGprampYTjZVQ0RfNkF0bnJycmZmQjc2SFJBYmJRRjlOMzNYaGdJMWgyZWk0UkhCcGxjZFJKdDZPVTc2Z1RoeUc1anIwdTVFMHdqMHNQR29ZVkRTUzJuU3BMLW9wLWJUTk10UDA0OGdrQW02MWtadXFuZlhRYTBrVXVaZWNFVmRkcWVmVGVid0RzZXZORzFlZmRjVkY3SzFOX28xWkN4YzBBajJrSE9WT1lLVE1kNE5TQURQcEcwSjBGWURQZGxodkRKWlR2ZkRBZWJaZmFKZkpZdjNz?oc=5",
+   "source": "橙新聞",
+   "time": "2026-11-13T01:04:32+00:00",
+   "label": "偏空",
+   "score": -1,
+   "hits": [
+    "戰爭"
+   ],
+   "topic": "俄烏"
+  },
+  {
+   "title": "矽谷業界評估美中對抗升級 企業恐難有模糊空間",
+   "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBZYWQ4Q1V0LVFFSThFTldjWGNyYmp5anR2OWlDTVZhSjVxYTVIdlgyRVRSU3libW5HRkRwS0w5eUNFQnIzd0lvYnNJRQ?oc=5",
+   "source": "三立新聞網SETN.com",
+   "time": "2026-11-13T01:04:21+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": [],
+   "topic": "美中科技"
+  },
+  {
+   "title": "美參議員柯頓要求禁售中國 DRAM 大廠長鑫存儲，列入實體清單",
+   "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5md2s2X3VTTkttMVBGOFFDQjA5RHFhUFFtTnBfT3IzWlNCcmJfMllFbl9jZ3BSSUdKWnJ4TDMxT2VzVWF0V0JLS0hqZzI5dWZlNmF0Wg?oc=5",
+   "source": "鏈新聞 ABMedia",
+   "time": "2026-11-13T00:53:38+00:00",
+   "label": "偏空",
+   "score": -1,
+   "hits": [
+    "實體清單"
+   ],
+   "topic": "美中科技"
+  },
+  {
+   "title": "WTI 跌至接近87.50美元，因美國庫存大增，地緣政治風險受關注",
+   "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNdjFmT0VMXzlkNFVNQThIQi1HMlJpc0VrZWx3V3gwUHlIV0RBS3hveUVqSW9LUXF5ZEhoejFWRkdvQ1dNTDZqNWV3UzBCYzJIbjNfZnB5VmtadHN4Qk82cDF0SjBlemZzVWduRzYwQnoxeVhRQi1ELUVuM3pQX0dZcGd4VkRaM2JveF9FRGJXNWFDZXBlUWFWVnpUdGpNNXFIUzdKU2pmTFFPNVNhZ1YzTHpDSzR3T1pTSHBTd1BTMVFyVGRSWGJQeUljdTNJalV2ckUxRkhmVzN2YUk?oc=5",
+   "source": "FXStreet",
+   "time": "2026-11-13T00:42:07+00:00",
+   "label": "偏空",
+   "score": -1,
+   "hits": [
+    "地緣"
+   ],
+   "topic": "綜合"
+  },
+  {
+   "title": "AI推手黃仁勳下台另尋接班人 專家：美中科技互動可能中斷",
+   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9fdXA4Nm1TeWt2NU8walE0a0ZpR0hCSnVRVjY1OUVqdVpsWXJCeVlpaHJmR3JLZF9UWFdFY2p3Z09iel9HQ3Y5cVVJcVo5Mkk?oc=5",
+   "source": "公視新聞",
+   "time": "2026-11-13T00:32:38+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": [],
+   "topic": "美中科技"
+  },
+  {
+   "title": "中東依舊維持膠着 國際油價重返升勢",
+   "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBGMGpBalBIc0k5bEE4cW8xelg4M0pwb05wQWh5OWhsbUo0SXRORDc1Z0FiUWR6MEd5UENkREh0amV6TF95Z3NXZS1TSkdrQWJON1R0VzVvY1d4LV85LUg5bDAzeW9CeE5DSU5ibEQ1ZngySng2dWc?oc=5",
+   "source": "香港商报",
+   "time": "2026-11-13T00:32:00+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": [],
+   "topic": "中東"
+  },
+  {
+   "title": "美國AI晶片出口管制新規加碼封堵！",
+   "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTFBxSFB3NTZNQUU5RTdDVjgxOW01Vm0tV1pwZDFkMVRrZUVlTlc3dGVmT0o3anBzSDR4OHA4bnBXS0VNejhUOFg4bg?oc=5",
+   "source": "鉅亨號",
+   "time": "2026-11-13T00:31:26+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": [
+    "加碼",
+    "出口管制"
+   ],
+   "topic": "美中科技"
+  },
+  {
+   "title": "伊朗局勢｜特朗普稱無需與伊朗達成協議 要求萬斯轉盯國內腐敗與犯罪",
+   "url": "https://news.google.com/rss/articles/CBMizwNBVV95cUxPczg5c0lLMGd1Rm1BT3pMWlJVVDUzMU9la3cxM1FIWF9pLVhSTHBHVUlYT2dHellEQkhvajdXWjB1OWJfMm8zclpBVVRaVzV5RGNCbmdZT1daWmVYRjFmQVZKSU9sbEJsQ1J5a0N0dHFZRVktMWxhOFFjNkdBWjY2ZjdqcTd6TnFGdzhONldPT1gtUE5xWnBWbUN2N3NYalZrZFRNLVNkdi1nMDBSVW5GRG1rUVVRTWZ4MDNHUEd1VnFuZGFib2FJSlRZZmVWMXV4Sm0wS2RsXzdDNmpGQThKb2oxY21hckpvYm5PbTBrOERVbExfLUwxaTJhbUZiMFhUaDB5clBTcG1OTE9HUjRkdG04anhMR2RpdE1KaFNCakxscXZGODJmWDhrV05SSGpaUi10RkswRll5a0FOdHFTdEh5X1ZIeE5XWHRFcDl6Z1dzTGMzUkNXSDcxVVBiQkxlV1J1VXU1RUZMcWkwbFgyRWRySzBwZFVIWThGY0R1b0otQ1djOElPcnFVSFBaMzZaZ2NKcTZyVHNKWm9SQk80dTlUemVHZFljRnVuN21nem53MGw4TW1QdV83T2tGVVU5eDRBTkZyRTZoYkpLNWRR?oc=5",
+   "source": "橙新聞",
+   "time": "2026-11-13T00:28:37+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "達成協議"
+   ],
+   "topic": "中東"
+  },
+  {
+   "title": "川普宣告“不需要与伊朗达成协议” 美军通报以方准备重启战事(图)",
+   "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE92dUNmWmNLVEs3Yk9SQlRMOF8xMzE5NUhqWXZUek9BTTZuclBFb3lxUzc5VklOTE5uLVozOXZoclVfTl9yejUtWE9GVWZyaGMwaXBhS1RKblk?oc=5",
+   "source": "CMoney",
+   "time": "2026-11-13T00:22:52+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": [],
+   "topic": "中東"
+  },
+  {
+   "title": "美股：美超微捲入美司法部調查疑雲，涉對中晶片出口管制，週四股價重挫11.3%",
+   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQaU1tR1ptXy1fY09pTzUxR0g3WnNGOHh2NVlxcjlud24xZFdfUFlSdVpITEdtNzEzVml3LTNLWnphUkRtbkNadUNpZnE5UUlFb1EtdGtzVXQ1bEJRYk9IcFcydjhSR2FnVEpnek8tREsxUTVOeWdtZGRQY1hreGp5c2hlckc1Z0tO?oc=5",
+   "source": "富聯網",
+   "time": "2026-11-13T00:18:00+00:00",
+   "label": "利空",
+   "score": -3,
+   "hits": [
+    "重挫",
+    "出口管制"
+   ],
+   "topic": "美中科技"
+  },
+  {
+   "title": "特朗普將萬斯排除於伊朗外交之外，油價守穩漲幅 作者 Investing.com",
+   "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBnV0RqWGEyQnlUbGVpUDI3M3ZxMzE1c0I1RUxrVmNuaTM0QTBHX2V3UnY1X01HMU5aMEppMVo4R1VLYkVXUkY2VnJIaWhldVFPQ0VRWVk5ZFR0RDBaTHVNa01Uckg2anM2aGhkeFVkNA?oc=5",
+   "source": "Investing.com 香港 - 股市報價& 財經新聞",
+   "time": "2026-11-13T00:14:52+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": [],
+   "topic": "中東"
+  },
+  {
+   "title": "《油價》川普嗆無須與伊朗談判 布蘭特強彈逾3%",
+   "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxONzVQS01kR1hVdGhSd1VwWUdTMDN3VnBJcmZsS1Z0OGNOVGhqSmxtSDhHa0xqLU9BUzRUOXp3LXBsb08zd2ZyUU9tNHJ0MDVOZmZSTXhjZVN6M2dlME1qY1JfdldsZWFFWEhHREItbEtKOW41d0UxWkdpSXJ3RmJsU2JQWG1OYnpERG1JS1VJWTk1UQ?oc=5",
+   "source": "MoneyDJ",
+   "time": "2026-11-13T00:07:00+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": [],
+   "topic": "中東"
+  },
   {
    "title": "普京鬆口！ 同意歐洲加入下一輪俄烏和談 魏科夫：意義重大",
    "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBtblNmMG1lX1EwcHhMSHJraV9lX3JlUXRGWWJHMm00TGlvdmlmQTlocV9vYlpxTVZYeGRhb0VJd2I5Z2JKb0QtcEtMODloMWNXZ0FRdjFZd3JkazVodXQ4VEpFTGEwOUNpaUl3YnJLTUdoRkMwVGZR?oc=5",
@@ -1639,6 +1798,16 @@
    "score": 0,
    "hits": [],
    "topic": "中東"
+  },
+  {
+   "title": "黃仁勳辭職風波延燒 美國會擬全面收緊對中晶片出口限制",
+   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFB3Q3M4QWRETmVoT2dkblVzdFpRcUNidHNoYm51c1BKTUVKWmdMelVDX0dwRU5uRGkzMGlZUGhHQzZIODhVblJSLU4zell3MFFtTlc4SlZJanhRYXQ2eDBqbw?oc=5",
+   "source": "民視新聞網",
+   "time": "2026-11-12T23:52:27+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": [],
+   "topic": "美中科技"
   },
   {
    "title": "《國際早點名》川普拒談伊朗協議 輝達執行長辭任等9則",
@@ -1843,6 +2012,19 @@
    "topic": "美中科技"
   },
   {
+   "title": "張良任觀點：「兩岸和平倡議」─由戰爭的教訓走向和平的選擇 | 張良任 | 評論",
+   "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE80NjVFUkFCTUhxYmVLMTlnc1RnSGJ0cHd6UG9BU1psczM3Q2FZZTIyUFU1VXZ5ZXMxTU5zY0JaYXVSdTlaSHFwSmlCcVhWdw?oc=5",
+   "source": "風傳媒",
+   "time": "2026-11-12T22:50:00+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": [
+    "和平",
+    "戰爭"
+   ],
+   "topic": "俄烏"
+  },
+  {
    "title": "【俄烏戰爭】普京會見美國特使 俄烏有望大規模戰俘交換 歐洲或加入下次和談 澤連斯基望和平更近一步",
    "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5HS2V3X3FoN0hYN2N6Ym1lNzEtRm0xRWx1blBLUHFqUzQ2Uzgyam9yd2RoWE96R01ILU9KTW5qNVJZSWZwNGsxYjA1UGo2dUVXb200WmRURUNUMkE?oc=5",
    "source": "www.soundofhope.org",
@@ -1855,6 +2037,16 @@
     "戰爭"
    ],
    "topic": "俄烏"
+  },
+  {
+   "title": "黃仁勳辭職 國會擬加強對華AI芯片出口限制",
+   "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5DZ0VERkNwNW5qcVEwdHh5R1lYQklkZkdfaWk4WEpJRlRyZUVydldWMHFIM3RveEFxV05aV2F4TXJNWEhITGxiRFRGZlRPU3NzbGJjZl9saGEyM1ZoWTRoeXd30gFnQVVfeXFMUG1NZHAyUmJmZm0ySmUzdnBVdFlENVlnVk53WGZnMjBPZUpIdWFNZk9zeFZyX1hmXzFRc0x2TTV1M1VXcHdQZDhVTGRTak1yYUpEak5RTl9BNG5oQTJrNXdjblJSV0JMRQ?oc=5",
+   "source": "大紀元",
+   "time": "2026-11-12T22:22:00+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": [],
+   "topic": "美中科技"
   },
   {
    "title": "彭劍：美伊衝突降溫 結束戰爭的窗口已打開",
@@ -2057,6 +2249,16 @@
     "反彈"
    ],
    "topic": "中東"
+  },
+  {
+   "title": "APEC前夕韓外長訪陸晤王毅- 國際",
+   "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBOVjk0Q2tNUjA5VGYyTGVKR2RDSXU4dmRFUUV1MEUwVEJNNks5QWdjcW1jZko5YkJjUVZ6a0t6Z0YxYW1xOVc0bVdud0tQTWZPZ2lkdmxyMzZ3ZVhXM282ZXJVRExqU0hPc0E?oc=5",
+   "source": "旺得富理財網",
+   "time": "2026-11-12T20:30:26+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": [],
+   "topic": "東亞"
   },
   {
    "title": "特朗普美軍公墓演講為伊朗戰事辯護- 國際",
@@ -2317,193 +2519,13 @@
    "topic": "中東"
   },
   {
-   "title": "梅拉尼婭特朗普中期選舉後頻繁露面 斡旋烏克蘭停火",
-   "url": "https://news.google.com/rss/articles/CBMi7wJBVV95cUxNZF93eEFTT1pvMUUwTFlJUjVzdXdScWlyWFAwSmk5RVoySTh4WVRscUhZdWdPWnp6NkRDM2hVZ2tvQWM5NTNkbGpZdGpFWnR6YXdlV0FVZ3hKVE53R0ZMY05ya0F1b0VFa2xMdkhkb2JCSGtTTklpVFpnMWhRV2NfMFJzMUVYRnQ0TGtyUHR6am42WVJtQXBVYktYeEc3Y2Z1TUtieWJLUjB5YmF2WXRTWGwyeVlQRVA3VWZCMkVTT2VQTXVRUXdtUi1GcXFtbnliNnFMMVJpTTkyN3Z2bnRoMlNYQ05yeGZYOGdYTnRqajhmNFBNb0ZlMUltRFNQYVFCNFQ1V19fekhDNEhvRUpTaDJ5SnIwdUdJVExkOV9lcjg3Vkx5dWR4TFBxNG1SZnFyM2pITWNPZGlNYjJwbHUzemNndTdCRnM3emZUelQzTncyOVNVN1lFUkw2dlZ0VUR4UFFldnc5bVJhX0M0UzNv?oc=5",
-   "source": "巴士的報",
-   "time": "2026-11-12T17:47:42+00:00",
-   "label": "利多",
-   "score": 2,
-   "hits": [
-    "停火"
-   ],
-   "topic": "俄烏"
-  },
-  {
-   "title": "北韓駐華大使館擴建 雙邊關係升溫",
-   "url": "https://news.google.com/rss/articles/CBMiowJBVV95cUxOT0x6M2gxNjUwR1BidXpZLTVuQUtRUE16OXV1YmtnTnVZYkgzVzdpbDg4WTZueGJDbWRkczZMMXB2cnJWc0ZONnZFNHJldFNaWi1wMFQzd1Q0RmFNUUtkT2tUdVdyaFRmblhiTmx3dll1WlN0R2FNRWxpNVc1X0QwS0cxekhRY2ZwOGxHUXFfekJNaTVLa0xpZkdKcEtISmRjMDFZbDhESVRabktUaEhxOVRZRnFpQ090N0YyeFJhMC1mdjJHamhsS0ZkOG0wcHduaFk5eTFfb245ODJoQkhfMkVaczRzb1JTODU0OElwT29HU0N6bnZLVVZCdW5jQjFSYWw3VWNMVzRodkhmd1QwT1otWnJ5dE10RVF6TVl5QzhWYkk?oc=5",
-   "source": "信報網站",
-   "time": "2026-11-12T17:41:40+00:00",
-   "label": "偏空",
-   "score": -1,
-   "hits": [
-    "升溫"
-   ],
-   "topic": "東亞"
-  },
-  {
-   "title": "不必再跟伊朗談條件？川普：我拿了他們大筆資產與海峽，要范斯去調查「藍州祕密」",
-   "url": "https://news.google.com/rss/articles/CBMi5ANBVV95cUxPaWlLTEZEbi1pNjJneEVJaDJQWXM0c0RZcDV2czZNdHRUX2tiWUVFdmdSQUt4NFZhRTN5RExuYTdNRlF4ZnNUNWhVSnNiRjN0d0V2UmIxWHFrU0ZMbjdxamd6RFJQQ005VjdjUWN5VXNfekh6NzBZUU9VMVRKR0ItWllfeFpNZlQ5U2pnbkdheGJiSDBWOXVlTW41QUJVejI0SUtuX3JsazR4ZHZnOEpNUG1EcTJfMWw1SXdOMll1S0x3MzZFREZ5QWFMbXhtMEdWb3hURV85Sm5IaWF4di12Ni1uN0NuQi1nSEJKVk9rREM2ZFA1WGtkS1lsOG15WlpaWUNZS1JJeWNFMGE0eDNHb2JJbjFRSWFoZTh4Q3dBUnBRaVNVLVltSzVFQ1Y4MU9hdUMyZFJxSTB1cUUzU1ROVXVCbDdtQzhQSkVhOFo3dWxHUDF1anZSdEhNcW00VERIYzR0N3VJTWRYWU1leEljZFpjVHVVZzJvYm1meG9YTTZHN3NRd2lYbERVZmNnaUVDOUxGOWlUTFJXbVFMaVVGSXNMbGpVOVhJbFJ2WlVVSEtYTmNTTEk2bGFqNkVKWWhjUFROMjhxY1RvRS1DRnM4T1h5T2tYbW1oVjBXUlBpVUxqQ29D?oc=5",
-   "source": "Yahoo新聞",
-   "time": "2026-11-12T17:40:00+00:00",
+   "title": "油金／川普再稱不需與伊朗達協議 紐油漲2.5%",
+   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBvM3VLXy1haTlYNGliRVRFdnhINS00TW1Lc1F5MkQ0QUxGWDFrSE5PNUtQckZSS1BrOGtING5nR0E3aXBQblpNTXgwRE9kN2JRaDNvdU81ZEk5ODFHbG9hbA?oc=5",
+   "source": "非凡新聞台",
+   "time": "2026-11-12T18:03:06+00:00",
    "label": "中性",
    "score": 0,
    "hits": [],
-   "topic": "中東"
-  },
-  {
-   "title": "川普撤下范斯對伊朗談判任務 要他全力查藍州貪腐",
-   "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1DOFhWREJaTV9QUE15Y0J6RDNISUoxRVgtMlctRks4MXZVMl9wQUNHRy1MZ24tekRhNzdYaTFfU2JmWi0xMXNKaHhlZE1SWmk3U0I2V2piOFFheVA5ZVR3dGxn0gFnQVVfeXFMUE9rSWx3Y1FzZEtJSGNVckNmcFRZMklXaWpXc1kwRkZid09vdzNyd2IxdG1KdE1zb2ktYmktcm8yc1RnTnM1dGZaWEFYMXUteDFQcUtiSGZNWTVGZ0haMmd1TWFIUkxSUQ?oc=5",
-   "source": "世界新聞網",
-   "time": "2026-11-12T17:37:09+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": [],
-   "topic": "中東"
-  },
-  {
-   "title": "歐洲政治共同體峰會 澤連斯基回應俄烏和談",
-   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1fY1BTbElPZVphc283THAyTWFUTU85Z3pUWlJqZnQwUk5QZHBMTTdWb1FpekUtMVJtZlJHZFlFQU5yc2szd01ZZ3Q4Sk5icjJwckhKX0NSSEFNVGMzYm9XN9IBZkFVX3lxTE9hZTRXb29TdlJFNUNsTUE2N2RKVFIyWjZUZFZFZm9LbE9LZ0ctMkl6cEQ0XzBvcUNxRFdhZEJ2U0hCaUhrTGY4aUdWek5aQy11OW9GMkQwdmFNeU42R2RNUVU2ZVhhQQ?oc=5",
-   "source": "新唐人電視台",
-   "time": "2026-11-12T17:33:50+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "和談"
-   ],
-   "topic": "俄烏"
-  },
-  {
-   "title": "【即時新聞】川普稱無需與伊朗達成協議，布蘭特原油強彈突破93美元引發市場擔憂",
-   "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNYzAyQUs2cGVSVUdKZ0ZrMC1Kd0dKNzQwcmVjdktGLVBKVXA0bTRDZW5aVUxaeUN1dUFLN1lLUk9McDNoT0VPUV9pc1MxUEkxaHdlZ0tHQnZxbDY1aVFGdmxYNkppSTZoY25jZ2tNU3ZwNDljVjJNeGhyMno4bjFFNVdJOFAxMHJGWTF6dzVZa1g?oc=5",
-   "source": "CMoney投資網誌",
-   "time": "2026-11-12T16:52:01+00:00",
-   "label": "利多",
-   "score": 2,
-   "hits": [
-    "達成協議"
-   ],
-   "topic": "中東"
-  },
-  {
-   "title": "要聞解說 - 俄烏戰爭談判背景下，歐洲政治共同體開始思考大歐洲安全框架",
-   "url": "https://news.google.com/rss/articles/CBMi-ANBVV95cUxOdFUwbzl4eTRNck9hQkhuVkFWdHFnRWd5LXg5R2tIalBDZklrckIza2c5M3NOUUt6ZzZDZFpvUldMaFJsU3hIMFdaX1VOVmJCdnFTdjVFdEdWRkwxQUNPVWx6a1pIY3VUMlNyb2VjUWkyb2ZWTGlXa2ZRLXJEeDlxYzlxOHlUS21zYmpEWWgya1pBZWdvTFp1S0Nyc3c3VEtZTk41NzlnZHQwRzhSaXpid2J0MFozMVNHTUQ0bm5WaC1NSGptUUswWldZNnppdkJWb2NPNExwNDJqNWxVRlZPSGZPOW42TlF2Sk5tUUdUR3RsWWpTanNuQ1ZwWTdOU0I3ekVVRV80R2lBY2tuaXdfSEkzc1NuTmplMVJPQXNfODdtYzRjdkNock0ybWZvR0puVHFTVjFsVWhjR0UyVllIY0dUZW9MWTdsd2tZbWNuR2xnS1dnaF9LTFhsY0h3dmQ3TVFSXzkyUVZDLWFrUlBpNVJUVmZXZDhEWi1IMm1KUWt2SHgyRGpDZV82b1I1b0lmLTdSTHhuY2Z5eVpRWk9NbWFkTXpraFFrNllhcG9WTVhXQ3Q2YlE2SEpqeU1pV3BGMHN0VF9mUnRZVnNKZklEU1A5V1E2MlhyWG1PMmJOcEIyZnU3ZUJGXzNTZmdvWnlOT1VVZHpCblo?oc=5",
-   "source": "RFI",
-   "time": "2026-11-12T16:49:35+00:00",
-   "label": "偏空",
-   "score": -1,
-   "hits": [
-    "戰爭"
-   ],
-   "topic": "俄烏"
-  },
-  {
-   "title": "歐元債市：收益率持穩，特朗普稱無需與伊朗達成協議推動油價攀升",
-   "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9kNFdfbFFwTER4UkpGTTRlcENINklyLTBXNGVpSl9XczRYdDJJOFNramo3Z2djT2VwekNKRThhU3FwVnNxemx1d2pKV2JxNTg2V2pkNzd2WHNyZk1yUmRreG9FbldsRXdLYzRWaUd1RWdKRjRPRkJF?oc=5",
-   "source": "TradingView",
-   "time": "2026-11-12T16:47:44+00:00",
-   "label": "利多",
-   "score": 2,
-   "hits": [
-    "達成協議"
-   ],
-   "topic": "中東"
-  },
-  {
-   "title": "特朗普突然宣佈：不再需要與伊朗達成協議！萬斯緊急轉向國內，霍爾木茲海峽局勢再生變數作者FX168",
-   "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE52Y3dibWxaaEtMd3NJVjJPeC1rZS1MY1FmcURqbWhfNTUwZXc4RmlSNEJ6UDFEeXZyZUJZQ3VEenVGdi04bllkeXB5RmgxTDBRbThhTzZkSjZKaFZRak1qTkl6SnpRUF9zR3NIRlI2OA?oc=5",
-   "source": "Investing.com 香港 - 股市報價& 財經新聞",
-   "time": "2026-11-12T16:47:29+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "達成協議"
-   ],
-   "topic": "中東"
-  },
-  {
-   "title": "黃仁勳請辭本可避免？美眾議員：希望輝達更重視國安，籲國會加強晶片出口限制 | 李靖棠 | 新聞",
-   "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1wWHlwR19xTGdvdGU1dDRhWjltaGNucG5qVjRWTnd2bHJyMHFVT1llS3kxTTdaWF91bmxVekdDX29vek9QYmt6Mzg3R3Fydw?oc=5",
-   "source": "風傳媒",
-   "time": "2026-11-12T16:42:00+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": [],
-   "topic": "美中科技"
-  },
-  {
-   "title": "卸任還沒完！黃仁勳同意赴美國會作證 晶片出口爭議成焦點",
-   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9uMXNSbzc0LXJWVjBURVBSRndzeWhDa2lBdEl2OV9ET0UwNW0zU0k5Qm9UaW9DTXh5cC1kcGdDZE5BZ0JXdWl0Wk95VDNtdVU?oc=5",
-   "source": "鉅亨網",
-   "time": "2026-11-12T16:32:59+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": [],
-   "topic": "美中科技"
-  },
-  {
-   "title": "俄烏戰爭｜普京晤美國特使 烏方指Space X「星盾」再限速",
-   "url": "https://news.google.com/rss/articles/CBMi0gJBVV95cUxNMlpZY0NmOUdnY0pTMjdlZy1IUnNEZjVNZkZEU0F3SlRJRDlGZDFvUEtmczhoQU8tbWY1UTZleFNYblVpLWh0ckFsRHpxZEY0eDItMkVZYVBNdy1IWXQwY3NVSmlRT1pSd2R5WHNLVk53LVdWWXhySzRSNENwbUFTUm9XQWIxanRUNHZ1djJXdFVzY2E2RkJHdDFnbUxidHRoejJmc3NYT0dWOEltWVRXS1lYS0t4cFNyTzVDb3p1TXFmUUVObzVNWjJEc2FXY1kxWWQ2THhfdm5XWndpRThYa18xMzFCR1NFenZRVXJjTUV0ODFTQWp6aEp5WDEwM2laZ1NxQTZCdy10c1htaUFENGJsS0RQejl4OFNFc2YyUFFoTEllbFZSZkZ6RVRVX3JMWHNBWFNNMEZEZ094YVI2Y21GSDJwYlltdDdtdFhFUnpaZw?oc=5",
-   "source": "i-CABLE",
-   "time": "2026-11-12T16:09:22+00:00",
-   "label": "偏空",
-   "score": -1,
-   "hits": [
-    "戰爭"
-   ],
-   "topic": "俄烏"
-  },
-  {
-   "title": "黃仁勳辭職｜「大人物」淪為犧牲品",
-   "url": "https://news.google.com/rss/articles/CBMilAJBVV95cUxNNmsxN3l4RG8wS1cydGczNjJLMmJKRkI5OFhjdTZkMC1HNlhfb19qVzRCWUt0WlpaZWNHVnQxVlJUbGdMR2RVNVNrU0FkNFd3UFRrTjJwYWItbVhVdjFqRFd4YVdlMks2MlMtdEJRR2ZaV1NSNVpNZDV3a2NfaExRM3A0SElYZTlVV3ZTYVFwVW5reEN5RVgzcEtkeUlxeHcxTlVCMHJqSk42c3o2MUpvX3cwY2ExaFJUc2FlZ25YOVp4QU5yQUI4US1NOUJHQktzMHpEc2JKeVVRQzFtUm9xem9SclVEMVZPdWNNMmpadWZXRDZSVjZsdkNselhLbDBXY3NXalFncXF6Mng2ZlYwLWlfbFY?oc=5",
-   "source": "香港01",
-   "time": "2026-11-12T16:07:39+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": [],
-   "topic": "綜合"
-  },
-  {
-   "title": "黃仁勳辭職後管制恐再收緊！美眾院議長：對中國晶片出口限制共識升溫",
-   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1fSjVfT3RqREhVSzlGcjFzNDVmMGVGZHNuV2lvOUFTZVF5bUtOd2lJWjdGQkpKV3JCWEtfVDZZNTJtdW4wZ0NoaFV0WHpMNlE?oc=5",
-   "source": "鉅亨網",
-   "time": "2026-11-12T16:00:13+00:00",
-   "label": "偏空",
-   "score": -1,
-   "hits": [
-    "升溫"
-   ],
-   "topic": "美中科技"
-  },
-  {
-   "title": "晶片諜戰！黃仁勳案 美中情報競爭縮影",
-   "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9pc1BJX0lPdUNHN2t0QjF3cEtfQ3hpRWFTTXRGbHJ0MkctRU9OaHlzd1dudmRUVVRrajZLdEVuT0Z2LUY4dkdlV09wS3BoQlZTay1v0gFYQVVfeXFMTzduTkltSU11dG9mU2dFRk84SnEyZUgwN1RFMlhnblNEMm9hVllmVU9PWXIzZHpoTWZ3NVBxMGZEeGVlSDVvNkZ3dThURG53WnVCalZlYzYwYg?oc=5",
-   "source": "UDN",
-   "time": "2026-11-12T16:00:00+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": [],
-   "topic": "美中科技"
-  },
-  {
-   "title": "陸未履諾輸美稀土減75% | 美國 | 習近平 | 稀土",
-   "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNVmsxTHduSzBGQmVTcUJXV2pObnBONVlTMWFndkZod0Q3UGUzdUNwa0N0VW9hanljWnQ5dldsOGVoSTRvUy1CTGtvZldZMXZHOVdBa1dPTm5wTWxpNlZQNjNuQWNBb2NUX0hPUnR6dWpTVzloWXBxejJHMExsY0p0WDVaQlNhc2UxYlREQ2pNYktfN21oaDRkc2V5UVpqLTQyM0JfdThKYzN5QnFvSUtWcEpCRWRuY1lrbmM3d18ybnZ6ajdJdG9RQVJWVE1wMVl2?oc=5",
-   "source": "台灣大紀元",
-   "time": "2026-11-12T15:59:39+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": [],
-   "topic": "美中科技"
-  },
-  {
-   "title": "以色列空襲加薩南部醫院 釀6死20傷外科醫師罹難",
-   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE8yRHpEYTQzUTNvTWpSODFTQ0dmUGlwbjBHNnpvc05GRlpycm1lWm5mYjZMMjkzMV9uNkFVcXhCRVFnY3VxNWpRME1LVkdKUlJzRldJVFNMZ0tiZi0tSzZsRA?oc=5",
-   "source": "民視新聞網",
-   "time": "2026-11-12T15:56:47+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "空襲"
-   ],
    "topic": "中東"
   }
  ],
@@ -2514,6 +2536,15 @@
     "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNemZGVHUtVzBHRnpycHlZR0VHNXdFekNfRko0R2I4c215a1BoTy1NTWhMNmY5eExqT2RHOGkwNU55WS1zNXhUMHFxZmhHd2JYcllzSzNzQ29VVEpaNURscWZkc2hZVWlPdUtpUlZYUllLTGNUNjJjTWVsN3RiUVNNLVlpS2VtRXUx?oc=5",
     "source": "富聯網",
     "time": "2026-11-12T23:16:00+00:00",
+    "label": "中性",
+    "score": 0,
+    "hits": []
+   },
+   {
+    "title": "006208分割「一種可能」變1拆9！一張3萬值得買？阮慕驊揭10年績效贏家…能複製0050資金效應？",
+    "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPZm1RcVUtZDhnVDZNS2o3UmhQQ0oxZFpZRnFnX3JoMC1VVE1HQWV3bjBiQy1SYWk3Y1czckJOcDR0eGdmNUtIdWtGVG56QzZsdjNBTkE2dUV6SWxFWnJISTBIbkYzWTZNaERJbFp5WjUwZmpPaklVOVR6RU85SWRQZA?oc=5",
+    "source": "今周刊",
+    "time": "2026-11-12T16:52:32+00:00",
     "label": "中性",
     "score": 0,
     "hits": []
@@ -2780,15 +2811,6 @@
     "label": "中性",
     "score": 0,
     "hits": []
-   },
-   {
-    "title": "《金融》未成年戶定期定額偏好ETF 0050、VOO分居台美股人氣榜首",
-    "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOT0tmanZtMFdKcXpRRzlWVmhKMWtrSVdGOWxyM0RPU1NwS1cxenNsb1c4dXZDSFlzVG9wWFlYNmtydzZaQk1RdXZXa1hrLVhGcE9rbUhET19QeE56TzdBbzdBNENEd3U5N2tKMXF5UkRBN3p5RlExaHFyV1J6bUpMdEJjM3NmcVFG?oc=5",
-    "source": "富聯網",
-    "time": "2026-11-12T01:31:00+00:00",
-    "label": "中性",
-    "score": 0,
-    "hits": []
    }
   ],
   "0052.TW": [
@@ -2829,15 +2851,6 @@
     "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBrQllDXzdxOW0yZVBlQ3FuQzlhd3pvWEc4WndYd2dFQm9pZGhKUU1CQzVaWGdSREVwV2tmYnNYVEp3WjRsRUpKbTcyNFdENHQ4aHJ2T1VXLTJlQdIBX0FVX3lxTE9TaEx0amh4MVVPMDlDajA0azNPenNuV005Uzh0dXpOMUNwZW1nWFlfeGdreUc5dFVpWWxSSzlCak1aeThsY3NYVVZOLWRQYldYVDRfMWc4cU1jU2NoS0ln?oc=5",
     "source": "經濟日報",
     "time": "2026-11-11T08:00:00+00:00",
-    "label": "中性",
-    "score": 0,
-    "hits": []
-   },
-   {
-    "title": "台股單日強彈站回41000點，電子股人氣能否延續？-葉博金融研究院",
-    "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQdXdfZDYzcEJPQnBlbm5PQ09WeUkzb3BUT0p5VUd3WkNPbU1OTUVtREZMbWIwSXR4MHJiN1FvR040ZDVuTFp0Sm9lWnpwQXRKUkx1Ni1OT0lCd3hTcGhtRldnUGpPLUxNWWRNd0lHTXVpTDZUWF9zbTh0U1BLNXBBNg?oc=5",
-    "source": "CMoney投資網誌",
-    "time": "2026-11-11T00:19:02+00:00",
     "label": "中性",
     "score": 0,
     "hits": []
@@ -3231,6 +3244,17 @@
     ]
    },
    {
+    "title": "盤中速報 - 櫃買市場加權指數上漲8.65點至341.62點，漲幅2.6%｜新聞快訊｜豐雲學堂",
+    "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5wc2FvSFpyMzhZcHFtLXBtc1Y1b3ptYXM3WkJoTjFuOU01VXBJdUczS2dpVXFtS1U5Ymh5WVZIYWd4eXhSWkVHRTFwdFFGY296SW9rc3JoOS1iUEU0b0dRQ3lsWGZ3X1E2eDNWb3hZN29tNkV2UVE?oc=5",
+    "source": "永豐金證券",
+    "time": "2026-11-11T04:07:00+00:00",
+    "label": "偏多",
+    "score": 1,
+    "hits": [
+     "上漲"
+    ]
+   },
+   {
     "title": "台股大盤強勁反彈｜新聞事件整理與重點摘要",
     "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9ZU1JORWVLSDZCckJzQ0tKaGFBcUdaOVhMMGwtSmFkR3pnTXNBMF9BU0FjSmpqTkFhUGZIWFR4eHVjdVV5NFMzWEFBZmRhUkhUNFJzRzk4MWpmSmJ0dWVyZS1LQ25XeFZsZG1qTTFfZ0E3MEgwaTIza1dRTklnQQ?oc=5",
     "source": "Yahoo新聞",
@@ -3278,6 +3302,18 @@
   ],
   "00830.TW": [
    {
+    "title": "美股：黃仁勳辭職衝擊，四大指數震盪收黑、費半跌0.54%，超微與博通逆勢大漲",
+    "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPVnVvX3o3cVc0OElZRUNvcC1sUW1RTHNKTFhSRjl0TzhZSlZ6Y2RwVXA3cGM5VkhSeU9aSm1PbVAyRWNZT2d6WHpFQ2Fwc0tHQ2hQbHZIOXJPa3dKNUNMRHZuVDhITW5YOXBUQUU0cEJKMDI1SjVWOXdZLXFTUF9wV1drTHRJVldsUGpNT2pjVQ?oc=5",
+    "source": "富聯網",
+    "time": "2026-11-13T00:23:00+00:00",
+    "label": "偏多",
+    "score": 1,
+    "hits": [
+     "大漲",
+     "收黑"
+    ]
+   },
+   {
     "title": "《美股》黃仁勳辭職重創輝達+美超微崩 費半軟",
     "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQMjlFTGFDYU8wSFhfM0VxeXd6WXFJcko4NVI0UllCVDJuem1jeWVkcWpYQ0FiVmlTTmlWYXJYN245WVRiM3BHR0FJdWVQbENhYjd3QktfVW1KX1dHRjU4Rzg1dVdpSU94UTdWWVA0NnBVclZqZFRrekdVTVZSZnl4TUpSQWV2aVlEa280Mnl3anVrUnM?oc=5",
     "source": "MoneyDJ",
@@ -3303,6 +3339,18 @@
     "label": "偏空",
     "score": -1,
     "hits": [
+     "跌逾"
+    ]
+   },
+   {
+    "title": "黃仁勳辭職震撼彈！輝達開盤大跌13％領跌　美股費半跌逾百點",
+    "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTFBwR0VCS3NNQzhjUE9Qc3VDckFKeVplXzd1Ukl6VktjdkRFRmpubWtZV3IxMzN1WE9qOEUxYy15bW5lU0V1WTBtYTNoelPSAVJBVV95cUxPc01TbTA3cXFzQUM3dVNGaGpYYXFzLUxoTXhxVHpXQkE3Z0NxMU9ub0xOTEdEXzJ3dVJrclh1QzdhZkFrMC0yQWNXNURENnI5RnlR?oc=5",
+    "source": "NOWnews今日新聞",
+    "time": "2026-11-12T14:48:35+00:00",
+    "label": "利空",
+    "score": -3,
+    "hits": [
+     "大跌",
      "跌逾"
     ]
    },
@@ -3566,27 +3614,6 @@
     "hits": [
      "止跌"
     ]
-   },
-   {
-    "title": "美股收盤／費半大漲5.7% 黃仁勳傳CEO位子不保讓輝達盤後大跌8%",
-    "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5pemliZGp1ZGlham5xdFNsRk5nXzdwV0UxNnJubTRsZkhteEJITVQ0VzFFWHpwYlBsbDV4TnNnVHVtMTVVSXkxc3dndFNkSEcw?oc=5",
-    "source": "udn",
-    "time": "2026-11-11T22:56:36+00:00",
-    "label": "中性",
-    "score": 0,
-    "hits": [
-     "大漲",
-     "大跌"
-    ]
-   },
-   {
-    "title": "費半、台積電ADR飆升5.7%及4.3%！台指期夜盤收漲470點",
-    "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE00UlJsTmpTRWc1NG9pMjR4ZEVEWGVwUDI2Rmxzb0tGc3FRSnA1dFNPcEJ0WXEybndKWE1KZUxrN0FjWFNURDQ0WmtWeVdsMDd6RkFzcnNjQ01ybzNIS2VtdVk1QmwxSzQtM3VYN2FPcw?oc=5",
-    "source": "知新聞",
-    "time": "2026-11-11T22:53:00+00:00",
-    "label": "中性",
-    "score": 0,
-    "hits": []
    }
   ]
  },
