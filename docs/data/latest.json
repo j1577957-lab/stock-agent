@@ -261,7 +261,7 @@
  },
  "tw": {
   "mode": "tw_pre",
-  "time": "2026-11-13 08:30",
+  "time": "2026-11-13 08:40",
   "stocks": [
    {
     "symbol": "5465.TWO",
@@ -824,11 +824,12 @@
     "k": 44.0,
     "d": 30.0,
     "macd_hist": -0.471,
-    "vol_ratio": 1.09,
+    "vol_ratio": 1.6,
     "high20_prev": 87.9,
     "vwap": null,
-    "score": 1,
+    "score": 2,
     "reasons": [
+     "量能放大 1.6 倍",
      "KD 低檔黃金交叉（K=44）"
     ],
     "blockers": [
