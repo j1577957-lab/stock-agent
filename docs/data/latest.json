@@ -1,7 +1,7 @@
 {
  "us": {
-  "mode": "us_intraday",
-  "time": "2026-11-14 05:01",
+  "mode": "us_post",
+  "time": "2026-11-14 05:16",
   "stocks": [
    {
     "symbol": "QQQM",
@@ -21,13 +21,11 @@
     "k": 57.0,
     "d": 45.0,
     "macd_hist": -0.041,
-    "vol_ratio": 0.75,
+    "vol_ratio": 0.78,
     "high20_prev": 299.74,
     "vwap": 278.8,
-    "score": 1,
-    "reasons": [
-     "盤中站上均價線"
-    ],
+    "score": 0,
+    "reasons": [],
     "blockers": [
      "股價在月線之下",
      "月線往下彎"
@@ -64,7 +62,7 @@
     "k": 84.0,
     "d": 77.0,
     "macd_hist": 0.893,
-    "vol_ratio": 0.7,
+    "vol_ratio": 0.81,
     "high20_prev": 359.37,
     "vwap": 358.1,
     "score": 2,
@@ -105,14 +103,13 @@
     "k": 20.0,
     "d": 17.0,
     "macd_hist": -4.121,
-    "vol_ratio": 1.82,
+    "vol_ratio": 1.83,
     "high20_prev": 222.19,
     "vwap": 161.35,
-    "score": 3,
+    "score": 2,
     "reasons": [
      "量能放大 1.8 倍",
-     "KD 低檔黃金交叉（K=20）",
-     "盤中站上均價線"
+     "KD 低檔黃金交叉（K=20）"
     ],
     "blockers": [
      "股價在月線之下",
@@ -150,13 +147,12 @@
     "k": 50.0,
     "d": 38.0,
     "macd_hist": 0.017,
-    "vol_ratio": 0.81,
+    "vol_ratio": 0.82,
     "high20_prev": 300.76,
     "vwap": 219.64,
-    "score": 2,
+    "score": 1,
     "reasons": [
-     "MACD 柱翻正",
-     "盤中站上均價線"
+     "MACD 柱翻正"
     ],
     "blockers": [
      "股價在月線之下",
@@ -194,13 +190,12 @@
     "k": 71.0,
     "d": 65.0,
     "macd_hist": 0.226,
-    "vol_ratio": 0.51,
+    "vol_ratio": 0.55,
     "high20_prev": 317.2,
     "vwap": 301.87,
-    "score": 2,
+    "score": 1,
     "reasons": [
-     "MACD 柱翻正",
-     "盤中站上均價線"
+     "MACD 柱翻正"
     ],
     "blockers": [],
     "candidate": false,
@@ -235,13 +230,12 @@
     "k": 68.0,
     "d": 59.0,
     "macd_hist": 0.211,
-    "vol_ratio": 0.64,
+    "vol_ratio": 0.66,
     "high20_prev": 166.18,
     "vwap": 138.91,
-    "score": 2,
+    "score": 1,
     "reasons": [
-     "MACD 柱翻正",
-     "盤中站上均價線"
+     "MACD 柱翻正"
     ],
     "blockers": [
      "股價在月線之下",
