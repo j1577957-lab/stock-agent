@@ -5,15 +5,9 @@
     "mail": "idle",
     "stock": "error",
     "shop": "off",
-    "crawl": "busy"
+    "crawl": "idle"
   },
   "radio": [
-    {
-      "id": 876,
-      "who": "策略技師",
-      "tech": "stock",
-      "msg": "11/13 05:31｜⚠️ us_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
-    },
     {
       "id": 877,
       "who": "策略技師",
@@ -607,6 +601,12 @@
       "who": "策略技師",
       "tech": "stock",
       "msg": "11/14 06:46｜⚠️ us_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
+    },
+    {
+      "id": 976,
+      "who": "爬蟲技師",
+      "tech": "crawl",
+      "msg": "11/15 20:08｜新聞掃描：台股新增 80 則（近 30 則 多6／空5），美股新增 80 則（近 30 則 多1／空5），地緣政治新增 80 則（近 30 則 多0／空5）"
     }
   ],
   "meta": {
@@ -615,11 +615,9 @@
       "last_msg": "⚠️ us_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
     },
     "crawl": {
-      "last_done": "2026-11-14T04:39:36+08:00",
-      "last_msg": "主動ETF：27 檔，被加碼 46 檔股票（奇鋐×3、台光電×3、日月光投控×2、旺矽×2、大量×2）",
-      "since": "2026-11-15T20:07:52+08:00",
-      "task": "抓台股、美股新聞"
+      "last_done": "2026-11-15T20:08:04+08:00",
+      "last_msg": "新聞掃描：台股新增 80 則（近 30 則 多6／空5），美股新增 80 則（近 30 則 多1／空5），地緣政治新增 80 則（近 30 則 多0／空5）"
     }
   },
-  "updated": "2026-11-15T20:07:52+08:00"
+  "updated": "2026-11-15T20:08:04+08:00"
 }
