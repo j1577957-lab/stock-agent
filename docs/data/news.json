@@ -1,6 +1,90 @@
 {
- "updated": "2026-11-16 17:07",
+ "updated": "2026-11-16 18:08",
  "tw": [
+  {
+   "title": "台股跌2635點創歷史第二大跌點 外資賣超701億元、投信終止連24買",
+   "url": "https://news.cnyes.com/news/id/6664041",
+   "source": "鉅亨網",
+   "time": "2026-11-16T10:01:11+00:00",
+   "label": "利空",
+   "score": -4,
+   "hits": [
+    "大跌",
+    "賣超",
+    "外資賣"
+   ]
+  },
+  {
+   "title": "匯僑設計在手訂單達35億元 看好AI與半導體科技廠辦及總部升級等需求",
+   "url": "https://news.cnyes.com/news/id/6664037",
+   "source": "鉅亨網",
+   "time": "2026-11-16T09:56:32+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "看好"
+   ]
+  },
+  {
+   "title": "國泰金前10月對保留盈餘影響數2457億元、每股16.5元 續創歷史新高",
+   "url": "https://news.cnyes.com/news/id/6663989",
+   "source": "鉅亨網",
+   "time": "2026-11-16T09:40:22+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "歷史新高"
+   ]
+  },
+  {
+   "title": "黃仁勳「考慮回歸」反引爆大洗盤？低量回測第二隻腳，靜待11/17這訊號引爆強彈",
+   "url": "https://news.cnyes.com/news/id/6663990",
+   "source": "鉅亨網",
+   "time": "2026-11-16T09:39:41+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "【量大強漲股整理】台股暴跌2600點還能買嗎?",
+   "url": "https://news.cnyes.com/news/id/6663987",
+   "source": "鉅亨網",
+   "time": "2026-11-16T09:38:05+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "暴跌"
+   ]
+  },
+  {
+   "title": "富邦金10月帳面轉虧、賣股後實賺135億元 前10月對保留盈餘影響數2634億元",
+   "url": "https://news.cnyes.com/news/id/6663979",
+   "source": "鉅亨網",
+   "time": "2026-11-16T09:31:04+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "輝達失勢、AI洗牌！我卻發現下一個大贏家！",
+   "url": "https://news.cnyes.com/news/id/6663984",
+   "source": "鉅亨網",
+   "time": "2026-11-16T09:30:43+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "台鏈聚光！前10月僑外資、對外投資雙創新高 外資投資衝破208億美元",
+   "url": "https://news.cnyes.com/news/id/6663974",
+   "source": "鉅亨網",
+   "time": "2026-11-16T09:26:01+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "創新高"
+   ]
+  },
   {
    "title": "台灣Q3手機整體降價接近打八折 三星Galaxy Z Fold8 Ultra降價最多達13000元",
    "url": "https://news.cnyes.com/news/id/6663937",
@@ -772,91 +856,27 @@
    "hits": [
     "失守"
    ]
-  },
-  {
-   "title": "【台股盤後】史上第二大跌點！台股崩跌2635點收41040點近170檔跌停| 金融",
-   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFA3MzJfYTgxbUplR2J5eXQxSXVocjZlOUJIRmRtdnpIWUZJSTlMaElZZExXWWR6WHkzdmRoSWprN29RZWdrb2taSnZyYllNdmYwVTRmRTF4dkxwUm9jQzhySQ?oc=5",
-   "source": "非凡新聞台",
-   "time": "2026-11-16T06:45:00+00:00",
-   "label": "利空",
-   "score": -6,
-   "hits": [
-    "大跌",
-    "跌停",
-    "崩跌"
-   ]
-  },
-  {
-   "title": "【零股排行榜】 盤中零股成交量TOP 20｜0050 元大台灣50、00878 國泰永續高股息、0056 元大高股息、00631L 元大台灣50正2、2330 台積電 (1116)｜豐雲學堂2026 年 11 月",
-   "url": "https://news.google.com/rss/articles/CBMi-gRBVV95cUxNbFRKRVBiUS1IaGs5VGN3b0xCX1pieUstSUhiSTlEMWw4NjJFZXlwY1N0TGdLUWJGZXgyYUNHMXY1UzRfdjdEVldCTjk5Z0FESmprSmdTdmR1YXlrZXNJakpybzdSc2FuNUdMX1gxOGVaM2pJSFdKMng4NVltN2dRWUhwNDlSRXNZUGJkSDB4anlYU3Y3WGRKbjZRN0E0MXlVMG5jNG5zcjJGV3ZoRTdsb09nY0tZSDN0WEVYVmQxNExueFN1SEFRZ2VKOUJVc1BJbWJHb1ZWOGNqVXNDdVU3WmhMSlV5NEJ3di1jSDhhSTV6cHRpZV94ZUg5OGVYWDViczBYM09pY1JXdmVrQURrWW1VTDVfOXI2ZEJTR3duZi1GcmxnYk9kdEZ4R29NVm9TaVhtbnAzZ1Yxdk1VSUJ0SWJLMjlYTTRqNXlQSHJlcVdDSlM5aW5INkd0OXhHQ1ZwNS1jczluRXBNVVNJVVhFQl9MLUhGX2czZHBGM3RZVVB5NW0xLXo0RmJWRlhTNnNMOUNvQWU0YmdFOXVxNENoQkJwUnk0S3FETVNmc1dMOVEyc2FXc1BuUmdXTkR4TUNSbmw4VlM3NXBHM2l3dFRWcnZwZUdQWVJIQUlRa1Rjam9mMEN1RXJNNmxXVnpNMFdfQ3p4YXZZVm5jaWpTc3NyS2E2ODV4MnhaalFKMklfNi1DMzNjLWoycjh1STlfSlB5YXZMX1daVlhQRmR2MVAzdmswM3pFQl9xSDh0U2tacjJTTU9iZFJDcWFGZnU0bHJQcXB4N3ppX1dKa285Vl9CV3BlMUVnbnZ4eFFYZXA3dWZZLVJqTTdibVZ3?oc=5",
-   "source": "永豐金證券",
-   "time": "2026-11-16T06:41:38+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "投資有風險 外國企業對台股最新看法",
-   "url": "https://news.google.com/rss/articles/CBMinAJBVV95cUxOeHZzZzlRVG80N1FhdDF3ck5pcG9sM21vNnRRZ083MWc0M3NWUFlranV1SHRvTXB5bFppRFA4ZTM0YmljWUt2S1h0ZWtZSzRXX01DT3dkaVhzcDF0d3ZtbXF1ZHZkTXVHdm55cS0zSDV2OGpmVEZoMGUwY0l4cWxHMTMzVGVWVURwYklwc1VvbURHU0w3bFoyTmhSV3JZbXB3YUtiVDJBNTc3d2prZ3NBOXJtSUZXaGJHaGpvckljY0RtdkV1UzhMQ2doR1cyYmRNQ292SVU4d2dTeEFwa0pkVzZLWXFPaHhPeXcxblVfTlNocy1vOTlObHVFWHNzUkUtZnNvTk1fTW9kMVR1elppOXRidUF2SHFFa3QyRA?oc=5",
-   "source": "Yahoo股市",
-   "time": "2026-11-16T06:40:26+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "盤後／台股雪崩2635點 戰犯是他們仨",
-   "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQTjJ4bjdpQzhJaUR5aTB5TFE0WG1SSllWX0toNnpLX1M1Q0NPVlZ4dEhXanFQbWc0RjhlX0dhWk1YNUVzMnVSellscGNRN1EwaTlrTUkzTUJjempIcWhLcXo3cmpZUzRHOUlsRjNYZ1RIM0R6U1Q1bzdnOHVibFg0Mk1zYWdsSXFVVDdtYnVOVW5UTllRZjc3WlVHdkpXMUJvUXBzRUdHRkxsbVFmVGE2Wnc1VFh4X0lFRnk3YU9qaUFNZzdna1BaR2NWWnBMMmNIeThyQmFuUFBJaU5XZEhlUEZjV1UzS2dkaW1Kd1Y1MkpCT1pKQ3Bn?oc=5",
-   "source": "Yahoo新聞",
-   "time": "2026-11-16T06:37:21+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "〈台股收盤〉大跌2635點收41040.08點 創史上第二大跌點",
-   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5va21jT0RVX3lPQS1aNDc0ZHd5ZHkwVzlxUUtGR0daLXBGYWw5a0JOaWF6b0hTOTJvQjl4enhEQXRybVpMY201aVR6Vy1icUE?oc=5",
-   "source": "鉅亨網",
-   "time": "2026-11-16T06:36:30+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "大跌"
-   ]
-  },
-  {
-   "title": "〈台股收盤〉大跌2635點收41040.08點 創史上第二大收盤跌點",
-   "url": "https://news.cnyes.com/news/id/6663802",
-   "source": "鉅亨網",
-   "time": "2026-11-16T06:36:30+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "大跌"
-   ]
-  },
-  {
-   "title": "台股收盤1／輝達換帥風暴擴大！連ASIC也遭殃 投資大師點出市場最擔心的這件事",
-   "url": "https://news.google.com/rss/articles/CBMi0gNBVV95cUxQYVJlb0UtaUFjelhFZUpmUlpNcnVOeXhZZndJSEczTXZYSV9NRGdod05oNXpCVTJCcldBSTB4UnVVSGNLNHBBTENZRjk5N1M4cWdwLUFMazk4MVVPMnNQQzJLZ0ZpTnM3RndRR0x5Mk5JdThZQVBhYzRLeWN5UEFOenlSN0tKbWx5eVZrYkxsNmd2SEUxUDlnOTBIUmRMWEVUZGNIMmRJd1FSMURKMUVMNlhxVkZNdTdYMlFmVVA3QUpmZDViWHFvdGpBUm05c2x3V1lIOTFienlnY2ZBNmtWb1o5djNiYmNwdzZrYmNfTW1uM2szaUdlbDVuTzlIMkxiUTZMWW1vNFFTa0wtWmlyczBOSkJhTXplTjBucHI3c21ORkh6MThZQ054d21VSDFpRGQ2d0JHTUx3SFlVcWdCVUI5RWhfcnpzRmZ5SzZzOHFEOVBrZEgtQ1dXak1fRHYySjlEa19zUmpWYWhuS1RLcWxiOFJKZVRCZUg0WVpxZTNNbjV4b25Vb1daNUtvaFVYLWFSNzV5V3dpMTgyeXh3Yng4c3VpOFcxck5HZHdUZ2tVVXJCRXJHYkZBUHhMT3o2WWtqWVpiRV9yWHV3WWdMczZB?oc=5",
-   "source": "Yahoo新聞",
-   "time": "2026-11-16T06:34:35+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "台股崩2635點 史上第2大跌點",
-   "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNeW9uOS1xRnhycWZlNmxIbzRNZnZvOXVQV2E5dTFqdGtJNy1QSmh1Qi13eXl3RndPYlc4cENLM29NVnNPRnhYVHJibjMtZWpTQjFrZFhSV1o0R1ZoUFhTc29OOVlqbzZkREhrSzlUd0tVT2lBOUNYbk1aeTMzYXdXNENXX2s2bnY2ZDFoUDBlNjlxOVlyN045M0w0VFJLeXMxS2ZlOFBkRWg4UVpJV0lhSm9PYTR2cVRJaDBTVjhQbVpQenNnT3MzTGt2ZVRYY1JGZWNV?oc=5",
-   "source": "Yahoo新聞",
-   "time": "2026-11-16T06:33:45+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "大跌"
-   ]
   }
  ],
  "us": [
+  {
+   "title": "全球股市走弱 AI投資熱潮面臨考驗 NVIDIA財報與Anthropic上市成焦點",
+   "url": "https://news.cnyes.com/news/id/6664045",
+   "source": "鉅亨網",
+   "time": "2026-11-16T10:00:06+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "群雄割據！摩根大通：輝達GPU佔比腰斬逾半至39%　博通超微谷歌TPU成新寵",
+   "url": "https://news.cnyes.com/news/id/6663835",
+   "source": "鉅亨網",
+   "time": "2026-11-16T09:10:20+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
   {
    "title": "美股記憶體族群隔夜再度大跌！晟碟、美光跌逾4%，威騰電子跌逾3%",
    "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQT2oySndoc2dzaHVvR0FIYzlGVHBxZldzR0FmbkZSdlFuN1hnOGxEN1d2eklfa1J5N3lsVTUzRHQ1bTAwemc1WVVua1NGamw1Nl9GT3NGS29TYnZTM0RncDBORzQ2WllISy1CbGd0ckZxdlYwWkRWZmJITDNQNWVtcTY2S1NTUEdNU0FUSTgydjV1M2VaSXhKcmp5bFNKS2VKTHB3MHdlVEM4VUpnN3VDbg?oc=5",
@@ -1627,30 +1647,6 @@
     "重挫",
     "失守",
     "承壓"
-   ]
-  },
-  {
-   "title": "高盛看好標普500續漲15% 未來一年挑戰8,700點",
-   "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQeEdWZElpbkxuNFVyRG4xS2xnMEJYdEVEdGlrNU5tS0Q2RVpZVjFYZFpjWEpTeFVaT1NYQXBIem4tcmZNempOV05vSnJQcjFxazFUbFZlczgwUUtvSE5MVFNEX2hXaGRkYnBxNENzdktmd1FueFdRQzBkY3ZnNmhPUmx3?oc=5",
-   "source": "MoneyDJ",
-   "time": "2026-11-16T04:04:00+00:00",
-   "label": "利多",
-   "score": 2,
-   "hits": [
-    "續漲",
-    "看好"
-   ]
-  },
-  {
-   "title": "高盛看好標普500續漲15% 未來一年挑戰8,700點 - 頭條新聞 - 新聞",
-   "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQVHNoNFl5SENNbG1JR2ZjdHRPTFlKbzhPbXpuMzFnTVZocWpzd25abjZteW5sM1E4WGdPcWoyazRKVllrdzRpdU10bVJET0JoUWRuUlg0RF9QSDU2alFiUmF1ZldjNWxlYy1xaS1laFBETENSdndIX0FocWJfVWk0RXJidDBpVTQ?oc=5",
-   "source": "MoneyDJ",
-   "time": "2026-11-16T04:04:00+00:00",
-   "label": "利多",
-   "score": 2,
-   "hits": [
-    "續漲",
-    "看好"
    ]
   }
  ],
