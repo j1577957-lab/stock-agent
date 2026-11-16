@@ -1,7 +1,7 @@
 {
  "us": {
   "mode": "us_post",
-  "time": "2026-11-17 05:46",
+  "time": "2026-11-17 06:01",
   "stocks": [
    {
     "symbol": "QQQM",
@@ -21,7 +21,7 @@
     "k": 47.0,
     "d": 46.0,
     "macd_hist": -0.351,
-    "vol_ratio": 1.11,
+    "vol_ratio": 1.12,
     "high20_prev": 299.74,
     "vwap": 274.35,
     "score": 0,
@@ -100,7 +100,7 @@
     "k": 18.0,
     "d": 17.0,
     "macd_hist": -4.216,
-    "vol_ratio": 1.56,
+    "vol_ratio": 1.58,
     "high20_prev": 222.19,
     "vwap": 157.49,
     "score": 2,
