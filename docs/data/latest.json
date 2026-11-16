@@ -259,7 +259,7 @@
  },
  "tw": {
   "mode": "tw_post",
-  "time": "2026-11-16 14:00",
+  "time": "2026-11-16 14:15",
   "stocks": [
    {
     "symbol": "5465.TWO",
@@ -485,7 +485,7 @@
     "macd_hist": -0.497,
     "vol_ratio": 0.95,
     "high20_prev": 113.0,
-    "vwap": 78.17,
+    "vwap": 78.0,
     "score": 0,
     "reasons": [],
     "blockers": [
