@@ -1,7 +1,7 @@
 {
  "us": {
-  "mode": "us_intraday",
-  "time": "2026-11-17 05:01",
+  "mode": "us_post",
+  "time": "2026-11-17 05:16",
   "stocks": [
    {
     "symbol": "QQQM",
@@ -21,7 +21,7 @@
     "k": 47.0,
     "d": 46.0,
     "macd_hist": -0.351,
-    "vol_ratio": 1.06,
+    "vol_ratio": 1.11,
     "high20_prev": 299.74,
     "vwap": 274.35,
     "score": 0,
@@ -62,7 +62,7 @@
     "k": 77.0,
     "d": 77.0,
     "macd_hist": 0.703,
-    "vol_ratio": 0.81,
+    "vol_ratio": 0.95,
     "high20_prev": 360.83,
     "vwap": 353.76,
     "score": 0,
@@ -100,11 +100,12 @@
     "k": 18.0,
     "d": 17.0,
     "macd_hist": -4.216,
-    "vol_ratio": 1.48,
+    "vol_ratio": 1.56,
     "high20_prev": 222.19,
     "vwap": 157.49,
-    "score": 1,
+    "score": 2,
     "reasons": [
+     "量能放大 1.6 倍",
      "KD 低檔黃金交叉（K=18）"
     ],
     "blockers": [
@@ -143,7 +144,7 @@
     "k": 47.0,
     "d": 41.0,
     "macd_hist": -0.346,
-    "vol_ratio": 0.91,
+    "vol_ratio": 0.92,
     "high20_prev": 300.76,
     "vwap": 206.31,
     "score": 0,
@@ -184,7 +185,7 @@
     "k": 64.0,
     "d": 65.0,
     "macd_hist": -0.551,
-    "vol_ratio": 0.68,
+    "vol_ratio": 0.72,
     "high20_prev": 317.2,
     "vwap": 294.99,
     "score": 0,
@@ -224,7 +225,7 @@
     "k": 66.0,
     "d": 61.0,
     "macd_hist": 0.195,
-    "vol_ratio": 0.87,
+    "vol_ratio": 0.89,
     "high20_prev": 166.18,
     "vwap": 137.64,
     "score": 1,
