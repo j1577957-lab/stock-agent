@@ -3,17 +3,11 @@
     "eng": "idle",
     "cal": "idle",
     "mail": "idle",
-    "stock": "busy",
+    "stock": "error",
     "shop": "off",
     "crawl": "idle"
   },
   "radio": [
-    {
-      "id": 1017,
-      "who": "策略技師",
-      "tech": "stock",
-      "msg": "11/16 13:46｜⚠️ tw_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
-    },
     {
       "id": 1018,
       "who": "策略技師",
@@ -607,19 +601,23 @@
       "who": "策略技師",
       "tech": "stock",
       "msg": "11/17 13:31｜台股盤中掃描 14 檔，0 檔通過初篩；持股警示：元大台灣50 93.5"
+    },
+    {
+      "id": 1117,
+      "who": "策略技師",
+      "tech": "stock",
+      "msg": "11/17 13:46｜⚠️ tw_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
     }
   ],
   "meta": {
     "stock": {
-      "last_done": "2026-11-17T13:31:06+08:00",
-      "last_msg": "台股盤中掃描 14 檔，0 檔通過初篩；持股警示：元大台灣50 93.5",
-      "since": "2026-11-17T13:45:33+08:00",
-      "task": "台股盤後報告"
+      "last_done": "2026-11-17T13:46:39+08:00",
+      "last_msg": "⚠️ tw_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
     },
     "crawl": {
       "last_done": "2026-11-17T13:15:17+08:00",
       "last_msg": "主動ETF：27 檔，被加碼 45 檔股票（日月光投控×3、台光電×3、兆豐金×2、遠傳×2、健策×2）"
     }
   },
-  "updated": "2026-11-17T13:45:33+08:00"
+  "updated": "2026-11-17T13:46:39+08:00"
 }
