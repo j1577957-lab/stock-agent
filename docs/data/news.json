@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18 06:07",
+ "updated": "2026-11-18 07:08",
  "tw": [
   {
    "title": "台股3檔拉警報！它12／21將下市 這2檔遭列全額交割處置",
@@ -811,6 +811,92 @@
  ],
  "us": [
   {
+   "title": "AI重寫半導體產業！三星記憶體漲價270%、蘋果改簽5年長約、消費市場承壓",
+   "url": "https://news.cnyes.com/news/id/6665702",
+   "source": "鉅亨網",
+   "time": "2026-11-17T22:50:04+00:00",
+   "label": "偏空",
+   "score": -1,
+   "hits": [
+    "承壓"
+   ]
+  },
+  {
+   "title": "輝達董事長財報會議明言：「無意讓黃仁勳重任執行長」",
+   "url": "https://news.cnyes.com/news/id/6665670",
+   "source": "鉅亨網",
+   "time": "2026-11-17T22:24:33+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "〈財報〉輝達Q3超預期財測強盤後走揚 董事會無意讓黃仁勳回任",
+   "url": "https://news.cnyes.com/news/id/6665276",
+   "source": "鉅亨網",
+   "time": "2026-11-17T22:17:42+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "走揚"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：PETROLEO BRASI(PBR.A-US)EPS預估下修至4.81元，預估目標價為22.50元",
+   "url": "https://news.cnyes.com/news/id/6665720",
+   "source": "鉅亨網",
+   "time": "2026-11-17T22:15:44+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "下修"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：巴西石油(PBR-US)EPS預估下修至4.73元，預估目標價為22.55元",
+   "url": "https://news.cnyes.com/news/id/6665719",
+   "source": "鉅亨網",
+   "time": "2026-11-17T22:15:40+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "下修"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：小鵬汽車XPEV-US的目標價調降至15.34元，幅度約3.14%",
+   "url": "https://news.cnyes.com/news/id/6665718",
+   "source": "鉅亨網",
+   "time": "2026-11-17T22:15:32+00:00",
+   "label": "偏空",
+   "score": -1,
+   "hits": [
+    "調降"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：美卡多MELI-US的目標價調降至2150元，幅度約3.37%",
+   "url": "https://news.cnyes.com/news/id/6665717",
+   "source": "鉅亨網",
+   "time": "2026-11-17T22:15:30+00:00",
+   "label": "偏空",
+   "score": -1,
+   "hits": [
+    "調降"
+   ]
+  },
+  {
+   "title": "鉅亨速報 - Factset 最新調查：嘉德諾健康集團CAH-US的目標價調升至304元，幅度約3.05%",
+   "url": "https://news.cnyes.com/news/id/6665716",
+   "source": "鉅亨網",
+   "time": "2026-11-17T22:15:28+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "調升"
+   ]
+  },
+  {
    "title": "美股收盤／道瓊跌849點標普、那指連四黑，軟體股成賣壓重心",
    "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE92czVVTHFfUU1kZUw4TGJZdktwbFhmdTIwbmhPY2xrRmo3eFQxcVE0b2hqeWRKOFdDMGlCTWFrcnpCTFdfaFQ0eUlnb254VE0?oc=5",
    "source": "鉅亨網",
@@ -1545,88 +1631,6 @@
    "label": "中性",
    "score": 0,
    "hits": []
-  },
-  {
-   "title": "美股盤前走弱！Nvidia財報前夕波動加劇、Home Depot業績人事衝擊股價",
-   "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQZVBWVDJrd21obUVqWS1SdmJBa1hZQlU5NEo0T0NnTTA5cWpnZkdjdEpwTVJRNVU1NHlVYmlOelZULUdDYUNURGdpNV9hYkp0bVdJOHozbm9QS3QtbU9VQWFqUGxaYTNkX2pDNlNkZEFYR05LcFBxRmd5RE9lZmdUTXlFdjFqM0otYVNYc0d3?oc=5",
-   "source": "CMoney投資網誌",
-   "time": "2026-11-17T16:08:24+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "盤中速報 - 台積電ADR(TSM-US)大跌5.01%，報354.75美元",
-   "url": "https://news.cnyes.com/news/id/6665586",
-   "source": "鉅亨網",
-   "time": "2026-11-17T16:07:38+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "大跌"
-   ]
-  },
-  {
-   "title": "盤中速報 - 英特爾(INTC-US)大跌5.04%，報52.68美元",
-   "url": "https://news.cnyes.com/news/id/6665585",
-   "source": "鉅亨網",
-   "time": "2026-11-17T16:06:26+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "大跌"
-   ]
-  },
-  {
-   "title": "黃仁勳打破沉默發出聲明 如果董事會同意將重回輝達擔任 CEO",
-   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBEZ2tKc0l6Z2VGNTA1VGM2X2xxakY0UFBjcE9GRlU4cjQzdHlrcURZUVUzeVY3OFpILVBqeDdDR0dNcENVRzR0Y0w0LTFCMUppb0o0bkhaQWJ3X2FV0gFiQVVfeXFMTVE5WEJpM1BFbUE4ZjVLM1pMVkpoNFZYdHd6TGtFMC1jSldBQzE2SlhhXzV5bVRkcHdZZlhBaXVXMWJjdTgxaFFLNFRaMnlkRl9yLWFjX2FkZDN6VFpKRlpDMUE?oc=5",
-   "source": "經濟日報",
-   "time": "2026-11-17T16:05:06+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "【即時新聞】高盛(GS)最新預測2027年美股迎爆發，標普500指數目標上看8700點",
-   "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQNFlLVHBqWGF5XzVEcGxOOS1ieHdjOWg5ZFF5RTRpOGRrWUpsb2JBNW4zd0FJU1RnWjdtVllXbWZwQ21Fc2I3djVZQ1lvN1JEUWNVNFp4U1gwLUw4YUEwVnlHcVZINTdfQ281b2RWVE9Qb0p4Vmt3VmJ2MVNfNmRoM2k1ZXdsdUpxanBSY05vTUw?oc=5",
-   "source": "CMoney投資網誌",
-   "time": "2026-11-17T15:58:58+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "【即時新聞】輝達(NVDA)財報前夕美股回跌！光學概念股狂飆，家得寶(HD)人事異動股價跳水",
-   "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPN2dOV1YzNmRpR3FnN2tNTXpuUzVhS3Joc1Ryc2hLOG1DTEZrUzJmYk1mV1EzTjBFZ3FWTjFLR0QxWkNyU29ENnVXclhYT1ptNURDVWg4VDgybExPUDFSWWx0MlNDQ2pYXzg2YUF4anl1T2Nob0hoZWc5RkxaaW9VaTUtTldWaEJGSTl4NUlCb24?oc=5",
-   "source": "CMoney投資網誌",
-   "time": "2026-11-17T15:57:44+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "跳水"
-   ]
-  },
-  {
-   "title": "盤中速報 - Workday公司(WDAY-US)大跌5.09%，報184.18美元",
-   "url": "https://news.cnyes.com/news/id/6665559",
-   "source": "鉅亨網",
-   "time": "2026-11-17T15:56:36+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "大跌"
-   ]
-  },
-  {
-   "title": "盤中速報 - 美光科技(MU-US)大跌5.04%，報682.77美元",
-   "url": "https://news.cnyes.com/news/id/6665558",
-   "source": "鉅亨網",
-   "time": "2026-11-17T15:55:34+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "大跌"
-   ]
   }
  ],
  "geo": [
@@ -3010,26 +3014,6 @@
     "label": "中性",
     "score": 0,
     "hits": []
-   },
-   {
-    "title": "韓股：電力、電子股拖累，KOSPI指數上週五收跌52.20點或0.98%，連二黑",
-    "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPemtuSUR2ZzRBOTI2VE04S1VBdFZ5dTR3akVtY00zSDJDM1ExMWFRSTNSRF9xbmRtSTdVSE1kVEpFU0k2MVZVczdGbGNVVkhfc0pTM3pLS1pZeFM4V0ZvNjJVblg0UndQaUdocE5oMWRtVjlYcHZkRjVzSjNoVkRlTTlySlZ0VkRW?oc=5",
-    "source": "富聯網",
-    "time": "2026-11-15T23:00:00+00:00",
-    "label": "中性",
-    "score": 0,
-    "hits": []
-   },
-   {
-    "title": "主動式ETF上周加碼！TOP10電子股占多數 這檔獲7,289張加碼最多",
-    "url": "https://news.google.com/rss/articles/CBMi4wJBVV95cUxORDNOS3ZXR0NiNzRBZWIxRkc3MlBwRExZdThzN1hCcHc2Smo1YlhkVXdlel9nLVpVc1ltUS0zS0syaGh3VWo3Q0dnQUlRVDRXMmhjZjRYMUVMMWRzMThld2FLQ2djNWlEdVNWanNyZnpyUHVTZ2xBOXh2QkJoRjdtTG9aZWpDaEt6NG9kdy1EU2I1UUNNVTBlME0wV24wWmp5MTJGb09KQzJkVHNoRkFzaTFSWU50RnJaLWFyRjBCcTVJeXZxZndLLThONF9VTlJ5VTV5OThaWkVQdkRjOWtxQjFQQjNUSWxJdG5OV08wSGZlcGx6QmlxalNLbjY2VlFnSVFDZWtxa01jZFZlLXJxRXU1SWZXUjJRWGRHZm1TY0I3Y0dHSVRJRjJlR1VvN3NURzJKNHF4NThPNXM4akxycGxXYXZYZUtlZDl5ZHJkejRfcVgxS20wX2loQW1QZkMyWWtF?oc=5",
-    "source": "Yahoo新聞",
-    "time": "2026-11-15T22:26:17+00:00",
-    "label": "偏多",
-    "score": 1,
-    "hits": [
-     "加碼"
-    ]
    }
   ],
   "00631L.TW": [
