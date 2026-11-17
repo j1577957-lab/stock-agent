@@ -3,7 +3,7 @@
     "eng": "idle",
     "cal": "idle",
     "mail": "idle",
-    "stock": "error",
+    "stock": "busy",
     "shop": "off",
     "crawl": "idle"
   },
@@ -612,12 +612,14 @@
   "meta": {
     "stock": {
       "last_done": "2026-11-17T13:46:39+08:00",
-      "last_msg": "⚠️ tw_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
+      "last_msg": "⚠️ tw_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '",
+      "since": "2026-11-17T14:00:34+08:00",
+      "task": "台股盤後報告"
     },
     "crawl": {
       "last_done": "2026-11-17T13:15:17+08:00",
       "last_msg": "主動ETF：27 檔，被加碼 45 檔股票（日月光投控×3、台光電×3、兆豐金×2、遠傳×2、健策×2）"
     }
   },
-  "updated": "2026-11-17T13:46:39+08:00"
+  "updated": "2026-11-17T14:00:34+08:00"
 }
