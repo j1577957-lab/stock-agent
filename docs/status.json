@@ -3,17 +3,11 @@
     "eng": "idle",
     "cal": "idle",
     "mail": "idle",
-    "stock": "busy",
+    "stock": "error",
     "shop": "off",
     "crawl": "idle"
   },
   "radio": [
-    {
-      "id": 1180,
-      "who": "爬蟲技師",
-      "tech": "crawl",
-      "msg": "11/18 05:54｜主動ETF：27 檔，被加碼 51 檔股票（台積電×4、旺矽×4、貿聯-KY×3、高力×3、聯發科×3）"
-    },
     {
       "id": 1181,
       "who": "策略技師",
@@ -607,19 +601,23 @@
       "who": "爬蟲技師",
       "tech": "crawl",
       "msg": "11/19 05:35｜主動ETF：27 檔，被加碼 123 檔股票（日月光投控×7、世芯-KY×7、奇鋐×6、旺矽×5、南亞×4）"
+    },
+    {
+      "id": 1280,
+      "who": "策略技師",
+      "tech": "stock",
+      "msg": "11/19 05:46｜⚠️ us_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
     }
   ],
   "meta": {
     "stock": {
-      "last_done": "2026-11-19T05:31:11+08:00",
-      "last_msg": "⚠️ us_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '",
-      "since": "2026-11-19T05:45:59+08:00",
-      "task": "美股盤後報告"
+      "last_done": "2026-11-19T05:46:21+08:00",
+      "last_msg": "⚠️ us_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
     },
     "crawl": {
       "last_done": "2026-11-19T05:35:23+08:00",
       "last_msg": "主動ETF：27 檔，被加碼 123 檔股票（日月光投控×7、世芯-KY×7、奇鋐×6、旺矽×5、南亞×4）"
     }
   },
-  "updated": "2026-11-19T05:45:59+08:00"
+  "updated": "2026-11-19T05:46:21+08:00"
 }
