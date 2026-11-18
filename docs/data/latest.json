@@ -1,7 +1,7 @@
 {
  "us": {
   "mode": "us_post",
-  "time": "2026-11-19 06:01",
+  "time": "2026-11-19 06:16",
   "stocks": [
    {
     "symbol": "QQQM",
@@ -23,7 +23,7 @@
     "macd_hist": -0.617,
     "vol_ratio": 1.01,
     "high20_prev": 299.74,
-    "vwap": 270.66,
+    "vwap": 270.35,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -64,7 +64,7 @@
     "macd_hist": 0.286,
     "vol_ratio": 0.69,
     "high20_prev": 360.83,
-    "vwap": 352.97,
+    "vwap": 353.15,
     "score": 0,
     "reasons": [],
     "blockers": [],
@@ -102,7 +102,7 @@
     "macd_hist": -3.824,
     "vol_ratio": 1.45,
     "high20_prev": 222.19,
-    "vwap": 152.18,
+    "vwap": 152.12,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -143,7 +143,7 @@
     "macd_hist": 1.187,
     "vol_ratio": 0.88,
     "high20_prev": 300.76,
-    "vwap": 215.03,
+    "vwap": 214.69,
     "score": 2,
     "reasons": [
      "MACD 柱翻正",
@@ -227,7 +227,7 @@
     "macd_hist": 0.782,
     "vol_ratio": 0.75,
     "high20_prev": 166.18,
-    "vwap": 144.17,
+    "vwap": 144.2,
     "score": 1,
     "reasons": [
      "短線多頭排列（價 > 5日線 > 10日線）"
