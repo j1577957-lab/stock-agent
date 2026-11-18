@@ -5,15 +5,9 @@
     "mail": "idle",
     "stock": "error",
     "shop": "off",
-    "crawl": "busy"
+    "crawl": "idle"
   },
   "radio": [
-    {
-      "id": 1179,
-      "who": "策略技師",
-      "tech": "stock",
-      "msg": "11/18 05:46｜⚠️ us_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
-    },
     {
       "id": 1180,
       "who": "爬蟲技師",
@@ -607,6 +601,12 @@
       "who": "策略技師",
       "tech": "stock",
       "msg": "11/19 05:31｜⚠️ us_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
+    },
+    {
+      "id": 1279,
+      "who": "爬蟲技師",
+      "tech": "crawl",
+      "msg": "11/19 05:35｜主動ETF：27 檔，被加碼 123 檔股票（日月光投控×7、世芯-KY×7、奇鋐×6、旺矽×5、南亞×4）"
     }
   ],
   "meta": {
@@ -615,11 +615,9 @@
       "last_msg": "⚠️ us_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
     },
     "crawl": {
-      "last_done": "2026-11-19T05:08:06+08:00",
-      "last_msg": "新聞掃描：台股新增 8 則（近 30 則 多2／空3），美股新增 9 則（近 30 則 多7／空12），地緣政治新增 16 則（近 30 則 多0／空8），持股：元大台灣50 多1／空2、富邦科技 多4／空0、元大台灣50正2 多0／空0、群益臺灣加權正2 多2／空2、國泰費城半導體 多3／空2",
-      "since": "2026-11-19T05:34:19+08:00",
-      "task": ""
+      "last_done": "2026-11-19T05:35:23+08:00",
+      "last_msg": "主動ETF：27 檔，被加碼 123 檔股票（日月光投控×7、世芯-KY×7、奇鋐×6、旺矽×5、南亞×4）"
     }
   },
-  "updated": "2026-11-19T05:34:19+08:00"
+  "updated": "2026-11-19T05:35:23+08:00"
 }
