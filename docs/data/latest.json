@@ -1,31 +1,33 @@
 {
  "us": {
   "mode": "us_intraday",
-  "time": "2026-11-18 22:46",
+  "time": "2026-11-18 23:01",
   "stocks": [
    {
     "symbol": "QQQM",
     "name": "Invesco 那斯達克100 ETF",
     "holding": false,
     "ma20_cross": null,
-    "price": 269.57,
-    "change_pct": -0.31,
+    "price": 272.22,
+    "change_pct": 0.66,
     "date": "2026-11-18",
     "is_today": true,
-    "ma5": 275.17,
-    "ma10": 275.45,
-    "ma20": 282.51,
-    "ma60": 294.19,
-    "above_ma20_pct": -4.6,
-    "rsi": 36.0,
-    "k": 31.0,
-    "d": 39.0,
-    "macd_hist": -0.745,
-    "vol_ratio": 3.76,
+    "ma5": 275.7,
+    "ma10": 275.72,
+    "ma20": 282.64,
+    "ma60": 294.23,
+    "above_ma20_pct": -3.7,
+    "rsi": 38.0,
+    "k": 35.0,
+    "d": 41.0,
+    "macd_hist": -0.576,
+    "vol_ratio": 3.74,
     "high20_prev": 299.74,
-    "vwap": 270.65,
-    "score": 0,
-    "reasons": [],
+    "vwap": 271.01,
+    "score": 1,
+    "reasons": [
+     "盤中站上均價線"
+    ],
     "blockers": [
      "股價在月線之下",
      "月線往下彎"
@@ -41,7 +43,7 @@
      279.97,
      272.49,
      270.42,
-     269.57
+     272.22
     ]
    },
    {
@@ -49,22 +51,22 @@
     "name": "Apple",
     "holding": false,
     "ma20_cross": null,
-    "price": 354.79,
-    "change_pct": 0.82,
+    "price": 355.46,
+    "change_pct": 1.01,
     "date": "2026-11-18",
     "is_today": true,
-    "ma5": 354.12,
-    "ma10": 351.2,
-    "ma20": 347.8,
-    "ma60": 337.57,
-    "above_ma20_pct": 2.0,
-    "rsi": 58.0,
-    "k": 72.0,
+    "ma5": 354.26,
+    "ma10": 351.27,
+    "ma20": 347.84,
+    "ma60": 337.58,
+    "above_ma20_pct": 2.2,
+    "rsi": 59.0,
+    "k": 73.0,
     "d": 74.0,
-    "macd_hist": 0.435,
-    "vol_ratio": 1.85,
+    "macd_hist": 0.478,
+    "vol_ratio": 1.68,
     "high20_prev": 360.83,
-    "vwap": 354.44,
+    "vwap": 355.01,
     "score": 2,
     "reasons": [
      "短線多頭排列（價 > 5日線 > 10日線）",
@@ -82,7 +84,7 @@
      356.27,
      352.78,
      351.91,
-     354.79
+     355.46
     ]
    },
    {
@@ -90,22 +92,22 @@
     "name": "NVIDIA",
     "holding": false,
     "ma20_cross": null,
-    "price": 154.02,
-    "change_pct": -0.92,
+    "price": 154.8,
+    "change_pct": -0.42,
     "date": "2026-11-18",
     "is_today": true,
-    "ma5": 158.93,
-    "ma10": 168.42,
-    "ma20": 189.19,
-    "ma60": 212.4,
-    "above_ma20_pct": -18.6,
+    "ma5": 159.09,
+    "ma10": 168.5,
+    "ma20": 189.23,
+    "ma60": 212.42,
+    "above_ma20_pct": -18.2,
     "rsi": 22.0,
     "k": 15.0,
     "d": 16.0,
-    "macd_hist": -3.629,
-    "vol_ratio": 5.59,
+    "macd_hist": -3.579,
+    "vol_ratio": 4.6,
     "high20_prev": 222.19,
-    "vwap": 156.13,
+    "vwap": 155.72,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -123,7 +125,7 @@
      162.85,
      156.14,
      155.46,
-     154.02
+     154.8
     ]
    },
    {
@@ -131,25 +133,27 @@
     "name": "Astera Labs",
     "holding": false,
     "ma20_cross": null,
-    "price": 211.38,
-    "change_pct": -0.1,
+    "price": 220.01,
+    "change_pct": 3.97,
     "date": "2026-11-18",
     "is_today": true,
-    "ma5": 214.99,
-    "ma10": 210.91,
-    "ma20": 235.16,
-    "ma60": 289.27,
-    "above_ma20_pct": -10.1,
-    "rsi": 39.0,
-    "k": 52.0,
-    "d": 47.0,
-    "macd_hist": 0.844,
-    "vol_ratio": 3.08,
+    "ma5": 216.71,
+    "ma10": 211.77,
+    "ma20": 235.59,
+    "ma60": 289.42,
+    "above_ma20_pct": -6.6,
+    "rsi": 42.0,
+    "k": 57.0,
+    "d": 48.0,
+    "macd_hist": 1.395,
+    "vol_ratio": 2.5,
     "high20_prev": 300.76,
-    "vwap": 212.72,
-    "score": 1,
+    "vwap": 214.2,
+    "score": 3,
     "reasons": [
-     "MACD 柱翻正"
+     "MACD 柱翻正",
+     "短線多頭排列（價 > 5日線 > 10日線）",
+     "盤中站上均價線"
     ],
     "blockers": [
      "股價在月線之下",
@@ -166,7 +170,7 @@
      221.83,
      202.34,
      211.6,
-     211.38
+     220.01
     ]
    },
    {
@@ -174,24 +178,26 @@
     "name": "Texas Instruments",
     "holding": false,
     "ma20_cross": null,
-    "price": 291.32,
-    "change_pct": -1.53,
+    "price": 296.14,
+    "change_pct": 0.09,
     "date": "2026-11-18",
     "is_today": true,
-    "ma5": 299.49,
-    "ma10": 295.9,
-    "ma20": 298.99,
-    "ma60": 281.41,
-    "above_ma20_pct": -2.6,
-    "rsi": 48.0,
-    "k": 55.0,
-    "d": 61.0,
-    "macd_hist": -1.487,
+    "ma5": 300.46,
+    "ma10": 296.39,
+    "ma20": 299.23,
+    "ma60": 281.49,
+    "above_ma20_pct": -1.0,
+    "rsi": 51.0,
+    "k": 59.0,
+    "d": 62.0,
+    "macd_hist": -1.179,
     "vol_ratio": 0.63,
     "high20_prev": 317.2,
-    "vwap": 294.04,
-    "score": 0,
-    "reasons": [],
+    "vwap": 294.42,
+    "score": 1,
+    "reasons": [
+     "盤中站上均價線"
+    ],
     "blockers": [
      "股價在月線之下"
     ],
@@ -206,7 +212,7 @@
      303.6,
      294.21,
      295.86,
-     291.32
+     296.14
     ]
    },
    {
@@ -214,25 +220,26 @@
     "name": "SpaceX",
     "holding": false,
     "ma20_cross": null,
-    "price": 141.67,
-    "change_pct": -0.02,
+    "price": 143.53,
+    "change_pct": 1.29,
     "date": "2026-11-18",
     "is_today": true,
-    "ma5": 139.96,
-    "ma10": 138.26,
-    "ma20": 140.39,
-    "ma60": 147.74,
-    "above_ma20_pct": 0.9,
-    "rsi": 49.0,
-    "k": 70.0,
-    "d": 66.0,
-    "macd_hist": 0.665,
-    "vol_ratio": 2.11,
+    "ma5": 140.33,
+    "ma10": 138.44,
+    "ma20": 140.48,
+    "ma60": 147.77,
+    "above_ma20_pct": 2.2,
+    "rsi": 51.0,
+    "k": 73.0,
+    "d": 67.0,
+    "macd_hist": 0.784,
+    "vol_ratio": 1.94,
     "high20_prev": 166.18,
-    "vwap": 142.48,
-    "score": 1,
+    "vwap": 142.65,
+    "score": 2,
     "reasons": [
-     "短線多頭排列（價 > 5日線 > 10日線）"
+     "短線多頭排列（價 > 5日線 > 10日線）",
+     "盤中站上均價線"
     ],
     "blockers": [
      "月線往下彎"
@@ -248,7 +255,7 @@
      139.11,
      137.36,
      141.7,
-     141.67
+     143.53
     ]
    }
   ]
