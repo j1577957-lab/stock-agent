@@ -253,7 +253,7 @@
  },
  "tw": {
   "mode": "tw_intraday",
-  "time": "2026-11-19 09:00",
+  "time": "2026-11-19 09:15",
   "stocks": [
    {
     "symbol": "5465.TWO",
@@ -823,7 +823,7 @@
     "k": 48.0,
     "d": 47.0,
     "macd_hist": -0.14,
-    "vol_ratio": 1.02,
+    "vol_ratio": 0.55,
     "high20_prev": 83.6,
     "vwap": null,
     "score": 0,
