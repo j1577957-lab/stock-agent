@@ -253,7 +253,7 @@
  },
  "tw": {
   "mode": "tw_post",
-  "time": "2026-11-19 15:30",
+  "time": "2026-11-19 15:45",
   "stocks": [
    {
     "symbol": "5465.TWO",
@@ -275,7 +275,7 @@
     "macd_hist": -1.003,
     "vol_ratio": 0.37,
     "high20_prev": 45.35,
-    "vwap": 28.6,
+    "vwap": 28.66,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -359,7 +359,7 @@
     "macd_hist": -0.807,
     "vol_ratio": 0.66,
     "high20_prev": 89.5,
-    "vwap": 59.95,
+    "vwap": 60.18,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -399,7 +399,7 @@
     "macd_hist": -0.33,
     "vol_ratio": 0.89,
     "high20_prev": 37.8,
-    "vwap": 26.08,
+    "vwap": 26.15,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -440,7 +440,7 @@
     "macd_hist": -0.423,
     "vol_ratio": 0.98,
     "high20_prev": 131.0,
-    "vwap": 89.76,
+    "vwap": 89.91,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -481,7 +481,7 @@
     "macd_hist": -1.107,
     "vol_ratio": 1.26,
     "high20_prev": 113.0,
-    "vwap": 64.86,
+    "vwap": 65.09,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -522,7 +522,7 @@
     "macd_hist": -0.874,
     "vol_ratio": 1.5,
     "high20_prev": 156.5,
-    "vwap": 103.81,
+    "vwap": 104.08,
     "score": 1,
     "reasons": [
      "量能放大 1.5 倍"
@@ -565,7 +565,7 @@
     "macd_hist": -5.244,
     "vol_ratio": 0.97,
     "high20_prev": 284.5,
-    "vwap": 179.17,
+    "vwap": 180.31,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -606,7 +606,7 @@
     "macd_hist": -1.765,
     "vol_ratio": 1.11,
     "high20_prev": 127.0,
-    "vwap": 78.42,
+    "vwap": 78.59,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -647,7 +647,7 @@
     "macd_hist": -0.165,
     "vol_ratio": 1.87,
     "high20_prev": 12.32,
-    "vwap": 8.19,
+    "vwap": 8.2,
     "score": 1,
     "reasons": [
      "量能放大 1.9 倍"
@@ -690,7 +690,7 @@
     "macd_hist": -0.772,
     "vol_ratio": 2.05,
     "high20_prev": 109.2,
-    "vwap": 91.38,
+    "vwap": 91.44,
     "score": 1,
     "reasons": [
      "量能放大 2.1 倍"
@@ -733,7 +733,7 @@
     "macd_hist": -0.45,
     "vol_ratio": 1.38,
     "high20_prev": 63.45,
-    "vwap": 52.66,
+    "vwap": 52.7,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -774,7 +774,7 @@
     "macd_hist": -0.49,
     "vol_ratio": 2.05,
     "high20_prev": 37.19,
-    "vwap": 25.39,
+    "vwap": 25.51,
     "score": 1,
     "reasons": [
      "量能放大 2.1 倍"
@@ -815,9 +815,9 @@
     "k": 44.0,
     "d": 46.0,
     "macd_hist": -0.112,
-    "vol_ratio": 0.75,
+    "vol_ratio": 0.77,
     "high20_prev": 83.6,
-    "vwap": 70.92,
+    "vwap": 71.02,
     "score": 0,
     "reasons": [],
     "blockers": [
