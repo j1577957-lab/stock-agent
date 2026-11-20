@@ -251,7 +251,7 @@
  },
  "tw": {
   "mode": "tw_pre",
-  "time": "2026-11-20 08:15",
+  "time": "2026-11-20 08:30",
   "stocks": [
    {
     "symbol": "5465.TWO",
@@ -312,12 +312,12 @@
     "k": 19.0,
     "d": 28.0,
     "macd_hist": -0.097,
-    "vol_ratio": 1.54,
+    "vol_ratio": 1.58,
     "high20_prev": 9.42,
     "vwap": null,
     "score": 1,
     "reasons": [
-     "量能放大 1.5 倍"
+     "量能放大 1.6 倍"
     ],
     "blockers": [
      "股價在月線之下",
@@ -641,7 +641,7 @@
     "k": 28.0,
     "d": 40.0,
     "macd_hist": -0.164,
-    "vol_ratio": 1.8,
+    "vol_ratio": 1.84,
     "high20_prev": 12.32,
     "vwap": null,
     "score": 1,
@@ -684,7 +684,7 @@
     "k": 34.0,
     "d": 48.0,
     "macd_hist": -0.77,
-    "vol_ratio": 1.98,
+    "vol_ratio": 2.03,
     "high20_prev": 109.2,
     "vwap": null,
     "score": 1,
@@ -727,7 +727,7 @@
     "k": 33.0,
     "d": 46.0,
     "macd_hist": -0.454,
-    "vol_ratio": 1.33,
+    "vol_ratio": 1.36,
     "high20_prev": 63.45,
     "vwap": null,
     "score": 0,
@@ -768,12 +768,12 @@
     "k": 30.0,
     "d": 42.0,
     "macd_hist": -0.488,
-    "vol_ratio": 1.94,
+    "vol_ratio": 3.47,
     "high20_prev": 37.19,
     "vwap": null,
     "score": 1,
     "reasons": [
-     "量能放大 1.9 倍"
+     "量能放大 3.5 倍"
     ],
     "blockers": [
      "股價在月線之下",
@@ -811,7 +811,7 @@
     "k": 44.0,
     "d": 46.0,
     "macd_hist": -0.117,
-    "vol_ratio": 0.66,
+    "vol_ratio": 1.38,
     "high20_prev": 83.6,
     "vwap": null,
     "score": 0,
