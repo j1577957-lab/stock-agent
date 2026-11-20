@@ -1,7 +1,7 @@
 {
  "us": {
   "mode": "us_post",
-  "time": "2026-11-21 05:46",
+  "time": "2026-11-21 06:01",
   "stocks": [
    {
     "symbol": "QQQM",
@@ -21,12 +21,12 @@
     "k": 17.0,
     "d": 29.0,
     "macd_hist": -1.921,
-    "vol_ratio": 2.75,
+    "vol_ratio": 2.76,
     "high20_prev": 298.97,
     "vwap": 255.06,
     "score": 1,
     "reasons": [
-     "量能放大 2.7 倍"
+     "量能放大 2.8 倍"
     ],
     "blockers": [
      "股價在月線之下",
@@ -106,12 +106,12 @@
     "k": 6.0,
     "d": 11.0,
     "macd_hist": -4.628,
-    "vol_ratio": 2.34,
+    "vol_ratio": 2.39,
     "high20_prev": 219.99,
     "vwap": 135.08,
     "score": 1,
     "reasons": [
-     "量能放大 2.3 倍"
+     "量能放大 2.4 倍"
     ],
     "blockers": [
      "股價在月線之下",
@@ -149,11 +149,13 @@
     "k": 36.0,
     "d": 44.0,
     "macd_hist": -0.0,
-    "vol_ratio": 1.49,
+    "vol_ratio": 1.51,
     "high20_prev": 300.76,
     "vwap": 187.37,
-    "score": 0,
-    "reasons": [],
+    "score": 1,
+    "reasons": [
+     "量能放大 1.5 倍"
+    ],
     "blockers": [
      "股價在月線之下",
      "月線往下彎"
@@ -190,7 +192,7 @@
     "k": 29.0,
     "d": 46.0,
     "macd_hist": -3.862,
-    "vol_ratio": 1.97,
+    "vol_ratio": 1.98,
     "high20_prev": 317.2,
     "vwap": 269.82,
     "score": 1,
@@ -232,7 +234,7 @@
     "k": 39.0,
     "d": 56.0,
     "macd_hist": -0.145,
-    "vol_ratio": 1.18,
+    "vol_ratio": 1.2,
     "high20_prev": 151.36,
     "vwap": 129.9,
     "score": 0,
