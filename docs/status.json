@@ -3,17 +3,11 @@
     "eng": "idle",
     "cal": "idle",
     "mail": "idle",
-    "stock": "busy",
+    "stock": "idle",
     "shop": "off",
     "crawl": "idle"
   },
   "radio": [
-    {
-      "id": 1341,
-      "who": "策略技師",
-      "tech": "stock",
-      "msg": "11/19 22:16｜⚠️ us_pre 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
-    },
     {
       "id": 1342,
       "who": "策略技師",
@@ -607,19 +601,23 @@
       "who": "策略技師",
       "tech": "stock",
       "msg": "11/20 22:23｜⚠️ us_pre 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
+    },
+    {
+      "id": 1441,
+      "who": "策略技師",
+      "tech": "stock",
+      "msg": "11/20 22:31｜美股盤中掃描 6 檔，0 檔通過初篩"
     }
   ],
   "meta": {
     "stock": {
-      "last_done": "2026-11-20T22:23:36+08:00",
-      "last_msg": "⚠️ us_pre 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '",
-      "since": "2026-11-20T22:30:52+08:00",
-      "task": "美股盤中掃描"
+      "last_done": "2026-11-20T22:31:21+08:00",
+      "last_msg": "美股盤中掃描 6 檔，0 檔通過初篩"
     },
     "crawl": {
       "last_done": "2026-11-20T22:08:03+08:00",
       "last_msg": "新聞掃描：台股新增 9 則（近 30 則 多4／空14），美股新增 8 則（近 30 則 多5／空8），地緣政治新增 6 則（近 30 則 多2／空12），持股：元大台灣50 多1／空3、富邦科技 多1／空2、元大台灣50正2 多0／空5、群益臺灣加權正2 多0／空5、國泰費城半導體 多0／空0"
     }
   },
-  "updated": "2026-11-20T22:30:52+08:00"
+  "updated": "2026-11-20T22:31:21+08:00"
 }
