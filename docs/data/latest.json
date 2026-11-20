@@ -251,7 +251,7 @@
  },
  "tw": {
   "mode": "tw_post",
-  "time": "2026-11-20 15:01",
+  "time": "2026-11-20 15:15",
   "stocks": [
    {
     "symbol": "5465.TWO",
@@ -273,7 +273,7 @@
     "macd_hist": -1.164,
     "vol_ratio": 0.58,
     "high20_prev": 45.35,
-    "vwap": 25.4,
+    "vwap": 25.36,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -314,7 +314,7 @@
     "macd_hist": -0.133,
     "vol_ratio": 1.39,
     "high20_prev": 9.39,
-    "vwap": 5.96,
+    "vwap": 5.95,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -355,7 +355,7 @@
     "macd_hist": -1.749,
     "vol_ratio": 0.34,
     "high20_prev": 89.5,
-    "vwap": 53.29,
+    "vwap": 53.24,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -396,7 +396,7 @@
     "macd_hist": -0.487,
     "vol_ratio": 1.03,
     "high20_prev": 37.8,
-    "vwap": 23.55,
+    "vwap": 23.52,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -437,7 +437,7 @@
     "macd_hist": -0.888,
     "vol_ratio": 1.64,
     "high20_prev": 131.0,
-    "vwap": 80.96,
+    "vwap": 80.72,
     "score": 1,
     "reasons": [
      "量能放大 1.6 倍"
@@ -480,7 +480,7 @@
     "macd_hist": -1.583,
     "vol_ratio": 0.59,
     "high20_prev": 113.0,
-    "vwap": 57.27,
+    "vwap": 57.19,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -521,7 +521,7 @@
     "macd_hist": -1.681,
     "vol_ratio": 0.91,
     "high20_prev": 156.5,
-    "vwap": 92.97,
+    "vwap": 92.73,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -562,7 +562,7 @@
     "macd_hist": -6.087,
     "vol_ratio": 0.67,
     "high20_prev": 284.5,
-    "vwap": 158.87,
+    "vwap": 158.61,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -603,7 +603,7 @@
     "macd_hist": -2.31,
     "vol_ratio": 1.04,
     "high20_prev": 125.0,
-    "vwap": 70.08,
+    "vwap": 69.91,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -644,10 +644,10 @@
     "macd_hist": -0.25,
     "vol_ratio": 2.55,
     "high20_prev": 12.26,
-    "vwap": 7.08,
+    "vwap": 7.05,
     "score": 1,
     "reasons": [
-     "量能放大 2.5 倍"
+     "量能放大 2.6 倍"
     ],
     "blockers": [
      "股價在月線之下",
@@ -685,9 +685,9 @@
     "k": 24.0,
     "d": 40.0,
     "macd_hist": -1.23,
-    "vol_ratio": 3.54,
+    "vol_ratio": 3.55,
     "high20_prev": 109.15,
-    "vwap": 85.64,
+    "vwap": 85.51,
     "score": 1,
     "reasons": [
      "量能放大 3.5 倍"
@@ -730,7 +730,7 @@
     "macd_hist": -0.725,
     "vol_ratio": 2.42,
     "high20_prev": 63.4,
-    "vwap": 49.22,
+    "vwap": 49.18,
     "score": 1,
     "reasons": [
      "量能放大 2.4 倍"
@@ -771,12 +771,12 @@
     "k": 21.0,
     "d": 35.0,
     "macd_hist": -0.739,
-    "vol_ratio": 2.66,
+    "vol_ratio": 2.85,
     "high20_prev": 37.0,
-    "vwap": 22.11,
+    "vwap": 22.02,
     "score": 1,
     "reasons": [
-     "量能放大 2.7 倍"
+     "量能放大 2.9 倍"
     ],
     "blockers": [
      "股價在月線之下",
@@ -814,9 +814,9 @@
     "k": 30.0,
     "d": 41.0,
     "macd_hist": -0.319,
-    "vol_ratio": 1.29,
+    "vol_ratio": 1.34,
     "high20_prev": 83.25,
-    "vwap": 67.65,
+    "vwap": 67.53,
     "score": 0,
     "reasons": [],
     "blockers": [
