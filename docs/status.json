@@ -3,7 +3,7 @@
     "eng": "idle",
     "cal": "idle",
     "mail": "idle",
-    "stock": "error",
+    "stock": "busy",
     "shop": "off",
     "crawl": "idle"
   },
@@ -612,12 +612,14 @@
   "meta": {
     "stock": {
       "last_done": "2026-11-21T06:16:14+08:00",
-      "last_msg": "⚠️ us_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
+      "last_msg": "⚠️ us_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '",
+      "since": "2026-11-21T06:30:47+08:00",
+      "task": "美股盤後報告"
     },
     "crawl": {
       "last_done": "2026-11-21T05:31:40+08:00",
       "last_msg": "主動ETF：28 檔，被加碼 64 檔股票（台光電×4、奇鋐×4、世芯-KY×4、聯茂×3、川湖×3）"
     }
   },
-  "updated": "2026-11-21T06:16:14+08:00"
+  "updated": "2026-11-21T06:30:47+08:00"
 }
