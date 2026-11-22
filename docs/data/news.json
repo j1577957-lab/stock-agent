@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23 04:07",
+ "updated": "2026-11-23 05:08",
  "tw": [
   {
    "title": "台股週一開盤變數多！李其展曝4大訊號：比特幣先V轉",
@@ -786,6 +786,15 @@
   }
  ],
  "us": [
+  {
+   "title": "輝達換帥＋AI融資急凍　華爾街開始重新定價「Fed鷹派邏輯」",
+   "url": "https://news.cnyes.com/news/id/6669878",
+   "source": "鉅亨網",
+   "time": "2026-11-22T21:00:58+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
   {
    "title": "美股聚焦上月PCE通脹 左右加息預期",
    "url": "https://news.google.com/rss/articles/CBMiugJBVV95cUxQdElyRlZLbS1wYVBkdzREZXF1dlg4VG1QbWxudmtkQkpKVlNiUU9HcXNic0VfUTd6RW8zTkJsWTk3c09xa1hia0xtT0JpVGpnLUJHa0FZamxLZWY0UEp0Z1lCbnlPZFhDUkF3UUg2MjVMbnhTam1HZndsQjhoeU4wNExMZGcxZzB3RkRyT0tuQXNlcFhibXIwaHF4bGtMV2dBMWxsY3pNLTdwdm9LUWlZazdUa1AyaEYyZFJGaVZTWjBkLW9wSUZtbThWdkNJTkI3TG9YTjlTLXVlVjdWYWt3YTlHMC1qbWpKdGEtVzhNUlFfYk1tM0s2a0JteTE3VVVHZDZVTnlLcnV5VUg0RmVTTW9SWnkxZjRHU2dKVFkzOFprMFBvTlNVYktSM2tReFBNN1pNMjhXV3ljQQ?oc=5",
@@ -1578,18 +1587,6 @@
    "label": "中性",
    "score": 0,
    "hits": []
-  },
-  {
-   "title": "減碼輝達50%空單！「大賣空」貝瑞賺飽先跑？還留一手押美股續跌",
-   "url": "https://news.google.com/rss/articles/CBMirwJBVV95cUxNM1A3d05XYXJxSVhMV29fNXBORU52UFJ5OFdZNFV4bEFHN2RrVmdWdjFFZDUzaTlBempmQkdPUlVpYzlkanJ6MDg5T2w3TkV3bXdzQndSN1NxTjlZbmdfaGpTc0h5Snp2MUZkNGhISkNhVnNyWC1WRDN5a09wWmlxZW5leEpPNmVuMnV0ellxTGFzV052ekVod2FBMWhRUFBzUXdtS19PZ3pnNjgxanpjV3BWN3BCZ2FJV2gzaWUxNkExNXJRMDBKTHBKWWVqYnpJSlRQSnRTLTdqNHBSdThlcEluTHJ4V3l2bXJ1RFNVTC1ZX0tZNFRLNzhuN0tORXQ4VElFQW54cF9teTdKaklROGlSMWhKUU9WdWFZR3ZoWTRGZEFPbUg5NzBjaDVtZTA?oc=5",
-   "source": "Yahoo股市",
-   "time": "2026-11-22T08:18:00+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "續跌",
-    "減碼"
-   ]
   }
  ],
  "geo": [
@@ -2834,35 +2831,6 @@
     "hits": [
      "跌停",
      "崩跌"
-    ]
-   },
-   {
-    "title": "台股一個月修正20％！有人趁股災搶買這5檔 週規模大增逾10％",
-    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9UQ3BTZVpGTFEyNVdsSFpFdDZjdzR3TlpUTHJNR1RzeG54bmZpaEVEY0RmcTZEeGFQYWEzb3dBaFpQSW9yVkx1c1l2UQ?oc=5",
-    "source": "三立新聞網SETN.com",
-    "time": "2026-11-20T20:35:59+00:00",
-    "label": "中性",
-    "score": 0,
-    "hits": []
-   },
-   {
-    "title": "有人趁股災搶買這5檔　週規模大增逾10％",
-    "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9wc01vcU96WnlVLWlpcG9jbUNiTTZTUUZ1MHBpZGdETUFwbzJ5QXFaMVVfdlRLVFh5SmZKVWEweGxDYV9ndjg0YkdjUzV0TC1LZ2lfckZ1akpuNjEt0gFiQVVfeXFMT0dmMHY4ZWEzNDVzVzFuZjdkUm5wYW54WU9IWU80MEVFaXgyQy1NVVFnaG9xUFhhdlVxMENpd3ZjX0tYN29fTV9BdWhEMlpveGVLV0tTanZhYzBwa0I3R1NLckE?oc=5",
-    "source": "鏡週刊Mirror Media",
-    "time": "2026-11-20T20:22:00+00:00",
-    "label": "中性",
-    "score": 0,
-    "hits": []
-   },
-   {
-    "title": "百檔高價股鎖跌停！杜金龍買爆「這幾檔低價股」：揭台股止穩關鍵日",
-    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE10QzY0OVZOTF9DN1FNdHN3UXFKcGdib1NhdWdjYUNaNERCbzVLRFVvS0pldUVibnoxMS1jZk05TmNLUTBId1IwbHlvcw?oc=5",
-    "source": "三立新聞",
-    "time": "2026-11-20T20:15:55+00:00",
-    "label": "利空",
-    "score": -2,
-    "hits": [
-     "跌停"
     ]
    }
   ],
