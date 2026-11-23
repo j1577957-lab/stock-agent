@@ -261,33 +261,31 @@
  },
  "tw": {
   "mode": "tw_intraday",
-  "time": "2026-11-23 13:15",
+  "time": "2026-11-23 13:30",
   "stocks": [
    {
     "symbol": "5465.TWO",
     "name": "富驊",
     "holding": false,
     "ma20_cross": null,
-    "price": 24.6,
-    "change_pct": -1.2,
+    "price": 24.55,
+    "change_pct": -1.41,
     "date": "2026-11-23",
     "is_today": true,
-    "ma5": 27.36,
-    "ma10": 29.66,
+    "ma5": 27.35,
+    "ma10": 29.65,
     "ma20": 32.86,
     "ma60": 31.15,
-    "above_ma20_pct": -25.1,
+    "above_ma20_pct": -25.3,
     "rsi": 30.0,
     "k": 7.0,
     "d": 10.0,
-    "macd_hist": -1.217,
-    "vol_ratio": 0.55,
+    "macd_hist": -1.22,
+    "vol_ratio": 0.56,
     "high20_prev": 42.65,
-    "vwap": 24.55,
-    "score": 1,
-    "reasons": [
-     "盤中站上均價線"
-    ],
+    "vwap": 24.68,
+    "score": 0,
+    "reasons": [],
     "blockers": [
      "股價在月線之下",
      "月線往下彎"
@@ -303,7 +301,7 @@
      30.35,
      27.65,
      24.9,
-     24.6
+     24.55
     ]
    },
    {
@@ -324,9 +322,9 @@
     "k": 15.0,
     "d": 20.0,
     "macd_hist": -0.126,
-    "vol_ratio": 1.16,
+    "vol_ratio": 1.13,
     "high20_prev": 9.2,
-    "vwap": 5.94,
+    "vwap": 5.93,
     "score": 1,
     "reasons": [
      "盤中站上均價線"
@@ -367,9 +365,9 @@
     "k": 23.0,
     "d": 37.0,
     "macd_hist": -1.934,
-    "vol_ratio": 1.14,
+    "vol_ratio": 1.08,
     "high20_prev": 89.5,
-    "vwap": 52.68,
+    "vwap": 52.8,
     "score": 1,
     "reasons": [
      "盤中站上均價線"
@@ -397,22 +395,22 @@
     "name": "友達",
     "holding": false,
     "ma20_cross": null,
-    "price": 24.45,
-    "change_pct": 5.16,
+    "price": 24.35,
+    "change_pct": 4.73,
     "date": "2026-11-23",
     "is_today": true,
-    "ma5": 25.6,
-    "ma10": 27.17,
-    "ma20": 28.8,
+    "ma5": 25.58,
+    "ma10": 27.16,
+    "ma20": 28.79,
     "ma60": 31.36,
-    "above_ma20_pct": -15.1,
+    "above_ma20_pct": -15.4,
     "rsi": 35.0,
     "k": 22.0,
     "d": 31.0,
-    "macd_hist": -0.469,
-    "vol_ratio": 0.84,
+    "macd_hist": -0.475,
+    "vol_ratio": 0.82,
     "high20_prev": 36.65,
-    "vwap": 23.7,
+    "vwap": 23.73,
     "score": 1,
     "reasons": [
      "盤中站上均價線"
@@ -432,7 +430,7 @@
      27.4,
      25.1,
      23.25,
-     24.45
+     24.35
     ]
    },
    {
@@ -453,12 +451,12 @@
     "k": 21.0,
     "d": 24.0,
     "macd_hist": -0.526,
-    "vol_ratio": 2.12,
+    "vol_ratio": 2.02,
     "high20_prev": 128.5,
     "vwap": 86.91,
     "score": 2,
     "reasons": [
-     "量能放大 2.1 倍",
+     "量能放大 2.0 倍",
      "盤中站上均價線"
     ],
     "blockers": [
@@ -497,9 +495,9 @@
     "k": 14.0,
     "d": 21.0,
     "macd_hist": -1.625,
-    "vol_ratio": 1.26,
+    "vol_ratio": 1.24,
     "high20_prev": 107.5,
-    "vwap": 55.77,
+    "vwap": 55.86,
     "score": 1,
     "reasons": [
      "盤中站上均價線"
@@ -527,22 +525,22 @@
     "name": "富鼎",
     "holding": false,
     "ma20_cross": null,
-    "price": 96.8,
-    "change_pct": 5.91,
+    "price": 96.5,
+    "change_pct": 5.58,
     "date": "2026-11-23",
     "is_today": true,
-    "ma5": 102.54,
-    "ma10": 113.42,
-    "ma20": 122.99,
+    "ma5": 102.48,
+    "ma10": 113.39,
+    "ma20": 122.97,
     "ma60": 156.65,
-    "above_ma20_pct": -21.3,
+    "above_ma20_pct": -21.5,
     "rsi": 29.0,
     "k": 19.0,
     "d": 25.0,
-    "macd_hist": -1.633,
-    "vol_ratio": 1.28,
+    "macd_hist": -1.652,
+    "vol_ratio": 1.25,
     "high20_prev": 153.5,
-    "vwap": 93.44,
+    "vwap": 92.57,
     "score": 1,
     "reasons": [
      "盤中站上均價線"
@@ -562,7 +560,7 @@
      111.5,
      101.5,
      91.4,
-     96.8
+     96.5
     ]
    },
    {
@@ -570,22 +568,22 @@
     "name": "京元電子",
     "holding": false,
     "ma20_cross": null,
-    "price": 157.0,
-    "change_pct": -0.32,
+    "price": 155.5,
+    "change_pct": -1.27,
     "date": "2026-11-23",
     "is_today": true,
-    "ma5": 172.0,
-    "ma10": 193.85,
-    "ma20": 220.85,
-    "ma60": 259.58,
-    "above_ma20_pct": -28.9,
+    "ma5": 171.7,
+    "ma10": 193.7,
+    "ma20": 220.78,
+    "ma60": 259.56,
+    "above_ma20_pct": -29.6,
     "rsi": 28.0,
     "k": 10.0,
     "d": 13.0,
-    "macd_hist": -6.149,
-    "vol_ratio": 1.49,
+    "macd_hist": -6.245,
+    "vol_ratio": 1.46,
     "high20_prev": 280.0,
-    "vwap": 152.21,
+    "vwap": 153.82,
     "score": 1,
     "reasons": [
      "盤中站上均價線"
@@ -605,7 +603,7 @@
      194.0,
      175.0,
      157.5,
-     157.0
+     155.5
     ]
    },
    {
@@ -613,22 +611,22 @@
     "name": "凱美",
     "holding": false,
     "ma20_cross": null,
-    "price": 74.6,
-    "change_pct": 7.03,
+    "price": 74.2,
+    "change_pct": 6.46,
     "date": "2026-11-23",
     "is_today": true,
-    "ma5": 78.04,
-    "ma10": 87.34,
-    "ma20": 96.12,
+    "ma5": 77.96,
+    "ma10": 87.3,
+    "ma20": 96.1,
     "ma60": 114.08,
-    "above_ma20_pct": -22.4,
+    "above_ma20_pct": -22.8,
     "rsi": 31.0,
     "k": 16.0,
     "d": 20.0,
-    "macd_hist": -2.143,
+    "macd_hist": -2.168,
     "vol_ratio": 1.19,
     "high20_prev": 120.0,
-    "vwap": 70.31,
+    "vwap": 71.04,
     "score": 1,
     "reasons": [
      "盤中站上均價線"
@@ -648,7 +646,7 @@
      84.1,
      77.0,
      69.7,
-     74.6
+     74.2
     ]
    },
    {
@@ -656,22 +654,22 @@
     "name": "群益臺灣加權正2",
     "holding": true,
     "ma20_cross": null,
-    "price": 7.17,
-    "change_pct": 5.44,
+    "price": 7.15,
+    "change_pct": 5.15,
     "date": "2026-11-23",
     "is_today": true,
     "ma5": 7.87,
     "ma10": 8.93,
     "ma20": 9.77,
     "ma60": 11.56,
-    "above_ma20_pct": -26.6,
+    "above_ma20_pct": -26.8,
     "rsi": 29.0,
     "k": 17.0,
     "d": 28.0,
-    "macd_hist": -0.259,
-    "vol_ratio": 1.58,
+    "macd_hist": -0.261,
+    "vol_ratio": 1.55,
     "high20_prev": 12.22,
-    "vwap": 7.01,
+    "vwap": 7.02,
     "score": 2,
     "reasons": [
      "量能放大 1.6 倍",
@@ -692,7 +690,7 @@
      8.72,
      7.95,
      6.8,
-     7.17
+     7.15
     ]
    },
    {
@@ -700,25 +698,25 @@
     "name": "元大台灣50",
     "holding": true,
     "ma20_cross": null,
-    "price": 86.8,
-    "change_pct": 2.78,
+    "price": 86.6,
+    "change_pct": 2.55,
     "date": "2026-11-23",
     "is_today": true,
-    "ma5": 89.91,
-    "ma10": 95.23,
-    "ma20": 98.57,
+    "ma5": 89.87,
+    "ma10": 95.21,
+    "ma20": 98.56,
     "ma60": 106.1,
-    "above_ma20_pct": -11.9,
-    "rsi": 31.0,
+    "above_ma20_pct": -12.1,
+    "rsi": 30.0,
     "k": 21.0,
     "d": 34.0,
-    "macd_hist": -1.272,
-    "vol_ratio": 1.77,
+    "macd_hist": -1.285,
+    "vol_ratio": 1.72,
     "high20_prev": 108.65,
-    "vwap": 85.46,
+    "vwap": 85.5,
     "score": 2,
     "reasons": [
-     "量能放大 1.8 倍",
+     "量能放大 1.7 倍",
      "盤中站上均價線"
     ],
     "blockers": [
@@ -736,7 +734,7 @@
      94.1,
      90.2,
      84.45,
-     86.8
+     86.6
     ]
    },
    {
@@ -744,22 +742,22 @@
     "name": "富邦科技",
     "holding": true,
     "ma20_cross": null,
-    "price": 50.25,
-    "change_pct": 3.82,
+    "price": 50.05,
+    "change_pct": 3.41,
     "date": "2026-11-23",
     "is_today": true,
-    "ma5": 51.76,
-    "ma10": 54.87,
-    "ma20": 56.9,
+    "ma5": 51.72,
+    "ma10": 54.85,
+    "ma20": 56.89,
     "ma60": 61.55,
-    "above_ma20_pct": -11.7,
-    "rsi": 33.0,
-    "k": 22.0,
+    "above_ma20_pct": -12.0,
+    "rsi": 32.0,
+    "k": 21.0,
     "d": 33.0,
-    "macd_hist": -0.717,
+    "macd_hist": -0.729,
     "vol_ratio": 1.51,
     "high20_prev": 63.15,
-    "vwap": 49.44,
+    "vwap": 49.42,
     "score": 2,
     "reasons": [
      "量能放大 1.5 倍",
@@ -780,7 +778,7 @@
      54.4,
      52.0,
      48.4,
-     50.25
+     50.05
     ]
    },
    {
@@ -788,22 +786,22 @@
     "name": "元大台灣50正2",
     "holding": true,
     "ma20_cross": null,
-    "price": 22.4,
-    "change_pct": 5.46,
+    "price": 22.27,
+    "change_pct": 4.85,
     "date": "2026-11-23",
     "is_today": true,
-    "ma5": 24.38,
-    "ma10": 27.55,
+    "ma5": 24.36,
+    "ma10": 27.54,
     "ma20": 29.93,
     "ma60": 35.09,
-    "above_ma20_pct": -25.2,
+    "above_ma20_pct": -25.6,
     "rsi": 29.0,
-    "k": 18.0,
+    "k": 17.0,
     "d": 29.0,
-    "macd_hist": -0.763,
-    "vol_ratio": 2.21,
+    "macd_hist": -0.772,
+    "vol_ratio": 2.15,
     "high20_prev": 36.88,
-    "vwap": 22.22,
+    "vwap": 21.94,
     "score": 2,
     "reasons": [
      "量能放大 2.2 倍",
@@ -824,7 +822,7 @@
      26.84,
      24.57,
      21.24,
-     22.4
+     22.27
     ]
    },
    {
@@ -832,25 +830,25 @@
     "name": "國泰費城半導體",
     "holding": true,
     "ma20_cross": null,
-    "price": 64.8,
-    "change_pct": -3.28,
+    "price": 64.75,
+    "change_pct": -3.36,
     "date": "2026-11-23",
     "is_today": true,
-    "ma5": 69.1,
-    "ma10": 71.62,
-    "ma20": 74.18,
+    "ma5": 69.09,
+    "ma10": 71.61,
+    "ma20": 74.17,
     "ma60": 81.08,
-    "above_ma20_pct": -12.6,
+    "above_ma20_pct": -12.7,
     "rsi": 30.0,
-    "k": 24.0,
+    "k": 23.0,
     "d": 35.0,
-    "macd_hist": -0.539,
-    "vol_ratio": 1.77,
+    "macd_hist": -0.542,
+    "vol_ratio": 1.74,
     "high20_prev": 83.25,
-    "vwap": 64.29,
+    "vwap": 64.21,
     "score": 2,
     "reasons": [
-     "量能放大 1.8 倍",
+     "量能放大 1.7 倍",
      "盤中站上均價線"
     ],
     "blockers": [
@@ -868,7 +866,7 @@
      71.7,
      71.0,
      67.0,
-     64.8
+     64.75
     ]
    }
   ]
