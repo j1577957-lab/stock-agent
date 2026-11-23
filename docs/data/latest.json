@@ -1,7 +1,7 @@
 {
  "us": {
   "mode": "us_post",
-  "time": "2026-11-24 05:46",
+  "time": "2026-11-24 06:01",
   "stocks": [
    {
     "symbol": "QQQM",
@@ -21,9 +21,9 @@
     "k": 28.0,
     "d": 28.0,
     "macd_hist": -1.324,
-    "vol_ratio": 1.97,
+    "vol_ratio": 1.98,
     "high20_prev": 298.97,
-    "vwap": 268.36,
+    "vwap": 267.92,
     "score": 1,
     "reasons": [
      "量能放大 2.0 倍"
@@ -64,9 +64,9 @@
     "k": 41.0,
     "d": 52.0,
     "macd_hist": -0.763,
-    "vol_ratio": 1.14,
+    "vol_ratio": 1.15,
     "high20_prev": 360.83,
-    "vwap": 349.1,
+    "vwap": 348.89,
     "score": 0,
     "reasons": [],
     "blockers": [],
@@ -102,9 +102,9 @@
     "k": 30.0,
     "d": 17.0,
     "macd_hist": -2.298,
-    "vol_ratio": 2.69,
+    "vol_ratio": 2.7,
     "high20_prev": 219.99,
-    "vwap": 165.79,
+    "vwap": 165.33,
     "score": 2,
     "reasons": [
      "量能放大 2.7 倍",
@@ -146,7 +146,7 @@
     "k": 48.0,
     "d": 45.0,
     "macd_hist": 1.883,
-    "vol_ratio": 1.53,
+    "vol_ratio": 1.54,
     "high20_prev": 300.76,
     "vwap": 216.18,
     "score": 3,
@@ -231,9 +231,9 @@
     "k": 38.0,
     "d": 50.0,
     "macd_hist": -0.244,
-    "vol_ratio": 0.91,
+    "vol_ratio": 0.92,
     "high20_prev": 151.36,
-    "vwap": 137.32,
+    "vwap": 137.31,
     "score": 0,
     "reasons": [],
     "blockers": [
