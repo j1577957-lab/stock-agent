@@ -261,7 +261,7 @@
  },
  "tw": {
   "mode": "tw_post",
-  "time": "2026-11-23 14:30",
+  "time": "2026-11-23 14:45",
   "stocks": [
    {
     "symbol": "5465.TWO",
@@ -283,7 +283,7 @@
     "macd_hist": -1.227,
     "vol_ratio": 0.66,
     "high20_prev": 42.65,
-    "vwap": 24.63,
+    "vwap": 24.45,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -785,7 +785,7 @@
     "macd_hist": -0.757,
     "vol_ratio": 2.28,
     "high20_prev": 36.88,
-    "vwap": 21.96,
+    "vwap": 22.16,
     "score": 1,
     "reasons": [
      "量能放大 2.3 倍"
