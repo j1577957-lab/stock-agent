@@ -1,7 +1,7 @@
 {
  "us": {
-  "mode": "us_intraday",
-  "time": "2026-11-25 05:01",
+  "mode": "us_post",
+  "time": "2026-11-25 05:16",
   "stocks": [
    {
     "symbol": "QQQM",
@@ -21,13 +21,12 @@
     "k": 31.0,
     "d": 29.0,
     "macd_hist": -1.15,
-    "vol_ratio": 0.98,
+    "vol_ratio": 1.06,
     "high20_prev": 298.97,
-    "vwap": 261.75,
-    "score": 2,
+    "vwap": 262.26,
+    "score": 1,
     "reasons": [
-     "KD 低檔黃金交叉（K=31）",
-     "盤中站上均價線"
+     "KD 低檔黃金交叉（K=31）"
     ],
     "blockers": [
      "股價在月線之下",
@@ -65,13 +64,11 @@
     "k": 49.0,
     "d": 51.0,
     "macd_hist": -0.435,
-    "vol_ratio": 0.73,
+    "vol_ratio": 0.79,
     "high20_prev": 360.83,
-    "vwap": 352.19,
-    "score": 1,
-    "reasons": [
-     "盤中站上均價線"
-    ],
+    "vwap": 352.1,
+    "score": 0,
+    "reasons": [],
     "blockers": [],
     "candidate": false,
     "recent_closes": [
@@ -105,13 +102,12 @@
     "k": 42.0,
     "d": 25.0,
     "macd_hist": -1.19,
-    "vol_ratio": 1.15,
+    "vol_ratio": 1.18,
     "high20_prev": 219.99,
-    "vwap": 153.33,
-    "score": 2,
+    "vwap": 152.23,
+    "score": 1,
     "reasons": [
-     "KD 低檔黃金交叉（K=42）",
-     "盤中站上均價線"
+     "KD 低檔黃金交叉（K=42）"
     ],
     "blockers": [
      "股價在月線之下",
@@ -192,7 +188,7 @@
     "k": 25.0,
     "d": 37.0,
     "macd_hist": -4.477,
-    "vol_ratio": 1.43,
+    "vol_ratio": 1.45,
     "high20_prev": 317.2,
     "vwap": 263.98,
     "score": 0,
@@ -233,9 +229,9 @@
     "k": 29.0,
     "d": 43.0,
     "macd_hist": -0.746,
-    "vol_ratio": 0.97,
+    "vol_ratio": 0.99,
     "high20_prev": 151.36,
-    "vwap": 126.19,
+    "vwap": 126.24,
     "score": 0,
     "reasons": [],
     "blockers": [
