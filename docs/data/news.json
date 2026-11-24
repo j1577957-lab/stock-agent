@@ -1,6 +1,17 @@
 {
- "updated": "2026-11-24 23:08",
+ "updated": "2026-11-25 00:08",
  "tw": [
+  {
+   "title": "台灣會被加稅嗎？彭博：美國新關稅最快周二公布",
+   "url": "https://news.cnyes.com/news/id/6671111",
+   "source": "鉅亨網",
+   "time": "2026-11-24T15:27:47+00:00",
+   "label": "偏空",
+   "score": -1,
+   "hits": [
+    "關稅"
+   ]
+  },
   {
    "title": "黃仁勳重返輝達點火台股！謝金河警告「未來兩大變數」",
    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9FRGUtUFJtTFN2Y196Rk9yeHJ6UFg2OEgydl81VG5WRUdqYmZCVG5CRi0zR05BRjRjcnNUNkptS25OTUlLZ211MFB0SQ?oc=5",
@@ -803,20 +814,214 @@
    "hits": [
     "違約"
    ]
+  }
+ ],
+ "us": [
+  {
+   "title": "AI失業潮恐沒想像嚴重！美企明年擬擴大招聘 逾3成看好AI帶動增聘",
+   "url": "https://news.cnyes.com/news/id/6670407",
+   "source": "鉅亨網",
+   "time": "2026-11-24T16:00:05+00:00",
+   "label": "偏多",
+   "score": 1,
+   "hits": [
+    "看好"
+   ]
   },
   {
-   "title": "台股大漲外資反手大賣 新台幣盤中觸33元、收32.939元",
-   "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBUZkR5WjdwLXpTYzhKTlRfWXhJTkdqd3RYQ0Nvbm4zUUlMZ0t6ZEswaVRUY200dmFNT0lkZjFPSWVGR2xuZHZEcnQ3R00yNlpDZ2lxT1lJT3dQZkkwb0E?oc=5",
-   "source": "中央社 CNA",
-   "time": "2026-11-24T10:14:00+00:00",
+   "title": "「打不倒黃仁勳，就試試Anthropic」 美財經名嘴Cramer：空頭盯上新目標",
+   "url": "https://news.cnyes.com/news/id/6671115",
+   "source": "鉅亨網",
+   "time": "2026-11-24T15:50:40+00:00",
+   "label": "偏空",
+   "score": -1,
+   "hits": [
+    "空頭"
+   ]
+  },
+  {
+   "title": "盤中速報 - 耐吉(NKE-US)大漲5%，報35.45美元",
+   "url": "https://news.cnyes.com/news/id/6671136",
+   "source": "鉅亨網",
+   "time": "2026-11-24T15:49:53+00:00",
    "label": "利多",
    "score": 2,
    "hits": [
     "大漲"
    ]
-  }
- ],
- "us": [
+  },
+  {
+   "title": "盤中速報 - 直覺(INTU-US)大漲5%，報289.25美元",
+   "url": "https://news.cnyes.com/news/id/6671135",
+   "source": "鉅亨網",
+   "time": "2026-11-24T15:48:32+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "大漲"
+   ]
+  },
+  {
+   "title": "盤中速報 - Workday公司(WDAY-US)大漲5.01%，報184.91美元",
+   "url": "https://news.cnyes.com/news/id/6671134",
+   "source": "鉅亨網",
+   "time": "2026-11-24T15:42:09+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "大漲"
+   ]
+  },
+  {
+   "title": "盤中速報 - CDW Corp(CDW-US)大跌5.11%，報161.37美元",
+   "url": "https://news.cnyes.com/news/id/6671133",
+   "source": "鉅亨網",
+   "time": "2026-11-24T15:38:35+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "大跌"
+   ]
+  },
+  {
+   "title": "〈財報〉電腦、AI眼鏡需求強勁 百思買Q3業績報喜、上調全年財測",
+   "url": "https://news.cnyes.com/news/id/6671012",
+   "source": "鉅亨網",
+   "time": "2026-11-24T15:34:09+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "盤中速報 - 台積電ADR(TSM-US)大跌5.02%，報345.36美元",
+   "url": "https://news.cnyes.com/news/id/6671132",
+   "source": "鉅亨網",
+   "time": "2026-11-24T15:32:00+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "大跌"
+   ]
+  },
+  {
+   "title": "台灣會被加稅嗎？彭博：美國新關稅最快周二公布",
+   "url": "https://news.cnyes.com/news/id/6671111",
+   "source": "鉅亨網",
+   "time": "2026-11-24T15:27:47+00:00",
+   "label": "偏空",
+   "score": -1,
+   "hits": [
+    "關稅"
+   ]
+  },
+  {
+   "title": "盤中速報 - 埃森哲(ACN-US)大漲5.03%，報233.46美元",
+   "url": "https://news.cnyes.com/news/id/6671127",
+   "source": "鉅亨網",
+   "time": "2026-11-24T15:26:40+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "大漲"
+   ]
+  },
+  {
+   "title": "馬斯克坦承SpaceX AI競爭落後！出租算力比自研Grok更賺錢",
+   "url": "https://news.cnyes.com/news/id/6670415",
+   "source": "鉅亨網",
+   "time": "2026-11-24T15:20:04+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
+   "title": "盤中速報 - 交易台(TTD-US)大漲5.19%，報14.79美元",
+   "url": "https://news.cnyes.com/news/id/6671126",
+   "source": "鉅亨網",
+   "time": "2026-11-24T15:19:00+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "大漲"
+   ]
+  },
+  {
+   "title": "盤中速報 - Take-Two互動軟體(TTWO-US)大漲5%，報219.83美元",
+   "url": "https://news.cnyes.com/news/id/6671125",
+   "source": "鉅亨網",
+   "time": "2026-11-24T15:16:33+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "大漲"
+   ]
+  },
+  {
+   "title": "Anthropic跌破IPO價還能買嗎？三券商齊喊多、目標價最高150美元",
+   "url": "https://news.cnyes.com/news/id/6671113",
+   "source": "鉅亨網",
+   "time": "2026-11-24T15:15:55+00:00",
+   "label": "偏空",
+   "score": -1,
+   "hits": [
+    "跌破"
+   ]
+  },
+  {
+   "title": "盤中速報 - 賽富時(CRM-US)大漲5.01%，報194.75美元",
+   "url": "https://news.cnyes.com/news/id/6671124",
+   "source": "鉅亨網",
+   "time": "2026-11-24T15:15:52+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "大漲"
+   ]
+  },
+  {
+   "title": "盤中速報 - 特許通訊(CHTR-US)大漲5.03%，報134.35美元",
+   "url": "https://news.cnyes.com/news/id/6671123",
+   "source": "鉅亨網",
+   "time": "2026-11-24T15:13:48+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "大漲"
+   ]
+  },
+  {
+   "title": "盤中速報 - 高知特科技(CTSH-US)大漲5.04%，報61.52美元",
+   "url": "https://news.cnyes.com/news/id/6671122",
+   "source": "鉅亨網",
+   "time": "2026-11-24T15:13:28+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "大漲"
+   ]
+  },
+  {
+   "title": "盤中速報 - 科斯塔集團(CSGP-US)大漲5.02%，報31.72美元",
+   "url": "https://news.cnyes.com/news/id/6671121",
+   "source": "鉅亨網",
+   "time": "2026-11-24T15:13:24+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "大漲"
+   ]
+  },
+  {
+   "title": "盤中速報 - 莫德納(MRNA-US)大漲5.14%，報222.99美元",
+   "url": "https://news.cnyes.com/news/id/6671120",
+   "source": "鉅亨網",
+   "time": "2026-11-24T15:09:38+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "大漲"
+   ]
+  },
   {
    "title": "【即時新聞】美銀警告標普500指數(SPY)面臨硬著陸，建議避險防禦8%跌幅！",
    "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOV1ZvNUNzTG9qREZqNXBjZ1lpY2dORnRwV0lLQlZKV2VVMjFhTDJUQXotb3hLSGtMb1dhTDBpYjRNYWJ0QlRDTXdEdWE5MGFUZElYTUt2NG40SWJGT0tKUWFLbDk5SG9qeDU3OHdNVGRfTnA5RmV0RW9neWNHOXdDZENnYlFTRzRzTFAwZW1qcC0?oc=5",
@@ -1464,198 +1669,6 @@
     "反彈",
     "跌逾"
    ]
-  },
-  {
-   "title": "【美股盤前】黃仁勳回歸點火 Anthropic不漲反跌？原因曝光",
-   "url": "https://news.google.com/rss/articles/CBMixwJBVV95cUxPb1BUU3l5dFl2dHJDSVZUa3lGOXdtcGZ3NElhaHk3cGtDTzdkRkhTX3BCYllZQTg4dGZ3SFViV21CX1c1UXFjR0tyZFJCVDdzVzh1LWxUOEs1aXpNYmNYZDdQNE1hS2FIWWxBZDF6TDRCcjFUeTc5WXNIZllBa19SaUZ3TURlRWl2blRibmR1UEJ6REw5N3N6WnY4NHEyUXBkZWhXS3lFZDZuWEp4aGRvckttTThzWlFjMDNQNURtNVRHWUhnOGxaWVV4RUd2YTZwNXpZT0hYNE02dHBtVEpwRElBbWhBdlNOSThuQUxjUk5DenM2aWZTUFZ4dGJhbklZUDFSZzVEOWIzU3dua3N0bHYyS0ZMMjJQaUdIUUtIQlJtQlZVWmNlNnBFVE5rUzMxOTdtZldNcEJoZHRkUS1xdDV1ZzhWLTQ?oc=5",
-   "source": "Yahoo新聞",
-   "time": "2026-11-24T13:15:00+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "AI族群狂歡後降溫！那斯達克期指走跌 輝達盤前拉回逾5% | 民視新聞網",
-   "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1YbERocUZqa1FoOHNaQXBmQkN6TU56SGc0NFhEZUZPTUV0NnQ5RDdSRHlUdS0wdGUwS2lySjJJSlk1T3pYSWowVlhEQkJ1MWJwdWNkS0Zn?oc=5",
-   "source": "LINE TODAY",
-   "time": "2026-11-24T13:05:30+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "黃仁勳交易退燒 台指期夜盤震盪逾1,500點、再破4萬點",
-   "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE45RmlHOVhrOWMyU3FKdXFpUVA4d1lVSWlQMVRnYmtDZFo5bktyejhuakdRdm1xVUxjbGlBVE5maS1TR0o3N2EydGRuaVRxUjc10gFWQVVfeXFMTmR1Rk9lSC01ZS1DcS0yWlZWYllhVzMxT1FCQ2ZpcHlKajNLU3dLYWtkVGYwTzNrajJ3aF9UOWVOaXYtc3BvZmtBc3NkV1pXcWZObDNKQ2c?oc=5",
-   "source": "UDN",
-   "time": "2026-11-24T13:04:16+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "輝達領漲後晶片股降溫　美股期貨走跌",
-   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1LSmlJcDhkWkdhT1ppS2V6Uy02NV9tZk9iR0tSSWwtWVN6UkxuSGdhUWZZd0pxX19CQWhDdl9VREJ3SnJBSGQ2LVVSeDJodGoyS3FLSE82aUZ2NGJ40gFiQVVfeXFMUGpNVXFVcFpGSTFDdDNsTXl6V3lZN2ZXTkF1el9lQlBMMnI4Q3ROTXZPXzktbjBIOUVsSEd6cG95Q01vbVZCRzdGWkRFb0d0WWhtNUdtVGNHcG14QVN3MlhEZlE?oc=5",
-   "source": "經濟日報",
-   "time": "2026-11-24T12:54:50+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "美銀發布 2027 投資展望：標普 500 看「8,888 vs 6,666」雙劇本，明年春布局加密貨幣與半導體",
-   "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPejlNdGJZcmNWeGRUS0tuay1GMTNCbWtNenVRWmhTRFdXTVJCUnNWU0JiMnlKU0VKellXbDRXaU9vSXRpd2daRHFQdDJuNElIRjVjSGg0Q2k0Z1pBSXR3MFM4ZDJ5Z3NWNUxRcWtLR3VkTjFNbjdtOTVpcC1YZFRwRldHLUJRUQ?oc=5",
-   "source": "動區動趨",
-   "time": "2026-11-24T12:53:49+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "【即時新聞】搶救那斯達克上市資格！INNEOVA(INEO)宣布1比5股票合併，盤前股價跌破0.5美元",
-   "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPenVUOUVEeFgzZ0w5QUdGYTNDQ3ZqdTR2dlNnRV9jaGk0alk2Tks4Y1dlc2VjOE1saHcwWDZITmpYRXhTRmRCRlVfTVRQckdCQzV4SVZubVBYMlNYV0sxd3VBYkRySlZDeUNFa01jcTNYQlF0cVNWbFVfLWs5WjZnczktc2J0d0xESGtvMGxJbHg?oc=5",
-   "source": "CMoney投資網誌",
-   "time": "2026-11-24T12:50:37+00:00",
-   "label": "偏空",
-   "score": -1,
-   "hits": [
-    "跌破"
-   ]
-  },
-  {
-   "title": "輝達股價美股盤前重挫5.4%！ 台指期夜盤重挫800點 跌破4萬大關",
-   "url": "https://news.google.com/rss/articles/CBMi8wJBVV95cUxQZjNuc2tIX25mdjdVSElybHRUZ0k3OGxGOWprQWd3Q2lsN01Db3lrTElmTEJHcFNxbFJzSnoyd25BTDNhVGtocDRNMXp2N3N4MmpIQVN6LThfZVZSVlpyMlFmcUFhX2daNmhDY2Z5bTJQVTY4UVJLbUh2ZWdBUkVGNDFidC1fUVdPRjE2OFpqRHRaTGU2dGZJS0xHMUhwRmYxSFU5X25VUEJGWDVrM3dpM1BYNDE5WmxHZEdPU2dJclQ4T0ZPbjZ6TnpHUjVENlJwak1ONTFFQjV0a3BmRndUV0NRaHBlaVlsdTRjRUFFS1JNR3hQM3BONlB5bWJjR1hoTEphWGRCZWdneWhROTRRaUowWGtjWDFabHQ5SGVZczVQLUR1UjNmb2F3UXBIR1VMaGw0TzVmaXUtbW1kX2RFR3NHUEluUGFMeXg2Z1hXa0ZkS1hEVE5XMW9EMGJlVXJ5Vm5ZWUhTYUppLXNMd0dJQUJYTQ?oc=5",
-   "source": "Yahoo新聞",
-   "time": "2026-11-24T12:44:08+00:00",
-   "label": "利空",
-   "score": -3,
-   "hits": [
-    "重挫",
-    "跌破"
-   ]
-  },
-  {
-   "title": "AI族群狂歡後降溫！那斯達克期指走跌 輝達盤前拉回逾5%",
-   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE42eW9jTExxeDZrWDMwYW5FYThIalM1NDYzVm84UG00R2NJanBGN3FwYzlVQnlvRDRCMmNLeE5jeHc4cDhvenFSMWF5dkg4VVRHVVhMNk5iR2tSSGxuT1VYRw?oc=5",
-   "source": "民視新聞網",
-   "time": "2026-11-24T12:41:22+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "黃仁勳回歸就沒事？輝達調查未完 董事會先背書遭質疑",
-   "url": "https://news.cnyes.com/news/id/6670999",
-   "source": "鉅亨網",
-   "time": "2026-11-24T12:40:04+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "油價下跌緩解通膨擔憂 美國公債價格上漲 | 美股動態 | 國際",
-   "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPODNZcUU1aUV5bjE0OHd5Smh4QWNNc1I3VUMzUVBZLVNNc3hvNmltb3I4SFRQaUg0MGZVbU9oRGxNMjNSYU9UZEdPSjVneHE5bjlyRkR5Y2w2RGZSZXl5SFNYVFN4dGVKSTVZOTA3VkZYeWkyM0hiLW1FdndYeno4U3F0Slc?oc=5",
-   "source": "經濟日報",
-   "time": "2026-11-24T12:39:25+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": [
-    "上漲",
-    "下跌"
-   ]
-  },
-  {
-   "title": "受英偉達帶動的漲勢過後，AI股熱度降溫，納斯達克期貨下跌",
-   "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBrbWNla3dobF8wd0R4bDdRRWRkeG5tRU1uOGlvcmUtWk9RTVlDeVZlMlAzNlhhVmVpY0lieEVjaVJtaDBfRUh3RG5xQmhkMklrY2k4NU1YSDZKWC1HblJVSnQ2Y2w1NVJYTmxXUThrVlV3eEdiMmlR?oc=5",
-   "source": "TradingView",
-   "time": "2026-11-24T12:38:03+00:00",
-   "label": "偏空",
-   "score": -1,
-   "hits": [
-    "下跌"
-   ]
-  },
-  {
-   "title": "史上最大IPO光環褪色了？Anthropic盤前一度跌7.3% 失守83美元發行價",
-   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5LS0ZwQ2VCT2tsQ0kyLVpYQzNTU0pmN0ZxZTlUVHliSUNsaGxCSE1CVk9qMDcwQ3V0c1RiVGJXU25MVnZYZ2c4dC0yMkQ0ZE0?oc=5",
-   "source": "鉅亨網",
-   "time": "2026-11-24T12:36:40+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "失守"
-   ]
-  },
-  {
-   "title": "美股盤前要點｜Anthropic盤前破發，英偉達跌超5%！SpaceX和特斯拉推進合併談判",
-   "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBoNDRndEFkOXNDaGdMLXA0Y1pXTEdLcll6SW8zbzdQa2pEek9HakJKTEFtblJTTTRWanBNQWVGV3JIWWU5blpIUk1LTWVpOTRvLURsUldxNEJLMW5XYkozNkxBTjhPVXpqMkE?oc=5",
-   "source": "TradingView",
-   "time": "2026-11-24T12:35:39+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "利多延續？美股盤前輝達跌5.4％ 台指期夜盤重挫774點 4點因素、3結構原因",
-   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1QWHBweWVicWU0am5ULXAtRnFUN2ZIcDdqMHF2akxRNEZTazh4WTlfOGJrSng4U2ZZZjFVWHktSUZiMnNoQjZKa2VkaTllSkNhazgxOXh6ZmlTMkJUMmJV0gFkQVVfeXFMTVhSRjQ3dS0xQkpjMzJ2RFdoay1DOTBHMmJCbmpzVkdySENYLXNVMEh2YnlTUnUyUUUwR095dGs0U0dodmtzTVRKV0NLV3drUjZ0bU1uVnpTOHBUTHYtNHNqbER3OA?oc=5",
-   "source": "自由財經",
-   "time": "2026-11-24T12:35:00+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": [
-    "利多",
-    "重挫"
-   ]
-  },
-  {
-   "title": "德國商業氣候指數連七月回升 專家指復甦力道仍缺乏廣度",
-   "url": "https://news.cnyes.com/news/id/6670996",
-   "source": "鉅亨網",
-   "time": "2026-11-24T12:30:07+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "熱門板塊速睇：美股盤前CPU概念走勢疲弱，英特爾領跌",
-   "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOM1ZZd2R0Tjc0NGZhaW9hSXoyX1BWbERoRTBsVjZNbE5odW11bFBFUFIzbTY0MzdDbUJzR1BDb2RiQ3QwYzFDaUtPWHFSZnRHNHNJY01idkxvS004cXJ2WkF3TWFnUTNuODF0Q1NscmZ3SktoZVhpM3VJd0ZnWV9PWW9NZmtCVDdPZXEzNFV3UXdRSHowLWhfUlQzc2Mxd0xwa09mS240djNteUFwa3c?oc=5",
-   "source": "Moomoo",
-   "time": "2026-11-24T12:30:01+00:00",
-   "label": "偏空",
-   "score": -1,
-   "hits": [
-    "疲弱"
-   ]
-  },
-  {
-   "title": "黃仁勳回鍋暴漲31%只是情緒反彈？阮慕驊曝美股狂歡背後2警訊：市場沒完全放心| 林子靖| 新聞",
-   "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5kazJ4NmR1UUt3YXZOeVR0bEN6RVd5YkJfUzBaNy1HcDFsckZMNDBqREpNQ0dOMHhrdTFGcmdpZkFtSHVORF83WlMzeTRsUQ?oc=5",
-   "source": "風傳媒",
-   "time": "2026-11-24T12:24:00+00:00",
-   "label": "偏多",
-   "score": 1,
-   "hits": [
-    "反彈"
-   ]
-  },
-  {
-   "title": "黃仁勛復職重掌英偉達，美股大漲但兩黨批評聲不斷- 紐約時報中文網",
-   "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBOQlJydW1SdnF5TDJKaHU3VUZsQmxvMGN5bTVLQzBjTGRKQnFXSzRwa1VUcG95bF9KNVQ1dm94emRnTGtSc0N0am9LUWVXQTJLWWZUU3pkbDRUbE5PN3NpcEx5bFNQUTRmRTRnWmpjNkRrMzJkWkJrNQ?oc=5",
-   "source": "纽约时报中文网",
-   "time": "2026-11-24T12:19:23+00:00",
-   "label": "利多",
-   "score": 2,
-   "hits": [
-    "大漲"
-   ]
-  },
-  {
-   "title": "INNEOVA啟動5合1股本合併，11月27日生效，目標保住納斯達克上市身分",
-   "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQVWpUd3RTLUFfXzhLa1ZTb0xGbkhUN3FxLWxuaS0xOEhkcmVEbThaMmJ5SmljY2NvME9IcG53OWlEaTJYdTYtSFZpeUQyVTNtbGc2czB0UlpuR0xzUUpjd3V3SE1GYTFza1pVWEo1VFlZeTBfYzBpVUJ2MnN5U2o5WEdSUGhLcG9hZ3hfWmVB?oc=5",
-   "source": "CMoney投資網誌",
-   "time": "2026-11-24T12:17:37+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
   }
  ],
  "geo": [
