@@ -1,7 +1,7 @@
 {
  "us": {
   "mode": "us_post",
-  "time": "2026-11-26 05:46",
+  "time": "2026-11-26 06:01",
   "stocks": [
    {
     "symbol": "QQQM",
@@ -21,7 +21,7 @@
     "k": 32.0,
     "d": 30.0,
     "macd_hist": -1.028,
-    "vol_ratio": 1.35,
+    "vol_ratio": 1.36,
     "high20_prev": 298.97,
     "vwap": 256.02,
     "score": 1,
@@ -64,7 +64,7 @@
     "k": 58.0,
     "d": 53.0,
     "macd_hist": -0.14,
-    "vol_ratio": 1.04,
+    "vol_ratio": 1.05,
     "high20_prev": 360.83,
     "vwap": 349.3,
     "score": 1,
@@ -104,7 +104,7 @@
     "k": 45.0,
     "d": 32.0,
     "macd_hist": -0.674,
-    "vol_ratio": 1.06,
+    "vol_ratio": 1.07,
     "high20_prev": 219.99,
     "vwap": 143.95,
     "score": 1,
@@ -190,7 +190,7 @@
     "k": 29.0,
     "d": 35.0,
     "macd_hist": -4.405,
-    "vol_ratio": 1.09,
+    "vol_ratio": 1.11,
     "high20_prev": 317.2,
     "vwap": 258.76,
     "score": 0,
@@ -231,7 +231,7 @@
     "k": 33.0,
     "d": 40.0,
     "macd_hist": -0.889,
-    "vol_ratio": 1.41,
+    "vol_ratio": 1.42,
     "high20_prev": 148.2,
     "vwap": 120.13,
     "score": 0,
