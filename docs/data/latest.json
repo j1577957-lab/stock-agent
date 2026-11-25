@@ -256,7 +256,7 @@
  },
  "tw": {
   "mode": "tw_intraday",
-  "time": "2026-11-25 11:30",
+  "time": "2026-11-25 11:45",
   "stocks": [
    {
     "symbol": "5465.TWO",
@@ -276,9 +276,9 @@
     "k": 15.0,
     "d": 13.0,
     "macd_hist": -0.974,
-    "vol_ratio": 0.64,
+    "vol_ratio": 0.59,
     "high20_prev": 38.65,
-    "vwap": 25.5,
+    "vwap": 25.64,
     "score": 1,
     "reasons": [
      "KD 低檔黃金交叉（K=15）"
@@ -306,25 +306,25 @@
     "name": "主動中信台灣收益",
     "holding": false,
     "ma20_cross": null,
-    "price": 6.22,
-    "change_pct": -6.89,
+    "price": 6.28,
+    "change_pct": -5.99,
     "date": "2026-11-25",
     "is_today": true,
-    "ma5": 6.26,
-    "ma10": 6.74,
+    "ma5": 6.27,
+    "ma10": 6.75,
     "ma20": 7.33,
     "ma60": 8.87,
-    "above_ma20_pct": -15.1,
+    "above_ma20_pct": -14.3,
     "rsi": 34.0,
-    "k": 23.0,
+    "k": 24.0,
     "d": 22.0,
-    "macd_hist": -0.061,
-    "vol_ratio": 1.37,
+    "macd_hist": -0.057,
+    "vol_ratio": 1.3,
     "high20_prev": 9.2,
     "vwap": 6.29,
     "score": 1,
     "reasons": [
-     "KD 低檔黃金交叉（K=23）"
+     "KD 低檔黃金交叉（K=24）"
     ],
     "blockers": [
      "股價在月線之下",
@@ -341,7 +341,7 @@
      5.87,
      6.16,
      6.68,
-     6.22
+     6.28
     ]
    },
    {
@@ -349,25 +349,25 @@
     "name": "台玻",
     "holding": false,
     "ma20_cross": null,
-    "price": 62.5,
-    "change_pct": -2.19,
+    "price": 61.6,
+    "change_pct": -3.6,
     "date": "2026-11-25",
     "is_today": true,
-    "ma5": 59.22,
-    "ma10": 67.37,
-    "ma20": 66.2,
-    "ma60": 63.01,
-    "above_ma20_pct": -5.6,
+    "ma5": 59.04,
+    "ma10": 67.28,
+    "ma20": 66.15,
+    "ma60": 62.99,
+    "above_ma20_pct": -6.9,
     "rsi": 47.0,
-    "k": 29.0,
+    "k": 28.0,
     "d": 32.0,
-    "macd_hist": -1.393,
-    "vol_ratio": 2.92,
+    "macd_hist": -1.45,
+    "vol_ratio": 2.75,
     "high20_prev": 89.5,
-    "vwap": 63.58,
+    "vwap": 63.45,
     "score": 1,
     "reasons": [
-     "量能放大 2.9 倍"
+     "量能放大 2.7 倍"
     ],
     "blockers": [
      "股價在月線之下",
@@ -384,7 +384,7 @@
      52.9,
      58.1,
      63.9,
-     62.5
+     61.6
     ]
    },
    {
@@ -392,22 +392,22 @@
     "name": "友達",
     "holding": false,
     "ma20_cross": null,
-    "price": 24.6,
-    "change_pct": -7.17,
+    "price": 24.7,
+    "change_pct": -6.79,
     "date": "2026-11-25",
     "is_today": true,
-    "ma5": 24.71,
-    "ma10": 26.61,
+    "ma5": 24.73,
+    "ma10": 26.62,
     "ma20": 27.89,
     "ma60": 31.36,
-    "above_ma20_pct": -11.8,
-    "rsi": 38.0,
+    "above_ma20_pct": -11.4,
+    "rsi": 39.0,
     "k": 27.0,
     "d": 29.0,
-    "macd_hist": -0.269,
-    "vol_ratio": 1.01,
+    "macd_hist": -0.263,
+    "vol_ratio": 0.96,
     "high20_prev": 36.65,
-    "vwap": 25.12,
+    "vwap": 25.09,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -425,7 +425,7 @@
      23.25,
      24.1,
      26.5,
-     24.6
+     24.7
     ]
    },
    {
@@ -446,12 +446,12 @@
     "k": 34.0,
     "d": 30.0,
     "macd_hist": 0.418,
-    "vol_ratio": 1.76,
+    "vol_ratio": 1.67,
     "high20_prev": 128.5,
-    "vwap": 88.27,
+    "vwap": 88.23,
     "score": 3,
     "reasons": [
-     "量能放大 1.8 倍",
+     "量能放大 1.7 倍",
      "MACD 柱翻正",
      "KD 低檔黃金交叉（K=34）"
     ],
@@ -478,24 +478,26 @@
     "name": "合晶",
     "holding": false,
     "ma20_cross": null,
-    "price": 59.2,
-    "change_pct": -7.5,
+    "price": 59.9,
+    "change_pct": -6.41,
     "date": "2026-11-25",
     "is_today": true,
-    "ma5": 60.26,
-    "ma10": 68.17,
-    "ma20": 76.21,
-    "ma60": 101.74,
-    "above_ma20_pct": -22.3,
-    "rsi": 31.0,
+    "ma5": 60.4,
+    "ma10": 68.24,
+    "ma20": 76.24,
+    "ma60": 101.76,
+    "above_ma20_pct": -21.4,
+    "rsi": 32.0,
     "k": 21.0,
     "d": 21.0,
-    "macd_hist": -0.916,
-    "vol_ratio": 1.3,
+    "macd_hist": -0.871,
+    "vol_ratio": 1.24,
     "high20_prev": 107.0,
-    "vwap": 61.04,
-    "score": 0,
-    "reasons": [],
+    "vwap": 61.81,
+    "score": 1,
+    "reasons": [
+     "KD 低檔黃金交叉（K=21）"
+    ],
     "blockers": [
      "股價在月線之下",
      "月線往下彎"
@@ -511,7 +513,7 @@
      56.8,
      58.2,
      64.0,
-     59.2
+     59.9
     ]
    },
    {
@@ -519,25 +521,25 @@
     "name": "富鼎",
     "holding": false,
     "ma20_cross": null,
-    "price": 96.7,
-    "change_pct": -9.2,
+    "price": 97.6,
+    "change_pct": -8.36,
     "date": "2026-11-25",
     "is_today": true,
-    "ma5": 98.62,
-    "ma10": 108.11,
-    "ma20": 118.1,
-    "ma60": 153.86,
-    "above_ma20_pct": -18.1,
-    "rsi": 33.0,
-    "k": 27.0,
+    "ma5": 98.8,
+    "ma10": 108.2,
+    "ma20": 118.15,
+    "ma60": 153.88,
+    "above_ma20_pct": -17.4,
+    "rsi": 34.0,
+    "k": 28.0,
     "d": 27.0,
-    "macd_hist": -0.687,
-    "vol_ratio": 1.12,
+    "macd_hist": -0.629,
+    "vol_ratio": 1.06,
     "high20_prev": 153.5,
-    "vwap": 100.02,
+    "vwap": 98.04,
     "score": 1,
     "reasons": [
-     "KD 低檔黃金交叉（K=27）"
+     "KD 低檔黃金交叉（K=28）"
     ],
     "blockers": [
      "股價在月線之下",
@@ -554,7 +556,7 @@
      91.4,
      97.0,
      106.5,
-     96.7
+     97.6
     ]
    },
    {
@@ -562,25 +564,25 @@
     "name": "京元電子",
     "holding": false,
     "ma20_cross": null,
-    "price": 172.0,
-    "change_pct": -0.29,
+    "price": 174.0,
+    "change_pct": 0.87,
     "date": "2026-11-25",
     "is_today": true,
-    "ma5": 166.8,
-    "ma10": 182.45,
-    "ma20": 210.75,
-    "ma60": 257.13,
-    "above_ma20_pct": -18.4,
+    "ma5": 167.2,
+    "ma10": 182.65,
+    "ma20": 210.85,
+    "ma60": 257.17,
+    "above_ma20_pct": -17.5,
     "rsi": 35.0,
     "k": 22.0,
     "d": 17.0,
-    "macd_hist": -3.347,
-    "vol_ratio": 3.81,
+    "macd_hist": -3.219,
+    "vol_ratio": 3.68,
     "high20_prev": 280.0,
-    "vwap": 170.48,
+    "vwap": 170.56,
     "score": 3,
     "reasons": [
-     "量能放大 3.8 倍",
+     "量能放大 3.7 倍",
      "KD 低檔黃金交叉（K=22）",
      "盤中站上均價線"
     ],
@@ -599,7 +601,7 @@
      157.5,
      157.0,
      172.5,
-     172.0
+     174.0
     ]
    },
    {
@@ -607,25 +609,26 @@
     "name": "凱美",
     "holding": false,
     "ma20_cross": null,
-    "price": 75.0,
-    "change_pct": -9.31,
+    "price": 75.9,
+    "change_pct": -8.22,
     "date": "2026-11-25",
     "is_today": true,
-    "ma5": 75.92,
-    "ma10": 83.27,
-    "ma20": 92.39,
-    "ma60": 112.48,
-    "above_ma20_pct": -18.8,
+    "ma5": 76.1,
+    "ma10": 83.36,
+    "ma20": 92.43,
+    "ma60": 112.49,
+    "above_ma20_pct": -17.9,
     "rsi": 35.0,
-    "k": 25.0,
+    "k": 26.0,
     "d": 23.0,
-    "macd_hist": -1.148,
-    "vol_ratio": 0.97,
+    "macd_hist": -1.09,
+    "vol_ratio": 0.91,
     "high20_prev": 120.0,
-    "vwap": 78.01,
-    "score": 1,
+    "vwap": 75.58,
+    "score": 2,
     "reasons": [
-     "KD 低檔黃金交叉（K=25）"
+     "KD 低檔黃金交叉（K=26）",
+     "盤中站上均價線"
     ],
     "blockers": [
      "股價在月線之下",
@@ -642,7 +645,7 @@
      69.7,
      75.2,
      82.7,
-     75.0
+     75.9
     ]
    },
    {
@@ -650,25 +653,25 @@
     "name": "群益臺灣加權正2",
     "holding": true,
     "ma20_cross": null,
-    "price": 7.4,
-    "change_pct": -14.05,
+    "price": 7.55,
+    "change_pct": -12.31,
     "date": "2026-11-25",
     "is_today": true,
-    "ma5": 7.59,
-    "ma10": 8.49,
-    "ma20": 9.37,
+    "ma5": 7.62,
+    "ma10": 8.51,
+    "ma20": 9.38,
     "ma60": 11.43,
-    "above_ma20_pct": -21.1,
+    "above_ma20_pct": -19.5,
     "rsi": 36.0,
-    "k": 23.0,
+    "k": 24.0,
     "d": 26.0,
-    "macd_hist": -0.145,
-    "vol_ratio": 2.08,
+    "macd_hist": -0.136,
+    "vol_ratio": 2.02,
     "high20_prev": 12.22,
     "vwap": 7.56,
     "score": 1,
     "reasons": [
-     "量能放大 2.1 倍"
+     "量能放大 2.0 倍"
     ],
     "blockers": [
      "股價在月線之下",
@@ -685,7 +688,7 @@
      6.8,
      7.18,
      8.61,
-     7.4
+     7.55
     ]
    },
    {
@@ -693,25 +696,26 @@
     "name": "元大台灣50",
     "holding": true,
     "ma20_cross": null,
-    "price": 88.25,
-    "change_pct": -7.78,
+    "price": 89.3,
+    "change_pct": -6.69,
     "date": "2026-11-25",
     "is_today": true,
-    "ma5": 89.12,
-    "ma10": 93.36,
-    "ma20": 97.02,
-    "ma60": 105.64,
-    "above_ma20_pct": -9.0,
-    "rsi": 38.0,
-    "k": 30.0,
+    "ma5": 89.33,
+    "ma10": 93.46,
+    "ma20": 97.07,
+    "ma60": 105.65,
+    "above_ma20_pct": -8.0,
+    "rsi": 39.0,
+    "k": 32.0,
     "d": 33.0,
-    "macd_hist": -0.635,
-    "vol_ratio": 2.08,
+    "macd_hist": -0.568,
+    "vol_ratio": 2.0,
     "high20_prev": 108.65,
-    "vwap": 88.99,
-    "score": 1,
+    "vwap": 88.98,
+    "score": 2,
     "reasons": [
-     "量能放大 2.1 倍"
+     "量能放大 2.0 倍",
+     "盤中站上均價線"
     ],
     "blockers": [
      "股價在月線之下",
@@ -728,7 +732,7 @@
      84.45,
      87.0,
      95.7,
-     88.25
+     89.3
     ]
    },
    {
@@ -736,22 +740,22 @@
     "name": "富邦科技",
     "holding": true,
     "ma20_cross": null,
-    "price": 51.0,
-    "change_pct": -7.52,
+    "price": 51.55,
+    "change_pct": -6.53,
     "date": "2026-11-25",
     "is_today": true,
-    "ma5": 51.34,
-    "ma10": 53.73,
-    "ma20": 55.96,
-    "ma60": 61.25,
-    "above_ma20_pct": -8.9,
-    "rsi": 39.0,
-    "k": 30.0,
-    "d": 32.0,
-    "macd_hist": -0.338,
-    "vol_ratio": 1.36,
+    "ma5": 51.45,
+    "ma10": 53.79,
+    "ma20": 55.98,
+    "ma60": 61.26,
+    "above_ma20_pct": -7.9,
+    "rsi": 40.0,
+    "k": 32.0,
+    "d": 33.0,
+    "macd_hist": -0.303,
+    "vol_ratio": 1.31,
     "high20_prev": 63.15,
-    "vwap": 50.98,
+    "vwap": 51.43,
     "score": 1,
     "reasons": [
      "盤中站上均價線"
@@ -771,7 +775,7 @@
      48.4,
      50.15,
      55.15,
-     51.0
+     51.55
     ]
    },
    {
@@ -779,25 +783,26 @@
     "name": "元大台灣50正2",
     "holding": true,
     "ma20_cross": null,
-    "price": 23.06,
-    "change_pct": -14.59,
+    "price": 23.51,
+    "change_pct": -12.93,
     "date": "2026-11-25",
     "is_today": true,
-    "ma5": 23.67,
-    "ma10": 26.29,
-    "ma20": 28.82,
+    "ma5": 23.76,
+    "ma10": 26.34,
+    "ma20": 28.84,
     "ma60": 34.74,
-    "above_ma20_pct": -20.0,
-    "rsi": 36.0,
-    "k": 24.0,
-    "d": 27.0,
-    "macd_hist": -0.412,
-    "vol_ratio": 2.89,
+    "above_ma20_pct": -18.5,
+    "rsi": 37.0,
+    "k": 26.0,
+    "d": 28.0,
+    "macd_hist": -0.383,
+    "vol_ratio": 2.82,
     "high20_prev": 36.88,
-    "vwap": 23.48,
-    "score": 1,
+    "vwap": 23.46,
+    "score": 2,
     "reasons": [
-     "量能放大 2.9 倍"
+     "量能放大 2.8 倍",
+     "盤中站上均價線"
     ],
     "blockers": [
      "股價在月線之下",
@@ -814,7 +819,7 @@
      21.24,
      22.5,
      27.0,
-     23.06
+     23.51
     ]
    },
    {
@@ -822,25 +827,26 @@
     "name": "國泰費城半導體",
     "holding": true,
     "ma20_cross": null,
-    "price": 63.35,
-    "change_pct": -10.96,
+    "price": 63.65,
+    "change_pct": -10.54,
     "date": "2026-11-25",
     "is_today": true,
-    "ma5": 67.52,
-    "ma10": 70.29,
-    "ma20": 72.76,
+    "ma5": 67.58,
+    "ma10": 70.32,
+    "ma20": 72.77,
     "ma60": 80.57,
-    "above_ma20_pct": -12.9,
-    "rsi": 34.0,
-    "k": 24.0,
-    "d": 31.0,
-    "macd_hist": -0.463,
-    "vol_ratio": 2.04,
+    "above_ma20_pct": -12.5,
+    "rsi": 35.0,
+    "k": 25.0,
+    "d": 32.0,
+    "macd_hist": -0.444,
+    "vol_ratio": 1.96,
     "high20_prev": 83.25,
-    "vwap": 63.46,
-    "score": 1,
+    "vwap": 63.48,
+    "score": 2,
     "reasons": [
-     "量能放大 2.0 倍"
+     "量能放大 2.0 倍",
+     "盤中站上均價線"
     ],
     "blockers": [
      "股價在月線之下",
@@ -857,7 +863,7 @@
      67.0,
      65.1,
      71.15,
-     63.35
+     63.65
     ]
    }
   ]
