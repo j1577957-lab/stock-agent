@@ -9,12 +9,6 @@
   },
   "radio": [
     {
-      "id": 1586,
-      "who": "策略技師",
-      "tech": "stock",
-      "msg": "11/24 08:31｜⚠️ tw_pre 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
-    },
-    {
       "id": 1587,
       "who": "策略技師",
       "tech": "stock",
@@ -607,11 +601,17 @@
       "who": "策略技師",
       "tech": "stock",
       "msg": "11/25 08:16｜⚠️ tw_pre 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
+    },
+    {
+      "id": 1686,
+      "who": "策略技師",
+      "tech": "stock",
+      "msg": "11/25 08:31｜⚠️ tw_pre 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
     }
   ],
   "meta": {
     "stock": {
-      "last_done": "2026-11-25T08:16:37+08:00",
+      "last_done": "2026-11-25T08:31:26+08:00",
       "last_msg": "⚠️ tw_pre 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
     },
     "crawl": {
@@ -619,5 +619,5 @@
       "last_msg": "新聞掃描：台股新增 14 則（近 30 則 多9／空5），美股新增 28 則（近 30 則 多4／空12），地緣政治新增 21 則（近 30 則 多1／空7），持股：元大台灣50 多1／空4、富邦科技 多3／空1、元大台灣50正2 多4／空1、群益臺灣加權正2 多3／空1、國泰費城半導體 多0／空9"
     }
   },
-  "updated": "2026-11-25T08:16:37+08:00"
+  "updated": "2026-11-25T08:31:26+08:00"
 }
