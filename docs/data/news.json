@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26 03:08",
+ "updated": "2026-11-26 04:08",
  "tw": [
   {
    "title": "國家隊全力捍衛台股買超1,359億元創紀錄- 日報",
@@ -860,6 +860,37 @@
  ],
  "us": [
   {
+   "title": "盤中速報 - 亞德諾(ADI-US)大漲5.02%，報328.66美元",
+   "url": "https://news.cnyes.com/news/id/6671861",
+   "source": "鉅亨網",
+   "time": "2026-11-25T19:38:31+00:00",
+   "label": "利多",
+   "score": 2,
+   "hits": [
+    "大漲"
+   ]
+  },
+  {
+   "title": "盤中速報 - ANSYS公司(ANSS-US)大跌5.01%，報15.44美元",
+   "url": "https://news.cnyes.com/news/id/6671860",
+   "source": "鉅亨網",
+   "time": "2026-11-25T19:32:16+00:00",
+   "label": "利空",
+   "score": -2,
+   "hits": [
+    "大跌"
+   ]
+  },
+  {
+   "title": "AI從救星變拖油瓶？凱投宏觀：2028年恐拖累全球貿易成長",
+   "url": "https://news.cnyes.com/news/id/6671779",
+   "source": "鉅亨網",
+   "time": "2026-11-25T19:30:56+00:00",
+   "label": "中性",
+   "score": 0,
+   "hits": []
+  },
+  {
    "title": "輝達買權翻倍還沒賣！《大賣空》貝瑞曝盤算：股價接近200美元擬再放空",
    "url": "https://news.cnyes.com/news/id/6671851",
    "source": "鉅亨網",
@@ -1703,37 +1734,6 @@
    "hits": [
     "失守",
     "下跌"
-   ]
-  },
-  {
-   "title": "盤中速報 - 卡特彼勒(CAT-US)大跌5%，報513.6美元",
-   "url": "https://news.cnyes.com/news/id/6671825",
-   "source": "鉅亨網",
-   "time": "2026-11-25T14:56:53+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "大跌"
-   ]
-  },
-  {
-   "title": "美股区块链概念股普跌，MSTR跌7.67%，COIN跌5.71%",
-   "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5ydTRJWFF5T3ZoVnF3Rlkzd3lZVGN2cjFFZ3I3cm90ZDQ0MXpuMXUyd1ZOWGZtUFFUYy04a2dubWlidE5nbUVuODFUNGp3cWJrLUFMa29xcC1VeG16bG5xVzB0SUlqdw?oc=5",
-   "source": "TradingView",
-   "time": "2026-11-25T14:56:46+00:00",
-   "label": "中性",
-   "score": 0,
-   "hits": []
-  },
-  {
-   "title": "盤中速報 - Cadence設計系統(CDNS-US)大跌5.05%，報281.62美元",
-   "url": "https://news.cnyes.com/news/id/6671824",
-   "source": "鉅亨網",
-   "time": "2026-11-25T14:56:07+00:00",
-   "label": "利空",
-   "score": -2,
-   "hits": [
-    "大跌"
    ]
   }
  ],
