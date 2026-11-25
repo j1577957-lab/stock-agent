@@ -9,12 +9,6 @@
   },
   "radio": [
     {
-      "id": 1583,
-      "who": "策略技師",
-      "tech": "stock",
-      "msg": "11/24 08:01｜⚠️ tw_pre 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
-    },
-    {
       "id": 1584,
       "who": "爬蟲技師",
       "tech": "crawl",
@@ -607,17 +601,23 @@
       "who": "爬蟲技師",
       "tech": "crawl",
       "msg": "11/25 07:16｜主動ETF：28 檔，被加碼 54 檔股票（廣達×6、崇越×4、長榮航×3、長榮×3、玉山金×3）"
+    },
+    {
+      "id": 1683,
+      "who": "策略技師",
+      "tech": "stock",
+      "msg": "11/25 08:01｜⚠️ tw_pre 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
     }
   ],
   "meta": {
     "stock": {
-      "last_done": "2026-11-25T06:46:07+08:00",
-      "last_msg": "⚠️ us_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
+      "last_done": "2026-11-25T08:01:27+08:00",
+      "last_msg": "⚠️ tw_pre 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
     },
     "crawl": {
       "last_done": "2026-11-25T07:16:18+08:00",
       "last_msg": "主動ETF：28 檔，被加碼 54 檔股票（廣達×6、崇越×4、長榮航×3、長榮×3、玉山金×3）"
     }
   },
-  "updated": "2026-11-25T07:16:18+08:00"
+  "updated": "2026-11-25T08:01:27+08:00"
 }
