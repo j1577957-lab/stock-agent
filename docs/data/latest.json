@@ -1,7 +1,7 @@
 {
  "us": {
   "mode": "us_post",
-  "time": "2026-11-26 06:31",
+  "time": "2026-11-26 06:46",
   "stocks": [
    {
     "symbol": "QQQM",
@@ -23,7 +23,7 @@
     "macd_hist": -1.028,
     "vol_ratio": 1.36,
     "high20_prev": 298.97,
-    "vwap": 254.42,
+    "vwap": 256.02,
     "score": 1,
     "reasons": [
      "KD 低檔黃金交叉（K=32）"
@@ -66,7 +66,7 @@
     "macd_hist": -0.14,
     "vol_ratio": 1.05,
     "high20_prev": 360.83,
-    "vwap": 348.84,
+    "vwap": 349.3,
     "score": 1,
     "reasons": [
      "KD 低檔黃金交叉（K=58）"
@@ -106,7 +106,7 @@
     "macd_hist": -0.674,
     "vol_ratio": 1.07,
     "high20_prev": 219.99,
-    "vwap": 143.33,
+    "vwap": 143.95,
     "score": 1,
     "reasons": [
      "KD 低檔黃金交叉（K=45）"
@@ -149,7 +149,7 @@
     "macd_hist": 0.884,
     "vol_ratio": 1.01,
     "high20_prev": 300.76,
-    "vwap": 182.7,
+    "vwap": 178.92,
     "score": 1,
     "reasons": [
      "MACD 柱翻正"
@@ -233,7 +233,7 @@
     "macd_hist": -0.889,
     "vol_ratio": 1.42,
     "high20_prev": 148.2,
-    "vwap": 119.29,
+    "vwap": 120.13,
     "score": 0,
     "reasons": [],
     "blockers": [
