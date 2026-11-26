@@ -258,7 +258,7 @@
  },
  "tw": {
   "mode": "tw_post",
-  "time": "2026-11-26 14:49",
+  "time": "2026-11-26 15:00",
   "stocks": [
    {
     "symbol": "5465.TWO",
@@ -539,7 +539,7 @@
     "macd_hist": -0.022,
     "vol_ratio": 0.69,
     "high20_prev": 153.0,
-    "vwap": 102.84,
+    "vwap": 102.32,
     "score": 1,
     "reasons": [
      "KD 低檔黃金交叉（K=34）"
@@ -840,7 +840,7 @@
     "macd_hist": -0.416,
     "vol_ratio": 0.57,
     "high20_prev": 83.0,
-    "vwap": 65.36,
+    "vwap": 65.35,
     "score": 0,
     "reasons": [],
     "blockers": [
