@@ -1,7 +1,7 @@
 {
  "us": {
-  "mode": "us_intraday",
-  "time": "2026-11-27 05:01",
+  "mode": "us_post",
+  "time": "2026-11-27 05:16",
   "stocks": [
    {
     "symbol": "QQQM",
@@ -30,8 +30,7 @@
     ],
     "blockers": [
      "股價在月線之下",
-     "月線往下彎",
-     "今天沒有交易資料（可能休市）"
+     "月線往下彎"
     ],
     "candidate": false,
     "recent_closes": [
@@ -72,9 +71,7 @@
     "reasons": [
      "KD 低檔黃金交叉（K=58）"
     ],
-    "blockers": [
-     "今天沒有交易資料（可能休市）"
-    ],
+    "blockers": [],
     "candidate": false,
     "recent_closes": [
      354.88,
@@ -116,8 +113,7 @@
     ],
     "blockers": [
      "股價在月線之下",
-     "月線往下彎",
-     "今天沒有交易資料（可能休市）"
+     "月線往下彎"
     ],
     "candidate": false,
     "recent_closes": [
@@ -160,8 +156,7 @@
     ],
     "blockers": [
      "股價在月線之下",
-     "月線往下彎",
-     "今天沒有交易資料（可能休市）"
+     "月線往下彎"
     ],
     "candidate": false,
     "recent_closes": [
@@ -202,8 +197,7 @@
     "reasons": [],
     "blockers": [
      "股價在月線之下",
-     "月線往下彎",
-     "今天沒有交易資料（可能休市）"
+     "月線往下彎"
     ],
     "candidate": false,
     "recent_closes": [
@@ -244,8 +238,7 @@
     "reasons": [],
     "blockers": [
      "股價在月線之下",
-     "月線往下彎",
-     "今天沒有交易資料（可能休市）"
+     "月線往下彎"
     ],
     "candidate": false,
     "recent_closes": [
