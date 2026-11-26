@@ -3,17 +3,11 @@
     "eng": "idle",
     "cal": "idle",
     "mail": "idle",
-    "stock": "busy",
+    "stock": "error",
     "shop": "off",
     "crawl": "idle"
   },
   "radio": [
-    {
-      "id": 1710,
-      "who": "策略技師",
-      "tech": "stock",
-      "msg": "11/25 13:16｜台股盤中掃描 14 檔，0 檔通過初篩"
-    },
     {
       "id": 1711,
       "who": "策略技師",
@@ -607,19 +601,23 @@
       "who": "策略技師",
       "tech": "stock",
       "msg": "11/26 13:46｜⚠️ tw_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
+    },
+    {
+      "id": 1810,
+      "who": "策略技師",
+      "tech": "stock",
+      "msg": "11/26 14:01｜⚠️ tw_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
     }
   ],
   "meta": {
     "stock": {
-      "last_done": "2026-11-26T13:46:25+08:00",
-      "last_msg": "⚠️ tw_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '",
-      "since": "2026-11-26T14:00:33+08:00",
-      "task": "台股盤後報告"
+      "last_done": "2026-11-26T14:01:27+08:00",
+      "last_msg": "⚠️ tw_post 執行失敗：Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', '"
     },
     "crawl": {
       "last_done": "2026-11-26T13:27:57+08:00",
       "last_msg": "主動ETF：28 檔，被加碼 91 檔股票（日月光投控×9、台積電×8、奇鋐×8、台光電×7、南亞×6）"
     }
   },
-  "updated": "2026-11-26T14:00:33+08:00"
+  "updated": "2026-11-26T14:01:27+08:00"
 }
