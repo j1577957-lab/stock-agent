@@ -177,9 +177,16 @@ def run(mode: str, dry: bool, demo: bool) -> str | None:
                 from agent import finmind
                 snap["籌碼與基本面"] = finmind.summary(finmind.stock_id(sym))
             print(f"  → 交給分析 agent：{snap['name']}")
-            report = llm.analyst_report(stock, snap, market, cfg, dry)
-            print(f"  → 交給判斷 agent：{snap['name']}")
-            verdict = llm.judge(stock, snap, report, cfg, dry)
+            try:
+                report = llm.analyst_report(stock, snap, market, cfg, dry)
+                print(f"  → 交給判斷 agent：{snap['name']}")
+                verdict = llm.judge(stock, snap, report, cfg, dry)
+            except llm.AIUnavailable as e:  # AI 叫不動：不再判斷其他股票，但持股警示照發
+                print(f"  ! AI 無法使用：{e}")
+                counts[sym] -= 1  # 沒判斷成功，不佔今天的次數
+                notify.save_state(state)
+                results.append(f"⚠️ AI 暫停（{e}）")
+                break
             sig = {"time": stamp, "market": market, "symbol": sym, "name": snap["name"],
                    "price": snap["price"], "change_pct": snap["change_pct"], "score": snap["score"],
                    "reasons": snap["reasons"], "report": report, "judge": verdict, "dry_run": dry}

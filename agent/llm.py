@@ -46,6 +46,19 @@ POST_CONTENT = """1. 📊 今日大盤收盤表現與原因（可以上網查）
 3. 🔭 明日展望與要留意的價位"""
 
 
+class AIUnavailable(Exception):
+    """AI 完全叫不動（例如 API 額度用完、金鑰失效），錯誤訊息改成白話，方便在指揮站看懂。"""
+
+
+def _reason(e: Exception) -> str:
+    t = str(e)
+    if "credit balance is too low" in t:
+        return "Anthropic API 額度不足，請到 console.anthropic.com 儲值"
+    if "authentication_error" in t or "invalid x-api-key" in t:
+        return "Anthropic API 金鑰無效，請檢查 GitHub Secrets"
+    return t[:120]
+
+
 def _client():
     import anthropic
 
@@ -81,7 +94,7 @@ def _call(model: str, system: str, user: str, *, web: bool, max_tokens: int = 20
             text, stop = _run(client, kwargs)
         except Exception as e:
             if not use_web:
-                raise
+                raise AIUnavailable(_reason(e)) from e
             print(f"  ! 上網搜尋功能失敗，改用不搜尋模式：{e}")
             use_web = False
             continue
