@@ -3,7 +3,7 @@
     "eng": "idle",
     "cal": "idle",
     "mail": "idle",
-    "stock": "error",
+    "stock": "busy",
     "shop": "off",
     "crawl": "idle"
   },
@@ -612,12 +612,14 @@
   "meta": {
     "stock": {
       "last_done": "2026-11-27T13:46:23+08:00",
-      "last_msg": "⚠️ tw_post 執行失敗：Anthropic API 額度不足，請到 console.anthropic.com 儲值"
+      "last_msg": "⚠️ tw_post 執行失敗：Anthropic API 額度不足，請到 console.anthropic.com 儲值",
+      "since": "2026-11-27T14:00:34+08:00",
+      "task": "台股盤後報告"
     },
     "crawl": {
       "last_done": "2026-11-27T13:21:28+08:00",
       "last_msg": "主動ETF：29 檔，被加碼 46 檔股票（金像電×8、南亞×7、日月光投控×5、台達電×5、智邦×4）"
     }
   },
-  "updated": "2026-11-27T13:46:23+08:00"
+  "updated": "2026-11-27T14:00:34+08:00"
 }
