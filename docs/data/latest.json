@@ -258,7 +258,7 @@
  },
  "tw": {
   "mode": "tw_post",
-  "time": "2026-11-27 15:00",
+  "time": "2026-11-27 15:15",
   "stocks": [
    {
     "symbol": "5465.TWO",
@@ -280,7 +280,7 @@
     "macd_hist": -0.672,
     "vol_ratio": 0.41,
     "high20_prev": 38.65,
-    "vwap": 25.7,
+    "vwap": 25.68,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -321,7 +321,7 @@
     "macd_hist": 0.019,
     "vol_ratio": 0.54,
     "high20_prev": 8.69,
-    "vwap": 6.66,
+    "vwap": 6.65,
     "score": 1,
     "reasons": [
      "MACD 柱翻正"
@@ -364,7 +364,7 @@
     "macd_hist": -1.559,
     "vol_ratio": 0.7,
     "high20_prev": 89.5,
-    "vwap": 57.93,
+    "vwap": 57.69,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -405,7 +405,7 @@
     "macd_hist": -0.108,
     "vol_ratio": 0.49,
     "high20_prev": 31.55,
-    "vwap": 25.41,
+    "vwap": 25.36,
     "score": 1,
     "reasons": [
      "KD 低檔黃金交叉（K=33）"
@@ -448,7 +448,7 @@
     "macd_hist": 0.693,
     "vol_ratio": 0.66,
     "high20_prev": 112.5,
-    "vwap": 88.53,
+    "vwap": 88.5,
     "score": 0,
     "reasons": [],
     "blockers": [
@@ -489,7 +489,7 @@
     "macd_hist": 0.095,
     "vol_ratio": 0.61,
     "high20_prev": 97.0,
-    "vwap": 63.87,
+    "vwap": 63.72,
     "score": 2,
     "reasons": [
      "MACD 柱翻正",
@@ -533,7 +533,7 @@
     "macd_hist": 0.318,
     "vol_ratio": 0.47,
     "high20_prev": 143.5,
-    "vwap": 102.2,
+    "vwap": 101.96,
     "score": 1,
     "reasons": [
      "MACD 柱翻正"
@@ -576,7 +576,7 @@
     "macd_hist": 0.34,
     "vol_ratio": 0.69,
     "high20_prev": 263.0,
-    "vwap": 183.87,
+    "vwap": 183.65,
     "score": 1,
     "reasons": [
      "MACD 柱翻正"
@@ -619,7 +619,7 @@
     "macd_hist": 0.114,
     "vol_ratio": 1.17,
     "high20_prev": 114.0,
-    "vwap": 83.32,
+    "vwap": 83.24,
     "score": 1,
     "reasons": [
      "MACD 柱翻正"
@@ -705,7 +705,7 @@
     "macd_hist": 0.004,
     "vol_ratio": 0.34,
     "high20_prev": 105.3,
-    "vwap": 92.38,
+    "vwap": 92.39,
     "score": 2,
     "reasons": [
      "MACD 柱翻正",
@@ -793,7 +793,7 @@
     "macd_hist": -0.031,
     "vol_ratio": 0.68,
     "high20_prev": 34.55,
-    "vwap": 25.4,
+    "vwap": 25.41,
     "score": 1,
     "reasons": [
      "KD 低檔黃金交叉（K=40）"
@@ -836,7 +836,7 @@
     "macd_hist": -0.224,
     "vol_ratio": 0.37,
     "high20_prev": 80.3,
-    "vwap": 66.42,
+    "vwap": 66.47,
     "score": 1,
     "reasons": [
      "KD 低檔黃金交叉（K=30）"
