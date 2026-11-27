@@ -1,7 +1,7 @@
 {
  "us": {
   "mode": "us_intraday",
-  "time": "2026-11-28 02:46",
+  "time": "2026-11-28 03:01",
   "stocks": [
    {
     "symbol": "QQQM",
@@ -21,9 +21,9 @@
     "k": 43.0,
     "d": 34.0,
     "macd_hist": -0.384,
-    "vol_ratio": 0.81,
+    "vol_ratio": 0.78,
     "high20_prev": 295.64,
-    "vwap": 265.47,
+    "vwap": 265.53,
     "score": 2,
     "reasons": [
      "KD 低檔黃金交叉（K=43）",
@@ -65,9 +65,9 @@
     "k": 70.0,
     "d": 59.0,
     "macd_hist": 0.214,
-    "vol_ratio": 0.63,
+    "vol_ratio": 0.6,
     "high20_prev": 360.83,
-    "vwap": 357.57,
+    "vwap": 358.12,
     "score": 3,
     "reasons": [
      "MACD 柱翻正",
@@ -107,9 +107,9 @@
     "k": 49.0,
     "d": 38.0,
     "macd_hist": -0.092,
-    "vol_ratio": 0.76,
+    "vol_ratio": 0.74,
     "high20_prev": 215.33,
-    "vwap": 148.15,
+    "vwap": 148.56,
     "score": 1,
     "reasons": [
      "盤中站上均價線"
@@ -150,9 +150,9 @@
     "k": 43.0,
     "d": 42.0,
     "macd_hist": 1.895,
-    "vol_ratio": 0.83,
+    "vol_ratio": 0.79,
     "high20_prev": 294.99,
-    "vwap": 198.52,
+    "vwap": 198.47,
     "score": 2,
     "reasons": [
      "KD 低檔黃金交叉（K=43）",
@@ -194,7 +194,7 @@
     "k": 42.0,
     "d": 37.0,
     "macd_hist": -3.385,
-    "vol_ratio": 1.11,
+    "vol_ratio": 1.06,
     "high20_prev": 317.2,
     "vwap": 277.64,
     "score": 2,
@@ -238,9 +238,9 @@
     "k": 42.0,
     "d": 41.0,
     "macd_hist": -0.508,
-    "vol_ratio": 0.72,
+    "vol_ratio": 0.69,
     "high20_prev": 147.6,
-    "vwap": 131.26,
+    "vwap": 131.43,
     "score": 2,
     "reasons": [
      "KD 低檔黃金交叉（K=42）",
