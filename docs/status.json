@@ -3,17 +3,11 @@
     "eng": "idle",
     "cal": "idle",
     "mail": "idle",
-    "stock": "busy",
+    "stock": "error",
     "shop": "off",
     "crawl": "idle"
   },
   "radio": [
-    {
-      "id": 1863,
-      "who": "策略技師",
-      "tech": "stock",
-      "msg": "11/27 04:16｜美股盤中掃描 6 檔，0 檔通過初篩"
-    },
     {
       "id": 1864,
       "who": "策略技師",
@@ -607,19 +601,23 @@
       "who": "策略技師",
       "tech": "stock",
       "msg": "11/28 06:31｜⚠️ us_post 執行失敗：Anthropic API 金鑰無效，請檢查 GitHub Secrets"
+    },
+    {
+      "id": 1963,
+      "who": "策略技師",
+      "tech": "stock",
+      "msg": "11/28 06:46｜⚠️ us_post 執行失敗：Anthropic API 金鑰無效，請檢查 GitHub Secrets"
     }
   ],
   "meta": {
     "stock": {
-      "last_done": "2026-11-28T06:31:06+08:00",
-      "last_msg": "⚠️ us_post 執行失敗：Anthropic API 金鑰無效，請檢查 GitHub Secrets",
-      "since": "2026-11-28T06:45:48+08:00",
-      "task": "美股盤後報告"
+      "last_done": "2026-11-28T06:46:11+08:00",
+      "last_msg": "⚠️ us_post 執行失敗：Anthropic API 金鑰無效，請檢查 GitHub Secrets"
     },
     "crawl": {
       "last_done": "2026-11-28T06:19:48+08:00",
       "last_msg": "主動ETF：29 檔，被加碼 37 檔股票（中砂×4、奇鋐×4、啟碁×3、穩懋×3、日月光投控×2）"
     }
   },
-  "updated": "2026-11-28T06:45:48+08:00"
+  "updated": "2026-11-28T06:46:11+08:00"
 }
