@@ -1,7 +1,7 @@
 {
  "us": {
-  "mode": "us_post",
-  "time": "2026-11-27 05:16",
+  "mode": "us_pre",
+  "time": "2026-11-27 21:01",
   "stocks": [
    {
     "symbol": "QQQM",
