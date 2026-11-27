@@ -3,17 +3,11 @@
     "eng": "idle",
     "cal": "idle",
     "mail": "idle",
-    "stock": "busy",
+    "stock": "error",
     "shop": "off",
     "crawl": "idle"
   },
   "radio": [
-    {
-      "id": 1803,
-      "who": "策略技師",
-      "tech": "stock",
-      "msg": "11/26 12:45｜台股盤中掃描 14 檔，0 檔通過初篩"
-    },
     {
       "id": 1804,
       "who": "爬蟲技師",
@@ -607,19 +601,23 @@
       "who": "策略技師",
       "tech": "stock",
       "msg": "11/27 13:30｜台股盤中掃描 14 檔，0 檔通過初篩"
+    },
+    {
+      "id": 1903,
+      "who": "策略技師",
+      "tech": "stock",
+      "msg": "11/27 13:46｜⚠️ tw_post 執行失敗：Anthropic API 額度不足，請到 console.anthropic.com 儲值"
     }
   ],
   "meta": {
     "stock": {
-      "last_done": "2026-11-27T13:30:49+08:00",
-      "last_msg": "台股盤中掃描 14 檔，0 檔通過初篩",
-      "since": "2026-11-27T13:45:32+08:00",
-      "task": "台股盤後報告"
+      "last_done": "2026-11-27T13:46:23+08:00",
+      "last_msg": "⚠️ tw_post 執行失敗：Anthropic API 額度不足，請到 console.anthropic.com 儲值"
     },
     "crawl": {
       "last_done": "2026-11-27T13:21:28+08:00",
       "last_msg": "主動ETF：29 檔，被加碼 46 檔股票（金像電×8、南亞×7、日月光投控×5、台達電×5、智邦×4）"
     }
   },
-  "updated": "2026-11-27T13:45:32+08:00"
+  "updated": "2026-11-27T13:46:23+08:00"
 }
